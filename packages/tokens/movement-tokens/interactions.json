@@ -1,0 +1,76 @@
+{
+    "interactions": {
+        "typeable": {
+            "value": ""
+        },
+        "move": {
+            "value": "MOVE"
+        },
+        "moveeth": {
+            "value": "MoveETH"
+        },
+        "inputamount": {
+            "value": 0
+        },
+        "nobalance": {
+            "value": 0
+        },
+        "balance": {
+            "value": "128.7395"
+        },
+        "gas": {
+            "value": "gas"
+        },
+        "fromnetwork": {
+            "value": "{MoveETH}"
+        },
+        "tonetwork": {
+            "value": "{MOVE}"
+        },
+        "show-balance": {
+            "value": true
+        },
+        "show-max": {
+            "value": true
+        },
+        "show-error": {
+            "value": false
+        },
+        "buttonstate": {
+            "value": "Default"
+        },
+        "showdisabled": {
+            "value": "Disabled"
+        },
+        "fee": {
+            "value": ".0000003849"
+        },
+        "show-time": {
+            "value": true
+        },
+        "show-gas": {
+            "value": false
+        },
+        "show-fees": {
+            "value": true
+        },
+        "haserror": {
+            "value": false
+        },
+        "gas-container": {
+            "value": false
+        },
+        "show-usd": {
+            "value": true
+        },
+        "label": {
+            "value": "0"
+        },
+        "isfilled": {
+            "value": "true"
+        },
+        "buttontext": {
+            "value": "Button"
+        }
+    }
+}

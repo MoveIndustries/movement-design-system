@@ -1,0 +1,8 @@
+{
+  "compilerOptions": {
+    "resolveJsonModule": true,
+    "paths": {
+      "@repo/*": ["./packages/*/src"]
+    }
+  }
+} 

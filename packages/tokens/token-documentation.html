@@ -1,0 +1,3711 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Movement Labs Design Tokens</title>
+  <style>
+    :root {
+      --font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+      --color-bg: #f8f9fa;
+      --color-text: #212529;
+      --color-primary: #0d6efd;
+      --color-border: #dee2e6;
+      --color-card: #ffffff;
+      --spacing-sm: 0.5rem;
+      --spacing-md: 1rem;
+      --spacing-lg: 1.5rem;
+      --spacing-xl: 2rem;
+      --radius-sm: 0.25rem;
+      --radius-md: 0.5rem;
+      --shadow-sm: 0 1px 3px rgba(0,0,0,0.12), 0 1px 2px rgba(0,0,0,0.24);
+    }
+
+    body {
+      font-family: var(--font-family);
+      background-color: var(--color-bg);
+      color: var(--color-text);
+      line-height: 1.6;
+      margin: 0;
+      padding: 0;
+    }
+
+    .container {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: var(--spacing-lg);
+    }
+
+    header {
+      margin-bottom: var(--spacing-xl);
+      border-bottom: 1px solid var(--color-border);
+      padding-bottom: var(--spacing-md);
+    }
+
+    h1, h2, h3, h4 {
+      margin-top: 0;
+      margin-bottom: var(--spacing-md);
+    }
+
+    h1 {
+      font-size: 2.5rem;
+    }
+
+    h2 {
+      font-size: 1.75rem;
+      margin-top: var(--spacing-xl);
+      padding-bottom: var(--spacing-sm);
+      border-bottom: 1px solid var(--color-border);
+    }
+
+    h3 {
+      font-size: 1.25rem;
+      margin-top: var(--spacing-lg);
+    }
+
+    .token-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+      gap: var(--spacing-md);
+      margin-bottom: var(--spacing-xl);
+    }
+
+    .token-card {
+      background-color: var(--color-card);
+      border-radius: var(--radius-md);
+      box-shadow: var(--shadow-sm);
+      padding: var(--spacing-md);
+      display: flex;
+      flex-direction: column;
+    }
+
+    .token-name {
+      font-weight: bold;
+      margin-bottom: var(--spacing-sm);
+      word-break: break-all;
+    }
+
+    .token-value {
+      font-family: monospace;
+      background-color: var(--color-bg);
+      padding: var(--spacing-sm);
+      border-radius: var(--radius-sm);
+      margin-bottom: var(--spacing-sm);
+      word-break: break-all;
+    }
+
+    .color-preview {
+      width: 100%;
+      height: 40px;
+      border-radius: var(--radius-sm);
+      margin-bottom: var(--spacing-sm);
+      border: 1px solid var(--color-border);
+    }
+
+    .search-container {
+      margin-bottom: var(--spacing-lg);
+    }
+
+    #token-search {
+      width: 100%;
+      padding: var(--spacing-md);
+      border: 1px solid var(--color-border);
+      border-radius: var(--radius-md);
+      font-size: 1rem;
+    }
+
+    .category-nav {
+      display: flex;
+      flex-wrap: wrap;
+      gap: var(--spacing-sm);
+      margin-bottom: var(--spacing-lg);
+    }
+
+    .category-nav a {
+      text-decoration: none;
+      color: var(--color-text);
+      background-color: var(--color-card);
+      padding: var(--spacing-sm) var(--spacing-md);
+      border-radius: var(--radius-md);
+      border: 1px solid var(--color-border);
+    }
+
+    .category-nav a:hover {
+      background-color: var(--color-primary);
+      color: white;
+    }
+
+    @media (max-width: 768px) {
+      .token-grid {
+        grid-template-columns: 1fr;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <header>
+      <h1>Movement Labs Design Tokens</h1>
+      <p>This documentation displays all the design tokens used in the Movement Labs design system.</p>
+    </header>
+
+    <div class="search-container">
+      <input type="text" id="token-search" placeholder="Search tokens...">
+    </div>
+
+    <div class="category-nav">
+      <a href="#core">Core</a>
+      <a href="#semantic">Semantic</a>
+      <a href="#components">Components</a>
+      <a href="#interactions">Interactions</a>
+      <a href="#all">All Tokens</a>
+    </div>
+
+    <section id="core">
+      <h2>Core Tokens</h2>
+      <div class="token-grid">
+        
+          <div class="token-card" data-token-name="--core-color-moveus-marigold-50" data-category="core">
+            <div class="color-preview" style="background-color: #fffbeb;"></div>
+            <div class="token-name">--core-color-moveus-marigold-50</div>
+            <div class="token-value">#fffbeb</div>
+          </div>
+        
+          <div class="token-card" data-token-name="--core-color-moveus-marigold-100" data-category="core">
+            <div class="color-preview" style="background-color: #fff2bd;"></div>
+            <div class="token-name">--core-color-moveus-marigold-100</div>
+            <div class="token-value">#fff2bd</div>
+          </div>
+        
+          <div class="token-card" data-token-name="--core-color-moveus-marigold-200" data-category="core">
+            <div class="color-preview" style="background-color: #ffea90;"></div>
+            <div class="token-name">--core-color-moveus-marigold-200</div>
+            <div class="token-value">#ffea90</div>
+          </div>
+        
+          <div class="token-card" data-token-name="--core-color-moveus-marigold-300" data-category="core">
+            <div class="color-preview" style="background-color: #ffe162;"></div>
+            <div class="token-name">--core-color-moveus-marigold-300</div>
+            <div class="token-value">#ffe162</div>
+          </div>
+        
+          <div class="token-card" data-token-name="--core-color-moveus-marigold-400" data-category="core">
+            <div class="color-preview" style="background-color: #ffd935;"></div>
+            <div class="token-name">--core-color-moveus-marigold-400</div>
+            <div class="token-value">#ffd935</div>
+          </div>
+        
+          <div class="token-card" data-token-name="--core-color-moveus-marigold-500" data-category="core">
+            <div class="color-preview" style="background-color: #ddba22;"></div>
+            <div class="token-name">--core-color-moveus-marigold-500</div>
+            <div class="token-value">#ddba22</div>
+          </div>
+        
+          <div class="token-card" data-token-name="--core-color-moveus-marigold-600" data-category="core">
+            <div class="color-preview" style="background-color: #bb9b13;"></div>
+            <div class="token-name">--core-color-moveus-marigold-600</div>
+            <div class="token-value">#bb9b13</div>
+          </div>
+        
+          <div class="token-card" data-token-name="--core-color-moveus-marigold-700" data-category="core">
+            <div class="color-preview" style="background-color: #997e08;"></div>
+            <div class="token-name">--core-color-moveus-marigold-700</div>
+            <div class="token-value">#997e08</div>
+          </div>
+        
+          <div class="token-card" data-token-name="--core-color-moveus-marigold-800" data-category="core">
+            <div class="color-preview" style="background-color: #776100;"></div>
+            <div class="token-name">--core-color-moveus-marigold-800</div>
+            <div class="token-value">#776100</div>
+          </div>
+        
+          <div class="token-card" data-token-name="--core-color-moveus-marigold-900" data-category="core">
+            <div class="color-preview" style="background-color: #554500;"></div>
+            <div class="token-name">--core-color-moveus-marigold-900</div>
+            <div class="token-value">#554500</div>
+          </div>
+        
+          <div class="token-card" data-token-name="--core-color-guild-green-50" data-category="core">
+            <div class="color-preview" style="background-color: #ecfff8;"></div>
+            <div class="token-name">--core-color-guild-green-50</div>
+            <div class="token-value">#ecfff8</div>
+          </div>
+        
+          <div class="token-card" data-token-name="--core-color-guild-green-100" data-category="core">
+            <div class="color-preview" style="background-color: #c1ffea;"></div>
+            <div class="token-name">--core-color-guild-green-100</div>
+            <div class="token-value">#c1ffea</div>
+          </div>
+        
+          <div class="token-card" data-token-name="--core-color-guild-green-200" data-category="core">
+            <div class="color-preview" style="background-color: #96ffdc;"></div>
+            <div class="token-name">--core-color-guild-green-200</div>
+            <div class="token-value">#96ffdc</div>
+          </div>
+        
+          <div class="token-card" data-token-name="--core-color-guild-green-300" data-category="core">
+            <div class="color-preview" style="background-color: #6bffce;"></div>
+            <div class="token-name">--core-color-guild-green-300</div>
+            <div class="token-value">#6bffce</div>
+          </div>
+        
+          <div class="token-card" data-token-name="--core-color-guild-green-400" data-category="core">
+            <div class="color-preview" style="background-color: #3df1b6;"></div>
+            <div class="token-name">--core-color-guild-green-400</div>
+            <div class="token-value">#3df1b6</div>
+          </div>
+        
+          <div class="token-card" data-token-name="--core-color-guild-green-500" data-category="core">
+            <div class="color-preview" style="background-color: #28cf98;"></div>
+            <div class="token-name">--core-color-guild-green-500</div>
+            <div class="token-value">#28cf98</div>
+          </div>
+        
+          <div class="token-card" data-token-name="--core-color-guild-green-600" data-category="core">
+            <div class="color-preview" style="background-color: #17ad7c;"></div>
+            <div class="token-name">--core-color-guild-green-600</div>
+            <div class="token-value">#17ad7c</div>
+          </div>
+        
+          <div class="token-card" data-token-name="--core-color-guild-green-700" data-category="core">
+            <div class="color-preview" style="background-color: #0a8b61;"></div>
+            <div class="token-name">--core-color-guild-green-700</div>
+            <div class="token-value">#0a8b61</div>
+          </div>
+        
+          <div class="token-card" data-token-name="--core-color-guild-green-800" data-category="core">
+            <div class="color-preview" style="background-color: #026947;"></div>
+            <div class="token-name">--core-color-guild-green-800</div>
+            <div class="token-value">#026947</div>
+          </div>
+        
+          <div class="token-card" data-token-name="--core-color-guild-green-900" data-category="core">
+            <div class="color-preview" style="background-color: #004730;"></div>
+            <div class="token-name">--core-color-guild-green-900</div>
+            <div class="token-value">#004730</div>
+          </div>
+        
+          <div class="token-card" data-token-name="--core-color-protocol-pink-50" data-category="core">
+            <div class="color-preview" style="background-color: #fff0fc;"></div>
+            <div class="token-name">--core-color-protocol-pink-50</div>
+            <div class="token-value">#fff0fc</div>
+          </div>
+        
+          <div class="token-card" data-token-name="--core-color-protocol-pink-100" data-category="core">
+            <div class="color-preview" style="background-color: #ffc5f3;"></div>
+            <div class="token-name">--core-color-protocol-pink-100</div>
+            <div class="token-value">#ffc5f3</div>
+          </div>
+        
+          <div class="token-card" data-token-name="--core-color-protocol-pink-200" data-category="core">
+            <div class="color-preview" style="background-color: #fd98e8;"></div>
+            <div class="token-name">--core-color-protocol-pink-200</div>
+            <div class="token-value">#fd98e8</div>
+          </div>
+        
+          <div class="token-card" data-token-name="--core-color-protocol-pink-300" data-category="core">
+            <div class="color-preview" style="background-color: #f068d4;"></div>
+            <div class="token-name">--core-color-protocol-pink-300</div>
+            <div class="token-value">#f068d4</div>
+          </div>
+        
+          <div class="token-card" data-token-name="--core-color-protocol-pink-400" data-category="core">
+            <div class="color-preview" style="background-color: #d354b9;"></div>
+            <div class="token-name">--core-color-protocol-pink-400</div>
+            <div class="token-value">#d354b9</div>
+          </div>
+        
+          <div class="token-card" data-token-name="--core-color-protocol-pink-500" data-category="core">
+            <div class="color-preview" style="background-color: #b6439e;"></div>
+            <div class="token-name">--core-color-protocol-pink-500</div>
+            <div class="token-value">#b6439e</div>
+          </div>
+        
+          <div class="token-card" data-token-name="--core-color-protocol-pink-600" data-category="core">
+            <div class="color-preview" style="background-color: #993384;"></div>
+            <div class="token-name">--core-color-protocol-pink-600</div>
+            <div class="token-value">#993384</div>
+          </div>
+        
+          <div class="token-card" data-token-name="--core-color-protocol-pink-700" data-category="core">
+            <div class="color-preview" style="background-color: #7b256a;"></div>
+            <div class="token-name">--core-color-protocol-pink-700</div>
+            <div class="token-value">#7b256a</div>
+          </div>
+        
+          <div class="token-card" data-token-name="--core-color-protocol-pink-800" data-category="core">
+            <div class="color-preview" style="background-color: #5e1950;"></div>
+            <div class="token-name">--core-color-protocol-pink-800</div>
+            <div class="token-value">#5e1950</div>
+          </div>
+        
+          <div class="token-card" data-token-name="--core-color-protocol-pink-900" data-category="core">
+            <div class="color-preview" style="background-color: #410f37;"></div>
+            <div class="token-name">--core-color-protocol-pink-900</div>
+            <div class="token-value">#410f37</div>
+          </div>
+        
+          <div class="token-card" data-token-name="--core-color-byzantine-blue-50" data-category="core">
+            <div class="color-preview" style="background-color: #c2ceff;"></div>
+            <div class="token-name">--core-color-byzantine-blue-50</div>
+            <div class="token-value">#c2ceff</div>
+          </div>
+        
+          <div class="token-card" data-token-name="--core-color-byzantine-blue-100" data-category="core">
+            <div class="color-preview" style="background-color: #859dff;"></div>
+            <div class="token-name">--core-color-byzantine-blue-100</div>
+            <div class="token-value">#859dff</div>
+          </div>
+        
+          <div class="token-card" data-token-name="--core-color-byzantine-blue-200" data-category="core">
+            <div class="color-preview" style="background-color: #5c7cff;"></div>
+            <div class="token-name">--core-color-byzantine-blue-200</div>
+            <div class="token-value">#5c7cff</div>
+          </div>
+        
+          <div class="token-card" data-token-name="--core-color-byzantine-blue-300" data-category="core">
+            <div class="color-preview" style="background-color: #335cff;"></div>
+            <div class="token-name">--core-color-byzantine-blue-300</div>
+            <div class="token-value">#335cff</div>
+          </div>
+        
+          <div class="token-card" data-token-name="--core-color-byzantine-blue-400" data-category="core">
+            <div class="color-preview" style="background-color: #0337ff;"></div>
+            <div class="token-name">--core-color-byzantine-blue-400</div>
+            <div class="token-value">#0337ff</div>
+          </div>
+        
+          <div class="token-card" data-token-name="--core-color-byzantine-blue-500" data-category="core">
+            <div class="color-preview" style="background-color: #002cd6;"></div>
+            <div class="token-name">--core-color-byzantine-blue-500</div>
+            <div class="token-value">#002cd6</div>
+          </div>
+        
+          <div class="token-card" data-token-name="--core-color-byzantine-blue-600" data-category="core">
+            <div class="color-preview" style="background-color: #0024ad;"></div>
+            <div class="token-name">--core-color-byzantine-blue-600</div>
+            <div class="token-value">#0024ad</div>
+          </div>
+        
+          <div class="token-card" data-token-name="--core-color-byzantine-blue-700" data-category="core">
+            <div class="color-preview" style="background-color: #001b85;"></div>
+            <div class="token-name">--core-color-byzantine-blue-700</div>
+            <div class="token-value">#001b85</div>
+          </div>
+        
+          <div class="token-card" data-token-name="--core-color-byzantine-blue-800" data-category="core">
+            <div class="color-preview" style="background-color: #00135c;"></div>
+            <div class="token-name">--core-color-byzantine-blue-800</div>
+            <div class="token-value">#00135c</div>
+          </div>
+        
+          <div class="token-card" data-token-name="--core-color-byzantine-blue-900" data-category="core">
+            <div class="color-preview" style="background-color: #000c3d;"></div>
+            <div class="token-name">--core-color-byzantine-blue-900</div>
+            <div class="token-value">#000c3d</div>
+          </div>
+        
+          <div class="token-card" data-token-name="--core-color-oracle-orange-50" data-category="core">
+            <div class="color-preview" style="background-color: #ffefec;"></div>
+            <div class="token-name">--core-color-oracle-orange-50</div>
+            <div class="token-value">#ffefec</div>
+          </div>
+        
+          <div class="token-card" data-token-name="--core-color-oracle-orange-100" data-category="core">
+            <div class="color-preview" style="background-color: #ffcdc2;"></div>
+            <div class="token-name">--core-color-oracle-orange-100</div>
+            <div class="token-value">#ffcdc2</div>
+          </div>
+        
+          <div class="token-card" data-token-name="--core-color-oracle-orange-200" data-category="core">
+            <div class="color-preview" style="background-color: #ffab97;"></div>
+            <div class="token-name">--core-color-oracle-orange-200</div>
+            <div class="token-value">#ffab97</div>
+          </div>
+        
+          <div class="token-card" data-token-name="--core-color-oracle-orange-300" data-category="core">
+            <div class="color-preview" style="background-color: #ff886d;"></div>
+            <div class="token-name">--core-color-oracle-orange-300</div>
+            <div class="token-value">#ff886d</div>
+          </div>
+        
+          <div class="token-card" data-token-name="--core-color-oracle-orange-400" data-category="core">
+            <div class="color-preview" style="background-color: #ff6642;"></div>
+            <div class="token-name">--core-color-oracle-orange-400</div>
+            <div class="token-value">#ff6642</div>
+          </div>
+        
+          <div class="token-card" data-token-name="--core-color-oracle-orange-500" data-category="core">
+            <div class="color-preview" style="background-color: #ea5330;"></div>
+            <div class="token-name">--core-color-oracle-orange-500</div>
+            <div class="token-value">#ea5330</div>
+          </div>
+        
+          <div class="token-card" data-token-name="--core-color-oracle-orange-600" data-category="core">
+            <div class="color-preview" style="background-color: #c83e1e;"></div>
+            <div class="token-name">--core-color-oracle-orange-600</div>
+            <div class="token-value">#c83e1e</div>
+          </div>
+        
+          <div class="token-card" data-token-name="--core-color-oracle-orange-700" data-category="core">
+            <div class="color-preview" style="background-color: #a62c10;"></div>
+            <div class="token-name">--core-color-oracle-orange-700</div>
+            <div class="token-value">#a62c10</div>
+          </div>
+        
+          <div class="token-card" data-token-name="--core-color-oracle-orange-800" data-category="core">
+            <div class="color-preview" style="background-color: #841d05;"></div>
+            <div class="token-name">--core-color-oracle-orange-800</div>
+            <div class="token-value">#841d05</div>
+          </div>
+        
+          <div class="token-card" data-token-name="--core-color-oracle-orange-900" data-category="core">
+            <div class="color-preview" style="background-color: #621300;"></div>
+            <div class="token-name">--core-color-oracle-orange-900</div>
+            <div class="token-value">#621300</div>
+          </div>
+        
+          <div class="token-card" data-token-name="--core-color-neutrals-white" data-category="core">
+            <div class="color-preview" style="background-color: #ffffff;"></div>
+            <div class="token-name">--core-color-neutrals-white</div>
+            <div class="token-value">#ffffff</div>
+          </div>
+        
+          <div class="token-card" data-token-name="--core-color-neutrals-black" data-category="core">
+            <div class="color-preview" style="background-color: #000000;"></div>
+            <div class="token-name">--core-color-neutrals-black</div>
+            <div class="token-value">#000000</div>
+          </div>
+        
+          <div class="token-card" data-token-name="--core-color-neutrals-whitealpha-50" data-category="core">
+            <div class="color-preview" style="background-color: rgba(255, 255, 255, 0.0400);"></div>
+            <div class="token-name">--core-color-neutrals-whitealpha-50</div>
+            <div class="token-value">rgba(255, 255, 255, 0.0400)</div>
+          </div>
+        
+          <div class="token-card" data-token-name="--core-color-neutrals-whitealpha-100" data-category="core">
+            <div class="color-preview" style="background-color: rgba(255, 255, 255, 0.0600);"></div>
+            <div class="token-name">--core-color-neutrals-whitealpha-100</div>
+            <div class="token-value">rgba(255, 255, 255, 0.0600)</div>
+          </div>
+        
+          <div class="token-card" data-token-name="--core-color-neutrals-whitealpha-200" data-category="core">
+            <div class="color-preview" style="background-color: rgba(255, 255, 255, 0.0800);"></div>
+            <div class="token-name">--core-color-neutrals-whitealpha-200</div>
+            <div class="token-value">rgba(255, 255, 255, 0.0800)</div>
+          </div>
+        
+          <div class="token-card" data-token-name="--core-color-neutrals-whitealpha-300" data-category="core">
+            <div class="color-preview" style="background-color: rgba(255, 255, 255, 0.1600);"></div>
+            <div class="token-name">--core-color-neutrals-whitealpha-300</div>
+            <div class="token-value">rgba(255, 255, 255, 0.1600)</div>
+          </div>
+        
+          <div class="token-card" data-token-name="--core-color-neutrals-whitealpha-400" data-category="core">
+            <div class="color-preview" style="background-color: rgba(255, 255, 255, 0.2400);"></div>
+            <div class="token-name">--core-color-neutrals-whitealpha-400</div>
+            <div class="token-value">rgba(255, 255, 255, 0.2400)</div>
+          </div>
+        
+          <div class="token-card" data-token-name="--core-color-neutrals-whitealpha-500" data-category="core">
+            <div class="color-preview" style="background-color: rgba(255, 255, 255, 0.3600);"></div>
+            <div class="token-name">--core-color-neutrals-whitealpha-500</div>
+            <div class="token-value">rgba(255, 255, 255, 0.3600)</div>
+          </div>
+        
+          <div class="token-card" data-token-name="--core-color-neutrals-whitealpha-600" data-category="core">
+            <div class="color-preview" style="background-color: rgba(255, 255, 255, 0.4800);"></div>
+            <div class="token-name">--core-color-neutrals-whitealpha-600</div>
+            <div class="token-value">rgba(255, 255, 255, 0.4800)</div>
+          </div>
+        
+          <div class="token-card" data-token-name="--core-color-neutrals-whitealpha-700" data-category="core">
+            <div class="color-preview" style="background-color: rgba(255, 255, 255, 0.6400);"></div>
+            <div class="token-name">--core-color-neutrals-whitealpha-700</div>
+            <div class="token-value">rgba(255, 255, 255, 0.6400)</div>
+          </div>
+        
+          <div class="token-card" data-token-name="--core-color-neutrals-whitealpha-800" data-category="core">
+            <div class="color-preview" style="background-color: rgba(255, 255, 255, 0.8000);"></div>
+            <div class="token-name">--core-color-neutrals-whitealpha-800</div>
+            <div class="token-value">rgba(255, 255, 255, 0.8000)</div>
+          </div>
+        
+          <div class="token-card" data-token-name="--core-color-neutrals-whitealpha-900" data-category="core">
+            <div class="color-preview" style="background-color: rgba(255, 255, 255, 0.9200);"></div>
+            <div class="token-name">--core-color-neutrals-whitealpha-900</div>
+            <div class="token-value">rgba(255, 255, 255, 0.9200)</div>
+          </div>
+        
+          <div class="token-card" data-token-name="--core-color-neutrals-blackalpha-50" data-category="core">
+            <div class="color-preview" style="background-color: rgba(0, 0, 0, 0.0400);"></div>
+            <div class="token-name">--core-color-neutrals-blackalpha-50</div>
+            <div class="token-value">rgba(0, 0, 0, 0.0400)</div>
+          </div>
+        
+          <div class="token-card" data-token-name="--core-color-neutrals-blackalpha-100" data-category="core">
+            <div class="color-preview" style="background-color: rgba(0, 0, 0, 0.0600);"></div>
+            <div class="token-name">--core-color-neutrals-blackalpha-100</div>
+            <div class="token-value">rgba(0, 0, 0, 0.0600)</div>
+          </div>
+        
+          <div class="token-card" data-token-name="--core-color-neutrals-blackalpha-200" data-category="core">
+            <div class="color-preview" style="background-color: rgba(0, 0, 0, 0.0800);"></div>
+            <div class="token-name">--core-color-neutrals-blackalpha-200</div>
+            <div class="token-value">rgba(0, 0, 0, 0.0800)</div>
+          </div>
+        
+          <div class="token-card" data-token-name="--core-color-neutrals-blackalpha-300" data-category="core">
+            <div class="color-preview" style="background-color: rgba(0, 0, 0, 0.1600);"></div>
+            <div class="token-name">--core-color-neutrals-blackalpha-300</div>
+            <div class="token-value">rgba(0, 0, 0, 0.1600)</div>
+          </div>
+        
+          <div class="token-card" data-token-name="--core-color-neutrals-blackalpha-400" data-category="core">
+            <div class="color-preview" style="background-color: rgba(0, 0, 0, 0.2400);"></div>
+            <div class="token-name">--core-color-neutrals-blackalpha-400</div>
+            <div class="token-value">rgba(0, 0, 0, 0.2400)</div>
+          </div>
+        
+          <div class="token-card" data-token-name="--core-color-neutrals-blackalpha-500" data-category="core">
+            <div class="color-preview" style="background-color: rgba(0, 0, 0, 0.3600);"></div>
+            <div class="token-name">--core-color-neutrals-blackalpha-500</div>
+            <div class="token-value">rgba(0, 0, 0, 0.3600)</div>
+          </div>
+        
+          <div class="token-card" data-token-name="--core-color-neutrals-blackalpha-600" data-category="core">
+            <div class="color-preview" style="background-color: rgba(0, 0, 0, 0.4800);"></div>
+            <div class="token-name">--core-color-neutrals-blackalpha-600</div>
+            <div class="token-value">rgba(0, 0, 0, 0.4800)</div>
+          </div>
+        
+          <div class="token-card" data-token-name="--core-color-neutrals-blackalpha-700" data-category="core">
+            <div class="color-preview" style="background-color: rgba(0, 0, 0, 0.6400);"></div>
+            <div class="token-name">--core-color-neutrals-blackalpha-700</div>
+            <div class="token-value">rgba(0, 0, 0, 0.6400)</div>
+          </div>
+        
+          <div class="token-card" data-token-name="--core-color-neutrals-blackalpha-800" data-category="core">
+            <div class="color-preview" style="background-color: rgba(0, 0, 0, 0.8000);"></div>
+            <div class="token-name">--core-color-neutrals-blackalpha-800</div>
+            <div class="token-value">rgba(0, 0, 0, 0.8000)</div>
+          </div>
+        
+          <div class="token-card" data-token-name="--core-color-neutrals-blackalpha-900" data-category="core">
+            <div class="color-preview" style="background-color: rgba(0, 0, 0, 0.9200);"></div>
+            <div class="token-name">--core-color-neutrals-blackalpha-900</div>
+            <div class="token-value">rgba(0, 0, 0, 0.9200)</div>
+          </div>
+        
+          <div class="token-card" data-token-name="--core-color-feedback-success" data-category="core">
+            <div class="color-preview" style="background-color: #28cf98;"></div>
+            <div class="token-name">--core-color-feedback-success</div>
+            <div class="token-value">#28cf98</div>
+          </div>
+        
+          <div class="token-card" data-token-name="--core-color-feedback-error" data-category="core">
+            <div class="color-preview" style="background-color: #d82c2d;"></div>
+            <div class="token-name">--core-color-feedback-error</div>
+            <div class="token-value">#d82c2d</div>
+          </div>
+        
+          <div class="token-card" data-token-name="--core-color-feedback-warning" data-category="core">
+            <div class="color-preview" style="background-color: #ea5330;"></div>
+            <div class="token-name">--core-color-feedback-warning</div>
+            <div class="token-value">#ea5330</div>
+          </div>
+        
+          <div class="token-card" data-token-name="--core-typography-font-style-letterspacing" data-category="core">
+            
+            <div class="token-name">--core-typography-font-style-letterspacing</div>
+            <div class="token-value">0.7px</div>
+          </div>
+        
+          <div class="token-card" data-token-name="--core-typography-font-family-heading" data-category="core">
+            
+            <div class="token-name">--core-typography-font-family-heading</div>
+            <div class="token-value">TWK Everett</div>
+          </div>
+        
+          <div class="token-card" data-token-name="--core-typography-font-family-body" data-category="core">
+            
+            <div class="token-name">--core-typography-font-family-body</div>
+            <div class="token-value">Neue Haas Unica Pro</div>
+          </div>
+        
+          <div class="token-card" data-token-name="--core-typography-font-weight-regular" data-category="core">
+            
+            <div class="token-name">--core-typography-font-weight-regular</div>
+            <div class="token-value">Regular</div>
+          </div>
+        
+          <div class="token-card" data-token-name="--core-typography-font-weight-bold" data-category="core">
+            
+            <div class="token-name">--core-typography-font-weight-bold</div>
+            <div class="token-value">Bold</div>
+          </div>
+        
+          <div class="token-card" data-token-name="--core-typography-font-weight-medium" data-category="core">
+            
+            <div class="token-name">--core-typography-font-weight-medium</div>
+            <div class="token-value">Medium</div>
+          </div>
+        
+          <div class="token-card" data-token-name="--core-typography-font-weight-light" data-category="core">
+            
+            <div class="token-name">--core-typography-font-weight-light</div>
+            <div class="token-value">Light</div>
+          </div>
+        
+          <div class="token-card" data-token-name="--core-typography-font-weight-heavy" data-category="core">
+            
+            <div class="token-name">--core-typography-font-weight-heavy</div>
+            <div class="token-value">Heavy</div>
+          </div>
+        
+          <div class="token-card" data-token-name="--core-typography-font-size-xs" data-category="core">
+            
+            <div class="token-name">--core-typography-font-size-xs</div>
+            <div class="token-value">12</div>
+          </div>
+        
+          <div class="token-card" data-token-name="--core-typography-font-size-sm" data-category="core">
+            
+            <div class="token-name">--core-typography-font-size-sm</div>
+            <div class="token-value">14</div>
+          </div>
+        
+          <div class="token-card" data-token-name="--core-typography-font-size-md" data-category="core">
+            
+            <div class="token-name">--core-typography-font-size-md</div>
+            <div class="token-value">16</div>
+          </div>
+        
+          <div class="token-card" data-token-name="--core-typography-font-size-lg" data-category="core">
+            
+            <div class="token-name">--core-typography-font-size-lg</div>
+            <div class="token-value">18</div>
+          </div>
+        
+          <div class="token-card" data-token-name="--core-typography-font-size-xl" data-category="core">
+            
+            <div class="token-name">--core-typography-font-size-xl</div>
+            <div class="token-value">20</div>
+          </div>
+        
+          <div class="token-card" data-token-name="--core-typography-font-size-2xl" data-category="core">
+            
+            <div class="token-name">--core-typography-font-size-2xl</div>
+            <div class="token-value">24</div>
+          </div>
+        
+          <div class="token-card" data-token-name="--core-typography-font-size-3xl" data-category="core">
+            
+            <div class="token-name">--core-typography-font-size-3xl</div>
+            <div class="token-value">32</div>
+          </div>
+        
+          <div class="token-card" data-token-name="--core-typography-font-size-4xl" data-category="core">
+            
+            <div class="token-name">--core-typography-font-size-4xl</div>
+            <div class="token-value">40</div>
+          </div>
+        
+          <div class="token-card" data-token-name="--core-typography-font-size-5xl" data-category="core">
+            
+            <div class="token-name">--core-typography-font-size-5xl</div>
+            <div class="token-value">48</div>
+          </div>
+        
+          <div class="token-card" data-token-name="--core-typography-font-size-6xl" data-category="core">
+            
+            <div class="token-name">--core-typography-font-size-6xl</div>
+            <div class="token-value">64</div>
+          </div>
+        
+          <div class="token-card" data-token-name="--core-typography-font-size-7xl" data-category="core">
+            
+            <div class="token-name">--core-typography-font-size-7xl</div>
+            <div class="token-value">80</div>
+          </div>
+        
+          <div class="token-card" data-token-name="--core-dimension-0" data-category="core">
+            
+            <div class="token-name">--core-dimension-0</div>
+            <div class="token-value">0</div>
+          </div>
+        
+          <div class="token-card" data-token-name="--core-dimension-1" data-category="core">
+            
+            <div class="token-name">--core-dimension-1</div>
+            <div class="token-value">1</div>
+          </div>
+        
+          <div class="token-card" data-token-name="--core-dimension-2" data-category="core">
+            
+            <div class="token-name">--core-dimension-2</div>
+            <div class="token-value">2</div>
+          </div>
+        
+          <div class="token-card" data-token-name="--core-dimension-4" data-category="core">
+            
+            <div class="token-name">--core-dimension-4</div>
+            <div class="token-value">4</div>
+          </div>
+        
+          <div class="token-card" data-token-name="--core-dimension-6" data-category="core">
+            
+            <div class="token-name">--core-dimension-6</div>
+            <div class="token-value">6</div>
+          </div>
+        
+          <div class="token-card" data-token-name="--core-dimension-8" data-category="core">
+            
+            <div class="token-name">--core-dimension-8</div>
+            <div class="token-value">8</div>
+          </div>
+        
+          <div class="token-card" data-token-name="--core-dimension-10" data-category="core">
+            
+            <div class="token-name">--core-dimension-10</div>
+            <div class="token-value">10</div>
+          </div>
+        
+          <div class="token-card" data-token-name="--core-dimension-12" data-category="core">
+            
+            <div class="token-name">--core-dimension-12</div>
+            <div class="token-value">12</div>
+          </div>
+        
+          <div class="token-card" data-token-name="--core-dimension-14" data-category="core">
+            
+            <div class="token-name">--core-dimension-14</div>
+            <div class="token-value">14</div>
+          </div>
+        
+          <div class="token-card" data-token-name="--core-dimension-16" data-category="core">
+            
+            <div class="token-name">--core-dimension-16</div>
+            <div class="token-value">16</div>
+          </div>
+        
+          <div class="token-card" data-token-name="--core-dimension-18" data-category="core">
+            
+            <div class="token-name">--core-dimension-18</div>
+            <div class="token-value">18</div>
+          </div>
+        
+          <div class="token-card" data-token-name="--core-dimension-20" data-category="core">
+            
+            <div class="token-name">--core-dimension-20</div>
+            <div class="token-value">20</div>
+          </div>
+        
+          <div class="token-card" data-token-name="--core-dimension-24" data-category="core">
+            
+            <div class="token-name">--core-dimension-24</div>
+            <div class="token-value">24</div>
+          </div>
+        
+          <div class="token-card" data-token-name="--core-dimension-32" data-category="core">
+            
+            <div class="token-name">--core-dimension-32</div>
+            <div class="token-value">32</div>
+          </div>
+        
+          <div class="token-card" data-token-name="--core-dimension-40" data-category="core">
+            
+            <div class="token-name">--core-dimension-40</div>
+            <div class="token-value">40</div>
+          </div>
+        
+          <div class="token-card" data-token-name="--core-dimension-48" data-category="core">
+            
+            <div class="token-name">--core-dimension-48</div>
+            <div class="token-value">48</div>
+          </div>
+        
+          <div class="token-card" data-token-name="--core-dimension-56" data-category="core">
+            
+            <div class="token-name">--core-dimension-56</div>
+            <div class="token-value">56</div>
+          </div>
+        
+          <div class="token-card" data-token-name="--core-dimension-64" data-category="core">
+            
+            <div class="token-name">--core-dimension-64</div>
+            <div class="token-value">64</div>
+          </div>
+        
+          <div class="token-card" data-token-name="--core-dimension-72" data-category="core">
+            
+            <div class="token-name">--core-dimension-72</div>
+            <div class="token-value">72</div>
+          </div>
+        
+          <div class="token-card" data-token-name="--core-dimension-80" data-category="core">
+            
+            <div class="token-name">--core-dimension-80</div>
+            <div class="token-value">80</div>
+          </div>
+        
+          <div class="token-card" data-token-name="--core-dimension-96" data-category="core">
+            
+            <div class="token-name">--core-dimension-96</div>
+            <div class="token-value">96</div>
+          </div>
+        
+          <div class="token-card" data-token-name="--core-space-0" data-category="core">
+            
+            <div class="token-name">--core-space-0</div>
+            <div class="token-value">0</div>
+          </div>
+        
+          <div class="token-card" data-token-name="--core-space-1" data-category="core">
+            
+            <div class="token-name">--core-space-1</div>
+            <div class="token-value">1</div>
+          </div>
+        
+          <div class="token-card" data-token-name="--core-space-2" data-category="core">
+            
+            <div class="token-name">--core-space-2</div>
+            <div class="token-value">2</div>
+          </div>
+        
+          <div class="token-card" data-token-name="--core-space-3" data-category="core">
+            
+            <div class="token-name">--core-space-3</div>
+            <div class="token-value">4</div>
+          </div>
+        
+          <div class="token-card" data-token-name="--core-space-4" data-category="core">
+            
+            <div class="token-name">--core-space-4</div>
+            <div class="token-value">6</div>
+          </div>
+        
+          <div class="token-card" data-token-name="--core-space-5" data-category="core">
+            
+            <div class="token-name">--core-space-5</div>
+            <div class="token-value">8</div>
+          </div>
+        
+          <div class="token-card" data-token-name="--core-space-6" data-category="core">
+            
+            <div class="token-name">--core-space-6</div>
+            <div class="token-value">12</div>
+          </div>
+        
+          <div class="token-card" data-token-name="--core-space-7" data-category="core">
+            
+            <div class="token-name">--core-space-7</div>
+            <div class="token-value">16</div>
+          </div>
+        
+          <div class="token-card" data-token-name="--core-space-8" data-category="core">
+            
+            <div class="token-name">--core-space-8</div>
+            <div class="token-value">24</div>
+          </div>
+        
+          <div class="token-card" data-token-name="--core-space-9" data-category="core">
+            
+            <div class="token-name">--core-space-9</div>
+            <div class="token-value">32</div>
+          </div>
+        
+          <div class="token-card" data-token-name="--core-space-10" data-category="core">
+            
+            <div class="token-name">--core-space-10</div>
+            <div class="token-value">40</div>
+          </div>
+        
+          <div class="token-card" data-token-name="--core-space-11" data-category="core">
+            
+            <div class="token-name">--core-space-11</div>
+            <div class="token-value">48</div>
+          </div>
+        
+          <div class="token-card" data-token-name="--core-space-12" data-category="core">
+            
+            <div class="token-name">--core-space-12</div>
+            <div class="token-value">56</div>
+          </div>
+        
+          <div class="token-card" data-token-name="--core-space-13" data-category="core">
+            
+            <div class="token-name">--core-space-13</div>
+            <div class="token-value">64</div>
+          </div>
+        
+          <div class="token-card" data-token-name="--core-space-14" data-category="core">
+            
+            <div class="token-name">--core-space-14</div>
+            <div class="token-value">72</div>
+          </div>
+        
+          <div class="token-card" data-token-name="--core-space-15" data-category="core">
+            
+            <div class="token-name">--core-space-15</div>
+            <div class="token-value">80</div>
+          </div>
+        
+          <div class="token-card" data-token-name="--core-space-16" data-category="core">
+            
+            <div class="token-name">--core-space-16</div>
+            <div class="token-value">96</div>
+          </div>
+        
+          <div class="token-card" data-token-name="--core-border-radius-none" data-category="core">
+            
+            <div class="token-name">--core-border-radius-none</div>
+            <div class="token-value">0</div>
+          </div>
+        
+          <div class="token-card" data-token-name="--core-border-radius-xs" data-category="core">
+            
+            <div class="token-name">--core-border-radius-xs</div>
+            <div class="token-value">4</div>
+          </div>
+        
+          <div class="token-card" data-token-name="--core-border-radius-sm" data-category="core">
+            
+            <div class="token-name">--core-border-radius-sm</div>
+            <div class="token-value">8</div>
+          </div>
+        
+          <div class="token-card" data-token-name="--core-border-radius-md" data-category="core">
+            
+            <div class="token-name">--core-border-radius-md</div>
+            <div class="token-value">16</div>
+          </div>
+        
+          <div class="token-card" data-token-name="--core-border-radius-round" data-category="core">
+            
+            <div class="token-name">--core-border-radius-round</div>
+            <div class="token-value">9999</div>
+          </div>
+        
+          <div class="token-card" data-token-name="--core-border-width-xs" data-category="core">
+            
+            <div class="token-name">--core-border-width-xs</div>
+            <div class="token-value">1</div>
+          </div>
+        
+          <div class="token-card" data-token-name="--core-border-width-sm" data-category="core">
+            
+            <div class="token-name">--core-border-width-sm</div>
+            <div class="token-value">2</div>
+          </div>
+        
+          <div class="token-card" data-token-name="--core-border-width-lg" data-category="core">
+            
+            <div class="token-name">--core-border-width-lg</div>
+            <div class="token-value">4</div>
+          </div>
+        
+          <div class="token-card" data-token-name="--core-font-style-letterspacing" data-category="core">
+            
+            <div class="token-name">--core-font-style-letterspacing</div>
+            <div class="token-value">0.70</div>
+          </div>
+        
+      </div>
+    </section>
+
+    <section id="semantic">
+      <h2>Semantic Tokens</h2>
+      <div class="token-grid">
+        
+          <div class="token-card" data-token-name="--semantic-color-primary-base" data-category="semantic">
+            <div class="color-preview" style="background-color: #ffd935;"></div>
+            <div class="token-name">--semantic-color-primary-base</div>
+            <div class="token-value">#ffd935</div>
+          </div>
+        
+          <div class="token-card" data-token-name="--semantic-color-primary-darken" data-category="semantic">
+            <div class="color-preview" style="background-color: #ddba22;"></div>
+            <div class="token-name">--semantic-color-primary-darken</div>
+            <div class="token-value">#ddba22</div>
+          </div>
+        
+          <div class="token-card" data-token-name="--semantic-color-primary-lighten" data-category="semantic">
+            <div class="color-preview" style="background-color: #ffe162;"></div>
+            <div class="token-name">--semantic-color-primary-lighten</div>
+            <div class="token-value">#ffe162</div>
+          </div>
+        
+          <div class="token-card" data-token-name="--semantic-color-primary-lighten-2" data-category="semantic">
+            <div class="color-preview" style="background-color: #ffea90;"></div>
+            <div class="token-name">--semantic-color-primary-lighten-2</div>
+            <div class="token-value">#ffea90</div>
+          </div>
+        
+          <div class="token-card" data-token-name="--semantic-color-secondary-base" data-category="semantic">
+            <div class="color-preview" style="background-color: #0337ff;"></div>
+            <div class="token-name">--semantic-color-secondary-base</div>
+            <div class="token-value">#0337ff</div>
+          </div>
+        
+          <div class="token-card" data-token-name="--semantic-color-secondary-darken" data-category="semantic">
+            <div class="color-preview" style="background-color: #0024ad;"></div>
+            <div class="token-name">--semantic-color-secondary-darken</div>
+            <div class="token-value">#0024ad</div>
+          </div>
+        
+          <div class="token-card" data-token-name="--semantic-color-secondary-darken-2" data-category="semantic">
+            <div class="color-preview" style="background-color: #00135c;"></div>
+            <div class="token-name">--semantic-color-secondary-darken-2</div>
+            <div class="token-value">#00135c</div>
+          </div>
+        
+          <div class="token-card" data-token-name="--semantic-color-secondary-lighten" data-category="semantic">
+            <div class="color-preview" style="background-color: #335cff;"></div>
+            <div class="token-name">--semantic-color-secondary-lighten</div>
+            <div class="token-value">#335cff</div>
+          </div>
+        
+          <div class="token-card" data-token-name="--semantic-color-secondary-lighten-2" data-category="semantic">
+            <div class="color-preview" style="background-color: #859dff;"></div>
+            <div class="token-name">--semantic-color-secondary-lighten-2</div>
+            <div class="token-value">#859dff</div>
+          </div>
+        
+          <div class="token-card" data-token-name="--semantic-color-tertiary-base" data-category="semantic">
+            <div class="color-preview" style="background-color: #f068d4;"></div>
+            <div class="token-name">--semantic-color-tertiary-base</div>
+            <div class="token-value">#f068d4</div>
+          </div>
+        
+          <div class="token-card" data-token-name="--semantic-color-tertiary-darken" data-category="semantic">
+            <div class="color-preview" style="background-color: #b6439e;"></div>
+            <div class="token-name">--semantic-color-tertiary-darken</div>
+            <div class="token-value">#b6439e</div>
+          </div>
+        
+          <div class="token-card" data-token-name="--semantic-color-tertiary-darken-2" data-category="semantic">
+            <div class="color-preview" style="background-color: #7b256a;"></div>
+            <div class="token-name">--semantic-color-tertiary-darken-2</div>
+            <div class="token-value">#7b256a</div>
+          </div>
+        
+          <div class="token-card" data-token-name="--semantic-color-tertiary-lighten" data-category="semantic">
+            <div class="color-preview" style="background-color: #fd98e8;"></div>
+            <div class="token-name">--semantic-color-tertiary-lighten</div>
+            <div class="token-value">#fd98e8</div>
+          </div>
+        
+          <div class="token-card" data-token-name="--semantic-color-tertiary-lighten-2" data-category="semantic">
+            <div class="color-preview" style="background-color: #ffc5f3;"></div>
+            <div class="token-name">--semantic-color-tertiary-lighten-2</div>
+            <div class="token-value">#ffc5f3</div>
+          </div>
+        
+          <div class="token-card" data-token-name="--semantic-color-background-base" data-category="semantic">
+            <div class="color-preview" style="background-color: #000000;"></div>
+            <div class="token-name">--semantic-color-background-base</div>
+            <div class="token-value">#000000</div>
+          </div>
+        
+          <div class="token-card" data-token-name="--semantic-color-background-base-lighten" data-category="semantic">
+            <div class="color-preview" style="background-color: rgba(0, 0, 0, 0.9200);"></div>
+            <div class="token-name">--semantic-color-background-base-lighten</div>
+            <div class="token-value">rgba(0, 0, 0, 0.9200)</div>
+          </div>
+        
+          <div class="token-card" data-token-name="--semantic-color-background-base-lighten-2" data-category="semantic">
+            <div class="color-preview" style="background-color: rgba(0, 0, 0, 0.8000);"></div>
+            <div class="token-name">--semantic-color-background-base-lighten-2</div>
+            <div class="token-value">rgba(0, 0, 0, 0.8000)</div>
+          </div>
+        
+          <div class="token-card" data-token-name="--semantic-color-background-base-lighten-3" data-category="semantic">
+            <div class="color-preview" style="background-color: rgba(0, 0, 0, 0.4800);"></div>
+            <div class="token-name">--semantic-color-background-base-lighten-3</div>
+            <div class="token-value">rgba(0, 0, 0, 0.4800)</div>
+          </div>
+        
+          <div class="token-card" data-token-name="--semantic-color-background-inverse" data-category="semantic">
+            <div class="color-preview" style="background-color: #ffffff;"></div>
+            <div class="token-name">--semantic-color-background-inverse</div>
+            <div class="token-value">#ffffff</div>
+          </div>
+        
+          <div class="token-card" data-token-name="--semantic-color-background-inverse-lighten" data-category="semantic">
+            <div class="color-preview" style="background-color: rgba(255, 255, 255, 0.0800);"></div>
+            <div class="token-name">--semantic-color-background-inverse-lighten</div>
+            <div class="token-value">rgba(255, 255, 255, 0.0800)</div>
+          </div>
+        
+          <div class="token-card" data-token-name="--semantic-color-background-inverse-lighten-2" data-category="semantic">
+            <div class="color-preview" style="background-color: rgba(255, 255, 255, 0.1600);"></div>
+            <div class="token-name">--semantic-color-background-inverse-lighten-2</div>
+            <div class="token-value">rgba(255, 255, 255, 0.1600)</div>
+          </div>
+        
+          <div class="token-card" data-token-name="--semantic-color-background-inverse-lighten-3" data-category="semantic">
+            <div class="color-preview" style="background-color: rgba(255, 255, 255, 0.2400);"></div>
+            <div class="token-name">--semantic-color-background-inverse-lighten-3</div>
+            <div class="token-value">rgba(255, 255, 255, 0.2400)</div>
+          </div>
+        
+          <div class="token-card" data-token-name="--semantic-color-background-inverse-lighten-4" data-category="semantic">
+            <div class="color-preview" style="background-color: rgba(255, 255, 255, 0.4800);"></div>
+            <div class="token-name">--semantic-color-background-inverse-lighten-4</div>
+            <div class="token-value">rgba(255, 255, 255, 0.4800)</div>
+          </div>
+        
+          <div class="token-card" data-token-name="--semantic-color-foreground-base" data-category="semantic">
+            <div class="color-preview" style="background-color: #ffffff;"></div>
+            <div class="token-name">--semantic-color-foreground-base</div>
+            <div class="token-value">#ffffff</div>
+          </div>
+        
+          <div class="token-card" data-token-name="--semantic-color-foreground-primary" data-category="semantic">
+            <div class="color-preview" style="background-color: #ffffff;"></div>
+            <div class="token-name">--semantic-color-foreground-primary</div>
+            <div class="token-value">#ffffff</div>
+          </div>
+        
+          <div class="token-card" data-token-name="--semantic-color-foreground-secondary" data-category="semantic">
+            <div class="color-preview" style="background-color: #ffffff;"></div>
+            <div class="token-name">--semantic-color-foreground-secondary</div>
+            <div class="token-value">#ffffff</div>
+          </div>
+        
+          <div class="token-card" data-token-name="--semantic-color-foreground-contrast" data-category="semantic">
+            <div class="color-preview" style="background-color: #000000;"></div>
+            <div class="token-name">--semantic-color-foreground-contrast</div>
+            <div class="token-value">#000000</div>
+          </div>
+        
+          <div class="token-card" data-token-name="--semantic-color-foreground-contrast-lighten" data-category="semantic">
+            <div class="color-preview" style="background-color: rgba(0, 0, 0, 0.6400);"></div>
+            <div class="token-name">--semantic-color-foreground-contrast-lighten</div>
+            <div class="token-value">rgba(0, 0, 0, 0.6400)</div>
+          </div>
+        
+          <div class="token-card" data-token-name="--semantic-color-foreground-disabled" data-category="semantic">
+            <div class="color-preview" style="background-color: rgba(0, 0, 0, 0.6400);"></div>
+            <div class="token-name">--semantic-color-foreground-disabled</div>
+            <div class="token-value">rgba(0, 0, 0, 0.6400)</div>
+          </div>
+        
+          <div class="token-card" data-token-name="--semantic-color-foreground-lighten-1" data-category="semantic">
+            <div class="color-preview" style="background-color: rgba(255, 255, 255, 0.6400);"></div>
+            <div class="token-name">--semantic-color-foreground-lighten-1</div>
+            <div class="token-value">rgba(255, 255, 255, 0.6400)</div>
+          </div>
+        
+          <div class="token-card" data-token-name="--semantic-color-foreground-lighten-2" data-category="semantic">
+            <div class="color-preview" style="background-color: rgba(255, 255, 255, 0.4800);"></div>
+            <div class="token-name">--semantic-color-foreground-lighten-2</div>
+            <div class="token-value">rgba(255, 255, 255, 0.4800)</div>
+          </div>
+        
+          <div class="token-card" data-token-name="--semantic-color-feedback-success" data-category="semantic">
+            <div class="color-preview" style="background-color: #28cf98;"></div>
+            <div class="token-name">--semantic-color-feedback-success</div>
+            <div class="token-value">#28cf98</div>
+          </div>
+        
+          <div class="token-card" data-token-name="--semantic-color-feedback-error" data-category="semantic">
+            <div class="color-preview" style="background-color: #d82c2d;"></div>
+            <div class="token-name">--semantic-color-feedback-error</div>
+            <div class="token-value">#d82c2d</div>
+          </div>
+        
+          <div class="token-card" data-token-name="--semantic-color-feedback-warning" data-category="semantic">
+            <div class="color-preview" style="background-color: #ea5330;"></div>
+            <div class="token-name">--semantic-color-feedback-warning</div>
+            <div class="token-value">#ea5330</div>
+          </div>
+        
+          <div class="token-card" data-token-name="--semantic-color-disabled-base" data-category="semantic">
+            <div class="color-preview" style="background-color: rgba(255, 255, 255, 0.2400);"></div>
+            <div class="token-name">--semantic-color-disabled-base</div>
+            <div class="token-value">rgba(255, 255, 255, 0.2400)</div>
+          </div>
+        
+          <div class="token-card" data-token-name="--semantic-color-alpha-base" data-category="semantic">
+            <div class="color-preview" style="background-color: rgba(255, 255, 255, 0.1600);"></div>
+            <div class="token-name">--semantic-color-alpha-base</div>
+            <div class="token-value">rgba(255, 255, 255, 0.1600)</div>
+          </div>
+        
+          <div class="token-card" data-token-name="--semantic-color-alpha-darken" data-category="semantic">
+            <div class="color-preview" style="background-color: rgba(255, 255, 255, 0.2400);"></div>
+            <div class="token-name">--semantic-color-alpha-darken</div>
+            <div class="token-value">rgba(255, 255, 255, 0.2400)</div>
+          </div>
+        
+          <div class="token-card" data-token-name="--semantic-color-alpha-darken-2" data-category="semantic">
+            <div class="color-preview" style="background-color: rgba(255, 255, 255, 0.6400);"></div>
+            <div class="token-name">--semantic-color-alpha-darken-2</div>
+            <div class="token-value">rgba(255, 255, 255, 0.6400)</div>
+          </div>
+        
+          <div class="token-card" data-token-name="--semantic-color-alpha-lighten" data-category="semantic">
+            <div class="color-preview" style="background-color: rgba(255, 255, 255, 0.0800);"></div>
+            <div class="token-name">--semantic-color-alpha-lighten</div>
+            <div class="token-value">rgba(255, 255, 255, 0.0800)</div>
+          </div>
+        
+          <div class="token-card" data-token-name="--semantic-color-alpha-fg" data-category="semantic">
+            <div class="color-preview" style="background-color: #ffffff;"></div>
+            <div class="token-name">--semantic-color-alpha-fg</div>
+            <div class="token-value">#ffffff</div>
+          </div>
+        
+          <div class="token-card" data-token-name="--semantic-color-alpha-accent" data-category="semantic">
+            <div class="color-preview" style="background-color: #ffd935;"></div>
+            <div class="token-name">--semantic-color-alpha-accent</div>
+            <div class="token-value">#ffd935</div>
+          </div>
+        
+          <div class="token-card" data-token-name="--semantic-space-2xs" data-category="semantic">
+            
+            <div class="token-name">--semantic-space-2xs</div>
+            <div class="token-value">4</div>
+          </div>
+        
+          <div class="token-card" data-token-name="--semantic-space-xs" data-category="semantic">
+            
+            <div class="token-name">--semantic-space-xs</div>
+            <div class="token-value">8</div>
+          </div>
+        
+          <div class="token-card" data-token-name="--semantic-space-sm" data-category="semantic">
+            
+            <div class="token-name">--semantic-space-sm</div>
+            <div class="token-value">16</div>
+          </div>
+        
+          <div class="token-card" data-token-name="--semantic-space-md" data-category="semantic">
+            
+            <div class="token-name">--semantic-space-md</div>
+            <div class="token-value">20</div>
+          </div>
+        
+          <div class="token-card" data-token-name="--semantic-space-lg" data-category="semantic">
+            
+            <div class="token-name">--semantic-space-lg</div>
+            <div class="token-value">24</div>
+          </div>
+        
+          <div class="token-card" data-token-name="--semantic-space-xl" data-category="semantic">
+            
+            <div class="token-name">--semantic-space-xl</div>
+            <div class="token-value">32</div>
+          </div>
+        
+          <div class="token-card" data-token-name="--semantic-space-2xl" data-category="semantic">
+            
+            <div class="token-name">--semantic-space-2xl</div>
+            <div class="token-value">40</div>
+          </div>
+        
+          <div class="token-card" data-token-name="--semantic-space-3xl" data-category="semantic">
+            
+            <div class="token-name">--semantic-space-3xl</div>
+            <div class="token-value">48</div>
+          </div>
+        
+          <div class="token-card" data-token-name="--semantic-space-4xl" data-category="semantic">
+            
+            <div class="token-name">--semantic-space-4xl</div>
+            <div class="token-value">56</div>
+          </div>
+        
+          <div class="token-card" data-token-name="--semantic-space-5xl" data-category="semantic">
+            
+            <div class="token-name">--semantic-space-5xl</div>
+            <div class="token-value">64</div>
+          </div>
+        
+      </div>
+    </section>
+
+    <section id="components">
+      <h2>Component Tokens</h2>
+      <div class="token-grid">
+        
+          <div class="token-card" data-token-name="--components-navigation-fg" data-category="components">
+            <div class="color-preview" style="background-color: #ffffff;"></div>
+            <div class="token-name">--components-navigation-fg</div>
+            <div class="token-value">#ffffff</div>
+          </div>
+        
+          <div class="token-card" data-token-name="--components-navigation-bg" data-category="components">
+            <div class="color-preview" style="background-color: #000000;"></div>
+            <div class="token-name">--components-navigation-bg</div>
+            <div class="token-value">#000000</div>
+          </div>
+        
+          <div class="token-card" data-token-name="--components-navigation-border" data-category="components">
+            <div class="color-preview" style="background-color: rgba(255, 255, 255, 0.1600);"></div>
+            <div class="token-name">--components-navigation-border</div>
+            <div class="token-value">rgba(255, 255, 255, 0.1600)</div>
+          </div>
+        
+          <div class="token-card" data-token-name="--components-navigation-primary-bg-default" data-category="components">
+            <div class="color-preview" style="background-color: #000000;"></div>
+            <div class="token-name">--components-navigation-primary-bg-default</div>
+            <div class="token-value">#000000</div>
+          </div>
+        
+          <div class="token-card" data-token-name="--components-navigation-primary-bg-hover" data-category="components">
+            <div class="color-preview" style="background-color: rgba(255, 255, 255, 0.1600);"></div>
+            <div class="token-name">--components-navigation-primary-bg-hover</div>
+            <div class="token-value">rgba(255, 255, 255, 0.1600)</div>
+          </div>
+        
+          <div class="token-card" data-token-name="--components-navigation-primary-bg-active" data-category="components">
+            <div class="color-preview" style="background-color: #ffd935;"></div>
+            <div class="token-name">--components-navigation-primary-bg-active</div>
+            <div class="token-value">#ffd935</div>
+          </div>
+        
+          <div class="token-card" data-token-name="--components-navigation-primary-bg-submenu" data-category="components">
+            <div class="color-preview" style="background-color: rgba(255, 255, 255, 0.1600);"></div>
+            <div class="token-name">--components-navigation-primary-bg-submenu</div>
+            <div class="token-value">rgba(255, 255, 255, 0.1600)</div>
+          </div>
+        
+          <div class="token-card" data-token-name="--components-navigation-primary-fg" data-category="components">
+            <div class="color-preview" style="background-color: rgba(255, 255, 255, 0.6400);"></div>
+            <div class="token-name">--components-navigation-primary-fg</div>
+            <div class="token-value">rgba(255, 255, 255, 0.6400)</div>
+          </div>
+        
+          <div class="token-card" data-token-name="--components-navigation-primary-fg-hover" data-category="components">
+            <div class="color-preview" style="background-color: #ffffff;"></div>
+            <div class="token-name">--components-navigation-primary-fg-hover</div>
+            <div class="token-value">#ffffff</div>
+          </div>
+        
+          <div class="token-card" data-token-name="--components-navigation-primary-fg-inverse" data-category="components">
+            <div class="color-preview" style="background-color: #000000;"></div>
+            <div class="token-name">--components-navigation-primary-fg-inverse</div>
+            <div class="token-value">#000000</div>
+          </div>
+        
+          <div class="token-card" data-token-name="--components-navigation-primary-border-hover" data-category="components">
+            <div class="color-preview" style="background-color: rgba(255, 255, 255, 0.2400);"></div>
+            <div class="token-name">--components-navigation-primary-border-hover</div>
+            <div class="token-value">rgba(255, 255, 255, 0.2400)</div>
+          </div>
+        
+          <div class="token-card" data-token-name="--components-navigation-primary-border-active" data-category="components">
+            <div class="color-preview" style="background-color: #ffd935;"></div>
+            <div class="token-name">--components-navigation-primary-border-active</div>
+            <div class="token-value">#ffd935</div>
+          </div>
+        
+          <div class="token-card" data-token-name="--components-navigation-secondary-bg-default" data-category="components">
+            <div class="color-preview" style="background-color: #000000;"></div>
+            <div class="token-name">--components-navigation-secondary-bg-default</div>
+            <div class="token-value">#000000</div>
+          </div>
+        
+          <div class="token-card" data-token-name="--components-navigation-secondary-bg-hover" data-category="components">
+            <div class="color-preview" style="background-color: rgba(255, 255, 255, 0.2400);"></div>
+            <div class="token-name">--components-navigation-secondary-bg-hover</div>
+            <div class="token-value">rgba(255, 255, 255, 0.2400)</div>
+          </div>
+        
+          <div class="token-card" data-token-name="--components-navigation-secondary-bg-active" data-category="components">
+            <div class="color-preview" style="background-color: #0337ff;"></div>
+            <div class="token-name">--components-navigation-secondary-bg-active</div>
+            <div class="token-value">#0337ff</div>
+          </div>
+        
+          <div class="token-card" data-token-name="--components-navigation-secondary-bg-submenu" data-category="components">
+            <div class="color-preview" style="background-color: rgba(255, 255, 255, 0.1600);"></div>
+            <div class="token-name">--components-navigation-secondary-bg-submenu</div>
+            <div class="token-value">rgba(255, 255, 255, 0.1600)</div>
+          </div>
+        
+          <div class="token-card" data-token-name="--components-navigation-secondary-fg" data-category="components">
+            <div class="color-preview" style="background-color: #ffffff;"></div>
+            <div class="token-name">--components-navigation-secondary-fg</div>
+            <div class="token-value">#ffffff</div>
+          </div>
+        
+          <div class="token-card" data-token-name="--components-navigation-secondary-fg-hover" data-category="components">
+            <div class="color-preview" style="background-color: #ffffff;"></div>
+            <div class="token-name">--components-navigation-secondary-fg-hover</div>
+            <div class="token-value">#ffffff</div>
+          </div>
+        
+          <div class="token-card" data-token-name="--components-navigation-secondary-fg-inverse" data-category="components">
+            <div class="color-preview" style="background-color: #000000;"></div>
+            <div class="token-name">--components-navigation-secondary-fg-inverse</div>
+            <div class="token-value">#000000</div>
+          </div>
+        
+          <div class="token-card" data-token-name="--components-navigation-secondary-border-hover" data-category="components">
+            <div class="color-preview" style="background-color: rgba(255, 255, 255, 0.2400);"></div>
+            <div class="token-name">--components-navigation-secondary-border-hover</div>
+            <div class="token-value">rgba(255, 255, 255, 0.2400)</div>
+          </div>
+        
+          <div class="token-card" data-token-name="--components-navigation-secondary-border-active" data-category="components">
+            <div class="color-preview" style="background-color: #0337ff;"></div>
+            <div class="token-name">--components-navigation-secondary-border-active</div>
+            <div class="token-value">#0337ff</div>
+          </div>
+        
+          <div class="token-card" data-token-name="--components-navigation-tertiary-bg-default" data-category="components">
+            <div class="color-preview" style="background-color: #000000;"></div>
+            <div class="token-name">--components-navigation-tertiary-bg-default</div>
+            <div class="token-value">#000000</div>
+          </div>
+        
+          <div class="token-card" data-token-name="--components-navigation-tertiary-bg-hover" data-category="components">
+            <div class="color-preview" style="background-color: rgba(255, 255, 255, 0.2400);"></div>
+            <div class="token-name">--components-navigation-tertiary-bg-hover</div>
+            <div class="token-value">rgba(255, 255, 255, 0.2400)</div>
+          </div>
+        
+          <div class="token-card" data-token-name="--components-navigation-tertiary-bg-active" data-category="components">
+            <div class="color-preview" style="background-color: #f068d4;"></div>
+            <div class="token-name">--components-navigation-tertiary-bg-active</div>
+            <div class="token-value">#f068d4</div>
+          </div>
+        
+          <div class="token-card" data-token-name="--components-navigation-tertiary-bg-submenu" data-category="components">
+            <div class="color-preview" style="background-color: rgba(255, 255, 255, 0.1600);"></div>
+            <div class="token-name">--components-navigation-tertiary-bg-submenu</div>
+            <div class="token-value">rgba(255, 255, 255, 0.1600)</div>
+          </div>
+        
+          <div class="token-card" data-token-name="--components-navigation-tertiary-fg" data-category="components">
+            <div class="color-preview" style="background-color: #ffffff;"></div>
+            <div class="token-name">--components-navigation-tertiary-fg</div>
+            <div class="token-value">#ffffff</div>
+          </div>
+        
+          <div class="token-card" data-token-name="--components-navigation-tertiary-fg-hover" data-category="components">
+            <div class="color-preview" style="background-color: #ffffff;"></div>
+            <div class="token-name">--components-navigation-tertiary-fg-hover</div>
+            <div class="token-value">#ffffff</div>
+          </div>
+        
+          <div class="token-card" data-token-name="--components-navigation-tertiary-fg-inverse" data-category="components">
+            <div class="color-preview" style="background-color: #000000;"></div>
+            <div class="token-name">--components-navigation-tertiary-fg-inverse</div>
+            <div class="token-value">#000000</div>
+          </div>
+        
+          <div class="token-card" data-token-name="--components-navigation-tertiary-border-hover" data-category="components">
+            <div class="color-preview" style="background-color: rgba(255, 255, 255, 0.2400);"></div>
+            <div class="token-name">--components-navigation-tertiary-border-hover</div>
+            <div class="token-value">rgba(255, 255, 255, 0.2400)</div>
+          </div>
+        
+          <div class="token-card" data-token-name="--components-navigation-tertiary-border-active" data-category="components">
+            <div class="color-preview" style="background-color: #f068d4;"></div>
+            <div class="token-name">--components-navigation-tertiary-border-active</div>
+            <div class="token-value">#f068d4</div>
+          </div>
+        
+          <div class="token-card" data-token-name="--components-button-primary-default" data-category="components">
+            <div class="color-preview" style="background-color: #ffd935;"></div>
+            <div class="token-name">--components-button-primary-default</div>
+            <div class="token-value">#ffd935</div>
+          </div>
+        
+          <div class="token-card" data-token-name="--components-button-primary-hover" data-category="components">
+            <div class="color-preview" style="background-color: #ffffff;"></div>
+            <div class="token-name">--components-button-primary-hover</div>
+            <div class="token-value">#ffffff</div>
+          </div>
+        
+          <div class="token-card" data-token-name="--components-button-primary-active" data-category="components">
+            <div class="color-preview" style="background-color: #ffffff;"></div>
+            <div class="token-name">--components-button-primary-active</div>
+            <div class="token-value">#ffffff</div>
+          </div>
+        
+          <div class="token-card" data-token-name="--components-button-primary-focus" data-category="components">
+            <div class="color-preview" style="background-color: #ddba22;"></div>
+            <div class="token-name">--components-button-primary-focus</div>
+            <div class="token-value">#ddba22</div>
+          </div>
+        
+          <div class="token-card" data-token-name="--components-button-primary-fg" data-category="components">
+            <div class="color-preview" style="background-color: #000000;"></div>
+            <div class="token-name">--components-button-primary-fg</div>
+            <div class="token-value">#000000</div>
+          </div>
+        
+          <div class="token-card" data-token-name="--components-button-secondary-default" data-category="components">
+            <div class="color-preview" style="background-color: #0337ff;"></div>
+            <div class="token-name">--components-button-secondary-default</div>
+            <div class="token-value">#0337ff</div>
+          </div>
+        
+          <div class="token-card" data-token-name="--components-button-secondary-hover" data-category="components">
+            <div class="color-preview" style="background-color: #ffffff;"></div>
+            <div class="token-name">--components-button-secondary-hover</div>
+            <div class="token-value">#ffffff</div>
+          </div>
+        
+          <div class="token-card" data-token-name="--components-button-secondary-active" data-category="components">
+            <div class="color-preview" style="background-color: #0024ad;"></div>
+            <div class="token-name">--components-button-secondary-active</div>
+            <div class="token-value">#0024ad</div>
+          </div>
+        
+          <div class="token-card" data-token-name="--components-button-secondary-focus" data-category="components">
+            <div class="color-preview" style="background-color: #0024ad;"></div>
+            <div class="token-name">--components-button-secondary-focus</div>
+            <div class="token-value">#0024ad</div>
+          </div>
+        
+          <div class="token-card" data-token-name="--components-button-secondary-fg" data-category="components">
+            <div class="color-preview" style="background-color: #ffffff;"></div>
+            <div class="token-name">--components-button-secondary-fg</div>
+            <div class="token-value">#ffffff</div>
+          </div>
+        
+          <div class="token-card" data-token-name="--components-button-secondary-outline" data-category="components">
+            <div class="color-preview" style="background-color: #335cff;"></div>
+            <div class="token-name">--components-button-secondary-outline</div>
+            <div class="token-value">#335cff</div>
+          </div>
+        
+          <div class="token-card" data-token-name="--components-button-tertiary-default" data-category="components">
+            <div class="color-preview" style="background-color: #f068d4;"></div>
+            <div class="token-name">--components-button-tertiary-default</div>
+            <div class="token-value">#f068d4</div>
+          </div>
+        
+          <div class="token-card" data-token-name="--components-button-tertiary-hover" data-category="components">
+            <div class="color-preview" style="background-color: #ffffff;"></div>
+            <div class="token-name">--components-button-tertiary-hover</div>
+            <div class="token-value">#ffffff</div>
+          </div>
+        
+          <div class="token-card" data-token-name="--components-button-tertiary-active" data-category="components">
+            <div class="color-preview" style="background-color: #b6439e;"></div>
+            <div class="token-name">--components-button-tertiary-active</div>
+            <div class="token-value">#b6439e</div>
+          </div>
+        
+          <div class="token-card" data-token-name="--components-button-tertiary-focus" data-category="components">
+            <div class="color-preview" style="background-color: #b6439e;"></div>
+            <div class="token-name">--components-button-tertiary-focus</div>
+            <div class="token-value">#b6439e</div>
+          </div>
+        
+          <div class="token-card" data-token-name="--components-button-tertiary-fg-active" data-category="components">
+            <div class="color-preview" style="background-color: #ffffff;"></div>
+            <div class="token-name">--components-button-tertiary-fg-active</div>
+            <div class="token-value">#ffffff</div>
+          </div>
+        
+          <div class="token-card" data-token-name="--components-button-tertiary-fg-default" data-category="components">
+            <div class="color-preview" style="background-color: rgba(255, 255, 255, 0.6400);"></div>
+            <div class="token-name">--components-button-tertiary-fg-default</div>
+            <div class="token-value">rgba(255, 255, 255, 0.6400)</div>
+          </div>
+        
+          <div class="token-card" data-token-name="--components-button-success-default" data-category="components">
+            <div class="color-preview" style="background-color: #28cf98;"></div>
+            <div class="token-name">--components-button-success-default</div>
+            <div class="token-value">#28cf98</div>
+          </div>
+        
+          <div class="token-card" data-token-name="--components-button-success-fg" data-category="components">
+            <div class="color-preview" style="background-color: #000000;"></div>
+            <div class="token-name">--components-button-success-fg</div>
+            <div class="token-value">#000000</div>
+          </div>
+        
+          <div class="token-card" data-token-name="--components-button-error-default" data-category="components">
+            <div class="color-preview" style="background-color: #d82c2d;"></div>
+            <div class="token-name">--components-button-error-default</div>
+            <div class="token-value">#d82c2d</div>
+          </div>
+        
+          <div class="token-card" data-token-name="--components-button-error-fg" data-category="components">
+            <div class="color-preview" style="background-color: #ffffff;"></div>
+            <div class="token-name">--components-button-error-fg</div>
+            <div class="token-value">#ffffff</div>
+          </div>
+        
+          <div class="token-card" data-token-name="--components-button-warning-default" data-category="components">
+            <div class="color-preview" style="background-color: #ea5330;"></div>
+            <div class="token-name">--components-button-warning-default</div>
+            <div class="token-value">#ea5330</div>
+          </div>
+        
+          <div class="token-card" data-token-name="--components-button-warning-fg" data-category="components">
+            <div class="color-preview" style="background-color: #ffffff;"></div>
+            <div class="token-name">--components-button-warning-fg</div>
+            <div class="token-value">#ffffff</div>
+          </div>
+        
+          <div class="token-card" data-token-name="--components-button-hover-bg" data-category="components">
+            <div class="color-preview" style="background-color: #ffffff;"></div>
+            <div class="token-name">--components-button-hover-bg</div>
+            <div class="token-value">#ffffff</div>
+          </div>
+        
+          <div class="token-card" data-token-name="--components-button-hover-fg" data-category="components">
+            <div class="color-preview" style="background-color: #000000;"></div>
+            <div class="token-name">--components-button-hover-fg</div>
+            <div class="token-value">#000000</div>
+          </div>
+        
+          <div class="token-card" data-token-name="--components-button-disabled-default" data-category="components">
+            <div class="color-preview" style="background-color: rgba(255, 255, 255, 0.2400);"></div>
+            <div class="token-name">--components-button-disabled-default</div>
+            <div class="token-value">rgba(255, 255, 255, 0.2400)</div>
+          </div>
+        
+          <div class="token-card" data-token-name="--components-button-disabled-fg" data-category="components">
+            <div class="color-preview" style="background-color: rgba(255, 255, 255, 0.2400);"></div>
+            <div class="token-name">--components-button-disabled-fg</div>
+            <div class="token-value">rgba(255, 255, 255, 0.2400)</div>
+          </div>
+        
+          <div class="token-card" data-token-name="--components-button-cancel-default" data-category="components">
+            <div class="color-preview" style="background-color: rgba(255, 255, 255, 0.4800);"></div>
+            <div class="token-name">--components-button-cancel-default</div>
+            <div class="token-value">rgba(255, 255, 255, 0.4800)</div>
+          </div>
+        
+          <div class="token-card" data-token-name="--components-button-cancel-fg" data-category="components">
+            <div class="color-preview" style="background-color: rgba(255, 255, 255, 0.4800);"></div>
+            <div class="token-name">--components-button-cancel-fg</div>
+            <div class="token-value">rgba(255, 255, 255, 0.4800)</div>
+          </div>
+        
+          <div class="token-card" data-token-name="--components-input" data-category="components">
+            
+            <div class="token-name">--components-input</div>
+            <div class="token-value">[object Object]</div>
+          </div>
+        
+          <div class="token-card" data-token-name="--components-modal-bg" data-category="components">
+            <div class="color-preview" style="background-color: #aaaaaa;"></div>
+            <div class="token-name">--components-modal-bg</div>
+            <div class="token-value">#aaaaaa</div>
+          </div>
+        
+          <div class="token-card" data-token-name="--components-feedback-bg" data-category="components">
+            <div class="color-preview" style="background-color: rgba(255, 255, 255, 0.1600);"></div>
+            <div class="token-name">--components-feedback-bg</div>
+            <div class="token-value">rgba(255, 255, 255, 0.1600)</div>
+          </div>
+        
+          <div class="token-card" data-token-name="--components-feedback-heading" data-category="components">
+            <div class="color-preview" style="background-color: #ffffff;"></div>
+            <div class="token-name">--components-feedback-heading</div>
+            <div class="token-value">#ffffff</div>
+          </div>
+        
+          <div class="token-card" data-token-name="--components-feedback-body" data-category="components">
+            <div class="color-preview" style="background-color: rgba(255, 255, 255, 0.4800);"></div>
+            <div class="token-name">--components-feedback-body</div>
+            <div class="token-value">rgba(255, 255, 255, 0.4800)</div>
+          </div>
+        
+          <div class="token-card" data-token-name="--components-feedback-info-bg" data-category="components">
+            <div class="color-preview" style="background-color: #ffd935;"></div>
+            <div class="token-name">--components-feedback-info-bg</div>
+            <div class="token-value">#ffd935</div>
+          </div>
+        
+          <div class="token-card" data-token-name="--components-feedback-info-fg" data-category="components">
+            <div class="color-preview" style="background-color: #000000;"></div>
+            <div class="token-name">--components-feedback-info-fg</div>
+            <div class="token-value">#000000</div>
+          </div>
+        
+          <div class="token-card" data-token-name="--components-feedback-success-bg" data-category="components">
+            <div class="color-preview" style="background-color: #28cf98;"></div>
+            <div class="token-name">--components-feedback-success-bg</div>
+            <div class="token-value">#28cf98</div>
+          </div>
+        
+          <div class="token-card" data-token-name="--components-feedback-success-fg" data-category="components">
+            <div class="color-preview" style="background-color: #ffffff;"></div>
+            <div class="token-name">--components-feedback-success-fg</div>
+            <div class="token-value">#ffffff</div>
+          </div>
+        
+          <div class="token-card" data-token-name="--components-feedback-error-bg" data-category="components">
+            <div class="color-preview" style="background-color: #d82c2d;"></div>
+            <div class="token-name">--components-feedback-error-bg</div>
+            <div class="token-value">#d82c2d</div>
+          </div>
+        
+          <div class="token-card" data-token-name="--components-feedback-error-fg" data-category="components">
+            <div class="color-preview" style="background-color: #ffffff;"></div>
+            <div class="token-name">--components-feedback-error-fg</div>
+            <div class="token-value">#ffffff</div>
+          </div>
+        
+          <div class="token-card" data-token-name="--components-feedback-warning-bg" data-category="components">
+            <div class="color-preview" style="background-color: #ea5330;"></div>
+            <div class="token-name">--components-feedback-warning-bg</div>
+            <div class="token-value">#ea5330</div>
+          </div>
+        
+          <div class="token-card" data-token-name="--components-feedback-warning-fg" data-category="components">
+            <div class="color-preview" style="background-color: #ffffff;"></div>
+            <div class="token-name">--components-feedback-warning-fg</div>
+            <div class="token-value">#ffffff</div>
+          </div>
+        
+          <div class="token-card" data-token-name="--components-table-bg-alt" data-category="components">
+            <div class="color-preview" style="background-color: rgba(255, 255, 255, 0.1600);"></div>
+            <div class="token-name">--components-table-bg-alt</div>
+            <div class="token-value">rgba(255, 255, 255, 0.1600)</div>
+          </div>
+        
+          <div class="token-card" data-token-name="--components-table-fg" data-category="components">
+            <div class="color-preview" style="background-color: #ffffff;"></div>
+            <div class="token-name">--components-table-fg</div>
+            <div class="token-value">#ffffff</div>
+          </div>
+        
+          <div class="token-card" data-token-name="--components-table-border" data-category="components">
+            <div class="color-preview" style="background-color: rgba(255, 255, 255, 0.2400);"></div>
+            <div class="token-name">--components-table-border</div>
+            <div class="token-value">rgba(255, 255, 255, 0.2400)</div>
+          </div>
+        
+      </div>
+    </section>
+
+    <section id="interactions">
+      <h2>Interaction Tokens</h2>
+      <div class="token-grid">
+        
+          <div class="token-card" data-token-name="--interactions-typeable" data-category="interactions">
+            
+            <div class="token-name">--interactions-typeable</div>
+            <div class="token-value"></div>
+          </div>
+        
+          <div class="token-card" data-token-name="--interactions-move" data-category="interactions">
+            
+            <div class="token-name">--interactions-move</div>
+            <div class="token-value">MOVE</div>
+          </div>
+        
+          <div class="token-card" data-token-name="--interactions-moveeth" data-category="interactions">
+            
+            <div class="token-name">--interactions-moveeth</div>
+            <div class="token-value">MoveETH</div>
+          </div>
+        
+          <div class="token-card" data-token-name="--interactions-inputamount" data-category="interactions">
+            
+            <div class="token-name">--interactions-inputamount</div>
+            <div class="token-value">0</div>
+          </div>
+        
+          <div class="token-card" data-token-name="--interactions-nobalance" data-category="interactions">
+            
+            <div class="token-name">--interactions-nobalance</div>
+            <div class="token-value">0</div>
+          </div>
+        
+          <div class="token-card" data-token-name="--interactions-balance" data-category="interactions">
+            
+            <div class="token-name">--interactions-balance</div>
+            <div class="token-value">128.7395</div>
+          </div>
+        
+          <div class="token-card" data-token-name="--interactions-gas" data-category="interactions">
+            
+            <div class="token-name">--interactions-gas</div>
+            <div class="token-value">gas</div>
+          </div>
+        
+          <div class="token-card" data-token-name="--interactions-fromnetwork" data-category="interactions">
+            
+            <div class="token-name">--interactions-fromnetwork</div>
+            <div class="token-value">MoveETH</div>
+          </div>
+        
+          <div class="token-card" data-token-name="--interactions-tonetwork" data-category="interactions">
+            
+            <div class="token-name">--interactions-tonetwork</div>
+            <div class="token-value">MOVE</div>
+          </div>
+        
+          <div class="token-card" data-token-name="--interactions-show-balance" data-category="interactions">
+            
+            <div class="token-name">--interactions-show-balance</div>
+            <div class="token-value">true</div>
+          </div>
+        
+          <div class="token-card" data-token-name="--interactions-show-max" data-category="interactions">
+            
+            <div class="token-name">--interactions-show-max</div>
+            <div class="token-value">true</div>
+          </div>
+        
+          <div class="token-card" data-token-name="--interactions-show-error" data-category="interactions">
+            
+            <div class="token-name">--interactions-show-error</div>
+            <div class="token-value">false</div>
+          </div>
+        
+          <div class="token-card" data-token-name="--interactions-buttonstate" data-category="interactions">
+            
+            <div class="token-name">--interactions-buttonstate</div>
+            <div class="token-value">Default</div>
+          </div>
+        
+          <div class="token-card" data-token-name="--interactions-showdisabled" data-category="interactions">
+            
+            <div class="token-name">--interactions-showdisabled</div>
+            <div class="token-value">Disabled</div>
+          </div>
+        
+          <div class="token-card" data-token-name="--interactions-fee" data-category="interactions">
+            
+            <div class="token-name">--interactions-fee</div>
+            <div class="token-value">.0000003849</div>
+          </div>
+        
+          <div class="token-card" data-token-name="--interactions-show-time" data-category="interactions">
+            
+            <div class="token-name">--interactions-show-time</div>
+            <div class="token-value">true</div>
+          </div>
+        
+          <div class="token-card" data-token-name="--interactions-show-gas" data-category="interactions">
+            
+            <div class="token-name">--interactions-show-gas</div>
+            <div class="token-value">false</div>
+          </div>
+        
+          <div class="token-card" data-token-name="--interactions-show-fees" data-category="interactions">
+            
+            <div class="token-name">--interactions-show-fees</div>
+            <div class="token-value">true</div>
+          </div>
+        
+          <div class="token-card" data-token-name="--interactions-haserror" data-category="interactions">
+            
+            <div class="token-name">--interactions-haserror</div>
+            <div class="token-value">false</div>
+          </div>
+        
+          <div class="token-card" data-token-name="--interactions-gas-container" data-category="interactions">
+            
+            <div class="token-name">--interactions-gas-container</div>
+            <div class="token-value">false</div>
+          </div>
+        
+          <div class="token-card" data-token-name="--interactions-show-usd" data-category="interactions">
+            
+            <div class="token-name">--interactions-show-usd</div>
+            <div class="token-value">true</div>
+          </div>
+        
+          <div class="token-card" data-token-name="--interactions-label" data-category="interactions">
+            
+            <div class="token-name">--interactions-label</div>
+            <div class="token-value">0</div>
+          </div>
+        
+          <div class="token-card" data-token-name="--interactions-isfilled" data-category="interactions">
+            
+            <div class="token-name">--interactions-isfilled</div>
+            <div class="token-value">true</div>
+          </div>
+        
+          <div class="token-card" data-token-name="--interactions-buttontext" data-category="interactions">
+            
+            <div class="token-name">--interactions-buttontext</div>
+            <div class="token-value">Button</div>
+          </div>
+        
+      </div>
+    </section>
+
+    <section id="all">
+      <h2>All Tokens</h2>
+      <div class="token-grid">
+        
+          <div class="token-card" data-token-name="--core-color-moveus-marigold-50" data-category="core">
+            <div class="color-preview" style="background-color: #fffbeb;"></div>
+            <div class="token-name">--core-color-moveus-marigold-50</div>
+            <div class="token-value">#fffbeb</div>
+          </div>
+        
+          <div class="token-card" data-token-name="--core-color-moveus-marigold-100" data-category="core">
+            <div class="color-preview" style="background-color: #fff2bd;"></div>
+            <div class="token-name">--core-color-moveus-marigold-100</div>
+            <div class="token-value">#fff2bd</div>
+          </div>
+        
+          <div class="token-card" data-token-name="--core-color-moveus-marigold-200" data-category="core">
+            <div class="color-preview" style="background-color: #ffea90;"></div>
+            <div class="token-name">--core-color-moveus-marigold-200</div>
+            <div class="token-value">#ffea90</div>
+          </div>
+        
+          <div class="token-card" data-token-name="--core-color-moveus-marigold-300" data-category="core">
+            <div class="color-preview" style="background-color: #ffe162;"></div>
+            <div class="token-name">--core-color-moveus-marigold-300</div>
+            <div class="token-value">#ffe162</div>
+          </div>
+        
+          <div class="token-card" data-token-name="--core-color-moveus-marigold-400" data-category="core">
+            <div class="color-preview" style="background-color: #ffd935;"></div>
+            <div class="token-name">--core-color-moveus-marigold-400</div>
+            <div class="token-value">#ffd935</div>
+          </div>
+        
+          <div class="token-card" data-token-name="--core-color-moveus-marigold-500" data-category="core">
+            <div class="color-preview" style="background-color: #ddba22;"></div>
+            <div class="token-name">--core-color-moveus-marigold-500</div>
+            <div class="token-value">#ddba22</div>
+          </div>
+        
+          <div class="token-card" data-token-name="--core-color-moveus-marigold-600" data-category="core">
+            <div class="color-preview" style="background-color: #bb9b13;"></div>
+            <div class="token-name">--core-color-moveus-marigold-600</div>
+            <div class="token-value">#bb9b13</div>
+          </div>
+        
+          <div class="token-card" data-token-name="--core-color-moveus-marigold-700" data-category="core">
+            <div class="color-preview" style="background-color: #997e08;"></div>
+            <div class="token-name">--core-color-moveus-marigold-700</div>
+            <div class="token-value">#997e08</div>
+          </div>
+        
+          <div class="token-card" data-token-name="--core-color-moveus-marigold-800" data-category="core">
+            <div class="color-preview" style="background-color: #776100;"></div>
+            <div class="token-name">--core-color-moveus-marigold-800</div>
+            <div class="token-value">#776100</div>
+          </div>
+        
+          <div class="token-card" data-token-name="--core-color-moveus-marigold-900" data-category="core">
+            <div class="color-preview" style="background-color: #554500;"></div>
+            <div class="token-name">--core-color-moveus-marigold-900</div>
+            <div class="token-value">#554500</div>
+          </div>
+        
+          <div class="token-card" data-token-name="--core-color-guild-green-50" data-category="core">
+            <div class="color-preview" style="background-color: #ecfff8;"></div>
+            <div class="token-name">--core-color-guild-green-50</div>
+            <div class="token-value">#ecfff8</div>
+          </div>
+        
+          <div class="token-card" data-token-name="--core-color-guild-green-100" data-category="core">
+            <div class="color-preview" style="background-color: #c1ffea;"></div>
+            <div class="token-name">--core-color-guild-green-100</div>
+            <div class="token-value">#c1ffea</div>
+          </div>
+        
+          <div class="token-card" data-token-name="--core-color-guild-green-200" data-category="core">
+            <div class="color-preview" style="background-color: #96ffdc;"></div>
+            <div class="token-name">--core-color-guild-green-200</div>
+            <div class="token-value">#96ffdc</div>
+          </div>
+        
+          <div class="token-card" data-token-name="--core-color-guild-green-300" data-category="core">
+            <div class="color-preview" style="background-color: #6bffce;"></div>
+            <div class="token-name">--core-color-guild-green-300</div>
+            <div class="token-value">#6bffce</div>
+          </div>
+        
+          <div class="token-card" data-token-name="--core-color-guild-green-400" data-category="core">
+            <div class="color-preview" style="background-color: #3df1b6;"></div>
+            <div class="token-name">--core-color-guild-green-400</div>
+            <div class="token-value">#3df1b6</div>
+          </div>
+        
+          <div class="token-card" data-token-name="--core-color-guild-green-500" data-category="core">
+            <div class="color-preview" style="background-color: #28cf98;"></div>
+            <div class="token-name">--core-color-guild-green-500</div>
+            <div class="token-value">#28cf98</div>
+          </div>
+        
+          <div class="token-card" data-token-name="--core-color-guild-green-600" data-category="core">
+            <div class="color-preview" style="background-color: #17ad7c;"></div>
+            <div class="token-name">--core-color-guild-green-600</div>
+            <div class="token-value">#17ad7c</div>
+          </div>
+        
+          <div class="token-card" data-token-name="--core-color-guild-green-700" data-category="core">
+            <div class="color-preview" style="background-color: #0a8b61;"></div>
+            <div class="token-name">--core-color-guild-green-700</div>
+            <div class="token-value">#0a8b61</div>
+          </div>
+        
+          <div class="token-card" data-token-name="--core-color-guild-green-800" data-category="core">
+            <div class="color-preview" style="background-color: #026947;"></div>
+            <div class="token-name">--core-color-guild-green-800</div>
+            <div class="token-value">#026947</div>
+          </div>
+        
+          <div class="token-card" data-token-name="--core-color-guild-green-900" data-category="core">
+            <div class="color-preview" style="background-color: #004730;"></div>
+            <div class="token-name">--core-color-guild-green-900</div>
+            <div class="token-value">#004730</div>
+          </div>
+        
+          <div class="token-card" data-token-name="--core-color-protocol-pink-50" data-category="core">
+            <div class="color-preview" style="background-color: #fff0fc;"></div>
+            <div class="token-name">--core-color-protocol-pink-50</div>
+            <div class="token-value">#fff0fc</div>
+          </div>
+        
+          <div class="token-card" data-token-name="--core-color-protocol-pink-100" data-category="core">
+            <div class="color-preview" style="background-color: #ffc5f3;"></div>
+            <div class="token-name">--core-color-protocol-pink-100</div>
+            <div class="token-value">#ffc5f3</div>
+          </div>
+        
+          <div class="token-card" data-token-name="--core-color-protocol-pink-200" data-category="core">
+            <div class="color-preview" style="background-color: #fd98e8;"></div>
+            <div class="token-name">--core-color-protocol-pink-200</div>
+            <div class="token-value">#fd98e8</div>
+          </div>
+        
+          <div class="token-card" data-token-name="--core-color-protocol-pink-300" data-category="core">
+            <div class="color-preview" style="background-color: #f068d4;"></div>
+            <div class="token-name">--core-color-protocol-pink-300</div>
+            <div class="token-value">#f068d4</div>
+          </div>
+        
+          <div class="token-card" data-token-name="--core-color-protocol-pink-400" data-category="core">
+            <div class="color-preview" style="background-color: #d354b9;"></div>
+            <div class="token-name">--core-color-protocol-pink-400</div>
+            <div class="token-value">#d354b9</div>
+          </div>
+        
+          <div class="token-card" data-token-name="--core-color-protocol-pink-500" data-category="core">
+            <div class="color-preview" style="background-color: #b6439e;"></div>
+            <div class="token-name">--core-color-protocol-pink-500</div>
+            <div class="token-value">#b6439e</div>
+          </div>
+        
+          <div class="token-card" data-token-name="--core-color-protocol-pink-600" data-category="core">
+            <div class="color-preview" style="background-color: #993384;"></div>
+            <div class="token-name">--core-color-protocol-pink-600</div>
+            <div class="token-value">#993384</div>
+          </div>
+        
+          <div class="token-card" data-token-name="--core-color-protocol-pink-700" data-category="core">
+            <div class="color-preview" style="background-color: #7b256a;"></div>
+            <div class="token-name">--core-color-protocol-pink-700</div>
+            <div class="token-value">#7b256a</div>
+          </div>
+        
+          <div class="token-card" data-token-name="--core-color-protocol-pink-800" data-category="core">
+            <div class="color-preview" style="background-color: #5e1950;"></div>
+            <div class="token-name">--core-color-protocol-pink-800</div>
+            <div class="token-value">#5e1950</div>
+          </div>
+        
+          <div class="token-card" data-token-name="--core-color-protocol-pink-900" data-category="core">
+            <div class="color-preview" style="background-color: #410f37;"></div>
+            <div class="token-name">--core-color-protocol-pink-900</div>
+            <div class="token-value">#410f37</div>
+          </div>
+        
+          <div class="token-card" data-token-name="--core-color-byzantine-blue-50" data-category="core">
+            <div class="color-preview" style="background-color: #c2ceff;"></div>
+            <div class="token-name">--core-color-byzantine-blue-50</div>
+            <div class="token-value">#c2ceff</div>
+          </div>
+        
+          <div class="token-card" data-token-name="--core-color-byzantine-blue-100" data-category="core">
+            <div class="color-preview" style="background-color: #859dff;"></div>
+            <div class="token-name">--core-color-byzantine-blue-100</div>
+            <div class="token-value">#859dff</div>
+          </div>
+        
+          <div class="token-card" data-token-name="--core-color-byzantine-blue-200" data-category="core">
+            <div class="color-preview" style="background-color: #5c7cff;"></div>
+            <div class="token-name">--core-color-byzantine-blue-200</div>
+            <div class="token-value">#5c7cff</div>
+          </div>
+        
+          <div class="token-card" data-token-name="--core-color-byzantine-blue-300" data-category="core">
+            <div class="color-preview" style="background-color: #335cff;"></div>
+            <div class="token-name">--core-color-byzantine-blue-300</div>
+            <div class="token-value">#335cff</div>
+          </div>
+        
+          <div class="token-card" data-token-name="--core-color-byzantine-blue-400" data-category="core">
+            <div class="color-preview" style="background-color: #0337ff;"></div>
+            <div class="token-name">--core-color-byzantine-blue-400</div>
+            <div class="token-value">#0337ff</div>
+          </div>
+        
+          <div class="token-card" data-token-name="--core-color-byzantine-blue-500" data-category="core">
+            <div class="color-preview" style="background-color: #002cd6;"></div>
+            <div class="token-name">--core-color-byzantine-blue-500</div>
+            <div class="token-value">#002cd6</div>
+          </div>
+        
+          <div class="token-card" data-token-name="--core-color-byzantine-blue-600" data-category="core">
+            <div class="color-preview" style="background-color: #0024ad;"></div>
+            <div class="token-name">--core-color-byzantine-blue-600</div>
+            <div class="token-value">#0024ad</div>
+          </div>
+        
+          <div class="token-card" data-token-name="--core-color-byzantine-blue-700" data-category="core">
+            <div class="color-preview" style="background-color: #001b85;"></div>
+            <div class="token-name">--core-color-byzantine-blue-700</div>
+            <div class="token-value">#001b85</div>
+          </div>
+        
+          <div class="token-card" data-token-name="--core-color-byzantine-blue-800" data-category="core">
+            <div class="color-preview" style="background-color: #00135c;"></div>
+            <div class="token-name">--core-color-byzantine-blue-800</div>
+            <div class="token-value">#00135c</div>
+          </div>
+        
+          <div class="token-card" data-token-name="--core-color-byzantine-blue-900" data-category="core">
+            <div class="color-preview" style="background-color: #000c3d;"></div>
+            <div class="token-name">--core-color-byzantine-blue-900</div>
+            <div class="token-value">#000c3d</div>
+          </div>
+        
+          <div class="token-card" data-token-name="--core-color-oracle-orange-50" data-category="core">
+            <div class="color-preview" style="background-color: #ffefec;"></div>
+            <div class="token-name">--core-color-oracle-orange-50</div>
+            <div class="token-value">#ffefec</div>
+          </div>
+        
+          <div class="token-card" data-token-name="--core-color-oracle-orange-100" data-category="core">
+            <div class="color-preview" style="background-color: #ffcdc2;"></div>
+            <div class="token-name">--core-color-oracle-orange-100</div>
+            <div class="token-value">#ffcdc2</div>
+          </div>
+        
+          <div class="token-card" data-token-name="--core-color-oracle-orange-200" data-category="core">
+            <div class="color-preview" style="background-color: #ffab97;"></div>
+            <div class="token-name">--core-color-oracle-orange-200</div>
+            <div class="token-value">#ffab97</div>
+          </div>
+        
+          <div class="token-card" data-token-name="--core-color-oracle-orange-300" data-category="core">
+            <div class="color-preview" style="background-color: #ff886d;"></div>
+            <div class="token-name">--core-color-oracle-orange-300</div>
+            <div class="token-value">#ff886d</div>
+          </div>
+        
+          <div class="token-card" data-token-name="--core-color-oracle-orange-400" data-category="core">
+            <div class="color-preview" style="background-color: #ff6642;"></div>
+            <div class="token-name">--core-color-oracle-orange-400</div>
+            <div class="token-value">#ff6642</div>
+          </div>
+        
+          <div class="token-card" data-token-name="--core-color-oracle-orange-500" data-category="core">
+            <div class="color-preview" style="background-color: #ea5330;"></div>
+            <div class="token-name">--core-color-oracle-orange-500</div>
+            <div class="token-value">#ea5330</div>
+          </div>
+        
+          <div class="token-card" data-token-name="--core-color-oracle-orange-600" data-category="core">
+            <div class="color-preview" style="background-color: #c83e1e;"></div>
+            <div class="token-name">--core-color-oracle-orange-600</div>
+            <div class="token-value">#c83e1e</div>
+          </div>
+        
+          <div class="token-card" data-token-name="--core-color-oracle-orange-700" data-category="core">
+            <div class="color-preview" style="background-color: #a62c10;"></div>
+            <div class="token-name">--core-color-oracle-orange-700</div>
+            <div class="token-value">#a62c10</div>
+          </div>
+        
+          <div class="token-card" data-token-name="--core-color-oracle-orange-800" data-category="core">
+            <div class="color-preview" style="background-color: #841d05;"></div>
+            <div class="token-name">--core-color-oracle-orange-800</div>
+            <div class="token-value">#841d05</div>
+          </div>
+        
+          <div class="token-card" data-token-name="--core-color-oracle-orange-900" data-category="core">
+            <div class="color-preview" style="background-color: #621300;"></div>
+            <div class="token-name">--core-color-oracle-orange-900</div>
+            <div class="token-value">#621300</div>
+          </div>
+        
+          <div class="token-card" data-token-name="--core-color-neutrals-white" data-category="core">
+            <div class="color-preview" style="background-color: #ffffff;"></div>
+            <div class="token-name">--core-color-neutrals-white</div>
+            <div class="token-value">#ffffff</div>
+          </div>
+        
+          <div class="token-card" data-token-name="--core-color-neutrals-black" data-category="core">
+            <div class="color-preview" style="background-color: #000000;"></div>
+            <div class="token-name">--core-color-neutrals-black</div>
+            <div class="token-value">#000000</div>
+          </div>
+        
+          <div class="token-card" data-token-name="--core-color-neutrals-whitealpha-50" data-category="core">
+            <div class="color-preview" style="background-color: rgba(255, 255, 255, 0.0400);"></div>
+            <div class="token-name">--core-color-neutrals-whitealpha-50</div>
+            <div class="token-value">rgba(255, 255, 255, 0.0400)</div>
+          </div>
+        
+          <div class="token-card" data-token-name="--core-color-neutrals-whitealpha-100" data-category="core">
+            <div class="color-preview" style="background-color: rgba(255, 255, 255, 0.0600);"></div>
+            <div class="token-name">--core-color-neutrals-whitealpha-100</div>
+            <div class="token-value">rgba(255, 255, 255, 0.0600)</div>
+          </div>
+        
+          <div class="token-card" data-token-name="--core-color-neutrals-whitealpha-200" data-category="core">
+            <div class="color-preview" style="background-color: rgba(255, 255, 255, 0.0800);"></div>
+            <div class="token-name">--core-color-neutrals-whitealpha-200</div>
+            <div class="token-value">rgba(255, 255, 255, 0.0800)</div>
+          </div>
+        
+          <div class="token-card" data-token-name="--core-color-neutrals-whitealpha-300" data-category="core">
+            <div class="color-preview" style="background-color: rgba(255, 255, 255, 0.1600);"></div>
+            <div class="token-name">--core-color-neutrals-whitealpha-300</div>
+            <div class="token-value">rgba(255, 255, 255, 0.1600)</div>
+          </div>
+        
+          <div class="token-card" data-token-name="--core-color-neutrals-whitealpha-400" data-category="core">
+            <div class="color-preview" style="background-color: rgba(255, 255, 255, 0.2400);"></div>
+            <div class="token-name">--core-color-neutrals-whitealpha-400</div>
+            <div class="token-value">rgba(255, 255, 255, 0.2400)</div>
+          </div>
+        
+          <div class="token-card" data-token-name="--core-color-neutrals-whitealpha-500" data-category="core">
+            <div class="color-preview" style="background-color: rgba(255, 255, 255, 0.3600);"></div>
+            <div class="token-name">--core-color-neutrals-whitealpha-500</div>
+            <div class="token-value">rgba(255, 255, 255, 0.3600)</div>
+          </div>
+        
+          <div class="token-card" data-token-name="--core-color-neutrals-whitealpha-600" data-category="core">
+            <div class="color-preview" style="background-color: rgba(255, 255, 255, 0.4800);"></div>
+            <div class="token-name">--core-color-neutrals-whitealpha-600</div>
+            <div class="token-value">rgba(255, 255, 255, 0.4800)</div>
+          </div>
+        
+          <div class="token-card" data-token-name="--core-color-neutrals-whitealpha-700" data-category="core">
+            <div class="color-preview" style="background-color: rgba(255, 255, 255, 0.6400);"></div>
+            <div class="token-name">--core-color-neutrals-whitealpha-700</div>
+            <div class="token-value">rgba(255, 255, 255, 0.6400)</div>
+          </div>
+        
+          <div class="token-card" data-token-name="--core-color-neutrals-whitealpha-800" data-category="core">
+            <div class="color-preview" style="background-color: rgba(255, 255, 255, 0.8000);"></div>
+            <div class="token-name">--core-color-neutrals-whitealpha-800</div>
+            <div class="token-value">rgba(255, 255, 255, 0.8000)</div>
+          </div>
+        
+          <div class="token-card" data-token-name="--core-color-neutrals-whitealpha-900" data-category="core">
+            <div class="color-preview" style="background-color: rgba(255, 255, 255, 0.9200);"></div>
+            <div class="token-name">--core-color-neutrals-whitealpha-900</div>
+            <div class="token-value">rgba(255, 255, 255, 0.9200)</div>
+          </div>
+        
+          <div class="token-card" data-token-name="--core-color-neutrals-blackalpha-50" data-category="core">
+            <div class="color-preview" style="background-color: rgba(0, 0, 0, 0.0400);"></div>
+            <div class="token-name">--core-color-neutrals-blackalpha-50</div>
+            <div class="token-value">rgba(0, 0, 0, 0.0400)</div>
+          </div>
+        
+          <div class="token-card" data-token-name="--core-color-neutrals-blackalpha-100" data-category="core">
+            <div class="color-preview" style="background-color: rgba(0, 0, 0, 0.0600);"></div>
+            <div class="token-name">--core-color-neutrals-blackalpha-100</div>
+            <div class="token-value">rgba(0, 0, 0, 0.0600)</div>
+          </div>
+        
+          <div class="token-card" data-token-name="--core-color-neutrals-blackalpha-200" data-category="core">
+            <div class="color-preview" style="background-color: rgba(0, 0, 0, 0.0800);"></div>
+            <div class="token-name">--core-color-neutrals-blackalpha-200</div>
+            <div class="token-value">rgba(0, 0, 0, 0.0800)</div>
+          </div>
+        
+          <div class="token-card" data-token-name="--core-color-neutrals-blackalpha-300" data-category="core">
+            <div class="color-preview" style="background-color: rgba(0, 0, 0, 0.1600);"></div>
+            <div class="token-name">--core-color-neutrals-blackalpha-300</div>
+            <div class="token-value">rgba(0, 0, 0, 0.1600)</div>
+          </div>
+        
+          <div class="token-card" data-token-name="--core-color-neutrals-blackalpha-400" data-category="core">
+            <div class="color-preview" style="background-color: rgba(0, 0, 0, 0.2400);"></div>
+            <div class="token-name">--core-color-neutrals-blackalpha-400</div>
+            <div class="token-value">rgba(0, 0, 0, 0.2400)</div>
+          </div>
+        
+          <div class="token-card" data-token-name="--core-color-neutrals-blackalpha-500" data-category="core">
+            <div class="color-preview" style="background-color: rgba(0, 0, 0, 0.3600);"></div>
+            <div class="token-name">--core-color-neutrals-blackalpha-500</div>
+            <div class="token-value">rgba(0, 0, 0, 0.3600)</div>
+          </div>
+        
+          <div class="token-card" data-token-name="--core-color-neutrals-blackalpha-600" data-category="core">
+            <div class="color-preview" style="background-color: rgba(0, 0, 0, 0.4800);"></div>
+            <div class="token-name">--core-color-neutrals-blackalpha-600</div>
+            <div class="token-value">rgba(0, 0, 0, 0.4800)</div>
+          </div>
+        
+          <div class="token-card" data-token-name="--core-color-neutrals-blackalpha-700" data-category="core">
+            <div class="color-preview" style="background-color: rgba(0, 0, 0, 0.6400);"></div>
+            <div class="token-name">--core-color-neutrals-blackalpha-700</div>
+            <div class="token-value">rgba(0, 0, 0, 0.6400)</div>
+          </div>
+        
+          <div class="token-card" data-token-name="--core-color-neutrals-blackalpha-800" data-category="core">
+            <div class="color-preview" style="background-color: rgba(0, 0, 0, 0.8000);"></div>
+            <div class="token-name">--core-color-neutrals-blackalpha-800</div>
+            <div class="token-value">rgba(0, 0, 0, 0.8000)</div>
+          </div>
+        
+          <div class="token-card" data-token-name="--core-color-neutrals-blackalpha-900" data-category="core">
+            <div class="color-preview" style="background-color: rgba(0, 0, 0, 0.9200);"></div>
+            <div class="token-name">--core-color-neutrals-blackalpha-900</div>
+            <div class="token-value">rgba(0, 0, 0, 0.9200)</div>
+          </div>
+        
+          <div class="token-card" data-token-name="--core-color-feedback-success" data-category="core">
+            <div class="color-preview" style="background-color: #28cf98;"></div>
+            <div class="token-name">--core-color-feedback-success</div>
+            <div class="token-value">#28cf98</div>
+          </div>
+        
+          <div class="token-card" data-token-name="--core-color-feedback-error" data-category="core">
+            <div class="color-preview" style="background-color: #d82c2d;"></div>
+            <div class="token-name">--core-color-feedback-error</div>
+            <div class="token-value">#d82c2d</div>
+          </div>
+        
+          <div class="token-card" data-token-name="--core-color-feedback-warning" data-category="core">
+            <div class="color-preview" style="background-color: #ea5330;"></div>
+            <div class="token-name">--core-color-feedback-warning</div>
+            <div class="token-value">#ea5330</div>
+          </div>
+        
+          <div class="token-card" data-token-name="--core-typography-font-style-letterspacing" data-category="core">
+            
+            <div class="token-name">--core-typography-font-style-letterspacing</div>
+            <div class="token-value">0.7px</div>
+          </div>
+        
+          <div class="token-card" data-token-name="--core-typography-font-family-heading" data-category="core">
+            
+            <div class="token-name">--core-typography-font-family-heading</div>
+            <div class="token-value">TWK Everett</div>
+          </div>
+        
+          <div class="token-card" data-token-name="--core-typography-font-family-body" data-category="core">
+            
+            <div class="token-name">--core-typography-font-family-body</div>
+            <div class="token-value">Neue Haas Unica Pro</div>
+          </div>
+        
+          <div class="token-card" data-token-name="--core-typography-font-weight-regular" data-category="core">
+            
+            <div class="token-name">--core-typography-font-weight-regular</div>
+            <div class="token-value">Regular</div>
+          </div>
+        
+          <div class="token-card" data-token-name="--core-typography-font-weight-bold" data-category="core">
+            
+            <div class="token-name">--core-typography-font-weight-bold</div>
+            <div class="token-value">Bold</div>
+          </div>
+        
+          <div class="token-card" data-token-name="--core-typography-font-weight-medium" data-category="core">
+            
+            <div class="token-name">--core-typography-font-weight-medium</div>
+            <div class="token-value">Medium</div>
+          </div>
+        
+          <div class="token-card" data-token-name="--core-typography-font-weight-light" data-category="core">
+            
+            <div class="token-name">--core-typography-font-weight-light</div>
+            <div class="token-value">Light</div>
+          </div>
+        
+          <div class="token-card" data-token-name="--core-typography-font-weight-heavy" data-category="core">
+            
+            <div class="token-name">--core-typography-font-weight-heavy</div>
+            <div class="token-value">Heavy</div>
+          </div>
+        
+          <div class="token-card" data-token-name="--core-typography-font-size-xs" data-category="core">
+            
+            <div class="token-name">--core-typography-font-size-xs</div>
+            <div class="token-value">12</div>
+          </div>
+        
+          <div class="token-card" data-token-name="--core-typography-font-size-sm" data-category="core">
+            
+            <div class="token-name">--core-typography-font-size-sm</div>
+            <div class="token-value">14</div>
+          </div>
+        
+          <div class="token-card" data-token-name="--core-typography-font-size-md" data-category="core">
+            
+            <div class="token-name">--core-typography-font-size-md</div>
+            <div class="token-value">16</div>
+          </div>
+        
+          <div class="token-card" data-token-name="--core-typography-font-size-lg" data-category="core">
+            
+            <div class="token-name">--core-typography-font-size-lg</div>
+            <div class="token-value">18</div>
+          </div>
+        
+          <div class="token-card" data-token-name="--core-typography-font-size-xl" data-category="core">
+            
+            <div class="token-name">--core-typography-font-size-xl</div>
+            <div class="token-value">20</div>
+          </div>
+        
+          <div class="token-card" data-token-name="--core-typography-font-size-2xl" data-category="core">
+            
+            <div class="token-name">--core-typography-font-size-2xl</div>
+            <div class="token-value">24</div>
+          </div>
+        
+          <div class="token-card" data-token-name="--core-typography-font-size-3xl" data-category="core">
+            
+            <div class="token-name">--core-typography-font-size-3xl</div>
+            <div class="token-value">32</div>
+          </div>
+        
+          <div class="token-card" data-token-name="--core-typography-font-size-4xl" data-category="core">
+            
+            <div class="token-name">--core-typography-font-size-4xl</div>
+            <div class="token-value">40</div>
+          </div>
+        
+          <div class="token-card" data-token-name="--core-typography-font-size-5xl" data-category="core">
+            
+            <div class="token-name">--core-typography-font-size-5xl</div>
+            <div class="token-value">48</div>
+          </div>
+        
+          <div class="token-card" data-token-name="--core-typography-font-size-6xl" data-category="core">
+            
+            <div class="token-name">--core-typography-font-size-6xl</div>
+            <div class="token-value">64</div>
+          </div>
+        
+          <div class="token-card" data-token-name="--core-typography-font-size-7xl" data-category="core">
+            
+            <div class="token-name">--core-typography-font-size-7xl</div>
+            <div class="token-value">80</div>
+          </div>
+        
+          <div class="token-card" data-token-name="--core-dimension-0" data-category="core">
+            
+            <div class="token-name">--core-dimension-0</div>
+            <div class="token-value">0</div>
+          </div>
+        
+          <div class="token-card" data-token-name="--core-dimension-1" data-category="core">
+            
+            <div class="token-name">--core-dimension-1</div>
+            <div class="token-value">1</div>
+          </div>
+        
+          <div class="token-card" data-token-name="--core-dimension-2" data-category="core">
+            
+            <div class="token-name">--core-dimension-2</div>
+            <div class="token-value">2</div>
+          </div>
+        
+          <div class="token-card" data-token-name="--core-dimension-4" data-category="core">
+            
+            <div class="token-name">--core-dimension-4</div>
+            <div class="token-value">4</div>
+          </div>
+        
+          <div class="token-card" data-token-name="--core-dimension-6" data-category="core">
+            
+            <div class="token-name">--core-dimension-6</div>
+            <div class="token-value">6</div>
+          </div>
+        
+          <div class="token-card" data-token-name="--core-dimension-8" data-category="core">
+            
+            <div class="token-name">--core-dimension-8</div>
+            <div class="token-value">8</div>
+          </div>
+        
+          <div class="token-card" data-token-name="--core-dimension-10" data-category="core">
+            
+            <div class="token-name">--core-dimension-10</div>
+            <div class="token-value">10</div>
+          </div>
+        
+          <div class="token-card" data-token-name="--core-dimension-12" data-category="core">
+            
+            <div class="token-name">--core-dimension-12</div>
+            <div class="token-value">12</div>
+          </div>
+        
+          <div class="token-card" data-token-name="--core-dimension-14" data-category="core">
+            
+            <div class="token-name">--core-dimension-14</div>
+            <div class="token-value">14</div>
+          </div>
+        
+          <div class="token-card" data-token-name="--core-dimension-16" data-category="core">
+            
+            <div class="token-name">--core-dimension-16</div>
+            <div class="token-value">16</div>
+          </div>
+        
+          <div class="token-card" data-token-name="--core-dimension-18" data-category="core">
+            
+            <div class="token-name">--core-dimension-18</div>
+            <div class="token-value">18</div>
+          </div>
+        
+          <div class="token-card" data-token-name="--core-dimension-20" data-category="core">
+            
+            <div class="token-name">--core-dimension-20</div>
+            <div class="token-value">20</div>
+          </div>
+        
+          <div class="token-card" data-token-name="--core-dimension-24" data-category="core">
+            
+            <div class="token-name">--core-dimension-24</div>
+            <div class="token-value">24</div>
+          </div>
+        
+          <div class="token-card" data-token-name="--core-dimension-32" data-category="core">
+            
+            <div class="token-name">--core-dimension-32</div>
+            <div class="token-value">32</div>
+          </div>
+        
+          <div class="token-card" data-token-name="--core-dimension-40" data-category="core">
+            
+            <div class="token-name">--core-dimension-40</div>
+            <div class="token-value">40</div>
+          </div>
+        
+          <div class="token-card" data-token-name="--core-dimension-48" data-category="core">
+            
+            <div class="token-name">--core-dimension-48</div>
+            <div class="token-value">48</div>
+          </div>
+        
+          <div class="token-card" data-token-name="--core-dimension-56" data-category="core">
+            
+            <div class="token-name">--core-dimension-56</div>
+            <div class="token-value">56</div>
+          </div>
+        
+          <div class="token-card" data-token-name="--core-dimension-64" data-category="core">
+            
+            <div class="token-name">--core-dimension-64</div>
+            <div class="token-value">64</div>
+          </div>
+        
+          <div class="token-card" data-token-name="--core-dimension-72" data-category="core">
+            
+            <div class="token-name">--core-dimension-72</div>
+            <div class="token-value">72</div>
+          </div>
+        
+          <div class="token-card" data-token-name="--core-dimension-80" data-category="core">
+            
+            <div class="token-name">--core-dimension-80</div>
+            <div class="token-value">80</div>
+          </div>
+        
+          <div class="token-card" data-token-name="--core-dimension-96" data-category="core">
+            
+            <div class="token-name">--core-dimension-96</div>
+            <div class="token-value">96</div>
+          </div>
+        
+          <div class="token-card" data-token-name="--core-space-0" data-category="core">
+            
+            <div class="token-name">--core-space-0</div>
+            <div class="token-value">0</div>
+          </div>
+        
+          <div class="token-card" data-token-name="--core-space-1" data-category="core">
+            
+            <div class="token-name">--core-space-1</div>
+            <div class="token-value">1</div>
+          </div>
+        
+          <div class="token-card" data-token-name="--core-space-2" data-category="core">
+            
+            <div class="token-name">--core-space-2</div>
+            <div class="token-value">2</div>
+          </div>
+        
+          <div class="token-card" data-token-name="--core-space-3" data-category="core">
+            
+            <div class="token-name">--core-space-3</div>
+            <div class="token-value">4</div>
+          </div>
+        
+          <div class="token-card" data-token-name="--core-space-4" data-category="core">
+            
+            <div class="token-name">--core-space-4</div>
+            <div class="token-value">6</div>
+          </div>
+        
+          <div class="token-card" data-token-name="--core-space-5" data-category="core">
+            
+            <div class="token-name">--core-space-5</div>
+            <div class="token-value">8</div>
+          </div>
+        
+          <div class="token-card" data-token-name="--core-space-6" data-category="core">
+            
+            <div class="token-name">--core-space-6</div>
+            <div class="token-value">12</div>
+          </div>
+        
+          <div class="token-card" data-token-name="--core-space-7" data-category="core">
+            
+            <div class="token-name">--core-space-7</div>
+            <div class="token-value">16</div>
+          </div>
+        
+          <div class="token-card" data-token-name="--core-space-8" data-category="core">
+            
+            <div class="token-name">--core-space-8</div>
+            <div class="token-value">24</div>
+          </div>
+        
+          <div class="token-card" data-token-name="--core-space-9" data-category="core">
+            
+            <div class="token-name">--core-space-9</div>
+            <div class="token-value">32</div>
+          </div>
+        
+          <div class="token-card" data-token-name="--core-space-10" data-category="core">
+            
+            <div class="token-name">--core-space-10</div>
+            <div class="token-value">40</div>
+          </div>
+        
+          <div class="token-card" data-token-name="--core-space-11" data-category="core">
+            
+            <div class="token-name">--core-space-11</div>
+            <div class="token-value">48</div>
+          </div>
+        
+          <div class="token-card" data-token-name="--core-space-12" data-category="core">
+            
+            <div class="token-name">--core-space-12</div>
+            <div class="token-value">56</div>
+          </div>
+        
+          <div class="token-card" data-token-name="--core-space-13" data-category="core">
+            
+            <div class="token-name">--core-space-13</div>
+            <div class="token-value">64</div>
+          </div>
+        
+          <div class="token-card" data-token-name="--core-space-14" data-category="core">
+            
+            <div class="token-name">--core-space-14</div>
+            <div class="token-value">72</div>
+          </div>
+        
+          <div class="token-card" data-token-name="--core-space-15" data-category="core">
+            
+            <div class="token-name">--core-space-15</div>
+            <div class="token-value">80</div>
+          </div>
+        
+          <div class="token-card" data-token-name="--core-space-16" data-category="core">
+            
+            <div class="token-name">--core-space-16</div>
+            <div class="token-value">96</div>
+          </div>
+        
+          <div class="token-card" data-token-name="--core-border-radius-none" data-category="core">
+            
+            <div class="token-name">--core-border-radius-none</div>
+            <div class="token-value">0</div>
+          </div>
+        
+          <div class="token-card" data-token-name="--core-border-radius-xs" data-category="core">
+            
+            <div class="token-name">--core-border-radius-xs</div>
+            <div class="token-value">4</div>
+          </div>
+        
+          <div class="token-card" data-token-name="--core-border-radius-sm" data-category="core">
+            
+            <div class="token-name">--core-border-radius-sm</div>
+            <div class="token-value">8</div>
+          </div>
+        
+          <div class="token-card" data-token-name="--core-border-radius-md" data-category="core">
+            
+            <div class="token-name">--core-border-radius-md</div>
+            <div class="token-value">16</div>
+          </div>
+        
+          <div class="token-card" data-token-name="--core-border-radius-round" data-category="core">
+            
+            <div class="token-name">--core-border-radius-round</div>
+            <div class="token-value">9999</div>
+          </div>
+        
+          <div class="token-card" data-token-name="--core-border-width-xs" data-category="core">
+            
+            <div class="token-name">--core-border-width-xs</div>
+            <div class="token-value">1</div>
+          </div>
+        
+          <div class="token-card" data-token-name="--core-border-width-sm" data-category="core">
+            
+            <div class="token-name">--core-border-width-sm</div>
+            <div class="token-value">2</div>
+          </div>
+        
+          <div class="token-card" data-token-name="--core-border-width-lg" data-category="core">
+            
+            <div class="token-name">--core-border-width-lg</div>
+            <div class="token-value">4</div>
+          </div>
+        
+          <div class="token-card" data-token-name="--core-font-style-letterspacing" data-category="core">
+            
+            <div class="token-name">--core-font-style-letterspacing</div>
+            <div class="token-value">0.70</div>
+          </div>
+        
+          <div class="token-card" data-token-name="--semantic-color-primary-base" data-category="semantic">
+            <div class="color-preview" style="background-color: #ffd935;"></div>
+            <div class="token-name">--semantic-color-primary-base</div>
+            <div class="token-value">#ffd935</div>
+          </div>
+        
+          <div class="token-card" data-token-name="--semantic-color-primary-darken" data-category="semantic">
+            <div class="color-preview" style="background-color: #ddba22;"></div>
+            <div class="token-name">--semantic-color-primary-darken</div>
+            <div class="token-value">#ddba22</div>
+          </div>
+        
+          <div class="token-card" data-token-name="--semantic-color-primary-lighten" data-category="semantic">
+            <div class="color-preview" style="background-color: #ffe162;"></div>
+            <div class="token-name">--semantic-color-primary-lighten</div>
+            <div class="token-value">#ffe162</div>
+          </div>
+        
+          <div class="token-card" data-token-name="--semantic-color-primary-lighten-2" data-category="semantic">
+            <div class="color-preview" style="background-color: #ffea90;"></div>
+            <div class="token-name">--semantic-color-primary-lighten-2</div>
+            <div class="token-value">#ffea90</div>
+          </div>
+        
+          <div class="token-card" data-token-name="--semantic-color-secondary-base" data-category="semantic">
+            <div class="color-preview" style="background-color: #0337ff;"></div>
+            <div class="token-name">--semantic-color-secondary-base</div>
+            <div class="token-value">#0337ff</div>
+          </div>
+        
+          <div class="token-card" data-token-name="--semantic-color-secondary-darken" data-category="semantic">
+            <div class="color-preview" style="background-color: #0024ad;"></div>
+            <div class="token-name">--semantic-color-secondary-darken</div>
+            <div class="token-value">#0024ad</div>
+          </div>
+        
+          <div class="token-card" data-token-name="--semantic-color-secondary-darken-2" data-category="semantic">
+            <div class="color-preview" style="background-color: #00135c;"></div>
+            <div class="token-name">--semantic-color-secondary-darken-2</div>
+            <div class="token-value">#00135c</div>
+          </div>
+        
+          <div class="token-card" data-token-name="--semantic-color-secondary-lighten" data-category="semantic">
+            <div class="color-preview" style="background-color: #335cff;"></div>
+            <div class="token-name">--semantic-color-secondary-lighten</div>
+            <div class="token-value">#335cff</div>
+          </div>
+        
+          <div class="token-card" data-token-name="--semantic-color-secondary-lighten-2" data-category="semantic">
+            <div class="color-preview" style="background-color: #859dff;"></div>
+            <div class="token-name">--semantic-color-secondary-lighten-2</div>
+            <div class="token-value">#859dff</div>
+          </div>
+        
+          <div class="token-card" data-token-name="--semantic-color-tertiary-base" data-category="semantic">
+            <div class="color-preview" style="background-color: #f068d4;"></div>
+            <div class="token-name">--semantic-color-tertiary-base</div>
+            <div class="token-value">#f068d4</div>
+          </div>
+        
+          <div class="token-card" data-token-name="--semantic-color-tertiary-darken" data-category="semantic">
+            <div class="color-preview" style="background-color: #b6439e;"></div>
+            <div class="token-name">--semantic-color-tertiary-darken</div>
+            <div class="token-value">#b6439e</div>
+          </div>
+        
+          <div class="token-card" data-token-name="--semantic-color-tertiary-darken-2" data-category="semantic">
+            <div class="color-preview" style="background-color: #7b256a;"></div>
+            <div class="token-name">--semantic-color-tertiary-darken-2</div>
+            <div class="token-value">#7b256a</div>
+          </div>
+        
+          <div class="token-card" data-token-name="--semantic-color-tertiary-lighten" data-category="semantic">
+            <div class="color-preview" style="background-color: #fd98e8;"></div>
+            <div class="token-name">--semantic-color-tertiary-lighten</div>
+            <div class="token-value">#fd98e8</div>
+          </div>
+        
+          <div class="token-card" data-token-name="--semantic-color-tertiary-lighten-2" data-category="semantic">
+            <div class="color-preview" style="background-color: #ffc5f3;"></div>
+            <div class="token-name">--semantic-color-tertiary-lighten-2</div>
+            <div class="token-value">#ffc5f3</div>
+          </div>
+        
+          <div class="token-card" data-token-name="--semantic-color-background-base" data-category="semantic">
+            <div class="color-preview" style="background-color: #000000;"></div>
+            <div class="token-name">--semantic-color-background-base</div>
+            <div class="token-value">#000000</div>
+          </div>
+        
+          <div class="token-card" data-token-name="--semantic-color-background-base-lighten" data-category="semantic">
+            <div class="color-preview" style="background-color: rgba(0, 0, 0, 0.9200);"></div>
+            <div class="token-name">--semantic-color-background-base-lighten</div>
+            <div class="token-value">rgba(0, 0, 0, 0.9200)</div>
+          </div>
+        
+          <div class="token-card" data-token-name="--semantic-color-background-base-lighten-2" data-category="semantic">
+            <div class="color-preview" style="background-color: rgba(0, 0, 0, 0.8000);"></div>
+            <div class="token-name">--semantic-color-background-base-lighten-2</div>
+            <div class="token-value">rgba(0, 0, 0, 0.8000)</div>
+          </div>
+        
+          <div class="token-card" data-token-name="--semantic-color-background-base-lighten-3" data-category="semantic">
+            <div class="color-preview" style="background-color: rgba(0, 0, 0, 0.4800);"></div>
+            <div class="token-name">--semantic-color-background-base-lighten-3</div>
+            <div class="token-value">rgba(0, 0, 0, 0.4800)</div>
+          </div>
+        
+          <div class="token-card" data-token-name="--semantic-color-background-inverse" data-category="semantic">
+            <div class="color-preview" style="background-color: #ffffff;"></div>
+            <div class="token-name">--semantic-color-background-inverse</div>
+            <div class="token-value">#ffffff</div>
+          </div>
+        
+          <div class="token-card" data-token-name="--semantic-color-background-inverse-lighten" data-category="semantic">
+            <div class="color-preview" style="background-color: rgba(255, 255, 255, 0.0800);"></div>
+            <div class="token-name">--semantic-color-background-inverse-lighten</div>
+            <div class="token-value">rgba(255, 255, 255, 0.0800)</div>
+          </div>
+        
+          <div class="token-card" data-token-name="--semantic-color-background-inverse-lighten-2" data-category="semantic">
+            <div class="color-preview" style="background-color: rgba(255, 255, 255, 0.1600);"></div>
+            <div class="token-name">--semantic-color-background-inverse-lighten-2</div>
+            <div class="token-value">rgba(255, 255, 255, 0.1600)</div>
+          </div>
+        
+          <div class="token-card" data-token-name="--semantic-color-background-inverse-lighten-3" data-category="semantic">
+            <div class="color-preview" style="background-color: rgba(255, 255, 255, 0.2400);"></div>
+            <div class="token-name">--semantic-color-background-inverse-lighten-3</div>
+            <div class="token-value">rgba(255, 255, 255, 0.2400)</div>
+          </div>
+        
+          <div class="token-card" data-token-name="--semantic-color-background-inverse-lighten-4" data-category="semantic">
+            <div class="color-preview" style="background-color: rgba(255, 255, 255, 0.4800);"></div>
+            <div class="token-name">--semantic-color-background-inverse-lighten-4</div>
+            <div class="token-value">rgba(255, 255, 255, 0.4800)</div>
+          </div>
+        
+          <div class="token-card" data-token-name="--semantic-color-foreground-base" data-category="semantic">
+            <div class="color-preview" style="background-color: #ffffff;"></div>
+            <div class="token-name">--semantic-color-foreground-base</div>
+            <div class="token-value">#ffffff</div>
+          </div>
+        
+          <div class="token-card" data-token-name="--semantic-color-foreground-primary" data-category="semantic">
+            <div class="color-preview" style="background-color: #ffffff;"></div>
+            <div class="token-name">--semantic-color-foreground-primary</div>
+            <div class="token-value">#ffffff</div>
+          </div>
+        
+          <div class="token-card" data-token-name="--semantic-color-foreground-secondary" data-category="semantic">
+            <div class="color-preview" style="background-color: #ffffff;"></div>
+            <div class="token-name">--semantic-color-foreground-secondary</div>
+            <div class="token-value">#ffffff</div>
+          </div>
+        
+          <div class="token-card" data-token-name="--semantic-color-foreground-contrast" data-category="semantic">
+            <div class="color-preview" style="background-color: #000000;"></div>
+            <div class="token-name">--semantic-color-foreground-contrast</div>
+            <div class="token-value">#000000</div>
+          </div>
+        
+          <div class="token-card" data-token-name="--semantic-color-foreground-contrast-lighten" data-category="semantic">
+            <div class="color-preview" style="background-color: rgba(0, 0, 0, 0.6400);"></div>
+            <div class="token-name">--semantic-color-foreground-contrast-lighten</div>
+            <div class="token-value">rgba(0, 0, 0, 0.6400)</div>
+          </div>
+        
+          <div class="token-card" data-token-name="--semantic-color-foreground-disabled" data-category="semantic">
+            <div class="color-preview" style="background-color: rgba(0, 0, 0, 0.6400);"></div>
+            <div class="token-name">--semantic-color-foreground-disabled</div>
+            <div class="token-value">rgba(0, 0, 0, 0.6400)</div>
+          </div>
+        
+          <div class="token-card" data-token-name="--semantic-color-foreground-lighten-1" data-category="semantic">
+            <div class="color-preview" style="background-color: rgba(255, 255, 255, 0.6400);"></div>
+            <div class="token-name">--semantic-color-foreground-lighten-1</div>
+            <div class="token-value">rgba(255, 255, 255, 0.6400)</div>
+          </div>
+        
+          <div class="token-card" data-token-name="--semantic-color-foreground-lighten-2" data-category="semantic">
+            <div class="color-preview" style="background-color: rgba(255, 255, 255, 0.4800);"></div>
+            <div class="token-name">--semantic-color-foreground-lighten-2</div>
+            <div class="token-value">rgba(255, 255, 255, 0.4800)</div>
+          </div>
+        
+          <div class="token-card" data-token-name="--semantic-color-feedback-success" data-category="semantic">
+            <div class="color-preview" style="background-color: #28cf98;"></div>
+            <div class="token-name">--semantic-color-feedback-success</div>
+            <div class="token-value">#28cf98</div>
+          </div>
+        
+          <div class="token-card" data-token-name="--semantic-color-feedback-error" data-category="semantic">
+            <div class="color-preview" style="background-color: #d82c2d;"></div>
+            <div class="token-name">--semantic-color-feedback-error</div>
+            <div class="token-value">#d82c2d</div>
+          </div>
+        
+          <div class="token-card" data-token-name="--semantic-color-feedback-warning" data-category="semantic">
+            <div class="color-preview" style="background-color: #ea5330;"></div>
+            <div class="token-name">--semantic-color-feedback-warning</div>
+            <div class="token-value">#ea5330</div>
+          </div>
+        
+          <div class="token-card" data-token-name="--semantic-color-disabled-base" data-category="semantic">
+            <div class="color-preview" style="background-color: rgba(255, 255, 255, 0.2400);"></div>
+            <div class="token-name">--semantic-color-disabled-base</div>
+            <div class="token-value">rgba(255, 255, 255, 0.2400)</div>
+          </div>
+        
+          <div class="token-card" data-token-name="--semantic-color-alpha-base" data-category="semantic">
+            <div class="color-preview" style="background-color: rgba(255, 255, 255, 0.1600);"></div>
+            <div class="token-name">--semantic-color-alpha-base</div>
+            <div class="token-value">rgba(255, 255, 255, 0.1600)</div>
+          </div>
+        
+          <div class="token-card" data-token-name="--semantic-color-alpha-darken" data-category="semantic">
+            <div class="color-preview" style="background-color: rgba(255, 255, 255, 0.2400);"></div>
+            <div class="token-name">--semantic-color-alpha-darken</div>
+            <div class="token-value">rgba(255, 255, 255, 0.2400)</div>
+          </div>
+        
+          <div class="token-card" data-token-name="--semantic-color-alpha-darken-2" data-category="semantic">
+            <div class="color-preview" style="background-color: rgba(255, 255, 255, 0.6400);"></div>
+            <div class="token-name">--semantic-color-alpha-darken-2</div>
+            <div class="token-value">rgba(255, 255, 255, 0.6400)</div>
+          </div>
+        
+          <div class="token-card" data-token-name="--semantic-color-alpha-lighten" data-category="semantic">
+            <div class="color-preview" style="background-color: rgba(255, 255, 255, 0.0800);"></div>
+            <div class="token-name">--semantic-color-alpha-lighten</div>
+            <div class="token-value">rgba(255, 255, 255, 0.0800)</div>
+          </div>
+        
+          <div class="token-card" data-token-name="--semantic-color-alpha-fg" data-category="semantic">
+            <div class="color-preview" style="background-color: #ffffff;"></div>
+            <div class="token-name">--semantic-color-alpha-fg</div>
+            <div class="token-value">#ffffff</div>
+          </div>
+        
+          <div class="token-card" data-token-name="--semantic-color-alpha-accent" data-category="semantic">
+            <div class="color-preview" style="background-color: #ffd935;"></div>
+            <div class="token-name">--semantic-color-alpha-accent</div>
+            <div class="token-value">#ffd935</div>
+          </div>
+        
+          <div class="token-card" data-token-name="--semantic-space-2xs" data-category="semantic">
+            
+            <div class="token-name">--semantic-space-2xs</div>
+            <div class="token-value">4</div>
+          </div>
+        
+          <div class="token-card" data-token-name="--semantic-space-xs" data-category="semantic">
+            
+            <div class="token-name">--semantic-space-xs</div>
+            <div class="token-value">8</div>
+          </div>
+        
+          <div class="token-card" data-token-name="--semantic-space-sm" data-category="semantic">
+            
+            <div class="token-name">--semantic-space-sm</div>
+            <div class="token-value">16</div>
+          </div>
+        
+          <div class="token-card" data-token-name="--semantic-space-md" data-category="semantic">
+            
+            <div class="token-name">--semantic-space-md</div>
+            <div class="token-value">20</div>
+          </div>
+        
+          <div class="token-card" data-token-name="--semantic-space-lg" data-category="semantic">
+            
+            <div class="token-name">--semantic-space-lg</div>
+            <div class="token-value">24</div>
+          </div>
+        
+          <div class="token-card" data-token-name="--semantic-space-xl" data-category="semantic">
+            
+            <div class="token-name">--semantic-space-xl</div>
+            <div class="token-value">32</div>
+          </div>
+        
+          <div class="token-card" data-token-name="--semantic-space-2xl" data-category="semantic">
+            
+            <div class="token-name">--semantic-space-2xl</div>
+            <div class="token-value">40</div>
+          </div>
+        
+          <div class="token-card" data-token-name="--semantic-space-3xl" data-category="semantic">
+            
+            <div class="token-name">--semantic-space-3xl</div>
+            <div class="token-value">48</div>
+          </div>
+        
+          <div class="token-card" data-token-name="--semantic-space-4xl" data-category="semantic">
+            
+            <div class="token-name">--semantic-space-4xl</div>
+            <div class="token-value">56</div>
+          </div>
+        
+          <div class="token-card" data-token-name="--semantic-space-5xl" data-category="semantic">
+            
+            <div class="token-name">--semantic-space-5xl</div>
+            <div class="token-value">64</div>
+          </div>
+        
+          <div class="token-card" data-token-name="--components-navigation-fg" data-category="components">
+            <div class="color-preview" style="background-color: #ffffff;"></div>
+            <div class="token-name">--components-navigation-fg</div>
+            <div class="token-value">#ffffff</div>
+          </div>
+        
+          <div class="token-card" data-token-name="--components-navigation-bg" data-category="components">
+            <div class="color-preview" style="background-color: #000000;"></div>
+            <div class="token-name">--components-navigation-bg</div>
+            <div class="token-value">#000000</div>
+          </div>
+        
+          <div class="token-card" data-token-name="--components-navigation-border" data-category="components">
+            <div class="color-preview" style="background-color: rgba(255, 255, 255, 0.1600);"></div>
+            <div class="token-name">--components-navigation-border</div>
+            <div class="token-value">rgba(255, 255, 255, 0.1600)</div>
+          </div>
+        
+          <div class="token-card" data-token-name="--components-navigation-primary-bg-default" data-category="components">
+            <div class="color-preview" style="background-color: #000000;"></div>
+            <div class="token-name">--components-navigation-primary-bg-default</div>
+            <div class="token-value">#000000</div>
+          </div>
+        
+          <div class="token-card" data-token-name="--components-navigation-primary-bg-hover" data-category="components">
+            <div class="color-preview" style="background-color: rgba(255, 255, 255, 0.1600);"></div>
+            <div class="token-name">--components-navigation-primary-bg-hover</div>
+            <div class="token-value">rgba(255, 255, 255, 0.1600)</div>
+          </div>
+        
+          <div class="token-card" data-token-name="--components-navigation-primary-bg-active" data-category="components">
+            <div class="color-preview" style="background-color: #ffd935;"></div>
+            <div class="token-name">--components-navigation-primary-bg-active</div>
+            <div class="token-value">#ffd935</div>
+          </div>
+        
+          <div class="token-card" data-token-name="--components-navigation-primary-bg-submenu" data-category="components">
+            <div class="color-preview" style="background-color: rgba(255, 255, 255, 0.1600);"></div>
+            <div class="token-name">--components-navigation-primary-bg-submenu</div>
+            <div class="token-value">rgba(255, 255, 255, 0.1600)</div>
+          </div>
+        
+          <div class="token-card" data-token-name="--components-navigation-primary-fg" data-category="components">
+            <div class="color-preview" style="background-color: rgba(255, 255, 255, 0.6400);"></div>
+            <div class="token-name">--components-navigation-primary-fg</div>
+            <div class="token-value">rgba(255, 255, 255, 0.6400)</div>
+          </div>
+        
+          <div class="token-card" data-token-name="--components-navigation-primary-fg-hover" data-category="components">
+            <div class="color-preview" style="background-color: #ffffff;"></div>
+            <div class="token-name">--components-navigation-primary-fg-hover</div>
+            <div class="token-value">#ffffff</div>
+          </div>
+        
+          <div class="token-card" data-token-name="--components-navigation-primary-fg-inverse" data-category="components">
+            <div class="color-preview" style="background-color: #000000;"></div>
+            <div class="token-name">--components-navigation-primary-fg-inverse</div>
+            <div class="token-value">#000000</div>
+          </div>
+        
+          <div class="token-card" data-token-name="--components-navigation-primary-border-hover" data-category="components">
+            <div class="color-preview" style="background-color: rgba(255, 255, 255, 0.2400);"></div>
+            <div class="token-name">--components-navigation-primary-border-hover</div>
+            <div class="token-value">rgba(255, 255, 255, 0.2400)</div>
+          </div>
+        
+          <div class="token-card" data-token-name="--components-navigation-primary-border-active" data-category="components">
+            <div class="color-preview" style="background-color: #ffd935;"></div>
+            <div class="token-name">--components-navigation-primary-border-active</div>
+            <div class="token-value">#ffd935</div>
+          </div>
+        
+          <div class="token-card" data-token-name="--components-navigation-secondary-bg-default" data-category="components">
+            <div class="color-preview" style="background-color: #000000;"></div>
+            <div class="token-name">--components-navigation-secondary-bg-default</div>
+            <div class="token-value">#000000</div>
+          </div>
+        
+          <div class="token-card" data-token-name="--components-navigation-secondary-bg-hover" data-category="components">
+            <div class="color-preview" style="background-color: rgba(255, 255, 255, 0.2400);"></div>
+            <div class="token-name">--components-navigation-secondary-bg-hover</div>
+            <div class="token-value">rgba(255, 255, 255, 0.2400)</div>
+          </div>
+        
+          <div class="token-card" data-token-name="--components-navigation-secondary-bg-active" data-category="components">
+            <div class="color-preview" style="background-color: #0337ff;"></div>
+            <div class="token-name">--components-navigation-secondary-bg-active</div>
+            <div class="token-value">#0337ff</div>
+          </div>
+        
+          <div class="token-card" data-token-name="--components-navigation-secondary-bg-submenu" data-category="components">
+            <div class="color-preview" style="background-color: rgba(255, 255, 255, 0.1600);"></div>
+            <div class="token-name">--components-navigation-secondary-bg-submenu</div>
+            <div class="token-value">rgba(255, 255, 255, 0.1600)</div>
+          </div>
+        
+          <div class="token-card" data-token-name="--components-navigation-secondary-fg" data-category="components">
+            <div class="color-preview" style="background-color: #ffffff;"></div>
+            <div class="token-name">--components-navigation-secondary-fg</div>
+            <div class="token-value">#ffffff</div>
+          </div>
+        
+          <div class="token-card" data-token-name="--components-navigation-secondary-fg-hover" data-category="components">
+            <div class="color-preview" style="background-color: #ffffff;"></div>
+            <div class="token-name">--components-navigation-secondary-fg-hover</div>
+            <div class="token-value">#ffffff</div>
+          </div>
+        
+          <div class="token-card" data-token-name="--components-navigation-secondary-fg-inverse" data-category="components">
+            <div class="color-preview" style="background-color: #000000;"></div>
+            <div class="token-name">--components-navigation-secondary-fg-inverse</div>
+            <div class="token-value">#000000</div>
+          </div>
+        
+          <div class="token-card" data-token-name="--components-navigation-secondary-border-hover" data-category="components">
+            <div class="color-preview" style="background-color: rgba(255, 255, 255, 0.2400);"></div>
+            <div class="token-name">--components-navigation-secondary-border-hover</div>
+            <div class="token-value">rgba(255, 255, 255, 0.2400)</div>
+          </div>
+        
+          <div class="token-card" data-token-name="--components-navigation-secondary-border-active" data-category="components">
+            <div class="color-preview" style="background-color: #0337ff;"></div>
+            <div class="token-name">--components-navigation-secondary-border-active</div>
+            <div class="token-value">#0337ff</div>
+          </div>
+        
+          <div class="token-card" data-token-name="--components-navigation-tertiary-bg-default" data-category="components">
+            <div class="color-preview" style="background-color: #000000;"></div>
+            <div class="token-name">--components-navigation-tertiary-bg-default</div>
+            <div class="token-value">#000000</div>
+          </div>
+        
+          <div class="token-card" data-token-name="--components-navigation-tertiary-bg-hover" data-category="components">
+            <div class="color-preview" style="background-color: rgba(255, 255, 255, 0.2400);"></div>
+            <div class="token-name">--components-navigation-tertiary-bg-hover</div>
+            <div class="token-value">rgba(255, 255, 255, 0.2400)</div>
+          </div>
+        
+          <div class="token-card" data-token-name="--components-navigation-tertiary-bg-active" data-category="components">
+            <div class="color-preview" style="background-color: #f068d4;"></div>
+            <div class="token-name">--components-navigation-tertiary-bg-active</div>
+            <div class="token-value">#f068d4</div>
+          </div>
+        
+          <div class="token-card" data-token-name="--components-navigation-tertiary-bg-submenu" data-category="components">
+            <div class="color-preview" style="background-color: rgba(255, 255, 255, 0.1600);"></div>
+            <div class="token-name">--components-navigation-tertiary-bg-submenu</div>
+            <div class="token-value">rgba(255, 255, 255, 0.1600)</div>
+          </div>
+        
+          <div class="token-card" data-token-name="--components-navigation-tertiary-fg" data-category="components">
+            <div class="color-preview" style="background-color: #ffffff;"></div>
+            <div class="token-name">--components-navigation-tertiary-fg</div>
+            <div class="token-value">#ffffff</div>
+          </div>
+        
+          <div class="token-card" data-token-name="--components-navigation-tertiary-fg-hover" data-category="components">
+            <div class="color-preview" style="background-color: #ffffff;"></div>
+            <div class="token-name">--components-navigation-tertiary-fg-hover</div>
+            <div class="token-value">#ffffff</div>
+          </div>
+        
+          <div class="token-card" data-token-name="--components-navigation-tertiary-fg-inverse" data-category="components">
+            <div class="color-preview" style="background-color: #000000;"></div>
+            <div class="token-name">--components-navigation-tertiary-fg-inverse</div>
+            <div class="token-value">#000000</div>
+          </div>
+        
+          <div class="token-card" data-token-name="--components-navigation-tertiary-border-hover" data-category="components">
+            <div class="color-preview" style="background-color: rgba(255, 255, 255, 0.2400);"></div>
+            <div class="token-name">--components-navigation-tertiary-border-hover</div>
+            <div class="token-value">rgba(255, 255, 255, 0.2400)</div>
+          </div>
+        
+          <div class="token-card" data-token-name="--components-navigation-tertiary-border-active" data-category="components">
+            <div class="color-preview" style="background-color: #f068d4;"></div>
+            <div class="token-name">--components-navigation-tertiary-border-active</div>
+            <div class="token-value">#f068d4</div>
+          </div>
+        
+          <div class="token-card" data-token-name="--components-button-primary-default" data-category="components">
+            <div class="color-preview" style="background-color: #ffd935;"></div>
+            <div class="token-name">--components-button-primary-default</div>
+            <div class="token-value">#ffd935</div>
+          </div>
+        
+          <div class="token-card" data-token-name="--components-button-primary-hover" data-category="components">
+            <div class="color-preview" style="background-color: #ffffff;"></div>
+            <div class="token-name">--components-button-primary-hover</div>
+            <div class="token-value">#ffffff</div>
+          </div>
+        
+          <div class="token-card" data-token-name="--components-button-primary-active" data-category="components">
+            <div class="color-preview" style="background-color: #ffffff;"></div>
+            <div class="token-name">--components-button-primary-active</div>
+            <div class="token-value">#ffffff</div>
+          </div>
+        
+          <div class="token-card" data-token-name="--components-button-primary-focus" data-category="components">
+            <div class="color-preview" style="background-color: #ddba22;"></div>
+            <div class="token-name">--components-button-primary-focus</div>
+            <div class="token-value">#ddba22</div>
+          </div>
+        
+          <div class="token-card" data-token-name="--components-button-primary-fg" data-category="components">
+            <div class="color-preview" style="background-color: #000000;"></div>
+            <div class="token-name">--components-button-primary-fg</div>
+            <div class="token-value">#000000</div>
+          </div>
+        
+          <div class="token-card" data-token-name="--components-button-secondary-default" data-category="components">
+            <div class="color-preview" style="background-color: #0337ff;"></div>
+            <div class="token-name">--components-button-secondary-default</div>
+            <div class="token-value">#0337ff</div>
+          </div>
+        
+          <div class="token-card" data-token-name="--components-button-secondary-hover" data-category="components">
+            <div class="color-preview" style="background-color: #ffffff;"></div>
+            <div class="token-name">--components-button-secondary-hover</div>
+            <div class="token-value">#ffffff</div>
+          </div>
+        
+          <div class="token-card" data-token-name="--components-button-secondary-active" data-category="components">
+            <div class="color-preview" style="background-color: #0024ad;"></div>
+            <div class="token-name">--components-button-secondary-active</div>
+            <div class="token-value">#0024ad</div>
+          </div>
+        
+          <div class="token-card" data-token-name="--components-button-secondary-focus" data-category="components">
+            <div class="color-preview" style="background-color: #0024ad;"></div>
+            <div class="token-name">--components-button-secondary-focus</div>
+            <div class="token-value">#0024ad</div>
+          </div>
+        
+          <div class="token-card" data-token-name="--components-button-secondary-fg" data-category="components">
+            <div class="color-preview" style="background-color: #ffffff;"></div>
+            <div class="token-name">--components-button-secondary-fg</div>
+            <div class="token-value">#ffffff</div>
+          </div>
+        
+          <div class="token-card" data-token-name="--components-button-secondary-outline" data-category="components">
+            <div class="color-preview" style="background-color: #335cff;"></div>
+            <div class="token-name">--components-button-secondary-outline</div>
+            <div class="token-value">#335cff</div>
+          </div>
+        
+          <div class="token-card" data-token-name="--components-button-tertiary-default" data-category="components">
+            <div class="color-preview" style="background-color: #f068d4;"></div>
+            <div class="token-name">--components-button-tertiary-default</div>
+            <div class="token-value">#f068d4</div>
+          </div>
+        
+          <div class="token-card" data-token-name="--components-button-tertiary-hover" data-category="components">
+            <div class="color-preview" style="background-color: #ffffff;"></div>
+            <div class="token-name">--components-button-tertiary-hover</div>
+            <div class="token-value">#ffffff</div>
+          </div>
+        
+          <div class="token-card" data-token-name="--components-button-tertiary-active" data-category="components">
+            <div class="color-preview" style="background-color: #b6439e;"></div>
+            <div class="token-name">--components-button-tertiary-active</div>
+            <div class="token-value">#b6439e</div>
+          </div>
+        
+          <div class="token-card" data-token-name="--components-button-tertiary-focus" data-category="components">
+            <div class="color-preview" style="background-color: #b6439e;"></div>
+            <div class="token-name">--components-button-tertiary-focus</div>
+            <div class="token-value">#b6439e</div>
+          </div>
+        
+          <div class="token-card" data-token-name="--components-button-tertiary-fg-active" data-category="components">
+            <div class="color-preview" style="background-color: #ffffff;"></div>
+            <div class="token-name">--components-button-tertiary-fg-active</div>
+            <div class="token-value">#ffffff</div>
+          </div>
+        
+          <div class="token-card" data-token-name="--components-button-tertiary-fg-default" data-category="components">
+            <div class="color-preview" style="background-color: rgba(255, 255, 255, 0.6400);"></div>
+            <div class="token-name">--components-button-tertiary-fg-default</div>
+            <div class="token-value">rgba(255, 255, 255, 0.6400)</div>
+          </div>
+        
+          <div class="token-card" data-token-name="--components-button-success-default" data-category="components">
+            <div class="color-preview" style="background-color: #28cf98;"></div>
+            <div class="token-name">--components-button-success-default</div>
+            <div class="token-value">#28cf98</div>
+          </div>
+        
+          <div class="token-card" data-token-name="--components-button-success-fg" data-category="components">
+            <div class="color-preview" style="background-color: #000000;"></div>
+            <div class="token-name">--components-button-success-fg</div>
+            <div class="token-value">#000000</div>
+          </div>
+        
+          <div class="token-card" data-token-name="--components-button-error-default" data-category="components">
+            <div class="color-preview" style="background-color: #d82c2d;"></div>
+            <div class="token-name">--components-button-error-default</div>
+            <div class="token-value">#d82c2d</div>
+          </div>
+        
+          <div class="token-card" data-token-name="--components-button-error-fg" data-category="components">
+            <div class="color-preview" style="background-color: #ffffff;"></div>
+            <div class="token-name">--components-button-error-fg</div>
+            <div class="token-value">#ffffff</div>
+          </div>
+        
+          <div class="token-card" data-token-name="--components-button-warning-default" data-category="components">
+            <div class="color-preview" style="background-color: #ea5330;"></div>
+            <div class="token-name">--components-button-warning-default</div>
+            <div class="token-value">#ea5330</div>
+          </div>
+        
+          <div class="token-card" data-token-name="--components-button-warning-fg" data-category="components">
+            <div class="color-preview" style="background-color: #ffffff;"></div>
+            <div class="token-name">--components-button-warning-fg</div>
+            <div class="token-value">#ffffff</div>
+          </div>
+        
+          <div class="token-card" data-token-name="--components-button-hover-bg" data-category="components">
+            <div class="color-preview" style="background-color: #ffffff;"></div>
+            <div class="token-name">--components-button-hover-bg</div>
+            <div class="token-value">#ffffff</div>
+          </div>
+        
+          <div class="token-card" data-token-name="--components-button-hover-fg" data-category="components">
+            <div class="color-preview" style="background-color: #000000;"></div>
+            <div class="token-name">--components-button-hover-fg</div>
+            <div class="token-value">#000000</div>
+          </div>
+        
+          <div class="token-card" data-token-name="--components-button-disabled-default" data-category="components">
+            <div class="color-preview" style="background-color: rgba(255, 255, 255, 0.2400);"></div>
+            <div class="token-name">--components-button-disabled-default</div>
+            <div class="token-value">rgba(255, 255, 255, 0.2400)</div>
+          </div>
+        
+          <div class="token-card" data-token-name="--components-button-disabled-fg" data-category="components">
+            <div class="color-preview" style="background-color: rgba(255, 255, 255, 0.2400);"></div>
+            <div class="token-name">--components-button-disabled-fg</div>
+            <div class="token-value">rgba(255, 255, 255, 0.2400)</div>
+          </div>
+        
+          <div class="token-card" data-token-name="--components-button-cancel-default" data-category="components">
+            <div class="color-preview" style="background-color: rgba(255, 255, 255, 0.4800);"></div>
+            <div class="token-name">--components-button-cancel-default</div>
+            <div class="token-value">rgba(255, 255, 255, 0.4800)</div>
+          </div>
+        
+          <div class="token-card" data-token-name="--components-button-cancel-fg" data-category="components">
+            <div class="color-preview" style="background-color: rgba(255, 255, 255, 0.4800);"></div>
+            <div class="token-name">--components-button-cancel-fg</div>
+            <div class="token-value">rgba(255, 255, 255, 0.4800)</div>
+          </div>
+        
+          <div class="token-card" data-token-name="--components-input" data-category="components">
+            
+            <div class="token-name">--components-input</div>
+            <div class="token-value">[object Object]</div>
+          </div>
+        
+          <div class="token-card" data-token-name="--components-modal-bg" data-category="components">
+            <div class="color-preview" style="background-color: #aaaaaa;"></div>
+            <div class="token-name">--components-modal-bg</div>
+            <div class="token-value">#aaaaaa</div>
+          </div>
+        
+          <div class="token-card" data-token-name="--components-feedback-bg" data-category="components">
+            <div class="color-preview" style="background-color: rgba(255, 255, 255, 0.1600);"></div>
+            <div class="token-name">--components-feedback-bg</div>
+            <div class="token-value">rgba(255, 255, 255, 0.1600)</div>
+          </div>
+        
+          <div class="token-card" data-token-name="--components-feedback-heading" data-category="components">
+            <div class="color-preview" style="background-color: #ffffff;"></div>
+            <div class="token-name">--components-feedback-heading</div>
+            <div class="token-value">#ffffff</div>
+          </div>
+        
+          <div class="token-card" data-token-name="--components-feedback-body" data-category="components">
+            <div class="color-preview" style="background-color: rgba(255, 255, 255, 0.4800);"></div>
+            <div class="token-name">--components-feedback-body</div>
+            <div class="token-value">rgba(255, 255, 255, 0.4800)</div>
+          </div>
+        
+          <div class="token-card" data-token-name="--components-feedback-info-bg" data-category="components">
+            <div class="color-preview" style="background-color: #ffd935;"></div>
+            <div class="token-name">--components-feedback-info-bg</div>
+            <div class="token-value">#ffd935</div>
+          </div>
+        
+          <div class="token-card" data-token-name="--components-feedback-info-fg" data-category="components">
+            <div class="color-preview" style="background-color: #000000;"></div>
+            <div class="token-name">--components-feedback-info-fg</div>
+            <div class="token-value">#000000</div>
+          </div>
+        
+          <div class="token-card" data-token-name="--components-feedback-success-bg" data-category="components">
+            <div class="color-preview" style="background-color: #28cf98;"></div>
+            <div class="token-name">--components-feedback-success-bg</div>
+            <div class="token-value">#28cf98</div>
+          </div>
+        
+          <div class="token-card" data-token-name="--components-feedback-success-fg" data-category="components">
+            <div class="color-preview" style="background-color: #ffffff;"></div>
+            <div class="token-name">--components-feedback-success-fg</div>
+            <div class="token-value">#ffffff</div>
+          </div>
+        
+          <div class="token-card" data-token-name="--components-feedback-error-bg" data-category="components">
+            <div class="color-preview" style="background-color: #d82c2d;"></div>
+            <div class="token-name">--components-feedback-error-bg</div>
+            <div class="token-value">#d82c2d</div>
+          </div>
+        
+          <div class="token-card" data-token-name="--components-feedback-error-fg" data-category="components">
+            <div class="color-preview" style="background-color: #ffffff;"></div>
+            <div class="token-name">--components-feedback-error-fg</div>
+            <div class="token-value">#ffffff</div>
+          </div>
+        
+          <div class="token-card" data-token-name="--components-feedback-warning-bg" data-category="components">
+            <div class="color-preview" style="background-color: #ea5330;"></div>
+            <div class="token-name">--components-feedback-warning-bg</div>
+            <div class="token-value">#ea5330</div>
+          </div>
+        
+          <div class="token-card" data-token-name="--components-feedback-warning-fg" data-category="components">
+            <div class="color-preview" style="background-color: #ffffff;"></div>
+            <div class="token-name">--components-feedback-warning-fg</div>
+            <div class="token-value">#ffffff</div>
+          </div>
+        
+          <div class="token-card" data-token-name="--components-table-bg-alt" data-category="components">
+            <div class="color-preview" style="background-color: rgba(255, 255, 255, 0.1600);"></div>
+            <div class="token-name">--components-table-bg-alt</div>
+            <div class="token-value">rgba(255, 255, 255, 0.1600)</div>
+          </div>
+        
+          <div class="token-card" data-token-name="--components-table-fg" data-category="components">
+            <div class="color-preview" style="background-color: #ffffff;"></div>
+            <div class="token-name">--components-table-fg</div>
+            <div class="token-value">#ffffff</div>
+          </div>
+        
+          <div class="token-card" data-token-name="--components-table-border" data-category="components">
+            <div class="color-preview" style="background-color: rgba(255, 255, 255, 0.2400);"></div>
+            <div class="token-name">--components-table-border</div>
+            <div class="token-value">rgba(255, 255, 255, 0.2400)</div>
+          </div>
+        
+          <div class="token-card" data-token-name="--interactions-typeable" data-category="interactions">
+            
+            <div class="token-name">--interactions-typeable</div>
+            <div class="token-value"></div>
+          </div>
+        
+          <div class="token-card" data-token-name="--interactions-move" data-category="interactions">
+            
+            <div class="token-name">--interactions-move</div>
+            <div class="token-value">MOVE</div>
+          </div>
+        
+          <div class="token-card" data-token-name="--interactions-moveeth" data-category="interactions">
+            
+            <div class="token-name">--interactions-moveeth</div>
+            <div class="token-value">MoveETH</div>
+          </div>
+        
+          <div class="token-card" data-token-name="--interactions-inputamount" data-category="interactions">
+            
+            <div class="token-name">--interactions-inputamount</div>
+            <div class="token-value">0</div>
+          </div>
+        
+          <div class="token-card" data-token-name="--interactions-nobalance" data-category="interactions">
+            
+            <div class="token-name">--interactions-nobalance</div>
+            <div class="token-value">0</div>
+          </div>
+        
+          <div class="token-card" data-token-name="--interactions-balance" data-category="interactions">
+            
+            <div class="token-name">--interactions-balance</div>
+            <div class="token-value">128.7395</div>
+          </div>
+        
+          <div class="token-card" data-token-name="--interactions-gas" data-category="interactions">
+            
+            <div class="token-name">--interactions-gas</div>
+            <div class="token-value">gas</div>
+          </div>
+        
+          <div class="token-card" data-token-name="--interactions-fromnetwork" data-category="interactions">
+            
+            <div class="token-name">--interactions-fromnetwork</div>
+            <div class="token-value">MoveETH</div>
+          </div>
+        
+          <div class="token-card" data-token-name="--interactions-tonetwork" data-category="interactions">
+            
+            <div class="token-name">--interactions-tonetwork</div>
+            <div class="token-value">MOVE</div>
+          </div>
+        
+          <div class="token-card" data-token-name="--interactions-show-balance" data-category="interactions">
+            
+            <div class="token-name">--interactions-show-balance</div>
+            <div class="token-value">true</div>
+          </div>
+        
+          <div class="token-card" data-token-name="--interactions-show-max" data-category="interactions">
+            
+            <div class="token-name">--interactions-show-max</div>
+            <div class="token-value">true</div>
+          </div>
+        
+          <div class="token-card" data-token-name="--interactions-show-error" data-category="interactions">
+            
+            <div class="token-name">--interactions-show-error</div>
+            <div class="token-value">false</div>
+          </div>
+        
+          <div class="token-card" data-token-name="--interactions-buttonstate" data-category="interactions">
+            
+            <div class="token-name">--interactions-buttonstate</div>
+            <div class="token-value">Default</div>
+          </div>
+        
+          <div class="token-card" data-token-name="--interactions-showdisabled" data-category="interactions">
+            
+            <div class="token-name">--interactions-showdisabled</div>
+            <div class="token-value">Disabled</div>
+          </div>
+        
+          <div class="token-card" data-token-name="--interactions-fee" data-category="interactions">
+            
+            <div class="token-name">--interactions-fee</div>
+            <div class="token-value">.0000003849</div>
+          </div>
+        
+          <div class="token-card" data-token-name="--interactions-show-time" data-category="interactions">
+            
+            <div class="token-name">--interactions-show-time</div>
+            <div class="token-value">true</div>
+          </div>
+        
+          <div class="token-card" data-token-name="--interactions-show-gas" data-category="interactions">
+            
+            <div class="token-name">--interactions-show-gas</div>
+            <div class="token-value">false</div>
+          </div>
+        
+          <div class="token-card" data-token-name="--interactions-show-fees" data-category="interactions">
+            
+            <div class="token-name">--interactions-show-fees</div>
+            <div class="token-value">true</div>
+          </div>
+        
+          <div class="token-card" data-token-name="--interactions-haserror" data-category="interactions">
+            
+            <div class="token-name">--interactions-haserror</div>
+            <div class="token-value">false</div>
+          </div>
+        
+          <div class="token-card" data-token-name="--interactions-gas-container" data-category="interactions">
+            
+            <div class="token-name">--interactions-gas-container</div>
+            <div class="token-value">false</div>
+          </div>
+        
+          <div class="token-card" data-token-name="--interactions-show-usd" data-category="interactions">
+            
+            <div class="token-name">--interactions-show-usd</div>
+            <div class="token-value">true</div>
+          </div>
+        
+          <div class="token-card" data-token-name="--interactions-label" data-category="interactions">
+            
+            <div class="token-name">--interactions-label</div>
+            <div class="token-value">0</div>
+          </div>
+        
+          <div class="token-card" data-token-name="--interactions-isfilled" data-category="interactions">
+            
+            <div class="token-name">--interactions-isfilled</div>
+            <div class="token-value">true</div>
+          </div>
+        
+          <div class="token-card" data-token-name="--interactions-buttontext" data-category="interactions">
+            
+            <div class="token-name">--interactions-buttontext</div>
+            <div class="token-value">Button</div>
+          </div>
+        
+      </div>
+    </section>
+  </div>
+
+  <script>
+    document.addEventListener('DOMContentLoaded', function() {
+      // Setup search functionality
+      const searchInput = document.getElementById('token-search');
+      searchInput.addEventListener('input', function() {
+        const searchTerm = this.value.toLowerCase();
+        
+        document.querySelectorAll('.token-card').forEach(card => {
+          const tokenName = card.dataset.tokenName.toLowerCase();
+          if (tokenName.includes(searchTerm)) {
+            card.style.display = '';
+          } else {
+            card.style.display = 'none';
+          }
+        });
+      });
+    });
+  </script>
+</body>
+</html>

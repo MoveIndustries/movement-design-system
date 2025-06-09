@@ -1,0 +1,177 @@
+{
+  "semantic": {
+    "color": {
+      "primary": {
+        "base": {
+          "value": "{color.moveus-marigold.400}"
+        },
+        "darken": {
+          "value": "{color.moveus-marigold.500}"
+        },
+        "lighten": {
+          "value": "{color.moveus-marigold.300}"
+        },
+        "lighten-2": {
+          "value": "{color.moveus-marigold.200}"
+        }
+      },
+      "secondary": {
+        "base": {
+          "value": "{color.byzantine-blue.400}"
+        },
+        "darken": {
+          "value": "{color.byzantine-blue.600}"
+        },
+        "darken-2": {
+          "value": "{color.byzantine-blue.800}"
+        },
+        "lighten": {
+          "value": "{color.byzantine-blue.300}"
+        },
+        "lighten-2": {
+          "value": "{color.byzantine-blue.100}"
+        }
+      },
+      "tertiary": {
+        "base": {
+          "value": "{color.protocol-pink.300}"
+        },
+        "darken": {
+          "value": "{color.protocol-pink.500}"
+        },
+        "darken-2": {
+          "value": "{color.protocol-pink.700}"
+        },
+        "lighten": {
+          "value": "{color.protocol-pink.200}"
+        },
+        "lighten-2": {
+          "value": "{color.protocol-pink.100}"
+        }
+      },
+      "background": {
+        "base": {
+          "value": "{color.neutrals.black}"
+        },
+        "base-lighten": {
+          "value": "{color.neutrals.blackAlpha.900}"
+        },
+        "base-lighten-2": {
+          "value": "{color.neutrals.blackAlpha.800}"
+        },
+        "base-lighten-3": {
+          "value": "{color.neutrals.blackAlpha.600}"
+        },
+        "inverse": {
+          "value": "{color.neutrals.white}"
+        },
+        "inverse-lighten": {
+          "value": "{color.neutrals.whiteAlpha.200}"
+        },
+        "inverse-lighten-2": {
+          "value": "{color.neutrals.whiteAlpha.300}"
+        },
+        "inverse-lighten-3": {
+          "value": "{color.neutrals.whiteAlpha.400}"
+        },
+        "inverse-lighten-4": {
+          "value": "{color.neutrals.whiteAlpha.600}"
+        }
+      },
+      "foreground": {
+        "base": {
+          "value": "{color.neutrals.white}"
+        },
+        "primary": {
+          "value": "{color.neutrals.white}"
+        },
+        "secondary": {
+          "value": "{color.neutrals.white}"
+        },
+        "contrast": {
+          "value": "{color.neutrals.black}"
+        },
+        "contrast-lighten": {
+          "value": "{color.neutrals.blackAlpha.700}"
+        },
+        "disabled": {
+          "value": "{color.neutrals.blackAlpha.700}"
+        },
+        "lighten-1": {
+          "value": "{color.neutrals.whiteAlpha.700}"
+        },
+        "lighten-2": {
+          "value": "{color.neutrals.whiteAlpha.600}"
+        }
+      },
+      "feedback": {
+        "success": {
+          "value": "{color.feedback.success}"
+        },
+        "error": {
+          "value": "{color.feedback.error}"
+        },
+        "warning": {
+          "value": "{color.feedback.warning}"
+        }
+      },
+      "disabled": {
+        "base": {
+          "value": "{color.alpha.darken}"
+        }
+      },
+      "alpha": {
+        "base": {
+          "value": "{color.neutrals.whiteAlpha.300}"
+        },
+        "darken": {
+          "value": "{color.neutrals.whiteAlpha.400}"
+        },
+        "darken-2": {
+          "value": "{color.neutrals.whiteAlpha.700}"
+        },
+        "lighten": {
+          "value": "{color.neutrals.whiteAlpha.200}"
+        },
+        "fg": {
+          "value": "{color.neutrals.white}"
+        },
+        "accent": {
+          "value": "{color.primary.base}"
+        }
+      }
+    },
+    "space": {
+      "2xs": {
+        "value": "{dimension.4}"
+      },
+      "xs": {
+        "value": "{dimension.8}"
+      },
+      "sm": {
+        "value": "{dimension.16}"
+      },
+      "md": {
+        "value": "{dimension.20}"
+      },
+      "lg": {
+        "value": "{dimension.24}"
+      },
+      "xl": {
+        "value": "{dimension.32}"
+      },
+      "2xl": {
+        "value": "{dimension.40}"
+      },
+      "3xl": {
+        "value": "{dimension.48}"
+      },
+      "4xl": {
+        "value": "{dimension.56}"
+      },
+      "5xl": {
+        "value": "{dimension.64}"
+      }
+    }
+  }
+}
