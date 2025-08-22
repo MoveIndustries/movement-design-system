@@ -155,7 +155,7 @@ const semanticColorsMap = getSemanticColorsMap();
 
 function groupByTopLevel<T>(record: Record<string, T>): Record<string, Array<[string, T]>> {
   const groupedEntries: Record<string, Array<[string, T]>> = {};
-
+  console.log(record);
   for (const [key, value] of Object.entries(record)) {
     const [topLevel] = key.split(".");
     if (!topLevel) continue;
@@ -199,7 +199,6 @@ export const ColorPalette: Story = {
               className={css({
                 textStyle: "heading.md",
                 textTransform: "uppercase",
-                color: "text.secondary",
               })}
             >
               {groupName}
@@ -221,8 +220,6 @@ export const ColorPalette: Story = {
                       h: "48px",
                       w: "48px",
                       rounded: "primary",
-                      borderWidth: "1",
-                      borderColor: "border.secondary",
                       flexShrink: 0
                     })}
                   />
@@ -233,11 +230,10 @@ export const ColorPalette: Story = {
                   })}>
                     <p className={css({ 
                       textStyle: "label.md",
-                      color: "text.primary"
                     })}>{tokenName}</p>
                     <p className={css({
                       textStyle: "label.sm",
-                      color: "text.secondary"
+                      color:"neutrals.whiteAlpha.600"
                     })}>{color}</p>
                   </div>
                 </div>
@@ -275,7 +271,6 @@ export const SemanticColors: Story = {
               className={css({
                 textStyle: "heading.md",
                 textTransform: "uppercase",
-                color: "text.secondary",
               })}
             >
               {groupName}
@@ -300,8 +295,6 @@ export const SemanticColors: Story = {
                       h: "48px",
                       w: "48px",
                       rounded: "primary",
-                      borderWidth: "1",
-                      borderColor: "border.secondary",
                       flexShrink: 0
                     })}
                   />
@@ -313,7 +306,6 @@ export const SemanticColors: Story = {
                     <p className={css({ textStyle: "label.md" })}>{tokenName}</p>
                     <p className={css({ 
                       textStyle: "body.sm",
-                      color: "text.secondary"
                     })}>
                       {theme === "light" ? color.base.color : color.dark.color}
                     </p>

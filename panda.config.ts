@@ -1,8 +1,8 @@
 import { defineConfig } from "@pandacss/dev";
-import {movementPreset} from "./src/movement-preset"
+import { movementPreset } from "./src/movement-preset";
 
 export default defineConfig({
-  presets: [movementPreset],
+  presets: [ movementPreset],
   // Whether to use css reset
   preflight: true,
 
