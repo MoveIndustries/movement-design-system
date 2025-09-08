@@ -3,6 +3,8 @@ import resolve from "@rollup/plugin-node-resolve";
 import commonjs from "@rollup/plugin-commonjs";
 import typescript from "rollup-plugin-typescript2";
 import postcss from "rollup-plugin-postcss";
+import copy from "rollup-plugin-copy";
+import alias from "@rollup/plugin-alias";
 import packageJson from "./package.json" with { type: "json" };
 
 export default [
@@ -22,14 +24,28 @@ export default [
     ],
     plugins: [
       peerDepsExternal(),
-      resolve(),
+      alias({
+        entries: [
+          { find: 'styled-system/css', replacement: './styled-system/css/index.mjs' },
+          { find: 'styled-system/patterns', replacement: './styled-system/patterns/index.mjs' },
+          { find: 'styled-system/tokens', replacement: './styled-system/tokens/index.mjs' }
+        ]
+      }),
+      resolve({
+        preferBuiltins: false,
+        browser: true
+      }),
       commonjs(),
       typescript({ useTsconfigDeclarationDir: true }),
       postcss({
         extensions: ['.css']
+      }),
+      copy({
+        targets: [
+          { src: 'styled-system/**/*', dest: 'dist/styled-system' }
+        ]
       })
-    ],
-    external: ['styled-system/css', 'styled-system/tokens', 'styled-system/patterns']
+    ]
   },
   {
     input: "src/movement-preset/index.ts",
@@ -47,9 +63,24 @@ export default [
     ],
     plugins: [
       peerDepsExternal(),
-      resolve(),
+      alias({
+        entries: [
+          { find: 'styled-system/css', replacement: './styled-system/css/index.mjs' },
+          { find: 'styled-system/patterns', replacement: './styled-system/patterns/index.mjs' },
+          { find: 'styled-system/tokens', replacement: './styled-system/tokens/index.mjs' }
+        ]
+      }),
+      resolve({
+        preferBuiltins: false,
+        browser: true
+      }),
       commonjs(),
-      typescript({ useTsconfigDeclarationDir: true })
+      typescript({ useTsconfigDeclarationDir: true }),
+      copy({
+        targets: [
+          { src: 'styled-system/**/*', dest: 'dist/styled-system' }
+        ]
+      })
     ]
   }
 ];

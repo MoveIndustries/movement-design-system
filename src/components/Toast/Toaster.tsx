@@ -12,7 +12,7 @@ import { type ToastProps } from "./types";
 
 export interface CreateToastArgs extends ToastProps {
   /** The optional id of the toast. This can be used to update or dismiss the toast programmatically. */
-  id?: string;
+  id: string;
   /** The duration of the toast in milliseconds. This will override the default duration. */
   duration?: number;
 }

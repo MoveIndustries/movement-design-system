@@ -157,7 +157,7 @@ const dismissButtonStyles = css({
   _hover: {
     opacity: "1",
     bg: "currentColor",
-    bgOpacity: "0.1",
+    // opacity: "0.1",
   },
 });
 

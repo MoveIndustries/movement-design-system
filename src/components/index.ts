@@ -7,6 +7,7 @@ export * from "./Button";
 export * from "./Buttons";
 export * from "./Card";
 export * from "./Drawer";
+export * from "./Input";
 export * from "./Menu";
 export * from "./Modal";
 export * from "./Toast";

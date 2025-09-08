@@ -146,8 +146,9 @@ export const MenuItem = forwardRef<HTMLDivElement, MenuItemProps>(
       <ArkMenu.Item
         ref={ref}
         disabled={disabled}
-        className={css(menuItemStyles, className)}
+        className={cx(menuItemStyles, className)}
         onClick={onClick}
+        value={children as string}
       >
         {selected && <IconCheck className={checkIconStyles} />}
         {!selected && Icon && <Icon className={iconStyles} />}
@@ -162,7 +163,7 @@ MenuItem.displayName = "MenuItem";
 /** A separator component for dividing menu sections */
 export const MenuSeparator = forwardRef<HTMLDivElement, MenuSeparatorProps>(
   ({ className }, ref) => {
-    return <div ref={ref} className={css(menuSeparatorStyles, className)} />;
+    return <div ref={ref} className={cx(menuSeparatorStyles, className)} />;
   }
 );
 MenuSeparator.displayName = "MenuSeparator";
@@ -179,7 +180,6 @@ export const Menu = forwardRef<HTMLDivElement, MenuProps>(
           <ArkMenu.Content
             ref={ref}
             className={cx(menuStyles, className)}
-            portalled={false}
           >
             <ArkMenu.ItemGroup>
               <ArkMenu.ItemGroupLabel className={css({ display: "none" })} />
