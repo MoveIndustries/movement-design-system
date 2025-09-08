@@ -31,10 +31,12 @@ export const toast = createToasterReturn[1];
 export function createToaster() {
   const toaster = arkCreateToaster({
     placement: "bottom-end",
-    offsets: token("spacing.16"),
+    offsets: "1rem",
     overlap: false,
     removeDelay: 200, // This maps to durations.100
+    // gap: 120, // Add gap between toasts (12px)
   });
+  console.log("toaster", toaster);
 
   const upsertToast = ({ id, duration, ...props }: CreateToastArgs) => {
     // Ensure we always have an id
@@ -72,15 +74,7 @@ export function createToaster() {
     <ArkToaster toaster={toaster} className={css({ zIndex: "toast!" })}>
       {(toast) => {
         const props = toast.meta as unknown as ToastProps;
-        // Ensure we always have a valid id
-        const toastId =
-          toast.id ||
-          `toast-${Date.now()}-${Math.random().toString(36).substr(2, 9)}`;
-
-        // Debug logging
-        console.log("Toast data:", { toast, props, toastId });
-
-        return <Toast {...props} id={toastId} />;
+        return <Toast {...props}  />;
       }}
     </ArkToaster>
   );

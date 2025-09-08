@@ -80,7 +80,7 @@ export function Toast({
   title,
   description,
   id,
-}: ToastProps & { id: string }) {
+}: ToastProps) {
   const Icon = iconMap[variant];
   return (
     <ArkToast.Root className={toastStyles} id={id}>

@@ -8,4 +8,6 @@ export interface ToastProps {
   title: string;
   /** The description of the toast message to be displayed below the title. */
   description: string | (() => React.ReactNode);
+  /** The id of the toast message. */
+  id: string;
 }

@@ -121,8 +121,8 @@ export const UpdateAndRemoveToast: Story = {
 
     const upsertToast = () => {
       toast({
-        id,
         ...args,
+        id,
         description: `Revision ${count + 1}`,
       });
       setCount((prev) => prev + 1);
@@ -143,5 +143,52 @@ export const UpdateAndRemoveToast: Story = {
   args: {
     variant: "info",
     title: "Test Toast",
+  },
+};
+
+export const MultipleToasts: Story = {
+  render: () => {
+    const [Toaster, toast] = createToaster();
+
+    const createMultipleToasts = () => {
+      // Create several toasts quickly to test stacking
+      toast({
+        variant: "info",
+        title: "Info Toast",
+        description: "This is the first toast message.",
+      });
+
+      setTimeout(() => {
+        toast({
+          variant: "success",
+          title: "Success Toast",
+          description: "This is the second toast message.",
+        });
+      }, 100);
+
+      setTimeout(() => {
+        toast({
+          variant: "warning",
+          title: "Warning Toast",
+          description: "This is the third toast message.",
+        });
+      }, 200);
+
+      setTimeout(() => {
+        toast({
+          variant: "error",
+          title: "Error Toast",
+          description: "This is the fourth toast message.",
+        });
+      }, 300);
+    };
+
+    return (
+      <div className={stack({ pb: "120", gap: "16", align: "flex-start" })}>
+        <Toaster />
+        <Button onClick={createMultipleToasts}>Create Multiple Toasts</Button>
+        <Button onClick={() => toast.dismiss()}>Dismiss All Toasts</Button>
+      </div>
+    );
   },
 };
