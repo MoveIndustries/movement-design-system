@@ -75,10 +75,15 @@ const IconCheckCircle = ({ className }: { className?: string }) => (
  * A message that appears on the screen to provide feedback on an action, or provide a notification
  * of an event that has occurred.
  */
-export function Toast({ variant, title, description }: ToastProps) {
+export function Toast({
+  variant,
+  title,
+  description,
+  id,
+}: ToastProps & { id: string }) {
   const Icon = iconMap[variant];
   return (
-    <ArkToast.Root className={toastStyles}>
+    <ArkToast.Root className={toastStyles} id={id}>
       <Icon className={iconStyles} />
       <div className={stack({ gap: "4" })}>
         <ArkToast.Title className={css({ textStyle: "label.md" })}>

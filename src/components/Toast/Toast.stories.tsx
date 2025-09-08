@@ -1,13 +1,16 @@
-import type { Meta, StoryObj } from "@storybook/react";
+import type { Meta, StoryObj } from "@storybook/react-vite";
 import { useId, useState } from "react";
 import { css } from "styled-system/css";
 import { stack } from "styled-system/patterns";
 
-import { capitalize } from "@/utils";
-
 import { Button } from "../Buttons";
-import { Toast, toastVariants } from "./Toast";
+import { Toast } from "./Toast";
+import { toastVariants } from "./types";
 import { createToaster } from "./Toaster";
+
+function capitalize(str: string): string {
+  return str.charAt(0).toUpperCase() + str.slice(1);
+}
 
 const meta: Meta<typeof Toast> = {
   title: "Components/Toast",
@@ -49,7 +52,9 @@ export const AllVariants: Story = {
         {toastVariants.map((variant) => (
           <Button
             key={variant}
-            onClick={() => toast({ ...props, title: capitalize(variant), variant })}
+            onClick={() =>
+              toast({ ...props, title: capitalize(variant), variant })
+            }
           >
             {capitalize(variant)} Toast
           </Button>
@@ -72,7 +77,9 @@ export const PersistentToast: Story = {
     return (
       <div className={css({ pb: "120" })}>
         <Toaster />
-        <Button onClick={() => toast({ ...props, duration: Infinity })}>Create Toast</Button>
+        <Button onClick={() => toast({ ...props, duration: Infinity })}>
+          Create Toast
+        </Button>
       </div>
     );
   },

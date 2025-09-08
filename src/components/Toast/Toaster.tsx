@@ -1,10 +1,14 @@
 "use client";
 
-import { createToaster as arkCreateToaster, Toaster as ArkToaster } from "@ark-ui/react/toast";
+import {
+  createToaster as arkCreateToaster,
+  Toaster as ArkToaster,
+} from "@ark-ui/react/toast";
 import { css } from "styled-system/css";
 import { token } from "styled-system/tokens";
 
-import { Toast, ToastProps } from "./Toast";
+import { Toast } from "./Toast";
+import { type ToastProps } from "./types";
 
 export interface CreateToastArgs extends ToastProps {
   /** The optional id of the toast. This can be used to update or dismiss the toast programmatically. */
@@ -33,8 +37,12 @@ export function createToaster() {
   });
 
   const upsertToast = ({ id, duration, ...props }: CreateToastArgs) => {
-    toaster.upsert({
-      id,
+    // Ensure we always have an id
+    const toastId =
+      id || `toast-${Date.now()}-${Math.random().toString(36).substr(2, 9)}`;
+
+    toaster.create({
+      id: toastId,
       type: duration === Infinity ? "loading" : "custom",
       duration: duration ?? 5000,
       meta: props,
@@ -64,7 +72,15 @@ export function createToaster() {
     <ArkToaster toaster={toaster} className={css({ zIndex: "toast!" })}>
       {(toast) => {
         const props = toast.meta as unknown as ToastProps;
-        return <Toast {...props} />;
+        // Ensure we always have a valid id
+        const toastId =
+          toast.id ||
+          `toast-${Date.now()}-${Math.random().toString(36).substr(2, 9)}`;
+
+        // Debug logging
+        console.log("Toast data:", { toast, props, toastId });
+
+        return <Toast {...props} id={toastId} />;
       }}
     </ArkToaster>
   );

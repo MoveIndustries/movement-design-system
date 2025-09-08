@@ -1,6 +1,6 @@
 import { Menu as ArkMenu } from "@ark-ui/react/menu";
 import { ComponentType, ReactNode, forwardRef } from "react";
-import { css } from "styled-system/css";
+import { css, cx } from "styled-system/css";
 import { stack } from "styled-system/patterns";
 
 // Mock icon components for menu items
@@ -71,7 +71,7 @@ const menuStyles = css({
   boxShadow: "lg",
   minW: "200px",
   p: "1",
-  zIndex: 50,
+  zIndex:"dropdown"
 });
 
 const menuItemStyles = css({
@@ -178,7 +178,7 @@ export const Menu = forwardRef<HTMLDivElement, MenuProps>(
         <ArkMenu.Positioner>
           <ArkMenu.Content
             ref={ref}
-            className={css(menuStyles, className)}
+            className={cx(menuStyles, className)}
             portalled={false}
           >
             <ArkMenu.ItemGroup>
