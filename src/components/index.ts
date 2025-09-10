@@ -11,5 +11,6 @@ export * from "./Input";
 export * from "./Menu";
 export * from "./Modal";
 export * from "./Toast";
+export * from "./Tag";
 // export * from "./Header";
 // export * from "./Page";
