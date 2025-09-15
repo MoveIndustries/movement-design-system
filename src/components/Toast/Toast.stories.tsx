@@ -3,7 +3,7 @@ import { useId, useState } from "react";
 import { css } from "styled-system/css";
 import { stack } from "styled-system/patterns";
 
-import { Button } from "../Buttons";
+import { Button } from "../Button";
 import { Toast } from "./Toast";
 import { toastVariants } from "./types";
 import { createToaster } from "./Toaster";

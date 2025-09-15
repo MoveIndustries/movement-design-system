@@ -5,7 +5,6 @@ import {
   Toaster as ArkToaster,
 } from "@ark-ui/react/toast";
 import { css } from "styled-system/css";
-import { token } from "styled-system/tokens";
 
 import { Toast } from "./Toast";
 import { type ToastProps } from "./types";

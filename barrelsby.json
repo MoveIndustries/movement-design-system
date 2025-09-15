@@ -1,0 +1,23 @@
+{
+  "directory": ["src/components"],
+  "include": ["\\.ts$", "\\.tsx$"],
+  "exclude": [
+    "\\.stories\\.tsx$",
+    "\\.test\\.ts$",
+    "\\.test\\.tsx$",
+    "\\.spec\\.ts$",
+    "\\.spec\\.tsx$",
+    "index\\.ts$"
+  ],
+  "delete": true,
+  "location": "all",
+  "structure": "filesystem",
+  "quoteStyle": "single",
+  "semicolons": true,
+  "exportDefault": false,
+  "local": true,
+  "noHeader": false,
+  "noSubdirectoryIndexes": false,
+  "singleQuotes": true,
+  "verbose": false
+}

@@ -1,2 +1,2 @@
-export * as Collapsible from "./Collapsible";
-export type { CollapsibleComponentProps, CollapsibleProps } from "./types";
+export { Root as Collapsible, Trigger, Content } from "./Collapsible";
+export type { CollapsibleProps } from "./types";

@@ -1,2 +1,3 @@
 export { Toast } from "./Toast";
-export * from "./types";
+export { Toaster } from "./Toaster";
+export type { ToastProps, ToastVariant } from "./types";
