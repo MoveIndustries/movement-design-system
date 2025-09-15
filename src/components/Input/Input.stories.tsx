@@ -3,7 +3,7 @@ import { useCallback, useState } from "react";
 import { css } from "styled-system/css";
 import { flex } from "styled-system/patterns";
 
-import { IconButton } from "../Buttons";
+import { IconButton } from "../Button";
 // import { FormField } from "../FormField";
 
 // Local mock icons since the generated icon files are not available
