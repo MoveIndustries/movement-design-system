@@ -71,7 +71,7 @@ const modalOverlayStyles = css({
 });
 
 const modalContentStyles = css({
-  bg: "neutrals.white",
+  bg: "transparent",
   borderRadius: "lg",
   boxShadow: "2xl",
   maxH: "90vh",

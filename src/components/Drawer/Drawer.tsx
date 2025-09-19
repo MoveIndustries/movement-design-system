@@ -71,9 +71,9 @@ const drawerOverlayStyles = css({
 
 const drawerContentStyles = css({
   position: "fixed",
-  bg: "neutrals.white",
+  bg: "transparent",
   boxShadow: "2xl",
-  display: "flex",
+  display: "flex", 
   flexDirection: "column",
   overflow: "hidden",
   transition: "transform 0.3s ease-out, opacity 0.3s ease-out",
