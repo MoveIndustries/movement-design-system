@@ -50,12 +50,18 @@ const generateIcons = () => {
     const viewBox = viewBoxMatch ? viewBoxMatch[1] : '0 0 256 256'; // Default viewBox
 
     // Remove SVG tag and its attributes, but preserve original colors
+    // Convert SVG attributes to React-compatible format
     const cleanedSvgContent = svgContent
       .replace(/<svg[^>]*>/, '')
       .replace(/<\/svg>/, '')
       .replace(/stroke-width="[^"]*"/g, '')
       .replace(/style="[^"]*"/g, '') // Remove style attributes but keep fill colors
-      .replace(/xlink:href=/g, 'xlinkHref='); // Convert xlink:href to xlinkHref for React
+      .replace(/xlink:href=/g, 'xlinkHref=') // Convert xlink:href to xlinkHref for React
+      .replace(/clip-path=/g, 'clipPath=') // Convert clip-path to clipPath for React
+      .replace(/fill-rule=/g, 'fillRule=') // Convert fill-rule to fillRule for React
+      .replace(/stroke-linecap=/g, 'strokeLinecap=') // Convert stroke-linecap to strokeLinecap for React
+      .replace(/stroke-linejoin=/g, 'strokeLinejoin=') // Convert stroke-linejoin to strokeLinejoin for React
+      .replace(/stroke-width=/g, 'strokeWidth='); // Convert stroke-width to strokeWidth for React
 
     // Check if there are multiple path elements
     const pathCount = (cleanedSvgContent.match(/<path/g) || []).length;

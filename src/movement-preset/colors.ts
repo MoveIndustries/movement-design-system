@@ -160,27 +160,29 @@ export const semanticColors = {
   // },
   feedback: {
     info: {
-      base: { value: "{primary.base}" },
-      darken: { value: "{primary.darken}" },
-      fg: { value: "{feedback.fg}" },
+      base: { value: "{colors.byzantine-blue.400}" }, // Blue for info
+      darken: { value: "{colors.byzantine-blue.600}" },
+      lighten: { value: "{colors.byzantine-blue.200}" },
+      fg: { value: "{colors.white}" },
     },
     success: {
-      base: { value: "{colors.feedback.success.default}" },
-      darken: { value: "{colors.feedback.success.dark}" },
-      fg: { value: "{secondary.darken-2}" },
+      base: { value: "{colors.guild-green.400}" }, // Green for success
+      darken: { value: "{colors.guild-green.600}" },
+      lighten: { value: "{colors.guild-green.200}" },
+      fg: { value: "{colors.white}" },
     },
     error: {
-      base: { value: "{colors.feedback.error.default}" },
-      darken: { value: "{colors.feedback.error.dark}" },
-      fg: { value: "{foreground.dark.base}" },
+      base: { value: "{colors.oracle-orange.400}" }, // Orange/Red for error
+      darken: { value: "{colors.oracle-orange.600}" },
+      lighten: { value: "{colors.oracle-orange.200}" },
+      fg: { value: "{colors.white}" },
     },
     warning: {
-      base: { value: "{colors.feedback.warning.default}" },
-      darken: { value: "{colors.feedback.warning.dark}" },
-      fg: { value: "{foreground.dark.base}" },
+      base: { value: "{colors.moveus-marigold.400}" }, // Yellow/Marigold for warning
+      darken: { value: "{colors.moveus-marigold.600}" },
+      lighten: { value: "{colors.moveus-marigold.200}" },
+      fg: { value: "{colors.black}" }, // Dark text on yellow for better contrast
     },
-    base: { value: "{background.light.base}" },
-    fg: { value: "{foreground.light.base}" },
   },
   // text: {
   //   base: { value: "{foreground.dark.base}" },

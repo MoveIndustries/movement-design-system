@@ -75,13 +75,28 @@ function flattenSemanticColors() {
       const [shade, shadeValue] = entry;
       if ("value" in shadeValue && shadeValue.value) {
         console.log(shadeValue.value.slice(1, -1));
-        semanticColorsMap[`${key}.${shade}`] = colorsMap[shadeValue.value.slice(1, -1).replace("colors.", "")];
+        semanticColorsMap[`${key}.${shade}`] =
+          colorsMap[shadeValue.value.slice(1, -1).replace("colors.", "")];
+      } else {
+        // Handle one more level of nesting if the final is not a value
+        for (const nestedEntry of Object.entries(shadeValue)) {
+          const [nestedShade, nestedShadeValue] = nestedEntry as [
+            string,
+            { value: string }
+          ];
+          if ("value" in nestedShadeValue && nestedShadeValue.value) {
+            console.log(nestedShadeValue.value.slice(1, -1));
+            semanticColorsMap[`${key}.${shade}.${nestedShade}`] =
+              colorsMap[
+                nestedShadeValue.value.slice(1, -1).replace("colors.", "")
+              ];
+          }
+        }
       }
     }
   }
   return semanticColorsMap;
 }
-
 
 const colorsMap = flattenColors();
 const semanticColorsMap = flattenSemanticColors();

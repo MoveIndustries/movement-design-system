@@ -1,6 +1,6 @@
 {
   "name": "@movementlabsxyz/movement-design-system",
-  "version": "0.0.15",
+  "version": "0.0.16",
   "type": "module",
   "main": "dist/index.js",
   "module": "dist/index.esm.js",

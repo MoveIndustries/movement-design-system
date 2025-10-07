@@ -138,19 +138,19 @@ const toastRecipe = cva({
     variant: {
       info: {
         color: "black",
-        bg: "primary.base",
+        bg: "guild-green.400",
       },
       error: {
         color: "white",
-        bg: "feedback.warning.default",
+        bg: "#D82C2D",
       },
       warning: {
         color: "white",
-        bg: "feedback.warning.default",
+        bg: "#D82C2D",
       },
       success: {
         color: "black",
-        bg: "feedback.success.default",
+        bg: "guild-green.400",
       },
     },
   },
