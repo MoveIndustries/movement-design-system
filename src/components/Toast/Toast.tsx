@@ -4,72 +4,8 @@ import { css, cva } from "styled-system/css";
 import { stack } from "styled-system/patterns";
 
 import { type ToastProps, type ToastVariant } from "./types";
+import { InfoIcon, WarningIcon, CheckIcon,XIcon } from "@phosphor-icons/react";
 
-// Mock icon components since the generated icon files are not available
-const IconWarning = ({ className }: { className?: string }) => (
-  <svg
-    className={className}
-    width="20"
-    height="20"
-    viewBox="0 0 24 24"
-    fill="currentColor"
-    xmlns="http://www.w3.org/2000/svg"
-  >
-    <path d="M12 2L1 21h22L12 2zm0 3.17L19.83 19H4.17L12 5.17zM11 16h2v2h-2zm0-6h2v4h-2z" />
-  </svg>
-);
-
-const IconWarningOctagon = ({ className }: { className?: string }) => (
-  <svg
-    className={className}
-    width="20"
-    height="20"
-    viewBox="0 0 24 24"
-    fill="currentColor"
-    xmlns="http://www.w3.org/2000/svg"
-  >
-    <path d="M12 2L2 7v10l10 5 10-5V7L12 2zm0 2.236L19.764 8 12 11.236 4.236 8 12 4.236zM12 13.236L19.764 10v6L12 19.236 4.236 16v-6L12 13.236z" />
-  </svg>
-);
-
-const IconX = ({ className }: { className?: string }) => (
-  <svg
-    className={className}
-    width="16"
-    height="16"
-    viewBox="0 0 24 24"
-    fill="currentColor"
-    xmlns="http://www.w3.org/2000/svg"
-  >
-    <path d="M19 6.41L17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12 19 6.41z" />
-  </svg>
-);
-
-const IconInfo = ({ className }: { className?: string }) => (
-  <svg
-    className={className}
-    width="20"
-    height="20"
-    viewBox="0 0 24 24"
-    fill="currentColor"
-    xmlns="http://www.w3.org/2000/svg"
-  >
-    <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm1 15h-2v-6h2v6zm0-8h-2V7h2v2z" />
-  </svg>
-);
-
-const IconCheckCircle = ({ className }: { className?: string }) => (
-  <svg
-    className={className}
-    width="20"
-    height="20"
-    viewBox="0 0 24 24"
-    fill="currentColor"
-    xmlns="http://www.w3.org/2000/svg"
-  >
-    <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-2 15l-5-5 1.41-1.41L10 14.17l7.59-7.59L19 8l-9 9z" />
-  </svg>
-);
 
 /**
  * A message that appears on the screen to provide feedback on an action, or provide a notification
@@ -91,7 +27,7 @@ export function Toast({ variant, title, description, id }: ToastProps) {
       <ArkToast.CloseTrigger
         className={css({ alignSelf: "start", cursor: "pointer" })}
       >
-        <IconX
+        <XIcon
           className={css({
             color: variant === "success" ? "black" : "toast.icon.close",
             h: "4",
@@ -105,10 +41,10 @@ export function Toast({ variant, title, description, id }: ToastProps) {
 }
 
 const iconMap: Record<ToastVariant, ComponentType<{ className?: string }>> = {
-  info: IconInfo,
-  error: IconWarningOctagon,
-  warning: IconWarning,
-  success: IconCheckCircle,
+  info: InfoIcon,
+  error: WarningIcon,
+  warning: WarningIcon,
+  success: CheckIcon,
 };
 
 // Toast recipe using CVA
