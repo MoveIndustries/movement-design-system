@@ -77,8 +77,8 @@ export function createToaster() {
     max: 1
   });
 
-  // Track the current mobile state to ensure toast creation and rendering use the same toaster
-  let currentIsMobile = false;
+  // Use a ref to track the current mobile state dynamically
+  const isMobileRef = { current: false };
 
   const createToast = (props: CreateToastArgs) => {
     // Ensure we always have an id
@@ -86,7 +86,7 @@ export function createToaster() {
       props.id ||
       `toast-${Date.now()}-${Math.random().toString(36).substr(2, 9)}`;
 
-    const activeToaster = currentIsMobile ? mobileToaster : toaster;
+    const activeToaster = isMobileRef.current ? mobileToaster : toaster;
 
     return activeToaster.create({
       id: toastId,
@@ -97,7 +97,7 @@ export function createToaster() {
   };
 
   const dismissToast = (id?: string) => {
-    const activeToaster = currentIsMobile ? mobileToaster : toaster;
+    const activeToaster = isMobileRef.current ? mobileToaster : toaster;
     return activeToaster.dismiss(id);
   };
 
@@ -150,16 +150,37 @@ export function createToaster() {
    */
   const Toaster = () => {
     const isMobile = useIsMobile();
-    // Update the current mobile state so toast creation uses the correct toaster
-    currentIsMobile = isMobile;
+
+    // Update the ref whenever isMobile changes so toast creation uses the correct toaster
+    isMobileRef.current = isMobile;
 
     return (
-      <ArkToaster toaster={isMobile ? mobileToaster : toaster} className={css({ zIndex: "toast!" })}>
-        {(toast) => {
-          const props = toast.meta as unknown as ToastProps;
-          return <Toast {...props} />;
-        }}
-      </ArkToaster>
+      <>
+        <ArkToaster
+          toaster={toaster}
+          className={css({
+            zIndex: "toast!",
+            display: isMobile ? "none" : "block"
+          })}
+        >
+          {(toast) => {
+            const props = toast.meta as unknown as ToastProps;
+            return <Toast {...props} />;
+          }}
+        </ArkToaster>
+        <ArkToaster
+          toaster={mobileToaster}
+          className={css({
+            zIndex: "toast!",
+            display: isMobile ? "block" : "none"
+          })}
+        >
+          {(toast) => {
+            const props = toast.meta as unknown as ToastProps;
+            return <Toast {...props} />;
+          }}
+        </ArkToaster>
+      </>
     );
   };
 
