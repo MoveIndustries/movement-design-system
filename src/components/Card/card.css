@@ -1,0 +1,35 @@
+
+.card-styling{
+    border: 1px solid;
+    /* border-image: radial-gradient(69.43% 69.43% at 50% 50%, #81FFBA 0%, #81ffba70 100%) 1; */
+    background-origin: border-box;
+    background-clip: content-box, border-box;
+    transition: 0.3s ease-out;
+    box-sizing: border-box;
+    border: none !important;
+  }
+  
+  .hover-effect:hover {
+    cursor: pointer;
+    background: linear-gradient(153deg, rgba(255, 255, 255, 0.40) 0%, rgba(255, 255, 255, 0.00) 100%) !important;
+    backdrop-filter: blur(21px);
+    border-image: radial-gradient(69.43% 69.43% at 50% 50%, #FFD935 0%, #FFD93570 100%) 1;
+  }
+  
+  
+  .card-styling::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    border-radius: 4px; 
+    padding: 1px; 
+    background: radial-gradient(59.92% 76.24% at 50% 50%, #81FFBA 0%, rgba(129, 255, 186, 0.00) 100%), radial-gradient(59.97% 79.12% at 50% 50%, #81FFBA 18.75%, rgba(129, 255, 186, 0.00) 100%), radial-gradient(76.68% 94.29% at 50% 50%, #FFF 0%, rgba(255, 255, 255, 0.00) 100%);
+    mask: 
+      linear-gradient(#000 0 0) content-box, 
+      linear-gradient(#000 0 0);
+    mask-composite: exclude; 
+  }
+  
+  .card-styling:hover::before {
+    background: radial-gradient(59.92% 76.24% at 50% 50%, #FFD935 0%, rgba(21, 21, 21, 0.00) 100%), radial-gradient(59.97% 79.12% at 50% 50%, #FFD935 18.75%, rgba(255, 217, 53, 0.00) 100%), radial-gradient(76.68% 94.29% at 50% 50%, #FFF 0%, rgba(255, 255, 255, 0.00) 100%);
+  }

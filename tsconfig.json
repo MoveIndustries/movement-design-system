@@ -1,8 +1,44 @@
 {
   "compilerOptions": {
+    "outDir": "dist",
+    "target": "es5",
+    "lib": [
+      "dom",
+      "dom.iterable",
+      "esnext"
+    ],
+    "allowJs": true,
+    "skipLibCheck": true,
+    "esModuleInterop": true,
+    "allowSyntheticDefaultImports": true,
+    "strict": true,
+    "forceConsistentCasingInFileNames": true,
+    "noFallthroughCasesInSwitch": true,
+    "module": "esnext",
+    "moduleResolution": "bundler",
     "resolveJsonModule": true,
+    "isolatedModules": true,
+    "noEmit": false,
+    "jsx": "react-jsx",
+    "declaration": true,
+    "declarationDir": "dist",
     "paths": {
-      "@repo/*": ["./packages/*/src"]
+      "styled-system/*": ["./styled-system/*"],
+      "@/*": ["./src/*"]
     }
-  }
-} 
+  },
+  "include": ["src"],
+  "exclude": [
+    "node_modules",
+    "src/stories",
+    "**/*.stories.tsx",
+    "**/*.stories.ts"
+  ],
+
+
+  "files": [],
+  "references": [
+    { "path": "./tsconfig.app.json", "composite": true },
+    { "path": "./tsconfig.node.json", "composite": true }
+  ]
+}

@@ -1,27 +1,22 @@
 import { defineConfig } from "@pandacss/dev";
-import * as tokens from "./packages/tokens/tokens.json";
+import { movementPreset } from "./src/movement-preset";
 
 export default defineConfig({
+  presets: [ movementPreset],
+  // Whether to use css reset
   preflight: true,
-  include: ["./packages/components/**/*.{ts,tsx,js,jsx}"],
+
+  // Where to look for your css declarations
+  include: ["./src/**/*.{js,jsx,ts,tsx}", "./pages/**/*.{js,jsx,ts,tsx}"],
+
+  // Files to exclude
+  exclude: [],
+
+  // Useful for theme customization
   theme: {
-    extend: {
-      tokens: {
-        ...tokens,
-        fontSizes: {
-          h1: { value: '48px' },
-          h2: { value: '40px' },
-          h3: { value: '32px' },
-          h4: { value: '24px' },
-          h5: { value: '20px' },
-          h6: { value: '18px' },
-          body: { value: '16px' },
-          sm: { value: '14px' },
-          xs: { value: '12px' }
-        }
-      }
-    }
+    extend: {},
   },
-  jsxFramework: "react",
+
+  // The output directory for your css system
   outdir: "styled-system",
 });

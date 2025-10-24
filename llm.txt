@@ -1,0 +1,310 @@
+# Movement Design System
+
+> A comprehensive React design system built with PandaCSS, featuring 1,200+ Phosphor icons, custom crypto/blockchain asset icons, and a full suite of accessible UI components.
+
+## Project Overview
+
+This is a design system for Movement Labs, providing reusable React components, design tokens, typography, colors, and icons. Built with modern web technologies and optimized for tree-shaking and performance.
+
+## Tech Stack
+
+- **React 18** - UI library
+- **TypeScript** - Type safety
+- **PandaCSS** - Zero-runtime CSS-in-JS
+- **Ark UI** - Headless component primitives
+- **Phosphor Icons** - 1,200+ open-source icons
+- **Storybook** - Component documentation
+- **Rollup** - Build tool for library distribution
+- **Vite** - Development server
+
+## Project Structure
+
+```
+movement-design-system/
+├── src/
+│   ├── components/          # UI components
+│   │   ├── Alert/          # Alert component
+│   │   ├── Button/         # Button variants (Button, IconButton, BridgeButton)
+│   │   ├── Card/           # Card component
+│   │   ├── Carousel/       # Carousel component
+│   │   ├── Collapsible/    # Collapsible/Accordion component
+│   │   ├── Drawer/         # Drawer/Sidebar component with mobile drag-to-close
+│   │   ├── Icon/           # Icon system (Phosphor + custom assets)
+│   │   ├── Input/          # Input component
+│   │   ├── Menu/           # Menu/Dropdown component
+│   │   ├── Modal/          # Modal/Dialog component
+│   │   ├── Pagination/     # Pagination component
+│   │   ├── Tag/            # Tag/Badge component
+│   │   ├── Toast/          # Toast notification system
+│   │   ├── ToggleGroup/    # Toggle group component
+│   │   └── Tooltip/        # Tooltip component
+│   ├── movement-preset/    # PandaCSS theme configuration
+│   │   ├── colors.ts       # Color tokens and semantic colors
+│   │   ├── text.ts         # Typography system with Capsize
+│   │   ├── animations.ts   # Animation tokens
+│   │   ├── scales.ts       # Spacing and sizing scales
+│   │   └── index.ts        # Main preset export
+│   ├── hooks/              # Custom React hooks
+│   ├── assets/             # Static assets (fonts, images)
+│   └── index.ts            # Main entry point
+├── dist/                   # Built library output
+├── panda.config.ts         # PandaCSS configuration
+├── rollup.config.js        # Build configuration
+└── package.json            # Dependencies and scripts
+```
+
+## Key Features
+
+### 1. Design Tokens
+
+**Colors:**
+- Brand colors: Moveus Marigold, Guild Green, Byzantine Blue, Protocol Pink, Oracle Orange
+- Neutrals with alpha variants (blackAlpha, whiteAlpha)
+- Semantic colors: primary, secondary, accent
+- Feedback colors: info, success, error, warning
+
+**Typography:**
+- TWK Everett (headings, mono)
+- Neue Haas Unica Pro (body text)
+- Multiple weights: hairline, thin, ultralight, light, regular, medium, bold, extrabold, super, black
+- Capsize integration for precise vertical rhythm
+
+**Spacing & Sizing:**
+- Consistent scale from 0-20
+- Responsive breakpoints
+
+### 2. Icon System
+
+**Phosphor Icons (1,200+):**
+```typescript
+import { HeartIcon, StarIcon, UserIcon } from "@movementlabsxyz/movement-design-system";
+
+<HeartIcon size={24} weight="fill" color="red" />
+```
+
+**Custom Asset Icons:**
+- Crypto tokens: ETH, USDC, USDT, WETH, WBTC, DAI, MOVE
+- Blockchain networks: Aptos, Avalanche, Binance, Polygon
+- Wallets: MetaMask, Coinbase, Petra, Nightly, Rabby, Razor, Sender
+
+All icons are:
+- Tree-shakeable (only bundle what you use)
+- Fully typed with TypeScript
+- Optimized SVGs
+- Support size and color customization
+
+### 3. Component Library
+
+**Button:**
+```typescript
+import { Button, IconButton, BridgeButton } from "@movementlabsxyz/movement-design-system";
+
+<Button variant="primary" size="md">Click me</Button>
+<IconButton icon={HeartIcon} aria-label="Like" />
+<BridgeButton>Bridge Assets</BridgeButton>
+```
+
+**Drawer (with mobile drag-to-close):**
+```typescript
+import { Drawer, DrawerHeader, DrawerBody, DrawerFooter } from "@movementlabsxyz/movement-design-system";
+
+<Drawer open={isOpen} onClose={handleClose} placement="right" size="md">
+  <DrawerHeader title="My Drawer" />
+  <DrawerBody>Content</DrawerBody>
+  <DrawerFooter>Actions</DrawerFooter>
+</Drawer>
+```
+
+Features:
+- Drag-to-close on mobile devices
+- Smooth animations with visual feedback
+- Multiple placements: top, bottom, left, right
+- Sizes: sm, md, lg, xl, full
+
+**Toast:**
+```typescript
+import { toast } from "@movementlabsxyz/movement-design-system";
+
+toast.success("Success message");
+toast.error("Error message");
+toast.info("Info message");
+toast.warning("Warning message");
+```
+
+**Alert:**
+```typescript
+import { Alert } from "@movementlabsxyz/movement-design-system";
+
+<Alert variant="info">This is an alert</Alert>
+```
+
+### 4. PandaCSS Integration
+
+All components use PandaCSS for styling:
+
+```typescript
+import { css } from "styled-system/css";
+import { stack, flex } from "styled-system/patterns";
+
+<div className={css({ bg: "primary.base", p: 4 })}>
+  Styled with design tokens
+</div>
+
+<div className={stack({ gap: 4 })}>
+  Layout with patterns
+</div>
+```
+
+## Development
+
+### Setup
+```bash
+pnpm install
+```
+
+### Development Server
+```bash
+pnpm dev
+```
+
+### Build Library
+```bash
+pnpm build
+```
+
+### Storybook
+```bash
+pnpm storybook
+```
+
+### Generate PandaCSS
+```bash
+pnpm prepare
+```
+
+## Icon Generation
+
+Custom asset icons are generated from SVG files:
+
+```bash
+node src/components/Icon/generate-asset-icons.js
+```
+
+This script:
+- Reads all SVG files from `src/components/Icon/assets/`
+- Converts them to React components using Phosphor's IconBase
+- Handles SVG attribute conversion (clip-path → clipPath, etc.)
+- Supports name overrides (e.g., polygon.svg → PolygonNetworkIcon)
+- Generates `AllAssetIcons.tsx` with all icon components
+
+## Font System
+
+**TWK Everett:**
+- Used for headings and mono text
+- Weights: 100-950 (hairline to black)
+- Includes italic variants
+
+**TWK Everett Mono:**
+- Monospace variant
+- Full weight range with italics
+- Used for code and data display
+
+**Neue Haas Unica Pro:**
+- Body text font
+- Loaded from Adobe Fonts (Typekit)
+- Weights: 400, 700, 800
+
+## Design Principles
+
+1. **Accessibility First** - WCAG compliant, keyboard navigation, ARIA labels
+2. **Performance** - Tree-shaking, optimized bundles, zero-runtime CSS
+3. **Type Safety** - Full TypeScript support with exported types
+4. **Consistency** - Design tokens ensure visual consistency
+5. **Developer Experience** - Clear APIs, comprehensive documentation
+
+## Usage in Projects
+
+### Installation
+```bash
+npm install @movementlabsxyz/movement-design-system
+```
+
+### Import Components
+```typescript
+import { 
+  Button, 
+  Alert, 
+  Drawer,
+  HeartIcon,
+  UsdcIcon 
+} from "@movementlabsxyz/movement-design-system";
+```
+
+### Import PandaCSS Preset
+```typescript
+// panda.config.ts
+import { movementPreset } from "@movementlabsxyz/movement-design-system";
+
+export default defineConfig({
+  presets: [movementPreset],
+  // ... other config
+});
+```
+
+## Key Files
+
+- `src/index.ts` - Main entry point, exports all components and types
+- `src/components/index.ts` - Component barrel export
+- `src/movement-preset/index.ts` - PandaCSS theme preset
+- `panda.config.ts` - PandaCSS configuration
+- `rollup.config.js` - Build configuration for library distribution
+
+## Component Patterns
+
+### Forwarding Refs
+All components support ref forwarding:
+```typescript
+const ref = useRef<HTMLButtonElement>(null);
+<Button ref={ref}>Click me</Button>
+```
+
+### Ark UI Integration
+Complex components use Ark UI primitives for accessibility:
+- Dialog/Modal/Drawer
+- Menu/Dropdown
+- Tooltip
+- Toast
+
+### Styling Approach
+- Use PandaCSS `css()` for component styles
+- Design tokens for colors, spacing, typography
+- Responsive variants with breakpoints
+- Dark mode support (via semantic tokens)
+
+## Contributing
+
+When adding new components:
+1. Create component folder in `src/components/`
+2. Export from `src/components/index.ts`
+3. Add Storybook stories (`.stories.tsx`)
+4. Include TypeScript types
+5. Follow existing patterns for consistency
+
+## Build Output
+
+The library builds to multiple formats:
+- **ESM** (`dist/index.esm.js`) - Modern ES modules
+- **CJS** (`dist/index.js`) - CommonJS for older tools
+- **Types** (`dist/**/*.d.ts`) - TypeScript declarations
+- **Styled System** (`dist/styled-system/`) - PandaCSS output
+
+## Notes for LLMs
+
+- All Phosphor icons are available and should be imported with `Icon` suffix
+- Custom asset icons follow the pattern: `{Name}Icon` (e.g., `UsdcIcon`, `MetamaskIcon`)
+- The Drawer component has mobile drag-to-close functionality built-in
+- Use semantic color tokens (e.g., `primary.base`, `feedback.success.base`) instead of hardcoded colors
+- Typography uses text styles (e.g., `textStyle: "heading-large.xl"`, `textStyle: "body-regular.md"`)
+- All components are tree-shakeable - import only what you need
+- The design system is optimized for crypto/blockchain applications with specialized icons and components
+

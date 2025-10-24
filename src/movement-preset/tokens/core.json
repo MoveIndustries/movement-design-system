@@ -1,0 +1,5496 @@
+{
+  "dimension": {
+    "scale": {
+      "value": "2px",
+      "type": "dimension"
+    },
+    "xs": {
+      "value": "{dimension.scale} * 2",
+      "type": "dimension"
+    },
+    "sm": {
+      "value": "{dimension.xs} * {dimension.scale}",
+      "type": "dimension"
+    },
+    "md": {
+      "value": "{dimension.sm} * {dimension.scale}",
+      "type": "dimension"
+    },
+    "lg": {
+      "value": "{dimension.md} * {dimension.scale}",
+      "type": "dimension"
+    },
+    "xl": {
+      "value": "{dimension.lg} * {dimension.scale}",
+      "type": "dimension"
+    },
+    "0": {
+      "type": "dimension",
+      "value": "0px"
+    },
+    "1": {
+      "type": "dimension",
+      "value": "{dimension.xs}"
+    },
+    "2": {
+      "type": "dimension",
+      "value": "{dimension.sm}"
+    },
+    "3": {
+      "type": "dimension",
+      "value": "{dimension.xs} * 3"
+    },
+    "4": {
+      "type": "dimension",
+      "value": "{dimension.md}"
+    },
+    "5": {
+      "type": "dimension",
+      "value": "{dimension.xs} * 5"
+    },
+    "6": {
+      "type": "dimension",
+      "value": "{dimension.xs} * 6"
+    },
+    "7": {
+      "type": "dimension",
+      "value": "{dimension.xs} * 7"
+    },
+    "8": {
+      "type": "dimension",
+      "value": "{dimension.lg}"
+    },
+    "9": {
+      "type": "dimension",
+      "value": "{dimension.xs} * 9"
+    },
+    "10": {
+      "type": "dimension",
+      "value": "{dimension.xs} * 10"
+    },
+    "12": {
+      "type": "dimension",
+      "value": "{dimension.xs} * 12"
+    },
+    "14": {
+      "type": "dimension",
+      "value": "{dimension.xs} * 14"
+    },
+    "16": {
+      "type": "dimension",
+      "value": "{dimension.xl}"
+    },
+    "20": {
+      "type": "dimension",
+      "value": "{dimension.xs} * 20"
+    },
+    "24": {
+      "type": "dimension",
+      "value": "{dimension.xs} * 24"
+    },
+    "28": {
+      "type": "dimension",
+      "value": "{dimension.xs} * 28"
+    },
+    "32": {
+      "type": "dimension",
+      "value": "{dimension.xs} * 32"
+    },
+    "36": {
+      "type": "dimension",
+      "value": "{dimension.xs} * 36"
+    },
+    "40": {
+      "type": "dimension",
+      "value": "{dimension.xs} * 40"
+    },
+    "44": {
+      "type": "dimension",
+      "value": "{dimension.xs} * 44"
+    },
+    "48": {
+      "type": "dimension",
+      "value": "{dimension.xs} * 48"
+    },
+    "52": {
+      "type": "dimension",
+      "value": "{dimension.xs} * 52"
+    },
+    "56": {
+      "type": "dimension",
+      "value": "{dimension.xs} * 56"
+    },
+    "60": {
+      "type": "dimension",
+      "value": "{dimension.xs} * 60"
+    },
+    "64": {
+      "type": "dimension",
+      "value": "{dimension.xs} * 64"
+    },
+    "72": {
+      "type": "dimension",
+      "value": "{dimension.xs} * 72"
+    },
+    "80": {
+      "type": "dimension",
+      "value": "{dimension.xs} * 80"
+    },
+    "96": {
+      "type": "dimension",
+      "value": "{dimension.xs} * 96"
+    },
+    "100": {
+      "type": "dimension",
+      "value": "{dimension.xs} * 100"
+    },
+    "px": {
+      "type": "dimension",
+      "value": "1px"
+    }
+  },
+  "spacing": {
+    "xs": {
+      "value": "{dimension.xs}",
+      "type": "spacing"
+    },
+    "sm": {
+      "value": "{dimension.sm}",
+      "type": "spacing"
+    },
+    "md": {
+      "value": "{dimension.md}",
+      "type": "spacing"
+    },
+    "lg": {
+      "value": "{dimension.lg}",
+      "type": "spacing"
+    },
+    "xl": {
+      "value": "{dimension.xl}",
+      "type": "spacing"
+    },
+    "multi-value": {
+      "value": "{dimension.sm} {dimension.xl}",
+      "type": "spacing",
+      "description": "You can have multiple values in a single spacing token. Read more on these: https://docs.tokens.studio/available-tokens/spacing-tokens#multi-value-spacing-tokens"
+    }
+  },
+  "borderRadius": {
+    "sm": {
+      "value": "2",
+      "type": "borderRadius"
+    },
+    "base": {
+      "value": "4",
+      "type": "borderRadius"
+    },
+    "md": {
+      "value": "6",
+      "type": "borderRadius"
+    },
+    "lg": {
+      "value": "8",
+      "type": "borderRadius"
+    },
+    "xl": {
+      "value": "12",
+      "type": "borderRadius"
+    },
+    "2xl": {
+      "value": "16",
+      "type": "borderRadius"
+    },
+    "3xl": {
+      "value": "24",
+      "type": "borderRadius"
+    },
+    "full": {
+      "value": "9999",
+      "type": "borderRadius"
+    },
+    "multi-value": {
+      "value": "{borderRadius.sm} {borderRadius.lg}",
+      "type": "borderRadius",
+      "description": "You can have multiple values in a single radius token. Read more on these: https://docs.tokens.studio/available-tokens/border-radius-tokens#single--multiple-values"
+    }
+  },
+  "colors": {
+    "moveus-marigold": {
+      "50": {
+        "$type": "color",
+        "$value": "#fffbeb"
+      },
+      "100": {
+        "$type": "color",
+        "$value": "#fff2bd"
+      },
+      "200": {
+        "$type": "color",
+        "$value": "#ffea90"
+      },
+      "300": {
+        "$type": "color",
+        "$value": "#ffe162"
+      },
+      "400": {
+        "$type": "color",
+        "$value": "#ffd935"
+      },
+      "500": {
+        "$type": "color",
+        "$value": "#ddba22"
+      },
+      "600": {
+        "$type": "color",
+        "$value": "#bb9b13"
+      },
+      "700": {
+        "$type": "color",
+        "$value": "#997e08"
+      },
+      "800": {
+        "$type": "color",
+        "$value": "#776100"
+      },
+      "900": {
+        "$type": "color",
+        "$value": "#554500"
+      }
+    },
+    "guild-green": {
+      "50": {
+        "$type": "color",
+        "$value": "#f2fff8"
+      },
+      "100": {
+        "$type": "color",
+        "$value": "#ccffe3"
+      },
+      "200": {
+        "$type": "color",
+        "$value": "#a7ffce"
+      },
+      "300": {
+        "$type": "color",
+        "$value": "#81ffba"
+      },
+      "400": {
+        "$type": "color",
+        "$value": "#6ce2a1"
+      },
+      "500": {
+        "$type": "color",
+        "$value": "#58c589"
+      },
+      "600": {
+        "$type": "color",
+        "$value": "#47a872"
+      },
+      "700": {
+        "$type": "color",
+        "$value": "#368a5c"
+      },
+      "800": {
+        "$type": "color",
+        "$value": "#286d47"
+      },
+      "900": {
+        "$type": "color",
+        "$value": "#1b5033"
+      }
+    },
+    "byzantine-blue": {
+      "50": {
+        "$type": "color",
+        "$value": "#c2ceff"
+      },
+      "100": {
+        "$type": "color",
+        "$value": "#859dff"
+      },
+      "200": {
+        "$type": "color",
+        "$value": "#5c7cff"
+      },
+      "300": {
+        "$type": "color",
+        "$value": "#335cff"
+      },
+      "400": {
+        "$type": "color",
+        "$value": "#0337ff"
+      },
+      "500": {
+        "$type": "color",
+        "$value": "#002cd6"
+      },
+      "600": {
+        "$type": "color",
+        "$value": "#0024ad"
+      },
+      "700": {
+        "$type": "color",
+        "$value": "#001b85"
+      },
+      "800": {
+        "$type": "color",
+        "$value": "#00135c"
+      },
+      "900": {
+        "$type": "color",
+        "$value": "#000c3d"
+      }
+    },
+    "protocol-pink": {
+      "50": {
+        "$type": "color",
+        "$value": "#fff1fc"
+      },
+      "100": {
+        "$type": "color",
+        "$value": "#ffc9f3"
+      },
+      "200": {
+        "$type": "color",
+        "$value": "#ffa0eb"
+      },
+      "300": {
+        "$type": "color",
+        "$value": "#ff77e2"
+      },
+      "400": {
+        "$type": "color",
+        "$value": "#eb66cf"
+      },
+      "500": {
+        "$type": "color",
+        "$value": "#ce52b4"
+      },
+      "600": {
+        "$type": "color",
+        "$value": "#b14199"
+      },
+      "700": {
+        "$type": "color",
+        "$value": "#94317f"
+      },
+      "800": {
+        "$type": "color",
+        "$value": "#762365"
+      },
+      "900": {
+        "$type": "color",
+        "$value": "#59184b"
+      }
+    },
+    "oracle-orange": {
+      "50": {
+        "$type": "color",
+        "$value": "#ffefec"
+      },
+      "100": {
+        "$type": "color",
+        "$value": "#ffcdc2"
+      },
+      "200": {
+        "$type": "color",
+        "$value": "#ffab97"
+      },
+      "300": {
+        "$type": "color",
+        "$value": "#ff886d"
+      },
+      "400": {
+        "$type": "color",
+        "$value": "#FF6642"
+      },
+      "500": {
+        "$type": "color",
+        "$value": "#ea5330"
+      },
+      "600": {
+        "$type": "color",
+        "$value": "#c83e1e"
+      },
+      "700": {
+        "$type": "color",
+        "$value": "#a62c10"
+      },
+      "800": {
+        "$type": "color",
+        "$value": "#841d05"
+      },
+      "900": {
+        "$type": "color",
+        "$value": "#621300"
+      }
+    },
+    "neutrals": {
+      "white": {
+        "$type": "color",
+        "$value": "#ffffff"
+      },
+      "black": {
+        "$type": "color",
+        "$value": "#000000"
+      },
+      "whiteAlpha": {
+        "50": {
+          "$type": "color",
+          "$value": "#ffffff0a"
+        },
+        "100": {
+          "$type": "color",
+          "$value": "#ffffff0f"
+        },
+        "200": {
+          "$type": "color",
+          "$value": "#ffffff14"
+        },
+        "300": {
+          "$type": "color",
+          "$value": "#ffffff29"
+        },
+        "400": {
+          "$type": "color",
+          "$value": "#ffffff3d"
+        },
+        "500": {
+          "$type": "color",
+          "$value": "#ffffff5c"
+        },
+        "600": {
+          "$type": "color",
+          "$value": "#ffffff7a"
+        },
+        "700": {
+          "$type": "color",
+          "$value": "#ffffffa3"
+        },
+        "800": {
+          "$type": "color",
+          "$value": "#ffffffcc"
+        },
+        "900": {
+          "$type": "color",
+          "$value": "#ffffffeb"
+        }
+      },
+      "blackAlpha": {
+        "50": {
+          "$type": "color",
+          "$value": "#0000000a"
+        },
+        "100": {
+          "$type": "color",
+          "$value": "#0000000f"
+        },
+        "200": {
+          "$type": "color",
+          "$value": "#00000014"
+        },
+        "300": {
+          "$type": "color",
+          "$value": "#00000029"
+        },
+        "400": {
+          "$type": "color",
+          "$value": "#0000003d"
+        },
+        "500": {
+          "$type": "color",
+          "$value": "#0000005c"
+        },
+        "600": {
+          "$type": "color",
+          "$value": "#0000007a"
+        },
+        "700": {
+          "$type": "color",
+          "$value": "#000000a3"
+        },
+        "800": {
+          "$type": "color",
+          "$value": "#000000cc"
+        },
+        "900": {
+          "$type": "color",
+          "$value": "#000000eb"
+        }
+      }
+    },
+    "feedback": {
+      "success": {
+        "default": {
+          "$type": "color",
+          "$value": "{colors.guild-green.400}"
+        },
+        "dark": {
+          "$type": "color",
+          "$value": "{colors.guild-green.700}"
+        },
+        "light": {
+          "$type": "color",
+          "$value": "{colors.guild-green.100}"
+        }
+      },
+      "error": {
+        "default": {
+          "$type": "color",
+          "$value": "#D82C2D"
+        },
+        "dark": {
+          "$type": "color",
+          "$value": "#b61a1c"
+        },
+        "light": {
+          "$type": "color",
+          "$value": "#ffc2c2"
+        }
+      },
+      "warning": {
+        "default": {
+          "$type": "color",
+          "$value": "{colors.oracle-orange.500}"
+        },
+        "dark": {
+          "$type": "color",
+          "$value": "{colors.oracle-orange.600}"
+        },
+        "light": {
+          "$type": "color",
+          "$value": "{colors.oracle-orange.100}"
+        }
+      }
+    }
+  },
+  "opacity": {
+    "1": {
+      "value": "10%",
+      "type": "opacity"
+    },
+    "2": {
+      "value": "20%",
+      "type": "opacity"
+    },
+    "3": {
+      "value": "30%",
+      "type": "opacity"
+    },
+    "4": {
+      "value": "40%",
+      "type": "opacity"
+    },
+    "5": {
+      "value": "50%",
+      "type": "opacity"
+    },
+    "8": {
+      "value": "80%",
+      "type": "opacity"
+    },
+    "9": {
+      "value": "90%",
+      "type": "opacity"
+    },
+    "10": {
+      "value": "100%",
+      "type": "opacity"
+    }
+  },
+  "fontFamilies": {
+    "heading": {
+      "$type": "fontFamily",
+      "$value": "TWK Everett"
+    },
+    "body": {
+      "$type": "fontFamily",
+      "$value": "Neue Haas Unica Pro"
+    },
+    "mono": {
+      "$type": "fontFamily",
+      "$value": "TWK Everett Mono"
+    }
+  },
+  "fontSizes": {
+    "0": {
+      "$type": "fontSize",
+      "$value": "{fontSizes.base} * 50",
+      "$description": "8px"
+    },
+    "1": {
+      "$type": "fontSize",
+      "$value": "{fontSizes.base} * 62.5",
+      "$description": "10px"
+    },
+    "2": {
+      "$type": "fontSize",
+      "$value": "{fontSizes.base} * 75",
+      "$description": "12px"
+    },
+    "3": {
+      "$type": "fontSize",
+      "$value": "{fontSizes.base} * 87.5",
+      "$description": "14px"
+    },
+    "4": {
+      "$type": "fontSize",
+      "$value": "{fontSizes.base} * 100",
+      "$description": "16px"
+    },
+    "5": {
+      "$type": "fontSize",
+      "$value": "{fontSizes.base} * 112.5",
+      "$description": "18px"
+    },
+    "6": {
+      "$type": "fontSize",
+      "$value": "{fontSizes.base} * 125",
+      "$description": "20px"
+    },
+    "7": {
+      "$type": "fontSize",
+      "$value": "{fontSizes.base} * 150",
+      "$description": "24px"
+    },
+    "8": {
+      "$type": "fontSize",
+      "$value": "{fontSizes.base} * 175",
+      "$description": "28px"
+    },
+    "9": {
+      "$type": "fontSize",
+      "$value": "{fontSizes.base} * 187.5",
+      "$description": "30px"
+    },
+    "10": {
+      "$type": "fontSize",
+      "$value": "{fontSizes.base} * 200",
+      "$description": "32px"
+    },
+    "11": {
+      "$type": "fontSize",
+      "$value": "{fontSizes.base} * 250",
+      "$description": "40px"
+    },
+    "12": {
+      "$type": "fontSize",
+      "$value": "{fontSizes.base} * 262.5",
+      "$description": "42px"
+    },
+    "13": {
+      "$type": "fontSize",
+      "$value": "{fontSizes.base} * 300",
+      "$description": "48px"
+    },
+    "14": {
+      "$type": "fontSize",
+      "$value": "{fontSizes.base} * 350",
+      "$description": "56px"
+    },
+    "15": {
+      "$type": "fontSize",
+      "$value": "{fontSizes.base} * 400",
+      "$description": "64px"
+    },
+    "16": {
+      "$type": "fontSize",
+      "$value": "{fontSizes.base} * 450",
+      "$description": "72px"
+    },
+    "17": {
+      "$type": "fontSize",
+      "$value": "{fontSizes.base} * 500",
+      "$description": "80px"
+    },
+    "18": {
+      "$type": "fontSize",
+      "$value": "{fontSizes.base} * 600",
+      "$description": "96px"
+    },
+    "base": {
+      "$type": "fontSize",
+      "$value": "{size.scale} / 100",
+      "$description": "REM / 16px"
+    }
+  },
+  "fontStyle": {
+    "normal": {
+      "$type": "other",
+      "$value": "normal"
+    },
+    "italic": {
+      "$type": "other",
+      "$value": "italic"
+    }
+  },
+  "lineHeights": {
+    "0": {
+      "$type": "lineHeight",
+      "$value": "100%"
+    },
+    "1": {
+      "$type": "lineHeight",
+      "$value": "112.5%"
+    },
+    "2": {
+      "$type": "lineHeight",
+      "$value": "116.6%"
+    },
+    "3": {
+      "$type": "lineHeight",
+      "$value": "120%"
+    },
+    "4": {
+      "$type": "lineHeight",
+      "$value": "125%"
+    },
+    "5": {
+      "$type": "lineHeight",
+      "$value": "130%"
+    },
+    "6": {
+      "$type": "lineHeight",
+      "$value": "140%"
+    },
+    "7": {
+      "$type": "lineHeight",
+      "$value": "150%"
+    },
+    "8": {
+      "$type": "lineHeight",
+      "$value": "200%"
+    }
+  },
+  "fontWeights": {
+    "thin": {
+      "$type": "fontWeight",
+      "$value": "Thin"
+    },
+    "extraLight": {
+      "$type": "fontWeight",
+      "$value": "ExtraLight"
+    },
+    "light": {
+      "$type": "fontWeight",
+      "$value": "Light"
+    },
+    "regular": {
+      "$type": "fontWeight",
+      "$value": "Regular"
+    },
+    "medium": {
+      "$type": "fontWeight",
+      "$value": "Medium"
+    },
+    "semiBold": {
+      "$type": "fontWeight",
+      "$value": "SemiBold"
+    },
+    "bold": {
+      "$type": "fontWeight",
+      "$value": "Bold"
+    },
+    "extraBold": {
+      "$type": "fontWeight",
+      "$value": "ExtraBold"
+    },
+    "black": {
+      "$type": "fontWeight",
+      "$value": "Black"
+    }
+  },
+  "letterSpacing": {
+    "0": {
+      "$type": "letterSpacing",
+      "$value": "0%"
+    },
+    "1": {
+      "$type": "letterSpacing",
+      "$value": "10%"
+    }
+  },
+  "paragraphSpacing": {
+    "0": {
+      "$type": "paragraphSpacing",
+      "$value": "0"
+    }
+  },
+  "textCase": {
+    "none": {
+      "$type": "textCase",
+      "$value": "none"
+    },
+    "uppercase": {
+      "$type": "textCase",
+      "$value": "uppercase"
+    }
+  },
+  "textDecoration": {
+    "none": {
+      "$type": "textDecoration",
+      "$value": "none"
+    }
+  },
+  "paragraphIndent": {
+    "0": {
+      "$type": "dimension",
+      "$value": "0px"
+    }
+  },
+  "Heading": {
+    "Desktop": {
+      "5xl": {
+        "value": {
+          "fontFamily": {
+            "$type": "other",
+            "$value": "{fontFamilies.heading}"
+          },
+          "fontWeight": {
+            "$type": "other",
+            "$value": "{fontWeights.bold}"
+          },
+          "lineHeight": {
+            "$type": "other",
+            "$value": "{lineHeights.0}"
+          },
+          "fontSize": {
+            "$type": "other",
+            "$value": "{fontSizes.17}"
+          },
+          "letterSpacing": {
+            "$type": "other",
+            "$value": "{letterSpacing.0}"
+          },
+          "paragraphSpacing": {
+            "$type": "other",
+            "$value": "{paragraphSpacing.0}"
+          },
+          "paragraphIndent": {
+            "$type": "other",
+            "$value": "{paragraphIndent.0}"
+          },
+          "textCase": {
+            "$type": "other",
+            "$value": "{textCase.none}"
+          },
+          "textDecoration": {
+            "$type": "other",
+            "$value": "{textDecoration.none}"
+          }
+        },
+        "type": {
+          "$type": "other",
+          "$value": "typography"
+        }
+      },
+      "4xl": {
+        "value": {
+          "fontFamily": {
+            "$type": "other",
+            "$value": "{fontFamilies.heading}"
+          },
+          "fontWeight": {
+            "$type": "other",
+            "$value": "{fontWeights.bold}"
+          },
+          "lineHeight": {
+            "$type": "other",
+            "$value": "{lineHeights.1}"
+          },
+          "fontSize": {
+            "$type": "other",
+            "$value": "{fontSizes.15}"
+          },
+          "letterSpacing": {
+            "$type": "other",
+            "$value": "{letterSpacing.0}"
+          },
+          "paragraphSpacing": {
+            "$type": "other",
+            "$value": "{paragraphSpacing.0}"
+          },
+          "paragraphIndent": {
+            "$type": "other",
+            "$value": "{paragraphIndent.0}"
+          },
+          "textCase": {
+            "$type": "other",
+            "$value": "{textCase.none}"
+          },
+          "textDecoration": {
+            "$type": "other",
+            "$value": "{textDecoration.none}"
+          }
+        },
+        "type": {
+          "$type": "other",
+          "$value": "typography"
+        }
+      },
+      "3xl": {
+        "value": {
+          "fontFamily": {
+            "$type": "other",
+            "$value": "{fontFamilies.heading}"
+          },
+          "fontWeight": {
+            "$type": "other",
+            "$value": "{fontWeights.bold}"
+          },
+          "lineHeight": {
+            "$type": "other",
+            "$value": "{lineHeights.1}"
+          },
+          "fontSize": {
+            "$type": "other",
+            "$value": "{fontSizes.13}"
+          },
+          "letterSpacing": {
+            "$type": "other",
+            "$value": "{letterSpacing.0}"
+          },
+          "paragraphSpacing": {
+            "$type": "other",
+            "$value": "{paragraphSpacing.0}"
+          },
+          "paragraphIndent": {
+            "$type": "other",
+            "$value": "{paragraphIndent.0}"
+          },
+          "textCase": {
+            "$type": "other",
+            "$value": "{textCase.none}"
+          },
+          "textDecoration": {
+            "$type": "other",
+            "$value": "{textDecoration.none}"
+          }
+        },
+        "type": {
+          "$type": "other",
+          "$value": "typography"
+        }
+      },
+      "2xl": {
+        "value": {
+          "fontFamily": {
+            "$type": "other",
+            "$value": "{fontFamilies.heading}"
+          },
+          "fontWeight": {
+            "$type": "other",
+            "$value": "{fontWeights.bold}"
+          },
+          "lineHeight": {
+            "$type": "other",
+            "$value": "{lineHeights.1}"
+          },
+          "fontSize": {
+            "$type": "other",
+            "$value": "{fontSizes.11}"
+          },
+          "letterSpacing": {
+            "$type": "other",
+            "$value": "{letterSpacing.0}"
+          },
+          "paragraphSpacing": {
+            "$type": "other",
+            "$value": "{paragraphSpacing.0}"
+          },
+          "paragraphIndent": {
+            "$type": "other",
+            "$value": "{paragraphIndent.0}"
+          },
+          "textCase": {
+            "$type": "other",
+            "$value": "{textCase.none}"
+          },
+          "textDecoration": {
+            "$type": "other",
+            "$value": "{textDecoration.none}"
+          }
+        },
+        "type": {
+          "$type": "other",
+          "$value": "typography"
+        }
+      },
+      "xl": {
+        "value": {
+          "fontFamily": {
+            "$type": "other",
+            "$value": "{fontFamilies.heading}"
+          },
+          "fontWeight": {
+            "$type": "other",
+            "$value": "{fontWeights.bold}"
+          },
+          "lineHeight": {
+            "$type": "other",
+            "$value": "{lineHeights.1}"
+          },
+          "fontSize": {
+            "$type": "other",
+            "$value": "{fontSizes.10"
+          },
+          "letterSpacing": {
+            "$type": "other",
+            "$value": "{letterSpacing.0}"
+          },
+          "paragraphSpacing": {
+            "$type": "other",
+            "$value": "{paragraphSpacing.0}"
+          },
+          "paragraphIndent": {
+            "$type": "other",
+            "$value": "{paragraphIndent.0}"
+          },
+          "textCase": {
+            "$type": "other",
+            "$value": "{textCase.none}"
+          },
+          "textDecoration": {
+            "$type": "other",
+            "$value": "{textDecoration.none}"
+          }
+        },
+        "type": {
+          "$type": "other",
+          "$value": "typography"
+        }
+      },
+      "lg": {
+        "value": {
+          "fontFamily": {
+            "$type": "other",
+            "$value": "{fontFamilies.heading}"
+          },
+          "fontWeight": {
+            "$type": "other",
+            "$value": "{fontWeights.bold}"
+          },
+          "lineHeight": {
+            "$type": "other",
+            "$value": "{lineHeights.5}"
+          },
+          "fontSize": {
+            "$type": "other",
+            "$value": "{fontSizes.7}"
+          },
+          "letterSpacing": {
+            "$type": "other",
+            "$value": "{letterSpacing.0}"
+          },
+          "paragraphSpacing": {
+            "$type": "other",
+            "$value": "{paragraphSpacing.0}"
+          },
+          "paragraphIndent": {
+            "$type": "other",
+            "$value": "{paragraphIndent.0}"
+          },
+          "textCase": {
+            "$type": "other",
+            "$value": "{textCase.none}"
+          },
+          "textDecoration": {
+            "$type": "other",
+            "$value": "{textDecoration.none}"
+          }
+        },
+        "type": {
+          "$type": "other",
+          "$value": "typography"
+        }
+      },
+      "md": {
+        "value": {
+          "fontFamily": {
+            "$type": "other",
+            "$value": "{fontFamilies.heading}"
+          },
+          "fontWeight": {
+            "$type": "other",
+            "$value": "{fontWeights.bold}"
+          },
+          "lineHeight": {
+            "$type": "other",
+            "$value": "{lineHeights.5}"
+          },
+          "fontSize": {
+            "$type": "other",
+            "$value": "{fontSizes.5}"
+          },
+          "letterSpacing": {
+            "$type": "other",
+            "$value": "{letterSpacing.0}"
+          },
+          "paragraphSpacing": {
+            "$type": "other",
+            "$value": "{paragraphSpacing.0}"
+          },
+          "paragraphIndent": {
+            "$type": "other",
+            "$value": "{paragraphIndent.0}"
+          },
+          "textCase": {
+            "$type": "other",
+            "$value": "{textCase.none}"
+          },
+          "textDecoration": {
+            "$type": "other",
+            "$value": "{textDecoration.none}"
+          }
+        },
+        "type": {
+          "$type": "other",
+          "$value": "typography"
+        }
+      },
+      "sm": {
+        "value": {
+          "fontFamily": {
+            "$type": "other",
+            "$value": "{fontFamilies.heading}"
+          },
+          "fontWeight": {
+            "$type": "other",
+            "$value": "{fontWeights.bold}"
+          },
+          "lineHeight": {
+            "$type": "other",
+            "$value": "{lineHeights.7}"
+          },
+          "fontSize": {
+            "$type": "other",
+            "$value": "{fontSizes.3}"
+          },
+          "letterSpacing": {
+            "$type": "other",
+            "$value": "{letterSpacing.0}"
+          },
+          "paragraphSpacing": {
+            "$type": "other",
+            "$value": "{paragraphSpacing.0}"
+          },
+          "paragraphIndent": {
+            "$type": "other",
+            "$value": "{paragraphIndent.0}"
+          },
+          "textCase": {
+            "$type": "other",
+            "$value": "{textCase.none}"
+          },
+          "textDecoration": {
+            "$type": "other",
+            "$value": "{textDecoration.none}"
+          }
+        },
+        "type": {
+          "$type": "other",
+          "$value": "typography"
+        }
+      },
+      "xs": {
+        "value": {
+          "fontFamily": {
+            "$type": "other",
+            "$value": "{fontFamilies.heading}"
+          },
+          "fontWeight": {
+            "$type": "other",
+            "$value": "{fontWeights.bold}"
+          },
+          "lineHeight": {
+            "$type": "other",
+            "$value": "{lineHeights.8}"
+          },
+          "fontSize": {
+            "$type": "other",
+            "$value": "{fontSizes.2}"
+          },
+          "letterSpacing": {
+            "$type": "other",
+            "$value": "{letterSpacing.0}"
+          },
+          "paragraphSpacing": {
+            "$type": "other",
+            "$value": "{paragraphSpacing.0}"
+          },
+          "paragraphIndent": {
+            "$type": "other",
+            "$value": "{paragraphIndent.0}"
+          },
+          "textCase": {
+            "$type": "other",
+            "$value": "{textCase.none}"
+          },
+          "textDecoration": {
+            "$type": "other",
+            "$value": "{textDecoration.none}"
+          }
+        },
+        "type": {
+          "$type": "other",
+          "$value": "typography"
+        }
+      }
+    },
+    "Mobile": {
+      "4xl": {
+        "value": {
+          "fontFamily": {
+            "$type": "other",
+            "$value": "{fontFamilies.heading}"
+          },
+          "fontWeight": {
+            "$type": "other",
+            "$value": "{fontWeights.bold}"
+          },
+          "lineHeight": {
+            "$type": "other",
+            "$value": "{lineHeights.1}"
+          },
+          "fontSize": {
+            "$type": "other",
+            "$value": "{fontSizes.15}"
+          },
+          "letterSpacing": {
+            "$type": "other",
+            "$value": "{letterSpacing.9}"
+          },
+          "paragraphSpacing": {
+            "$type": "other",
+            "$value": "{paragraphSpacing.0}"
+          },
+          "paragraphIndent": {
+            "$type": "other",
+            "$value": "{paragraphIndent.0}"
+          },
+          "textCase": {
+            "$type": "other",
+            "$value": "{textCase.none}"
+          },
+          "textDecoration": {
+            "$type": "other",
+            "$value": "{textDecoration.none}"
+          }
+        },
+        "type": {
+          "$type": "other",
+          "$value": "typography"
+        }
+      },
+      "3xl": {
+        "value": {
+          "fontFamily": {
+            "$type": "other",
+            "$value": "{fontFamilies.heading}"
+          },
+          "fontWeight": {
+            "$type": "other",
+            "$value": "{fontWeights.bold}"
+          },
+          "lineHeight": {
+            "$type": "other",
+            "$value": "{lineHeights.1}"
+          },
+          "fontSize": {
+            "$type": "other",
+            "$value": "{fontSizes.13}"
+          },
+          "letterSpacing": {
+            "$type": "other",
+            "$value": "{letterSpacing.9}"
+          },
+          "paragraphSpacing": {
+            "$type": "other",
+            "$value": "{paragraphSpacing.0}"
+          },
+          "paragraphIndent": {
+            "$type": "other",
+            "$value": "{paragraphIndent.0}"
+          },
+          "textCase": {
+            "$type": "other",
+            "$value": "{textCase.none}"
+          },
+          "textDecoration": {
+            "$type": "other",
+            "$value": "{textDecoration.none}"
+          }
+        },
+        "type": {
+          "$type": "other",
+          "$value": "typography"
+        }
+      },
+      "2xl": {
+        "value": {
+          "fontFamily": {
+            "$type": "other",
+            "$value": "{fontFamilies.heading}"
+          },
+          "fontWeight": {
+            "$type": "other",
+            "$value": "{fontWeights.bold}"
+          },
+          "lineHeight": {
+            "$type": "other",
+            "$value": "{lineHeights.1}"
+          },
+          "fontSize": {
+            "$type": "other",
+            "$value": "{fontSizes.11}"
+          },
+          "letterSpacing": {
+            "$type": "other",
+            "$value": "{letterSpacing.9}"
+          },
+          "paragraphSpacing": {
+            "$type": "other",
+            "$value": "{paragraphSpacing.0}"
+          },
+          "paragraphIndent": {
+            "$type": "other",
+            "$value": "{paragraphIndent.0}"
+          },
+          "textCase": {
+            "$type": "other",
+            "$value": "{textCase.none}"
+          },
+          "textDecoration": {
+            "$type": "other",
+            "$value": "{textDecoration.none}"
+          }
+        },
+        "type": {
+          "$type": "other",
+          "$value": "typography"
+        }
+      },
+      "xl": {
+        "value": {
+          "fontFamily": {
+            "$type": "other",
+            "$value": "{fontFamilies.heading}"
+          },
+          "fontWeight": {
+            "$type": "other",
+            "$value": "{fontWeights.bold}"
+          },
+          "lineHeight": {
+            "$type": "other",
+            "$value": "{lineHeights.12}"
+          },
+          "fontSize": {
+            "$type": "other",
+            "$value": "{fontSizes.10}"
+          },
+          "letterSpacing": {
+            "$type": "other",
+            "$value": "{letterSpacing.9}"
+          },
+          "paragraphSpacing": {
+            "$type": "other",
+            "$value": "{paragraphSpacing.0}"
+          },
+          "paragraphIndent": {
+            "$type": "other",
+            "$value": "{paragraphIndent.0}"
+          },
+          "textCase": {
+            "$type": "other",
+            "$value": "{textCase.none}"
+          },
+          "textDecoration": {
+            "$type": "other",
+            "$value": "{textDecoration.none}"
+          }
+        },
+        "type": {
+          "$type": "other",
+          "$value": "typography"
+        }
+      },
+      "lg": {
+        "value": {
+          "fontFamily": {
+            "$type": "other",
+            "$value": "{fontFamilies.heading}"
+          },
+          "fontWeight": {
+            "$type": "other",
+            "$value": "{fontWeights.bold}"
+          },
+          "lineHeight": {
+            "$type": "other",
+            "$value": "{lineHeights.5}"
+          },
+          "fontSize": {
+            "$type": "other",
+            "$value": "{fontSizes.7}"
+          },
+          "letterSpacing": {
+            "$type": "other",
+            "$value": "{letterSpacing.9}"
+          },
+          "paragraphSpacing": {
+            "$type": "other",
+            "$value": "{paragraphSpacing.0}"
+          },
+          "paragraphIndent": {
+            "$type": "other",
+            "$value": "{paragraphIndent.0}"
+          },
+          "textCase": {
+            "$type": "other",
+            "$value": "{textCase.none}"
+          },
+          "textDecoration": {
+            "$type": "other",
+            "$value": "{textDecoration.none}"
+          }
+        },
+        "type": {
+          "$type": "other",
+          "$value": "typography"
+        }
+      },
+      "md": {
+        "value": {
+          "fontFamily": {
+            "$type": "other",
+            "$value": "{fontFamilies.heading}"
+          },
+          "fontWeight": {
+            "$type": "other",
+            "$value": "{fontWeights.bold}"
+          },
+          "lineHeight": {
+            "$type": "other",
+            "$value": "{lineHeights.5}"
+          },
+          "fontSize": {
+            "$type": "other",
+            "$value": "{fontSizes.5}"
+          },
+          "letterSpacing": {
+            "$type": "other",
+            "$value": "{letterSpacing.9}"
+          },
+          "paragraphSpacing": {
+            "$type": "other",
+            "$value": "{paragraphSpacing.0}"
+          },
+          "paragraphIndent": {
+            "$type": "other",
+            "$value": "{paragraphIndent.0}"
+          },
+          "textCase": {
+            "$type": "other",
+            "$value": "{textCase.none}"
+          },
+          "textDecoration": {
+            "$type": "other",
+            "$value": "{textDecoration.none}"
+          }
+        },
+        "type": {
+          "$type": "other",
+          "$value": "typography"
+        }
+      },
+      "sm": {
+        "value": {
+          "fontFamily": {
+            "$type": "other",
+            "$value": "{fontFamilies.heading}"
+          },
+          "fontWeight": {
+            "$type": "other",
+            "$value": "{fontWeights.bold}"
+          },
+          "lineHeight": {
+            "$type": "other",
+            "$value": "{lineHeights.7}"
+          },
+          "fontSize": {
+            "$type": "other",
+            "$value": "{fontSizes.3}"
+          },
+          "letterSpacing": {
+            "$type": "other",
+            "$value": "{letterSpacing.9}"
+          },
+          "paragraphSpacing": {
+            "$type": "other",
+            "$value": "{paragraphSpacing.0}"
+          },
+          "paragraphIndent": {
+            "$type": "other",
+            "$value": "{paragraphIndent.0}"
+          },
+          "textCase": {
+            "$type": "other",
+            "$value": "{textCase.none}"
+          },
+          "textDecoration": {
+            "$type": "other",
+            "$value": "{textDecoration.none}"
+          }
+        },
+        "type": {
+          "$type": "other",
+          "$value": "typography"
+        }
+      },
+      "xs": {
+        "value": {
+          "fontFamily": {
+            "$type": "other",
+            "$value": "{fontFamilies.heading}"
+          },
+          "fontWeight": {
+            "$type": "other",
+            "$value": "{fontWeights.bold}"
+          },
+          "lineHeight": {
+            "$type": "other",
+            "$value": "{lineHeights.8}"
+          },
+          "fontSize": {
+            "$type": "other",
+            "$value": "{fontSizes.2}"
+          },
+          "letterSpacing": {
+            "$type": "other",
+            "$value": "{letterSpacing.9}"
+          },
+          "paragraphSpacing": {
+            "$type": "other",
+            "$value": "{paragraphSpacing.0}"
+          },
+          "paragraphIndent": {
+            "$type": "other",
+            "$value": "{paragraphIndent.0}"
+          },
+          "textCase": {
+            "$type": "other",
+            "$value": "{textCase.none}"
+          },
+          "textDecoration": {
+            "$type": "other",
+            "$value": "{textDecoration.none}"
+          }
+        },
+        "type": {
+          "$type": "other",
+          "$value": "typography"
+        }
+      }
+    }
+  },
+  "Body": {
+    "Heavy": {
+      "3xl": {
+        "value": {
+          "fontFamily": {
+            "$type": "other",
+            "$value": "{fontFamilies.body}"
+          },
+          "fontWeight": {
+            "$type": "other",
+            "$value": "{fontWeights.heavy}"
+          },
+          "lineHeight": {
+            "$type": "other",
+            "$value": "{lineHeights.5}"
+          },
+          "fontSize": {
+            "$type": "other",
+            "$value": "{fontSizes.13}"
+          },
+          "letterSpacing": {
+            "$type": "other",
+            "$value": "{letterSpacing.0}"
+          },
+          "paragraphSpacing": {
+            "$type": "other",
+            "$value": "{paragraphSpacing.0}"
+          },
+          "paragraphIndent": {
+            "$type": "other",
+            "$value": "{paragraphIndent.0}"
+          },
+          "textCase": {
+            "$type": "other",
+            "$value": "{textCase.none}"
+          },
+          "textDecoration": {
+            "$type": "other",
+            "$value": "{textDecoration.none}"
+          }
+        },
+        "type": {
+          "$type": "other",
+          "$value": "typography"
+        }
+      },
+      "2xl": {
+        "value": {
+          "fontFamily": {
+            "$type": "other",
+            "$value": "{fontFamilies.body}"
+          },
+          "fontWeight": {
+            "$type": "other",
+            "$value": "{fontWeights.heavy}"
+          },
+          "lineHeight": {
+            "$type": "other",
+            "$value": "{lineHeights.5}"
+          },
+          "fontSize": {
+            "$type": "other",
+            "$value": "{fontSizes.7}"
+          },
+          "letterSpacing": {
+            "$type": "other",
+            "$value": "{letterSpacing.0}"
+          },
+          "paragraphSpacing": {
+            "$type": "other",
+            "$value": "{paragraphSpacing.0}"
+          },
+          "paragraphIndent": {
+            "$type": "other",
+            "$value": "{paragraphIndent.0}"
+          },
+          "textCase": {
+            "$type": "other",
+            "$value": "{textCase.none}"
+          },
+          "textDecoration": {
+            "$type": "other",
+            "$value": "{textDecoration.none}"
+          }
+        },
+        "type": {
+          "$type": "other",
+          "$value": "typography"
+        }
+      },
+      "xl": {
+        "value": {
+          "fontFamily": {
+            "$type": "other",
+            "$value": "{fontFamilies.body}"
+          },
+          "fontWeight": {
+            "$type": "other",
+            "$value": "{fontWeights.heavy}"
+          },
+          "lineHeight": {
+            "$type": "other",
+            "$value": "{lineHeights.7}"
+          },
+          "fontSize": {
+            "$type": "other",
+            "$value": "{fontSizes.6}"
+          },
+          "letterSpacing": {
+            "$type": "other",
+            "$value": "{letterSpacing.0}"
+          },
+          "paragraphSpacing": {
+            "$type": "other",
+            "$value": "{paragraphSpacing.0}"
+          },
+          "paragraphIndent": {
+            "$type": "other",
+            "$value": "{paragraphIndent.0}"
+          },
+          "textCase": {
+            "$type": "other",
+            "$value": "{textCase.none}"
+          },
+          "textDecoration": {
+            "$type": "other",
+            "$value": "{textDecoration.none}"
+          }
+        },
+        "type": {
+          "$type": "other",
+          "$value": "typography"
+        }
+      },
+      "lg": {
+        "value": {
+          "fontFamily": {
+            "$type": "other",
+            "$value": "{fontFamilies.body}"
+          },
+          "fontWeight": {
+            "$type": "other",
+            "$value": "{fontWeights.heavy}"
+          },
+          "lineHeight": {
+            "$type": "other",
+            "$value": "{lineHeights.5}"
+          },
+          "fontSize": {
+            "$type": "other",
+            "$value": "{fontSizes.5}"
+          },
+          "letterSpacing": {
+            "$type": "other",
+            "$value": "{letterSpacing.0}"
+          },
+          "paragraphSpacing": {
+            "$type": "other",
+            "$value": "{paragraphSpacing.0}"
+          },
+          "paragraphIndent": {
+            "$type": "other",
+            "$value": "{paragraphIndent.0}"
+          },
+          "textCase": {
+            "$type": "other",
+            "$value": "{textCase.none}"
+          },
+          "textDecoration": {
+            "$type": "other",
+            "$value": "{textDecoration.none}"
+          }
+        },
+        "type": {
+          "$type": "other",
+          "$value": "typography"
+        }
+      },
+      "md": {
+        "value": {
+          "fontFamily": {
+            "$type": "other",
+            "$value": "{fontFamilies.body}"
+          },
+          "fontWeight": {
+            "$type": "other",
+            "$value": "{fontWeights.heavy}"
+          },
+          "lineHeight": {
+            "$type": "other",
+            "$value": "{lineHeights.8}"
+          },
+          "fontSize": {
+            "$type": "other",
+            "$value": "{fontSizes.4}"
+          },
+          "letterSpacing": {
+            "$type": "other",
+            "$value": "{letterSpacing.0}"
+          },
+          "paragraphSpacing": {
+            "$type": "other",
+            "$value": "{paragraphSpacing.0}"
+          },
+          "paragraphIndent": {
+            "$type": "other",
+            "$value": "{paragraphIndent.0}"
+          },
+          "textCase": {
+            "$type": "other",
+            "$value": "{textCase.none}"
+          },
+          "textDecoration": {
+            "$type": "other",
+            "$value": "{textDecoration.none}"
+          }
+        },
+        "type": {
+          "$type": "other",
+          "$value": "typography"
+        }
+      },
+      "sm": {
+        "value": {
+          "fontFamily": {
+            "$type": "other",
+            "$value": "{fontFamilies.body}"
+          },
+          "fontWeight": {
+            "$type": "other",
+            "$value": "{fontWeights.heavy}"
+          },
+          "lineHeight": {
+            "$type": "other",
+            "$value": "{lineHeights.7}"
+          },
+          "fontSize": {
+            "$type": "other",
+            "$value": "{fontSizes.3}"
+          },
+          "letterSpacing": {
+            "$type": "other",
+            "$value": "{letterSpacing.0}"
+          },
+          "paragraphSpacing": {
+            "$type": "other",
+            "$value": "{paragraphSpacing.0}"
+          },
+          "paragraphIndent": {
+            "$type": "other",
+            "$value": "{paragraphIndent.0}"
+          },
+          "textCase": {
+            "$type": "other",
+            "$value": "{textCase.none}"
+          },
+          "textDecoration": {
+            "$type": "other",
+            "$value": "{textDecoration.none}"
+          }
+        },
+        "type": {
+          "$type": "other",
+          "$value": "typography"
+        }
+      },
+      "xs": {
+        "value": {
+          "fontFamily": {
+            "$type": "other",
+            "$value": "{fontFamilies.body}"
+          },
+          "fontWeight": {
+            "$type": "other",
+            "$value": "{fontWeights.heavy}"
+          },
+          "lineHeight": {
+            "$type": "other",
+            "$value": "{lineHeights.5}"
+          },
+          "fontSize": {
+            "$type": "other",
+            "$value": "{fontSizes.2}"
+          },
+          "letterSpacing": {
+            "$type": "other",
+            "$value": "{letterSpacing.0}"
+          },
+          "paragraphSpacing": {
+            "$type": "other",
+            "$value": "{paragraphSpacing.0}"
+          },
+          "paragraphIndent": {
+            "$type": "other",
+            "$value": "{paragraphIndent.0}"
+          },
+          "textCase": {
+            "$type": "other",
+            "$value": "{textCase.none}"
+          },
+          "textDecoration": {
+            "$type": "other",
+            "$value": "{textDecoration.none}"
+          }
+        },
+        "type": {
+          "$type": "other",
+          "$value": "typography"
+        }
+      }
+    },
+    "Bold": {
+      "3xl": {
+        "value": {
+          "fontFamily": {
+            "$type": "other",
+            "$value": "{fontFamilies.body}"
+          },
+          "fontWeight": {
+            "$type": "other",
+            "$value": "{fontWeights.bold}"
+          },
+          "lineHeight": {
+            "$type": "other",
+            "$value": "{lineHeights.5}"
+          },
+          "fontSize": {
+            "$type": "other",
+            "$value": "{fontSizes.13}"
+          },
+          "letterSpacing": {
+            "$type": "other",
+            "$value": "{letterSpacing.0}"
+          },
+          "paragraphSpacing": {
+            "$type": "other",
+            "$value": "{paragraphSpacing.0}"
+          },
+          "paragraphIndent": {
+            "$type": "other",
+            "$value": "{paragraphIndent.0}"
+          },
+          "textCase": {
+            "$type": "other",
+            "$value": "{textCase.none}"
+          },
+          "textDecoration": {
+            "$type": "other",
+            "$value": "{textDecoration.none}"
+          }
+        },
+        "type": {
+          "$type": "other",
+          "$value": "typography"
+        }
+      },
+      "2xl": {
+        "value": {
+          "fontFamily": {
+            "$type": "other",
+            "$value": "{fontFamilies.body}"
+          },
+          "fontWeight": {
+            "$type": "other",
+            "$value": "{fontWeights.bold}"
+          },
+          "lineHeight": {
+            "$type": "other",
+            "$value": "{lineHeights.5}"
+          },
+          "fontSize": {
+            "$type": "other",
+            "$value": "{fontSizes.7}"
+          },
+          "letterSpacing": {
+            "$type": "other",
+            "$value": "{letterSpacing.0}"
+          },
+          "paragraphSpacing": {
+            "$type": "other",
+            "$value": "{paragraphSpacing.0}"
+          },
+          "paragraphIndent": {
+            "$type": "other",
+            "$value": "{paragraphIndent.0}"
+          },
+          "textCase": {
+            "$type": "other",
+            "$value": "{textCase.none}"
+          },
+          "textDecoration": {
+            "$type": "other",
+            "$value": "{textDecoration.none}"
+          }
+        },
+        "type": {
+          "$type": "other",
+          "$value": "typography"
+        }
+      },
+      "xl": {
+        "value": {
+          "fontFamily": {
+            "$type": "other",
+            "$value": "{fontFamilies.body}"
+          },
+          "fontWeight": {
+            "$type": "other",
+            "$value": "{fontWeights.bold}"
+          },
+          "lineHeight": {
+            "$type": "other",
+            "$value": "{lineHeights.7}"
+          },
+          "fontSize": {
+            "$type": "other",
+            "$value": "{fontSizes.6}"
+          },
+          "letterSpacing": {
+            "$type": "other",
+            "$value": "{letterSpacing.0}"
+          },
+          "paragraphSpacing": {
+            "$type": "other",
+            "$value": "{paragraphSpacing.0}"
+          },
+          "paragraphIndent": {
+            "$type": "other",
+            "$value": "{paragraphIndent.0}"
+          },
+          "textCase": {
+            "$type": "other",
+            "$value": "{textCase.none}"
+          },
+          "textDecoration": {
+            "$type": "other",
+            "$value": "{textDecoration.none}"
+          }
+        },
+        "type": {
+          "$type": "other",
+          "$value": "typography"
+        }
+      },
+      "lg": {
+        "value": {
+          "fontFamily": {
+            "$type": "other",
+            "$value": "{fontFamilies.body}"
+          },
+          "fontWeight": {
+            "$type": "other",
+            "$value": "{fontWeights.bold}"
+          },
+          "lineHeight": {
+            "$type": "other",
+            "$value": "{lineHeights.5}"
+          },
+          "fontSize": {
+            "$type": "other",
+            "$value": "{fontSizes.6}"
+          },
+          "letterSpacing": {
+            "$type": "other",
+            "$value": "{letterSpacing.0}"
+          },
+          "paragraphSpacing": {
+            "$type": "other",
+            "$value": "{paragraphSpacing.0}"
+          },
+          "paragraphIndent": {
+            "$type": "other",
+            "$value": "{paragraphIndent.0}"
+          },
+          "textCase": {
+            "$type": "other",
+            "$value": "{textCase.none}"
+          },
+          "textDecoration": {
+            "$type": "other",
+            "$value": "{textDecoration.none}"
+          }
+        },
+        "type": {
+          "$type": "other",
+          "$value": "typography"
+        }
+      },
+      "md": {
+        "value": {
+          "fontFamily": {
+            "$type": "other",
+            "$value": "{fontFamilies.body}"
+          },
+          "fontWeight": {
+            "$type": "other",
+            "$value": "{fontWeights.bold}"
+          },
+          "lineHeight": {
+            "$type": "other",
+            "$value": "{lineHeights.8}"
+          },
+          "fontSize": {
+            "$type": "other",
+            "$value": "{fontSizes.4}"
+          },
+          "letterSpacing": {
+            "$type": "other",
+            "$value": "{letterSpacing.28}"
+          },
+          "paragraphSpacing": {
+            "$type": "other",
+            "$value": "{paragraphSpacing.0}"
+          },
+          "paragraphIndent": {
+            "$type": "other",
+            "$value": "{paragraphIndent.0}"
+          },
+          "textCase": {
+            "$type": "other",
+            "$value": "{textCase.none}"
+          },
+          "textDecoration": {
+            "$type": "other",
+            "$value": "{textDecoration.none}"
+          }
+        },
+        "type": {
+          "$type": "other",
+          "$value": "typography"
+        }
+      },
+      "sm": {
+        "value": {
+          "fontFamily": {
+            "$type": "other",
+            "$value": "{fontFamilies.body}"
+          },
+          "fontWeight": {
+            "$type": "other",
+            "$value": "{fontWeights.bold}"
+          },
+          "lineHeight": {
+            "$type": "other",
+            "$value": "{lineHeights.7}"
+          },
+          "fontSize": {
+            "$type": "other",
+            "$value": "{fontSizes.3}"
+          },
+          "letterSpacing": {
+            "$type": "other",
+            "$value": "{letterSpacing.0}"
+          },
+          "paragraphSpacing": {
+            "$type": "other",
+            "$value": "{paragraphSpacing.0}"
+          },
+          "paragraphIndent": {
+            "$type": "other",
+            "$value": "{paragraphIndent.0}"
+          },
+          "textCase": {
+            "$type": "other",
+            "$value": "{textCase.none}"
+          },
+          "textDecoration": {
+            "$type": "other",
+            "$value": "{textDecoration.none}"
+          }
+        },
+        "type": {
+          "$type": "other",
+          "$value": "typography"
+        }
+      },
+      "xs": {
+        "value": {
+          "fontFamily": {
+            "$type": "other",
+            "$value": "{fontFamilies.body}"
+          },
+          "fontWeight": {
+            "$type": "other",
+            "$value": "{fontWeights.bold}"
+          },
+          "lineHeight": {
+            "$type": "other",
+            "$value": "{lineHeights.5}"
+          },
+          "fontSize": {
+            "$type": "other",
+            "$value": "{fontSizes.2}"
+          },
+          "letterSpacing": {
+            "$type": "other",
+            "$value": "{letterSpacing.0}"
+          },
+          "paragraphSpacing": {
+            "$type": "other",
+            "$value": "{paragraphSpacing.0}"
+          },
+          "paragraphIndent": {
+            "$type": "other",
+            "$value": "{paragraphIndent.0}"
+          },
+          "textCase": {
+            "$type": "other",
+            "$value": "{textCase.none}"
+          },
+          "textDecoration": {
+            "$type": "other",
+            "$value": "{textDecoration.none}"
+          }
+        },
+        "type": {
+          "$type": "other",
+          "$value": "typography"
+        }
+      },
+      "2xs": {
+        "value": {
+          "fontFamily": {
+            "$type": "other",
+            "$value": "{fontFamilies.body}"
+          },
+          "fontWeight": {
+            "$type": "other",
+            "$value": "{fontWeights.bold}"
+          },
+          "lineHeight": {
+            "$type": "other",
+            "$value": "{lineHeights.1}"
+          },
+          "fontSize": {
+            "$type": "other",
+            "$value": "{fontSizes.31}"
+          },
+          "letterSpacing": {
+            "$type": "other",
+            "$value": "{letterSpacing.0}"
+          },
+          "paragraphSpacing": {
+            "$type": "other",
+            "$value": "{paragraphSpacing.0}"
+          },
+          "paragraphIndent": {
+            "$type": "other",
+            "$value": "{paragraphIndent.0}"
+          },
+          "textCase": {
+            "$type": "other",
+            "$value": "{textCase.none}"
+          },
+          "textDecoration": {
+            "$type": "other",
+            "$value": "{textDecoration.none}"
+          }
+        },
+        "type": {
+          "$type": "other",
+          "$value": "typography"
+        }
+      }
+    },
+    "Medium": {
+      "3xl": {
+        "value": {
+          "fontFamily": {
+            "$type": "other",
+            "$value": "{fontFamilies.body}"
+          },
+          "fontWeight": {
+            "$type": "other",
+            "$value": "{fontWeights.medium}"
+          },
+          "lineHeight": {
+            "$type": "other",
+            "$value": "{lineHeights.5}"
+          },
+          "fontSize": {
+            "$type": "other",
+            "$value": "{fontSizes.13}"
+          },
+          "letterSpacing": {
+            "$type": "other",
+            "$value": "{letterSpacing.0}"
+          },
+          "paragraphSpacing": {
+            "$type": "other",
+            "$value": "{paragraphSpacing.0}"
+          },
+          "paragraphIndent": {
+            "$type": "other",
+            "$value": "{paragraphIndent.0}"
+          },
+          "textCase": {
+            "$type": "other",
+            "$value": "{textCase.none}"
+          },
+          "textDecoration": {
+            "$type": "other",
+            "$value": "{textDecoration.none}"
+          }
+        },
+        "type": {
+          "$type": "other",
+          "$value": "typography"
+        }
+      },
+      "2xl": {
+        "value": {
+          "fontFamily": {
+            "$type": "other",
+            "$value": "{fontFamilies.body}"
+          },
+          "fontWeight": {
+            "$type": "other",
+            "$value": "{fontWeights.medium}"
+          },
+          "lineHeight": {
+            "$type": "other",
+            "$value": "{lineHeights.5}"
+          },
+          "fontSize": {
+            "$type": "other",
+            "$value": "{fontSizes.7}"
+          },
+          "letterSpacing": {
+            "$type": "other",
+            "$value": "{letterSpacing.0}"
+          },
+          "paragraphSpacing": {
+            "$type": "other",
+            "$value": "{paragraphSpacing.0}"
+          },
+          "paragraphIndent": {
+            "$type": "other",
+            "$value": "{paragraphIndent.0}"
+          },
+          "textCase": {
+            "$type": "other",
+            "$value": "{textCase.none}"
+          },
+          "textDecoration": {
+            "$type": "other",
+            "$value": "{textDecoration.none}"
+          }
+        },
+        "type": {
+          "$type": "other",
+          "$value": "typography"
+        }
+      },
+      "xl": {
+        "value": {
+          "fontFamily": {
+            "$type": "other",
+            "$value": "{fontFamilies.body}"
+          },
+          "fontWeight": {
+            "$type": "other",
+            "$value": "{fontWeights.medium}"
+          },
+          "lineHeight": {
+            "$type": "other",
+            "$value": "{lineHeights.7}"
+          },
+          "fontSize": {
+            "$type": "other",
+            "$value": "{fontSizes.6}"
+          },
+          "letterSpacing": {
+            "$type": "other",
+            "$value": "{letterSpacing.0}"
+          },
+          "paragraphSpacing": {
+            "$type": "other",
+            "$value": "{paragraphSpacing.0}"
+          },
+          "paragraphIndent": {
+            "$type": "other",
+            "$value": "{paragraphIndent.0}"
+          },
+          "textCase": {
+            "$type": "other",
+            "$value": "{textCase.none}"
+          },
+          "textDecoration": {
+            "$type": "other",
+            "$value": "{textDecoration.none}"
+          }
+        },
+        "type": {
+          "$type": "other",
+          "$value": "typography"
+        }
+      },
+      "lg": {
+        "value": {
+          "fontFamily": {
+            "$type": "other",
+            "$value": "{fontFamilies.body}"
+          },
+          "fontWeight": {
+            "$type": "other",
+            "$value": "{fontWeights.medium}"
+          },
+          "lineHeight": {
+            "$type": "other",
+            "$value": "{lineHeights.5}"
+          },
+          "fontSize": {
+            "$type": "other",
+            "$value": "{fontSizes.5}"
+          },
+          "letterSpacing": {
+            "$type": "other",
+            "$value": "{letterSpacing.0}"
+          },
+          "paragraphSpacing": {
+            "$type": "other",
+            "$value": "{paragraphSpacing.0}"
+          },
+          "paragraphIndent": {
+            "$type": "other",
+            "$value": "{paragraphIndent.0}"
+          },
+          "textCase": {
+            "$type": "other",
+            "$value": "{textCase.none}"
+          },
+          "textDecoration": {
+            "$type": "other",
+            "$value": "{textDecoration.none}"
+          }
+        },
+        "type": {
+          "$type": "other",
+          "$value": "typography"
+        }
+      },
+      "md": {
+        "value": {
+          "fontFamily": {
+            "$type": "other",
+            "$value": "{fontFamilies.body}"
+          },
+          "fontWeight": {
+            "$type": "other",
+            "$value": "{fontWeights.medium}"
+          },
+          "lineHeight": {
+            "$type": "other",
+            "$value": "{lineHeights.7}"
+          },
+          "fontSize": {
+            "$type": "other",
+            "$value": "{fontSizes.4}"
+          },
+          "letterSpacing": {
+            "$type": "other",
+            "$value": "{letterSpacing.0}"
+          },
+          "paragraphSpacing": {
+            "$type": "other",
+            "$value": "{paragraphSpacing.0}"
+          },
+          "paragraphIndent": {
+            "$type": "other",
+            "$value": "{paragraphIndent.0}"
+          },
+          "textCase": {
+            "$type": "other",
+            "$value": "{textCase.none}"
+          },
+          "textDecoration": {
+            "$type": "other",
+            "$value": "{textDecoration.none}"
+          }
+        },
+        "type": {
+          "$type": "other",
+          "$value": "typography"
+        }
+      },
+      "sm": {
+        "value": {
+          "fontFamily": {
+            "$type": "other",
+            "$value": "{fontFamilies.body}"
+          },
+          "fontWeight": {
+            "$type": "other",
+            "$value": "{fontWeights.medium}"
+          },
+          "lineHeight": {
+            "$type": "other",
+            "$value": "{lineHeights.7}"
+          },
+          "fontSize": {
+            "$type": "other",
+            "$value": "{fontSizes.3}"
+          },
+          "letterSpacing": {
+            "$type": "other",
+            "$value": "{letterSpacing.0}"
+          },
+          "paragraphSpacing": {
+            "$type": "other",
+            "$value": "{paragraphSpacing.0}"
+          },
+          "paragraphIndent": {
+            "$type": "other",
+            "$value": "{paragraphIndent.0}"
+          },
+          "textCase": {
+            "$type": "other",
+            "$value": "{textCase.none}"
+          },
+          "textDecoration": {
+            "$type": "other",
+            "$value": "{textDecoration.none}"
+          }
+        },
+        "type": {
+          "$type": "other",
+          "$value": "typography"
+        }
+      },
+      "xs": {
+        "value": {
+          "fontFamily": {
+            "$type": "other",
+            "$value": "{fontFamilies.body}"
+          },
+          "fontWeight": {
+            "$type": "other",
+            "$value": "{fontWeights.medium}"
+          },
+          "lineHeight": {
+            "$type": "other",
+            "$value": "{lineHeights.5}"
+          },
+          "fontSize": {
+            "$type": "other",
+            "$value": "{fontSizes.2}"
+          },
+          "letterSpacing": {
+            "$type": "other",
+            "$value": "{letterSpacing.0}"
+          },
+          "paragraphSpacing": {
+            "$type": "other",
+            "$value": "{paragraphSpacing.0}"
+          },
+          "paragraphIndent": {
+            "$type": "other",
+            "$value": "{paragraphIndent.0}"
+          },
+          "textCase": {
+            "$type": "other",
+            "$value": "{textCase.none}"
+          },
+          "textDecoration": {
+            "$type": "other",
+            "$value": "{textDecoration.none}"
+          }
+        },
+        "type": {
+          "$type": "other",
+          "$value": "typography"
+        }
+      },
+      "2xs": {
+        "value": {
+          "fontFamily": {
+            "$type": "other",
+            "$value": "{fontFamilies.body}"
+          },
+          "fontWeight": {
+            "$type": "other",
+            "$value": "{fontWeights.medium}"
+          },
+          "lineHeight": {
+            "$type": "other",
+            "$value": "{lineHeights.1}"
+          },
+          "fontSize": {
+            "$type": "other",
+            "$value": "{fontSizes.31}"
+          },
+          "letterSpacing": {
+            "$type": "other",
+            "$value": "{letterSpacing.0}"
+          },
+          "paragraphSpacing": {
+            "$type": "other",
+            "$value": "{paragraphSpacing.0}"
+          },
+          "paragraphIndent": {
+            "$type": "other",
+            "$value": "{paragraphIndent.0}"
+          },
+          "textCase": {
+            "$type": "other",
+            "$value": "{textCase.none}"
+          },
+          "textDecoration": {
+            "$type": "other",
+            "$value": "{textDecoration.none}"
+          }
+        },
+        "type": {
+          "$type": "other",
+          "$value": "typography"
+        }
+      }
+    },
+    "Regular": {
+      "3xl": {
+        "value": {
+          "fontFamily": {
+            "$type": "other",
+            "$value": "{fontFamilies.body}"
+          },
+          "fontWeight": {
+            "$type": "other",
+            "$value": "{fontWeights.regular}"
+          },
+          "lineHeight": {
+            "$type": "other",
+            "$value": "{lineHeights.5}"
+          },
+          "fontSize": {
+            "$type": "other",
+            "$value": "{fontSizes.13}"
+          },
+          "letterSpacing": {
+            "$type": "other",
+            "$value": "{letterSpacing.0}"
+          },
+          "paragraphSpacing": {
+            "$type": "other",
+            "$value": "{paragraphSpacing.0}"
+          },
+          "paragraphIndent": {
+            "$type": "other",
+            "$value": "{paragraphIndent.0}"
+          },
+          "textCase": {
+            "$type": "other",
+            "$value": "{textCase.none}"
+          },
+          "textDecoration": {
+            "$type": "other",
+            "$value": "{textDecoration.none}"
+          }
+        },
+        "type": {
+          "$type": "other",
+          "$value": "typography"
+        }
+      },
+      "2xl": {
+        "value": {
+          "fontFamily": {
+            "$type": "other",
+            "$value": "{fontFamilies.body}"
+          },
+          "fontWeight": {
+            "$type": "other",
+            "$value": "{fontWeights.regular}"
+          },
+          "lineHeight": {
+            "$type": "other",
+            "$value": "{lineHeights.5}"
+          },
+          "fontSize": {
+            "$type": "other",
+            "$value": "{fontSizes.7}"
+          },
+          "letterSpacing": {
+            "$type": "other",
+            "$value": "{letterSpacing.0}"
+          },
+          "paragraphSpacing": {
+            "$type": "other",
+            "$value": "{paragraphSpacing.0}"
+          },
+          "paragraphIndent": {
+            "$type": "other",
+            "$value": "{paragraphIndent.0}"
+          },
+          "textCase": {
+            "$type": "other",
+            "$value": "{textCase.none}"
+          },
+          "textDecoration": {
+            "$type": "other",
+            "$value": "{textDecoration.none}"
+          }
+        },
+        "type": {
+          "$type": "other",
+          "$value": "typography"
+        }
+      },
+      "xl": {
+        "value": {
+          "fontFamily": {
+            "$type": "other",
+            "$value": "{fontFamilies.body}"
+          },
+          "fontWeight": {
+            "$type": "other",
+            "$value": "{fontWeights.regular}"
+          },
+          "lineHeight": {
+            "$type": "other",
+            "$value": "{lineHeights.7}"
+          },
+          "fontSize": {
+            "$type": "other",
+            "$value": "{fontSizes.6}"
+          },
+          "letterSpacing": {
+            "$type": "other",
+            "$value": "{letterSpacing.0}"
+          },
+          "paragraphSpacing": {
+            "$type": "other",
+            "$value": "{paragraphSpacing.0}"
+          },
+          "paragraphIndent": {
+            "$type": "other",
+            "$value": "{paragraphIndent.0}"
+          },
+          "textCase": {
+            "$type": "other",
+            "$value": "{textCase.none}"
+          },
+          "textDecoration": {
+            "$type": "other",
+            "$value": "{textDecoration.none}"
+          }
+        },
+        "type": {
+          "$type": "other",
+          "$value": "typography"
+        }
+      },
+      "lg": {
+        "value": {
+          "fontFamily": {
+            "$type": "other",
+            "$value": "{fontFamilies.body}"
+          },
+          "fontWeight": {
+            "$type": "other",
+            "$value": "{fontWeights.regular}"
+          },
+          "lineHeight": {
+            "$type": "other",
+            "$value": "{lineHeights.7}"
+          },
+          "fontSize": {
+            "$type": "other",
+            "$value": "{fontSizes.5}"
+          },
+          "letterSpacing": {
+            "$type": "other",
+            "$value": "{letterSpacing.0}"
+          },
+          "paragraphSpacing": {
+            "$type": "other",
+            "$value": "{paragraphSpacing.0}"
+          },
+          "paragraphIndent": {
+            "$type": "other",
+            "$value": "{paragraphIndent.0}"
+          },
+          "textCase": {
+            "$type": "other",
+            "$value": "{textCase.none}"
+          },
+          "textDecoration": {
+            "$type": "other",
+            "$value": "{textDecoration.none}"
+          }
+        },
+        "type": {
+          "$type": "other",
+          "$value": "typography"
+        }
+      },
+      "md": {
+        "value": {
+          "fontFamily": {
+            "$type": "other",
+            "$value": "{fontFamilies.body}"
+          },
+          "fontWeight": {
+            "$type": "other",
+            "$value": "{fontWeights.regular}"
+          },
+          "lineHeight": {
+            "$type": "other",
+            "$value": "{lineHeights.7}"
+          },
+          "fontSize": {
+            "$type": "other",
+            "$value": "{fontSizes.4}"
+          },
+          "letterSpacing": {
+            "$type": "other",
+            "$value": "{letterSpacing.0}"
+          },
+          "paragraphSpacing": {
+            "$type": "other",
+            "$value": "{paragraphSpacing.0}"
+          },
+          "paragraphIndent": {
+            "$type": "other",
+            "$value": "{paragraphIndent.0}"
+          },
+          "textCase": {
+            "$type": "other",
+            "$value": "{textCase.none}"
+          },
+          "textDecoration": {
+            "$type": "other",
+            "$value": "{textDecoration.none}"
+          }
+        },
+        "type": {
+          "$type": "other",
+          "$value": "typography"
+        }
+      },
+      "sm": {
+        "value": {
+          "fontFamily": {
+            "$type": "other",
+            "$value": "{fontFamilies.body}"
+          },
+          "fontWeight": {
+            "$type": "other",
+            "$value": "{fontWeights.regular}"
+          },
+          "lineHeight": {
+            "$type": "other",
+            "$value": "{lineHeights.7}"
+          },
+          "fontSize": {
+            "$type": "other",
+            "$value": "{fontSizes.3}"
+          },
+          "letterSpacing": {
+            "$type": "other",
+            "$value": "{letterSpacing.0}"
+          },
+          "paragraphSpacing": {
+            "$type": "other",
+            "$value": "{paragraphSpacing.0}"
+          },
+          "paragraphIndent": {
+            "$type": "other",
+            "$value": "{paragraphIndent.0}"
+          },
+          "textCase": {
+            "$type": "other",
+            "$value": "{textCase.none}"
+          },
+          "textDecoration": {
+            "$type": "other",
+            "$value": "{textDecoration.none}"
+          }
+        },
+        "type": {
+          "$type": "other",
+          "$value": "typography"
+        }
+      },
+      "xs": {
+        "value": {
+          "fontFamily": {
+            "$type": "other",
+            "$value": "{fontFamilies.body}"
+          },
+          "fontWeight": {
+            "$type": "other",
+            "$value": "{fontWeights.regular}"
+          },
+          "lineHeight": {
+            "$type": "other",
+            "$value": "{lineHeights.5}"
+          },
+          "fontSize": {
+            "$type": "other",
+            "$value": "{fontSizes.2}"
+          },
+          "letterSpacing": {
+            "$type": "other",
+            "$value": "{letterSpacing.0}"
+          },
+          "paragraphSpacing": {
+            "$type": "other",
+            "$value": "{paragraphSpacing.0}"
+          },
+          "paragraphIndent": {
+            "$type": "other",
+            "$value": "{paragraphIndent.0}"
+          },
+          "textCase": {
+            "$type": "other",
+            "$value": "{textCase.none}"
+          },
+          "textDecoration": {
+            "$type": "other",
+            "$value": "{textDecoration.none}"
+          }
+        },
+        "type": {
+          "$type": "other",
+          "$value": "typography"
+        }
+      },
+      "2xs": {
+        "value": {
+          "fontFamily": {
+            "$type": "other",
+            "$value": "{fontFamilies.body}"
+          },
+          "fontWeight": {
+            "$type": "other",
+            "$value": "{fontWeights.regular}"
+          },
+          "lineHeight": {
+            "$type": "other",
+            "$value": "{lineHeights.1}"
+          },
+          "fontSize": {
+            "$type": "other",
+            "$value": "{fontSizes.31}"
+          },
+          "letterSpacing": {
+            "$type": "other",
+            "$value": "{letterSpacing.0}"
+          },
+          "paragraphSpacing": {
+            "$type": "other",
+            "$value": "{paragraphSpacing.0}"
+          },
+          "paragraphIndent": {
+            "$type": "other",
+            "$value": "{paragraphIndent.0}"
+          },
+          "textCase": {
+            "$type": "other",
+            "$value": "{textCase.none}"
+          },
+          "textDecoration": {
+            "$type": "other",
+            "$value": "{textDecoration.none}"
+          }
+        },
+        "type": {
+          "$type": "other",
+          "$value": "typography"
+        }
+      }
+    },
+    "Light": {
+      "3xl": {
+        "value": {
+          "fontFamily": {
+            "$type": "other",
+            "$value": "{fontFamilies.body}"
+          },
+          "fontWeight": {
+            "$type": "other",
+            "$value": "{fontWeights.light}"
+          },
+          "lineHeight": {
+            "$type": "other",
+            "$value": "{lineHeights.5}"
+          },
+          "fontSize": {
+            "$type": "other",
+            "$value": "{fontSizes.13}"
+          },
+          "letterSpacing": {
+            "$type": "other",
+            "$value": "{letterSpacing.0}"
+          },
+          "paragraphSpacing": {
+            "$type": "other",
+            "$value": "{paragraphSpacing.0}"
+          },
+          "paragraphIndent": {
+            "$type": "other",
+            "$value": "{paragraphIndent.0}"
+          },
+          "textCase": {
+            "$type": "other",
+            "$value": "{textCase.none}"
+          },
+          "textDecoration": {
+            "$type": "other",
+            "$value": "{textDecoration.none}"
+          }
+        },
+        "type": {
+          "$type": "other",
+          "$value": "typography"
+        }
+      },
+      "2xl": {
+        "value": {
+          "fontFamily": {
+            "$type": "other",
+            "$value": "{fontFamilies.body}"
+          },
+          "fontWeight": {
+            "$type": "other",
+            "$value": "{fontWeights.light}"
+          },
+          "lineHeight": {
+            "$type": "other",
+            "$value": "{lineHeights.5}"
+          },
+          "fontSize": {
+            "$type": "other",
+            "$value": "{fontSizes.7}"
+          },
+          "letterSpacing": {
+            "$type": "other",
+            "$value": "{letterSpacing.0}"
+          },
+          "paragraphSpacing": {
+            "$type": "other",
+            "$value": "{paragraphSpacing.0}"
+          },
+          "paragraphIndent": {
+            "$type": "other",
+            "$value": "{paragraphIndent.0}"
+          },
+          "textCase": {
+            "$type": "other",
+            "$value": "{textCase.none}"
+          },
+          "textDecoration": {
+            "$type": "other",
+            "$value": "{textDecoration.none}"
+          }
+        },
+        "type": {
+          "$type": "other",
+          "$value": "typography"
+        }
+      },
+      "xl": {
+        "value": {
+          "fontFamily": {
+            "$type": "other",
+            "$value": "{fontFamilies.body}"
+          },
+          "fontWeight": {
+            "$type": "other",
+            "$value": "{fontWeights.light}"
+          },
+          "lineHeight": {
+            "$type": "other",
+            "$value": "{lineHeights.7}"
+          },
+          "fontSize": {
+            "$type": "other",
+            "$value": "{fontSizes.6}"
+          },
+          "letterSpacing": {
+            "$type": "other",
+            "$value": "{letterSpacing.0}"
+          },
+          "paragraphSpacing": {
+            "$type": "other",
+            "$value": "{paragraphSpacing.0}"
+          },
+          "paragraphIndent": {
+            "$type": "other",
+            "$value": "{paragraphIndent.0}"
+          },
+          "textCase": {
+            "$type": "other",
+            "$value": "{textCase.none}"
+          },
+          "textDecoration": {
+            "$type": "other",
+            "$value": "{textDecoration.none}"
+          }
+        },
+        "type": {
+          "$type": "other",
+          "$value": "typography"
+        }
+      },
+      "lg": {
+        "value": {
+          "fontFamily": {
+            "$type": "other",
+            "$value": "{fontFamilies.body}"
+          },
+          "fontWeight": {
+            "$type": "other",
+            "$value": "{fontWeights.light}"
+          },
+          "lineHeight": {
+            "$type": "other",
+            "$value": "{lineHeights.7}"
+          },
+          "fontSize": {
+            "$type": "other",
+            "$value": "{fontSizes.5}"
+          },
+          "letterSpacing": {
+            "$type": "other",
+            "$value": "{letterSpacing.0}"
+          },
+          "paragraphSpacing": {
+            "$type": "other",
+            "$value": "{paragraphSpacing.0}"
+          },
+          "paragraphIndent": {
+            "$type": "other",
+            "$value": "{paragraphIndent.0}"
+          },
+          "textCase": {
+            "$type": "other",
+            "$value": "{textCase.none}"
+          },
+          "textDecoration": {
+            "$type": "other",
+            "$value": "{textDecoration.none}"
+          }
+        },
+        "type": {
+          "$type": "other",
+          "$value": "typography"
+        }
+      },
+      "md": {
+        "value": {
+          "fontFamily": {
+            "$type": "other",
+            "$value": "{fontFamilies.body}"
+          },
+          "fontWeight": {
+            "$type": "other",
+            "$value": "{fontWeights.light}"
+          },
+          "lineHeight": {
+            "$type": "other",
+            "$value": "{lineHeights.7}"
+          },
+          "fontSize": {
+            "$type": "other",
+            "$value": "{fontSizes.4}"
+          },
+          "letterSpacing": {
+            "$type": "other",
+            "$value": "{letterSpacing.0}"
+          },
+          "paragraphSpacing": {
+            "$type": "other",
+            "$value": "{paragraphSpacing.0}"
+          },
+          "paragraphIndent": {
+            "$type": "other",
+            "$value": "{paragraphIndent.0}"
+          },
+          "textCase": {
+            "$type": "other",
+            "$value": "{textCase.none}"
+          },
+          "textDecoration": {
+            "$type": "other",
+            "$value": "{textDecoration.none}"
+          }
+        },
+        "type": {
+          "$type": "other",
+          "$value": "typography"
+        }
+      },
+      "sm": {
+        "value": {
+          "fontFamily": {
+            "$type": "other",
+            "$value": "{fontFamilies.body}"
+          },
+          "fontWeight": {
+            "$type": "other",
+            "$value": "{fontWeights.light}"
+          },
+          "lineHeight": {
+            "$type": "other",
+            "$value": "{lineHeights.7}"
+          },
+          "fontSize": {
+            "$type": "other",
+            "$value": "{fontSizes.3}"
+          },
+          "letterSpacing": {
+            "$type": "other",
+            "$value": "{letterSpacing.0}"
+          },
+          "paragraphSpacing": {
+            "$type": "other",
+            "$value": "{paragraphSpacing.0}"
+          },
+          "paragraphIndent": {
+            "$type": "other",
+            "$value": "{paragraphIndent.0}"
+          },
+          "textCase": {
+            "$type": "other",
+            "$value": "{textCase.none}"
+          },
+          "textDecoration": {
+            "$type": "other",
+            "$value": "{textDecoration.none}"
+          }
+        },
+        "type": {
+          "$type": "other",
+          "$value": "typography"
+        }
+      },
+      "xs": {
+        "value": {
+          "fontFamily": {
+            "$type": "other",
+            "$value": "{fontFamilies.body}"
+          },
+          "fontWeight": {
+            "$type": "other",
+            "$value": "{fontWeights.light}"
+          },
+          "lineHeight": {
+            "$type": "other",
+            "$value": "{lineHeights.5}"
+          },
+          "fontSize": {
+            "$type": "other",
+            "$value": "{fontSizes.2}"
+          },
+          "letterSpacing": {
+            "$type": "other",
+            "$value": "{letterSpacing.0}"
+          },
+          "paragraphSpacing": {
+            "$type": "other",
+            "$value": "{paragraphSpacing.0}"
+          },
+          "paragraphIndent": {
+            "$type": "other",
+            "$value": "{paragraphIndent.0}"
+          },
+          "textCase": {
+            "$type": "other",
+            "$value": "{textCase.none}"
+          },
+          "textDecoration": {
+            "$type": "other",
+            "$value": "{textDecoration.none}"
+          }
+        },
+        "type": {
+          "$type": "other",
+          "$value": "typography"
+        }
+      }
+    }
+  },
+  "Mono": {
+    "Bold": {
+      "xs": {
+        "value": {
+          "fontFamily": {
+            "$type": "other",
+            "$value": "{fontFamilies.mono}"
+          },
+          "fontWeight": {
+            "$type": "other",
+            "$value": "{fontWeights.bold}"
+          },
+          "lineHeight": {
+            "$type": "other",
+            "$value": "{lineHeights.7}"
+          },
+          "fontSize": {
+            "$type": "other",
+            "$value": "{fontSizes.2}"
+          },
+          "letterSpacing": {
+            "$type": "other",
+            "$value": "{letterSpacing.56}"
+          },
+          "paragraphSpacing": {
+            "$type": "other",
+            "$value": "{paragraphSpacing.0}"
+          },
+          "paragraphIndent": {
+            "$type": "other",
+            "$value": "{paragraphIndent.0}"
+          },
+          "textCase": {
+            "$type": "other",
+            "$value": "{textCase.uppercase}"
+          },
+          "textDecoration": {
+            "$type": "other",
+            "$value": "{textDecoration.none}"
+          }
+        },
+        "type": {
+          "$type": "other",
+          "$value": "typography"
+        }
+      },
+      "sm": {
+        "value": {
+          "fontFamily": {
+            "$type": "other",
+            "$value": "{fontFamilies.mono}"
+          },
+          "fontWeight": {
+            "$type": "other",
+            "$value": "{fontWeights.bold}"
+          },
+          "lineHeight": {
+            "$type": "other",
+            "$value": "{lineHeights.7}"
+          },
+          "fontSize": {
+            "$type": "other",
+            "$value": "{fontSizes.3}"
+          },
+          "letterSpacing": {
+            "$type": "other",
+            "$value": "{letterSpacing.56}"
+          },
+          "paragraphSpacing": {
+            "$type": "other",
+            "$value": "{paragraphSpacing.0}"
+          },
+          "paragraphIndent": {
+            "$type": "other",
+            "$value": "{paragraphIndent.0}"
+          },
+          "textCase": {
+            "$type": "other",
+            "$value": "{textCase.uppercase}"
+          },
+          "textDecoration": {
+            "$type": "other",
+            "$value": "{textDecoration.none}"
+          }
+        },
+        "type": {
+          "$type": "other",
+          "$value": "typography"
+        }
+      },
+      "md": {
+        "value": {
+          "fontFamily": {
+            "$type": "other",
+            "$value": "{fontFamilies.mono}"
+          },
+          "fontWeight": {
+            "$type": "other",
+            "$value": "{fontWeights.bold}"
+          },
+          "lineHeight": {
+            "$type": "other",
+            "$value": "{lineHeights.7}"
+          },
+          "fontSize": {
+            "$type": "other",
+            "$value": "{fontSizes.4}"
+          },
+          "letterSpacing": {
+            "$type": "other",
+            "$value": "{letterSpacing.58}"
+          },
+          "paragraphSpacing": {
+            "$type": "other",
+            "$value": "{paragraphSpacing.0}"
+          },
+          "paragraphIndent": {
+            "$type": "other",
+            "$value": "{paragraphIndent.0}"
+          },
+          "textCase": {
+            "$type": "other",
+            "$value": "{textCase.uppercase}"
+          },
+          "textDecoration": {
+            "$type": "other",
+            "$value": "{textDecoration.none}"
+          }
+        },
+        "type": {
+          "$type": "other",
+          "$value": "typography"
+        }
+      },
+      "lg": {
+        "value": {
+          "fontFamily": {
+            "$type": "other",
+            "$value": "{fontFamilies.mono}"
+          },
+          "fontWeight": {
+            "$type": "other",
+            "$value": "{fontWeights.bold}"
+          },
+          "lineHeight": {
+            "$type": "other",
+            "$value": "{lineHeights.7}"
+          },
+          "fontSize": {
+            "$type": "other",
+            "$value": "{fontSizes.5}"
+          },
+          "letterSpacing": {
+            "$type": "other",
+            "$value": "{letterSpacing.58}"
+          },
+          "paragraphSpacing": {
+            "$type": "other",
+            "$value": "{paragraphSpacing.0}"
+          },
+          "paragraphIndent": {
+            "$type": "other",
+            "$value": "{paragraphIndent.0}"
+          },
+          "textCase": {
+            "$type": "other",
+            "$value": "{textCase.uppercase}"
+          },
+          "textDecoration": {
+            "$type": "other",
+            "$value": "{textDecoration.none}"
+          }
+        },
+        "type": {
+          "$type": "other",
+          "$value": "typography"
+        }
+      },
+      "xl": {
+        "value": {
+          "fontFamily": {
+            "$type": "other",
+            "$value": "{fontFamilies.mono}"
+          },
+          "fontWeight": {
+            "$type": "other",
+            "$value": "{fontWeights.bold}"
+          },
+          "lineHeight": {
+            "$type": "other",
+            "$value": "{lineHeights.7}"
+          },
+          "fontSize": {
+            "$type": "other",
+            "$value": "{fontSizes.6}"
+          },
+          "letterSpacing": {
+            "$type": "other",
+            "$value": "{letterSpacing.0}"
+          },
+          "paragraphSpacing": {
+            "$type": "other",
+            "$value": "{paragraphSpacing.0}"
+          },
+          "paragraphIndent": {
+            "$type": "other",
+            "$value": "{paragraphIndent.0}"
+          },
+          "textCase": {
+            "$type": "other",
+            "$value": "{textCase.uppercase}"
+          },
+          "textDecoration": {
+            "$type": "other",
+            "$value": "{textDecoration.none}"
+          }
+        },
+        "type": {
+          "$type": "other",
+          "$value": "typography"
+        }
+      },
+      "2xl": {
+        "value": {
+          "fontFamily": {
+            "$type": "other",
+            "$value": "{fontFamilies.mono}"
+          },
+          "fontWeight": {
+            "$type": "other",
+            "$value": "{fontWeights.bold}"
+          },
+          "lineHeight": {
+            "$type": "other",
+            "$value": "{lineHeights.7}"
+          },
+          "fontSize": {
+            "$type": "other",
+            "$value": "{fontSizes.7}"
+          },
+          "letterSpacing": {
+            "$type": "other",
+            "$value": "{letterSpacing.0}"
+          },
+          "paragraphSpacing": {
+            "$type": "other",
+            "$value": "{paragraphSpacing.0}"
+          },
+          "paragraphIndent": {
+            "$type": "other",
+            "$value": "{paragraphIndent.0}"
+          },
+          "textCase": {
+            "$type": "other",
+            "$value": "{textCase.uppercase}"
+          },
+          "textDecoration": {
+            "$type": "other",
+            "$value": "{textDecoration.none}"
+          }
+        },
+        "type": {
+          "$type": "other",
+          "$value": "typography"
+        }
+      },
+      "3xl": {
+        "value": {
+          "fontFamily": {
+            "$type": "other",
+            "$value": "{fontFamilies.mono}"
+          },
+          "fontWeight": {
+            "$type": "other",
+            "$value": "{fontWeights.bold}"
+          },
+          "lineHeight": {
+            "$type": "other",
+            "$value": "{lineHeights.5}"
+          },
+          "fontSize": {
+            "$type": "other",
+            "$value": "{fontSizes.13}"
+          },
+          "letterSpacing": {
+            "$type": "other",
+            "$value": "{letterSpacing.0}"
+          },
+          "paragraphSpacing": {
+            "$type": "other",
+            "$value": "{paragraphSpacing.0}"
+          },
+          "paragraphIndent": {
+            "$type": "other",
+            "$value": "{paragraphIndent.0}"
+          },
+          "textCase": {
+            "$type": "other",
+            "$value": "{textCase.uppercase}"
+          },
+          "textDecoration": {
+            "$type": "other",
+            "$value": "{textDecoration.none}"
+          }
+        },
+        "type": {
+          "$type": "other",
+          "$value": "typography"
+        }
+      },
+      "4xl": {
+        "value": {
+          "fontFamily": {
+            "$type": "other",
+            "$value": "{fontFamilies.mono}"
+          },
+          "fontWeight": {
+            "$type": "other",
+            "$value": "{fontWeights.bold}"
+          },
+          "lineHeight": {
+            "$type": "other",
+            "$value": "{lineHeights.5}"
+          },
+          "fontSize": {
+            "$type": "other",
+            "$value": "{fontSizes.13}"
+          },
+          "letterSpacing": {
+            "$type": "other",
+            "$value": "{letterSpacing.0}"
+          },
+          "paragraphSpacing": {
+            "$type": "other",
+            "$value": "{paragraphSpacing.0}"
+          },
+          "paragraphIndent": {
+            "$type": "other",
+            "$value": "{paragraphIndent.0}"
+          },
+          "textCase": {
+            "$type": "other",
+            "$value": "{textCase.uppercase}"
+          },
+          "textDecoration": {
+            "$type": "other",
+            "$value": "{textDecoration.none}"
+          }
+        },
+        "type": {
+          "$type": "other",
+          "$value": "typography"
+        }
+      },
+      "5xl": {
+        "value": {
+          "fontFamily": {
+            "$type": "other",
+            "$value": "{fontFamilies.mono}"
+          },
+          "fontWeight": {
+            "$type": "other",
+            "$value": "{fontWeights.bold}"
+          },
+          "lineHeight": {
+            "$type": "other",
+            "$value": "{lineHeights.1}"
+          },
+          "fontSize": {
+            "$type": "other",
+            "$value": "{fontSizes.15}"
+          },
+          "letterSpacing": {
+            "$type": "other",
+            "$value": "{letterSpacing.0}"
+          },
+          "paragraphSpacing": {
+            "$type": "other",
+            "$value": "{paragraphSpacing.0}"
+          },
+          "paragraphIndent": {
+            "$type": "other",
+            "$value": "{paragraphIndent.0}"
+          },
+          "textCase": {
+            "$type": "other",
+            "$value": "{textCase.uppercase}"
+          },
+          "textDecoration": {
+            "$type": "other",
+            "$value": "{textDecoration.none}"
+          }
+        },
+        "type": {
+          "$type": "other",
+          "$value": "typography"
+        }
+      }
+    },
+    "Medium": {
+      "xs": {
+        "value": {
+          "fontFamily": {
+            "$type": "other",
+            "$value": "{fontFamilies.mono}"
+          },
+          "fontWeight": {
+            "$type": "other",
+            "$value": "{fontWeights.medium}"
+          },
+          "lineHeight": {
+            "$type": "other",
+            "$value": "{lineHeights.7}"
+          },
+          "fontSize": {
+            "$type": "other",
+            "$value": "{fontSizes.2}"
+          },
+          "letterSpacing": {
+            "$type": "other",
+            "$value": "{letterSpacing.56}"
+          },
+          "paragraphSpacing": {
+            "$type": "other",
+            "$value": "{paragraphSpacing.0}"
+          },
+          "paragraphIndent": {
+            "$type": "other",
+            "$value": "{paragraphIndent.0}"
+          },
+          "textCase": {
+            "$type": "other",
+            "$value": "{textCase.uppercase}"
+          },
+          "textDecoration": {
+            "$type": "other",
+            "$value": "{textDecoration.none}"
+          }
+        },
+        "type": {
+          "$type": "other",
+          "$value": "typography"
+        }
+      },
+      "sm": {
+        "value": {
+          "fontFamily": {
+            "$type": "other",
+            "$value": "{fontFamilies.mono}"
+          },
+          "fontWeight": {
+            "$type": "other",
+            "$value": "{fontWeights.medium}"
+          },
+          "lineHeight": {
+            "$type": "other",
+            "$value": "{lineHeights.7}"
+          },
+          "fontSize": {
+            "$type": "other",
+            "$value": "{fontSizes.3}"
+          },
+          "letterSpacing": {
+            "$type": "other",
+            "$value": "{letterSpacing.56}"
+          },
+          "paragraphSpacing": {
+            "$type": "other",
+            "$value": "{paragraphSpacing.0}"
+          },
+          "paragraphIndent": {
+            "$type": "other",
+            "$value": "{paragraphIndent.0}"
+          },
+          "textCase": {
+            "$type": "other",
+            "$value": "{textCase.uppercase}"
+          },
+          "textDecoration": {
+            "$type": "other",
+            "$value": "{textDecoration.none}"
+          }
+        },
+        "type": {
+          "$type": "other",
+          "$value": "typography"
+        }
+      },
+      "md": {
+        "value": {
+          "fontFamily": {
+            "$type": "other",
+            "$value": "{fontFamilies.mono}"
+          },
+          "fontWeight": {
+            "$type": "other",
+            "$value": "{fontWeights.medium}"
+          },
+          "lineHeight": {
+            "$type": "other",
+            "$value": "{lineHeights.7}"
+          },
+          "fontSize": {
+            "$type": "other",
+            "$value": "{fontSizes.4}"
+          },
+          "letterSpacing": {
+            "$type": "other",
+            "$value": "{letterSpacing.56}"
+          },
+          "paragraphSpacing": {
+            "$type": "other",
+            "$value": "{paragraphSpacing.0}"
+          },
+          "paragraphIndent": {
+            "$type": "other",
+            "$value": "{paragraphIndent.0}"
+          },
+          "textCase": {
+            "$type": "other",
+            "$value": "{textCase.uppercase}"
+          },
+          "textDecoration": {
+            "$type": "other",
+            "$value": "{textDecoration.none}"
+          }
+        },
+        "type": {
+          "$type": "other",
+          "$value": "typography"
+        }
+      },
+      "lg": {
+        "value": {
+          "fontFamily": {
+            "$type": "other",
+            "$value": "{fontFamilies.mono}"
+          },
+          "fontWeight": {
+            "$type": "other",
+            "$value": "{fontWeights.medium}"
+          },
+          "lineHeight": {
+            "$type": "other",
+            "$value": "{lineHeights.7}"
+          },
+          "fontSize": {
+            "$type": "other",
+            "$value": "{fontSizes.5}"
+          },
+          "letterSpacing": {
+            "$type": "other",
+            "$value": "{letterSpacing.58}"
+          },
+          "paragraphSpacing": {
+            "$type": "other",
+            "$value": "{paragraphSpacing.0}"
+          },
+          "paragraphIndent": {
+            "$type": "other",
+            "$value": "{paragraphIndent.0}"
+          },
+          "textCase": {
+            "$type": "other",
+            "$value": "{textCase.uppercase}"
+          },
+          "textDecoration": {
+            "$type": "other",
+            "$value": "{textDecoration.none}"
+          }
+        },
+        "type": {
+          "$type": "other",
+          "$value": "typography"
+        }
+      },
+      "xl": {
+        "value": {
+          "fontFamily": {
+            "$type": "other",
+            "$value": "{fontFamilies.mono}"
+          },
+          "fontWeight": {
+            "$type": "other",
+            "$value": "{fontWeights.medium}"
+          },
+          "lineHeight": {
+            "$type": "other",
+            "$value": "{lineHeights.7}"
+          },
+          "fontSize": {
+            "$type": "other",
+            "$value": "{fontSizes.6}"
+          },
+          "letterSpacing": {
+            "$type": "other",
+            "$value": "{letterSpacing.58}"
+          },
+          "paragraphSpacing": {
+            "$type": "other",
+            "$value": "{paragraphSpacing.0}"
+          },
+          "paragraphIndent": {
+            "$type": "other",
+            "$value": "{paragraphIndent.0}"
+          },
+          "textCase": {
+            "$type": "other",
+            "$value": "{textCase.uppercase}"
+          },
+          "textDecoration": {
+            "$type": "other",
+            "$value": "{textDecoration.none}"
+          }
+        },
+        "type": {
+          "$type": "other",
+          "$value": "typography"
+        }
+      },
+      "2xl": {
+        "value": {
+          "fontFamily": {
+            "$type": "other",
+            "$value": "{fontFamilies.mono}"
+          },
+          "fontWeight": {
+            "$type": "other",
+            "$value": "{fontWeights.medium}"
+          },
+          "lineHeight": {
+            "$type": "other",
+            "$value": "{lineHeights.7}"
+          },
+          "fontSize": {
+            "$type": "other",
+            "$value": "{fontSizes.7}"
+          },
+          "letterSpacing": {
+            "$type": "other",
+            "$value": "{letterSpacing.58}"
+          },
+          "paragraphSpacing": {
+            "$type": "other",
+            "$value": "{paragraphSpacing.0}"
+          },
+          "paragraphIndent": {
+            "$type": "other",
+            "$value": "{paragraphIndent.0}"
+          },
+          "textCase": {
+            "$type": "other",
+            "$value": "{textCase.uppercase}"
+          },
+          "textDecoration": {
+            "$type": "other",
+            "$value": "{textDecoration.none}"
+          }
+        },
+        "type": {
+          "$type": "other",
+          "$value": "typography"
+        }
+      },
+      "3xl": {
+        "value": {
+          "fontFamily": {
+            "$type": "other",
+            "$value": "{fontFamilies.mono}"
+          },
+          "fontWeight": {
+            "$type": "other",
+            "$value": "{fontWeights.medium}"
+          },
+          "lineHeight": {
+            "$type": "other",
+            "$value": "{lineHeights.5}"
+          },
+          "fontSize": {
+            "$type": "other",
+            "$value": "{fontSizes.13}"
+          },
+          "letterSpacing": {
+            "$type": "other",
+            "$value": "{letterSpacing.0}"
+          },
+          "paragraphSpacing": {
+            "$type": "other",
+            "$value": "{paragraphSpacing.0}"
+          },
+          "paragraphIndent": {
+            "$type": "other",
+            "$value": "{paragraphIndent.0}"
+          },
+          "textCase": {
+            "$type": "other",
+            "$value": "{textCase.uppercase}"
+          },
+          "textDecoration": {
+            "$type": "other",
+            "$value": "{textDecoration.none}"
+          }
+        },
+        "type": {
+          "$type": "other",
+          "$value": "typography"
+        }
+      },
+      "4xl": {
+        "value": {
+          "fontFamily": {
+            "$type": "other",
+            "$value": "{fontFamilies.mono}"
+          },
+          "fontWeight": {
+            "$type": "other",
+            "$value": "{fontWeights.medium}"
+          },
+          "lineHeight": {
+            "$type": "other",
+            "$value": "{lineHeights.5}"
+          },
+          "fontSize": {
+            "$type": "other",
+            "$value": "{fontSizes.13}"
+          },
+          "letterSpacing": {
+            "$type": "other",
+            "$value": "{letterSpacing.0}"
+          },
+          "paragraphSpacing": {
+            "$type": "other",
+            "$value": "{paragraphSpacing.0}"
+          },
+          "paragraphIndent": {
+            "$type": "other",
+            "$value": "{paragraphIndent.0}"
+          },
+          "textCase": {
+            "$type": "other",
+            "$value": "{textCase.uppercase}"
+          },
+          "textDecoration": {
+            "$type": "other",
+            "$value": "{textDecoration.none}"
+          }
+        },
+        "type": {
+          "$type": "other",
+          "$value": "typography"
+        }
+      },
+      "5xl": {
+        "value": {
+          "fontFamily": {
+            "$type": "other",
+            "$value": "{fontFamilies.mono}"
+          },
+          "fontWeight": {
+            "$type": "other",
+            "$value": "{fontWeights.medium}"
+          },
+          "lineHeight": {
+            "$type": "other",
+            "$value": "{lineHeights.1}"
+          },
+          "fontSize": {
+            "$type": "other",
+            "$value": "{fontSizes.15}"
+          },
+          "letterSpacing": {
+            "$type": "other",
+            "$value": "{letterSpacing.0}"
+          },
+          "paragraphSpacing": {
+            "$type": "other",
+            "$value": "{paragraphSpacing.0}"
+          },
+          "paragraphIndent": {
+            "$type": "other",
+            "$value": "{paragraphIndent.0}"
+          },
+          "textCase": {
+            "$type": "other",
+            "$value": "{textCase.uppercase}"
+          },
+          "textDecoration": {
+            "$type": "other",
+            "$value": "{textDecoration.none}"
+          }
+        },
+        "type": {
+          "$type": "other",
+          "$value": "typography"
+        }
+      }
+    },
+    "Regular": {
+      "xs": {
+        "value": {
+          "fontFamily": {
+            "$type": "other",
+            "$value": "{fontFamilies.mono}"
+          },
+          "fontWeight": {
+            "$type": "other",
+            "$value": "{fontWeights.regular}"
+          },
+          "lineHeight": {
+            "$type": "other",
+            "$value": "{lineHeights.7}"
+          },
+          "fontSize": {
+            "$type": "other",
+            "$value": "{fontSizes.2}"
+          },
+          "letterSpacing": {
+            "$type": "other",
+            "$value": "{letterSpacing.56}"
+          },
+          "paragraphSpacing": {
+            "$type": "other",
+            "$value": "{paragraphSpacing.0}"
+          },
+          "paragraphIndent": {
+            "$type": "other",
+            "$value": "{paragraphIndent.0}"
+          },
+          "textCase": {
+            "$type": "other",
+            "$value": "{textCase.uppercase}"
+          },
+          "textDecoration": {
+            "$type": "other",
+            "$value": "{textDecoration.none}"
+          }
+        },
+        "type": {
+          "$type": "other",
+          "$value": "typography"
+        }
+      },
+      "sm": {
+        "value": {
+          "fontFamily": {
+            "$type": "other",
+            "$value": "{fontFamilies.mono}"
+          },
+          "fontWeight": {
+            "$type": "other",
+            "$value": "{fontWeights.regular}"
+          },
+          "lineHeight": {
+            "$type": "other",
+            "$value": "{lineHeights.7}"
+          },
+          "fontSize": {
+            "$type": "other",
+            "$value": "{fontSizes.3}"
+          },
+          "letterSpacing": {
+            "$type": "other",
+            "$value": "{letterSpacing.56}"
+          },
+          "paragraphSpacing": {
+            "$type": "other",
+            "$value": "{paragraphSpacing.0}"
+          },
+          "paragraphIndent": {
+            "$type": "other",
+            "$value": "{paragraphIndent.0}"
+          },
+          "textCase": {
+            "$type": "other",
+            "$value": "{textCase.uppercase}"
+          },
+          "textDecoration": {
+            "$type": "other",
+            "$value": "{textDecoration.none}"
+          }
+        },
+        "type": {
+          "$type": "other",
+          "$value": "typography"
+        }
+      },
+      "md": {
+        "value": {
+          "fontFamily": {
+            "$type": "other",
+            "$value": "{fontFamilies.mono}"
+          },
+          "fontWeight": {
+            "$type": "other",
+            "$value": "{fontWeights.regular}"
+          },
+          "lineHeight": {
+            "$type": "other",
+            "$value": "{lineHeights.7}"
+          },
+          "fontSize": {
+            "$type": "other",
+            "$value": "{fontSizes.4}"
+          },
+          "letterSpacing": {
+            "$type": "other",
+            "$value": "{letterSpacing.56}"
+          },
+          "paragraphSpacing": {
+            "$type": "other",
+            "$value": "{paragraphSpacing.0}"
+          },
+          "paragraphIndent": {
+            "$type": "other",
+            "$value": "{paragraphIndent.0}"
+          },
+          "textCase": {
+            "$type": "other",
+            "$value": "{textCase.uppercase}"
+          },
+          "textDecoration": {
+            "$type": "other",
+            "$value": "{textDecoration.none}"
+          }
+        },
+        "type": {
+          "$type": "other",
+          "$value": "typography"
+        }
+      },
+      "lg": {
+        "value": {
+          "fontFamily": {
+            "$type": "other",
+            "$value": "{fontFamilies.mono}"
+          },
+          "fontWeight": {
+            "$type": "other",
+            "$value": "{fontWeights.regular}"
+          },
+          "lineHeight": {
+            "$type": "other",
+            "$value": "{lineHeights.7}"
+          },
+          "fontSize": {
+            "$type": "other",
+            "$value": "{fontSizes.5}"
+          },
+          "letterSpacing": {
+            "$type": "other",
+            "$value": "{letterSpacing.58}"
+          },
+          "paragraphSpacing": {
+            "$type": "other",
+            "$value": "{paragraphSpacing.0}"
+          },
+          "paragraphIndent": {
+            "$type": "other",
+            "$value": "{paragraphIndent.0}"
+          },
+          "textCase": {
+            "$type": "other",
+            "$value": "{textCase.uppercase}"
+          },
+          "textDecoration": {
+            "$type": "other",
+            "$value": "{textDecoration.none}"
+          }
+        },
+        "type": {
+          "$type": "other",
+          "$value": "typography"
+        }
+      },
+      "xl": {
+        "value": {
+          "fontFamily": {
+            "$type": "other",
+            "$value": "{fontFamilies.mono}"
+          },
+          "fontWeight": {
+            "$type": "other",
+            "$value": "{fontWeights.regular}"
+          },
+          "lineHeight": {
+            "$type": "other",
+            "$value": "{lineHeights.7}"
+          },
+          "fontSize": {
+            "$type": "other",
+            "$value": "{fontSizes.6}"
+          },
+          "letterSpacing": {
+            "$type": "other",
+            "$value": "{letterSpacing.58}"
+          },
+          "paragraphSpacing": {
+            "$type": "other",
+            "$value": "{paragraphSpacing.0}"
+          },
+          "paragraphIndent": {
+            "$type": "other",
+            "$value": "{paragraphIndent.0}"
+          },
+          "textCase": {
+            "$type": "other",
+            "$value": "{textCase.uppercase}"
+          },
+          "textDecoration": {
+            "$type": "other",
+            "$value": "{textDecoration.none}"
+          }
+        },
+        "type": {
+          "$type": "other",
+          "$value": "typography"
+        }
+      },
+      "2xl": {
+        "value": {
+          "fontFamily": {
+            "$type": "other",
+            "$value": "{fontFamilies.mono}"
+          },
+          "fontWeight": {
+            "$type": "other",
+            "$value": "{fontWeights.regular}"
+          },
+          "lineHeight": {
+            "$type": "other",
+            "$value": "{lineHeights.7}"
+          },
+          "fontSize": {
+            "$type": "other",
+            "$value": "{fontSizes.7}"
+          },
+          "letterSpacing": {
+            "$type": "other",
+            "$value": "{letterSpacing.58}"
+          },
+          "paragraphSpacing": {
+            "$type": "other",
+            "$value": "{paragraphSpacing.0}"
+          },
+          "paragraphIndent": {
+            "$type": "other",
+            "$value": "{paragraphIndent.0}"
+          },
+          "textCase": {
+            "$type": "other",
+            "$value": "{textCase.uppercase}"
+          },
+          "textDecoration": {
+            "$type": "other",
+            "$value": "{textDecoration.none}"
+          }
+        },
+        "type": {
+          "$type": "other",
+          "$value": "typography"
+        }
+      },
+      "3xl": {
+        "value": {
+          "fontFamily": {
+            "$type": "other",
+            "$value": "{fontFamilies.mono}"
+          },
+          "fontWeight": {
+            "$type": "other",
+            "$value": "{fontWeights.regular}"
+          },
+          "lineHeight": {
+            "$type": "other",
+            "$value": "{lineHeights.5}"
+          },
+          "fontSize": {
+            "$type": "other",
+            "$value": "{fontSizes.13}"
+          },
+          "letterSpacing": {
+            "$type": "other",
+            "$value": "{letterSpacing.0}"
+          },
+          "paragraphSpacing": {
+            "$type": "other",
+            "$value": "{paragraphSpacing.0}"
+          },
+          "paragraphIndent": {
+            "$type": "other",
+            "$value": "{paragraphIndent.0}"
+          },
+          "textCase": {
+            "$type": "other",
+            "$value": "{textCase.uppercase}"
+          },
+          "textDecoration": {
+            "$type": "other",
+            "$value": "{textDecoration.none}"
+          }
+        },
+        "type": {
+          "$type": "other",
+          "$value": "typography"
+        }
+      },
+      "4xl": {
+        "value": {
+          "fontFamily": {
+            "$type": "other",
+            "$value": "{fontFamilies.mono}"
+          },
+          "fontWeight": {
+            "$type": "other",
+            "$value": "{fontWeights.regular}"
+          },
+          "lineHeight": {
+            "$type": "other",
+            "$value": "{lineHeights.5}"
+          },
+          "fontSize": {
+            "$type": "other",
+            "$value": "{fontSizes.13}"
+          },
+          "letterSpacing": {
+            "$type": "other",
+            "$value": "{letterSpacing.0}"
+          },
+          "paragraphSpacing": {
+            "$type": "other",
+            "$value": "{paragraphSpacing.0}"
+          },
+          "paragraphIndent": {
+            "$type": "other",
+            "$value": "{paragraphIndent.0}"
+          },
+          "textCase": {
+            "$type": "other",
+            "$value": "{textCase.uppercase}"
+          },
+          "textDecoration": {
+            "$type": "other",
+            "$value": "{textDecoration.none}"
+          }
+        },
+        "type": {
+          "$type": "other",
+          "$value": "typography"
+        }
+      },
+      "5xl": {
+        "value": {
+          "fontFamily": {
+            "$type": "other",
+            "$value": "{fontFamilies.mono}"
+          },
+          "fontWeight": {
+            "$type": "other",
+            "$value": "{fontWeights.regular}"
+          },
+          "lineHeight": {
+            "$type": "other",
+            "$value": "{lineHeights.1}"
+          },
+          "fontSize": {
+            "$type": "other",
+            "$value": "{fontSizes.15}"
+          },
+          "letterSpacing": {
+            "$type": "other",
+            "$value": "{letterSpacing.0}"
+          },
+          "paragraphSpacing": {
+            "$type": "other",
+            "$value": "{paragraphSpacing.0}"
+          },
+          "paragraphIndent": {
+            "$type": "other",
+            "$value": "{paragraphIndent.0}"
+          },
+          "textCase": {
+            "$type": "other",
+            "$value": "{textCase.uppercase}"
+          },
+          "textDecoration": {
+            "$type": "other",
+            "$value": "{textDecoration.none}"
+          }
+        },
+        "type": {
+          "$type": "other",
+          "$value": "typography"
+        }
+      }
+    },
+    "Light": {
+      "xs": {
+        "value": {
+          "fontFamily": {
+            "$type": "other",
+            "$value": "{fontFamilies.mono}"
+          },
+          "fontWeight": {
+            "$type": "other",
+            "$value": "{fontWeights.light}"
+          },
+          "lineHeight": {
+            "$type": "other",
+            "$value": "{lineHeights.7}"
+          },
+          "fontSize": {
+            "$type": "other",
+            "$value": "{fontSizes.2}"
+          },
+          "letterSpacing": {
+            "$type": "other",
+            "$value": "{letterSpacing.56}"
+          },
+          "paragraphSpacing": {
+            "$type": "other",
+            "$value": "{paragraphSpacing.0}"
+          },
+          "paragraphIndent": {
+            "$type": "other",
+            "$value": "{paragraphIndent.0}"
+          },
+          "textCase": {
+            "$type": "other",
+            "$value": "{textCase.uppercase}"
+          },
+          "textDecoration": {
+            "$type": "other",
+            "$value": "{textDecoration.none}"
+          }
+        },
+        "type": {
+          "$type": "other",
+          "$value": "typography"
+        }
+      },
+      "sm": {
+        "value": {
+          "fontFamily": {
+            "$type": "other",
+            "$value": "{fontFamilies.mono}"
+          },
+          "fontWeight": {
+            "$type": "other",
+            "$value": "{fontWeights.light}"
+          },
+          "lineHeight": {
+            "$type": "other",
+            "$value": "{lineHeights.7}"
+          },
+          "fontSize": {
+            "$type": "other",
+            "$value": "{fontSizes.3}"
+          },
+          "letterSpacing": {
+            "$type": "other",
+            "$value": "{letterSpacing.56}"
+          },
+          "paragraphSpacing": {
+            "$type": "other",
+            "$value": "{paragraphSpacing.0}"
+          },
+          "paragraphIndent": {
+            "$type": "other",
+            "$value": "{paragraphIndent.0}"
+          },
+          "textCase": {
+            "$type": "other",
+            "$value": "{textCase.uppercase}"
+          },
+          "textDecoration": {
+            "$type": "other",
+            "$value": "{textDecoration.none}"
+          }
+        },
+        "type": {
+          "$type": "other",
+          "$value": "typography"
+        }
+      },
+      "md": {
+        "value": {
+          "fontFamily": {
+            "$type": "other",
+            "$value": "{fontFamilies.mono}"
+          },
+          "fontWeight": {
+            "$type": "other",
+            "$value": "{fontWeights.light}"
+          },
+          "lineHeight": {
+            "$type": "other",
+            "$value": "{lineHeights.7}"
+          },
+          "fontSize": {
+            "$type": "other",
+            "$value": "{fontSizes.4}"
+          },
+          "letterSpacing": {
+            "$type": "other",
+            "$value": "{letterSpacing.58}"
+          },
+          "paragraphSpacing": {
+            "$type": "other",
+            "$value": "{paragraphSpacing.0}"
+          },
+          "paragraphIndent": {
+            "$type": "other",
+            "$value": "{paragraphIndent.0}"
+          },
+          "textCase": {
+            "$type": "other",
+            "$value": "{textCase.uppercase}"
+          },
+          "textDecoration": {
+            "$type": "other",
+            "$value": "{textDecoration.none}"
+          }
+        },
+        "type": {
+          "$type": "other",
+          "$value": "typography"
+        }
+      },
+      "lg": {
+        "value": {
+          "fontFamily": {
+            "$type": "other",
+            "$value": "{fontFamilies.mono}"
+          },
+          "fontWeight": {
+            "$type": "other",
+            "$value": "{fontWeights.light}"
+          },
+          "lineHeight": {
+            "$type": "other",
+            "$value": "{lineHeights.7}"
+          },
+          "fontSize": {
+            "$type": "other",
+            "$value": "{fontSizes.5}"
+          },
+          "letterSpacing": {
+            "$type": "other",
+            "$value": "{letterSpacing.58}"
+          },
+          "paragraphSpacing": {
+            "$type": "other",
+            "$value": "{paragraphSpacing.0}"
+          },
+          "paragraphIndent": {
+            "$type": "other",
+            "$value": "{paragraphIndent.0}"
+          },
+          "textCase": {
+            "$type": "other",
+            "$value": "{textCase.uppercase}"
+          },
+          "textDecoration": {
+            "$type": "other",
+            "$value": "{textDecoration.none}"
+          }
+        },
+        "type": {
+          "$type": "other",
+          "$value": "typography"
+        }
+      },
+      "xl": {
+        "value": {
+          "fontFamily": {
+            "$type": "other",
+            "$value": "{fontFamilies.mono}"
+          },
+          "fontWeight": {
+            "$type": "other",
+            "$value": "{fontWeights.light}"
+          },
+          "lineHeight": {
+            "$type": "other",
+            "$value": "{lineHeights.7}"
+          },
+          "fontSize": {
+            "$type": "other",
+            "$value": "{fontSizes.6}"
+          },
+          "letterSpacing": {
+            "$type": "other",
+            "$value": "{letterSpacing.58}"
+          },
+          "paragraphSpacing": {
+            "$type": "other",
+            "$value": "{paragraphSpacing.0}"
+          },
+          "paragraphIndent": {
+            "$type": "other",
+            "$value": "{paragraphIndent.0}"
+          },
+          "textCase": {
+            "$type": "other",
+            "$value": "{textCase.uppercase}"
+          },
+          "textDecoration": {
+            "$type": "other",
+            "$value": "{textDecoration.none}"
+          }
+        },
+        "type": {
+          "$type": "other",
+          "$value": "typography"
+        }
+      },
+      "2xl": {
+        "value": {
+          "fontFamily": {
+            "$type": "other",
+            "$value": "{fontFamilies.mono}"
+          },
+          "fontWeight": {
+            "$type": "other",
+            "$value": "{fontWeights.light}"
+          },
+          "lineHeight": {
+            "$type": "other",
+            "$value": "{lineHeights.7}"
+          },
+          "fontSize": {
+            "$type": "other",
+            "$value": "{fontSizes.7}"
+          },
+          "letterSpacing": {
+            "$type": "other",
+            "$value": "{letterSpacing.58}"
+          },
+          "paragraphSpacing": {
+            "$type": "other",
+            "$value": "{paragraphSpacing.0}"
+          },
+          "paragraphIndent": {
+            "$type": "other",
+            "$value": "{paragraphIndent.0}"
+          },
+          "textCase": {
+            "$type": "other",
+            "$value": "{textCase.uppercase}"
+          },
+          "textDecoration": {
+            "$type": "other",
+            "$value": "{textDecoration.none}"
+          }
+        },
+        "type": {
+          "$type": "other",
+          "$value": "typography"
+        }
+      },
+      "3xl": {
+        "value": {
+          "fontFamily": {
+            "$type": "other",
+            "$value": "{fontFamilies.mono}"
+          },
+          "fontWeight": {
+            "$type": "other",
+            "$value": "{fontWeights.light}"
+          },
+          "lineHeight": {
+            "$type": "other",
+            "$value": "{lineHeights.5}"
+          },
+          "fontSize": {
+            "$type": "other",
+            "$value": "{fontSizes.13}"
+          },
+          "letterSpacing": {
+            "$type": "other",
+            "$value": "{letterSpacing.0}"
+          },
+          "paragraphSpacing": {
+            "$type": "other",
+            "$value": "{paragraphSpacing.0}"
+          },
+          "paragraphIndent": {
+            "$type": "other",
+            "$value": "{paragraphIndent.0}"
+          },
+          "textCase": {
+            "$type": "other",
+            "$value": "{textCase.uppercase}"
+          },
+          "textDecoration": {
+            "$type": "other",
+            "$value": "{textDecoration.none}"
+          }
+        },
+        "type": {
+          "$type": "other",
+          "$value": "typography"
+        }
+      },
+      "4xl": {
+        "value": {
+          "fontFamily": {
+            "$type": "other",
+            "$value": "{fontFamilies.mono}"
+          },
+          "fontWeight": {
+            "$type": "other",
+            "$value": "{fontWeights.light}"
+          },
+          "lineHeight": {
+            "$type": "other",
+            "$value": "{lineHeights.5}"
+          },
+          "fontSize": {
+            "$type": "other",
+            "$value": "{fontSizes.13}"
+          },
+          "letterSpacing": {
+            "$type": "other",
+            "$value": "{letterSpacing.0}"
+          },
+          "paragraphSpacing": {
+            "$type": "other",
+            "$value": "{paragraphSpacing.0}"
+          },
+          "paragraphIndent": {
+            "$type": "other",
+            "$value": "{paragraphIndent.0}"
+          },
+          "textCase": {
+            "$type": "other",
+            "$value": "{textCase.uppercase}"
+          },
+          "textDecoration": {
+            "$type": "other",
+            "$value": "{textDecoration.none}"
+          }
+        },
+        "type": {
+          "$type": "other",
+          "$value": "typography"
+        }
+      },
+      "5xl": {
+        "value": {
+          "fontFamily": {
+            "$type": "other",
+            "$value": "{fontFamilies.mono}"
+          },
+          "fontWeight": {
+            "$type": "other",
+            "$value": "{fontWeights.light}"
+          },
+          "lineHeight": {
+            "$type": "other",
+            "$value": "{lineHeights.1}"
+          },
+          "fontSize": {
+            "$type": "other",
+            "$value": "{fontSizes.15}"
+          },
+          "letterSpacing": {
+            "$type": "other",
+            "$value": "{letterSpacing.0}"
+          },
+          "paragraphSpacing": {
+            "$type": "other",
+            "$value": "{paragraphSpacing.0}"
+          },
+          "paragraphIndent": {
+            "$type": "other",
+            "$value": "{paragraphIndent.0}"
+          },
+          "textCase": {
+            "$type": "other",
+            "$value": "{textCase.uppercase}"
+          },
+          "textDecoration": {
+            "$type": "other",
+            "$value": "{textDecoration.none}"
+          }
+        },
+        "type": {
+          "$type": "other",
+          "$value": "typography"
+        }
+      }
+    }
+  },
+  "boxShadow": {
+    "xs": {
+      "value": {
+        "color": "#0000000d",
+        "type": "dropShadow",
+        "x": "0",
+        "y": "0",
+        "blur": "0",
+        "spread": "1"
+      },
+      "type": "boxShadow"
+    },
+    "sm": {
+      "value": {
+        "color": "#0000000d",
+        "type": "dropShadow",
+        "x": "0",
+        "y": "1",
+        "blur": "2",
+        "spread": "0"
+      },
+      "type": "boxShadow"
+    },
+    "base": {
+      "value": [
+        {
+          "color": "#0000000d",
+          "type": "dropShadow",
+          "x": "0",
+          "y": "1",
+          "blur": "2",
+          "spread": "0"
+        },
+        {
+          "color": "#0000000d",
+          "type": "dropShadow",
+          "x": "0",
+          "y": "1",
+          "blur": "3",
+          "spread": "0"
+        }
+      ],
+      "type": "boxShadow"
+    },
+    "md": {
+      "value": [
+        {
+          "color": "#00000005",
+          "type": "dropShadow",
+          "x": "0",
+          "y": "2",
+          "blur": "4",
+          "spread": "-1"
+        },
+        {
+          "color": "#00000014",
+          "type": "dropShadow",
+          "x": "0",
+          "y": "4",
+          "blur": "6",
+          "spread": "-1"
+        }
+      ],
+      "type": "boxShadow"
+    },
+    "lg": {
+      "value": [
+        {
+          "color": "#00000005",
+          "type": "dropShadow",
+          "x": "0",
+          "y": "4",
+          "blur": "6",
+          "spread": "-2"
+        },
+        {
+          "color": "#0000000d",
+          "type": "dropShadow",
+          "x": "0",
+          "y": "10",
+          "blur": "15",
+          "spread": "-3"
+        }
+      ],
+      "type": "boxShadow"
+    },
+    "xl": {
+      "value": [
+        {
+          "color": "#00000005",
+          "type": "dropShadow",
+          "x": "0",
+          "y": "10",
+          "blur": "10",
+          "spread": "-5"
+        },
+        {
+          "color": "#0000000d",
+          "type": "dropShadow",
+          "x": "0",
+          "y": "20",
+          "blur": "25",
+          "spread": "-5"
+        }
+      ],
+      "type": "boxShadow"
+    },
+    "2xl": {
+      "value": {
+        "color": "#0000001a",
+        "type": "dropShadow",
+        "x": "0",
+        "y": "25",
+        "blur": "50",
+        "spread": "-12"
+      },
+      "type": "boxShadow"
+    },
+    "inner": {
+      "value": {
+        "color": "#0000000f",
+        "type": "innerShadow",
+        "x": "0",
+        "y": "2",
+        "blur": "4",
+        "spread": "0"
+      },
+      "type": "boxShadow"
+    },
+    "hard": {
+      "value": {
+        "color": "#14063b",
+        "type": "dropShadow",
+        "x": "4",
+        "y": "4",
+        "blur": "0",
+        "spread": "0"
+      },
+      "type": "boxShadow"
+    },
+    "containers": {
+      "value": [
+        {
+          "color": "#0000000a",
+          "type": "dropShadow",
+          "x": "0",
+          "y": "10",
+          "blur": "10",
+          "spread": "-5"
+        },
+        {
+          "color": "#0000001a",
+          "type": "dropShadow",
+          "x": "0",
+          "y": "20",
+          "blur": "25",
+          "spread": "-5"
+        }
+      ],
+      "type": "boxShadow"
+    },
+    "outline": {
+      "value": [
+        {
+          "color": "#4e19eb",
+          "type": "dropShadow",
+          "x": "0",
+          "y": "0",
+          "blur": "0",
+          "spread": "4"
+        },
+        {
+          "color": "#ffffff",
+          "type": "dropShadow",
+          "x": "0",
+          "y": "0",
+          "blur": "0",
+          "spread": "2"
+        },
+        {
+          "color": "#0000001a",
+          "type": "dropShadow",
+          "x": "0",
+          "y": "6",
+          "blur": "6",
+          "spread": "0"
+        }
+      ],
+      "type": "boxShadow"
+    },
+    "outerPrimary": {
+      "value": {
+        "color": "#4e19eb66",
+        "type": "dropShadow",
+        "x": "0",
+        "y": "0",
+        "blur": "6",
+        "spread": "0"
+      },
+      "type": "boxShadow"
+    },
+    "outerSecondary": {
+      "value": {
+        "color": "#22d3eeb3",
+        "type": "dropShadow",
+        "x": "0",
+        "y": "0",
+        "blur": "6",
+        "spread": "0"
+      },
+      "type": "boxShadow"
+    },
+    "outerTertiary": {
+      "value": {
+        "color": "#97a7b980",
+        "type": "dropShadow",
+        "x": "0",
+        "y": "0",
+        "blur": "6",
+        "spread": "0"
+      },
+      "type": "boxShadow"
+    },
+    "outerSuccess": {
+      "value": {
+        "color": "#10b98180",
+        "type": "dropShadow",
+        "x": "0",
+        "y": "0",
+        "blur": "6",
+        "spread": "0"
+      },
+      "type": "boxShadow"
+    },
+    "outerError": {
+      "value": {
+        "color": "#f43f5e80",
+        "type": "dropShadow",
+        "x": "0",
+        "y": "0",
+        "blur": "6",
+        "spread": "0"
+      },
+      "type": "boxShadow"
+    }
+  },
+  "borderWidth": {
+    "0": {
+      "value": "0px",
+      "type": "borderWidth"
+    },
+    "1": {
+      "value": "1px",
+      "type": "borderWidth"
+    },
+    "2": {
+      "value": "2px",
+      "type": "borderWidth"
+    },
+    "3": {
+      "value": "3px",
+      "type": "borderWidth"
+    },
+    "4": {
+      "value": "4px",
+      "type": "borderWidth"
+    },
+    "5": {
+      "value": "5px",
+      "type": "borderWidth"
+    },
+    "6": {
+      "value": "6px",
+      "type": "borderWidth"
+    },
+    "7": {
+      "value": "7px",
+      "type": "borderWidth"
+    },
+    "8": {
+      "value": "8px",
+      "type": "borderWidth"
+    }
+  },
+  "border": {
+    "all": {
+      "1": {
+        "value": {
+          "color": "{colors.blackAlpha.400}",
+          "width": "{borderWidth.1}",
+          "style": "solid"
+        },
+        "type": "border"
+      },
+      "2": {
+        "value": {
+          "color": "{colors.blackAlpha.400}",
+          "width": "{borderWidth.2}",
+          "style": "solid"
+        },
+        "type": "border"
+      },
+      "3": {
+        "value": {
+          "color": "{colors.blackAlpha.400}",
+          "width": "{borderWidth.3}",
+          "style": "solid"
+        },
+        "type": "border"
+      },
+      "4": {
+        "value": {
+          "color": "{colors.blackAlpha.400}",
+          "width": "{borderWidth.4}",
+          "style": "solid"
+        },
+        "type": "border"
+      },
+      "5": {
+        "value": {
+          "color": "{colors.blackAlpha.400}",
+          "width": "{borderWidth.5}",
+          "style": "solid"
+        },
+        "type": "border"
+      },
+      "6": {
+        "value": {
+          "color": "{colors.blackAlpha.400}",
+          "width": "{borderWidth.6}",
+          "style": "solid"
+        },
+        "type": "border"
+      },
+      "7": {
+        "value": {
+          "color": "{colors.blackAlpha.400}",
+          "width": "{borderWidth.7}",
+          "style": "solid"
+        },
+        "type": "border"
+      },
+      "8": {
+        "value": {
+          "color": "{colors.blackAlpha.400}",
+          "width": "{borderWidth.8}",
+          "style": "solid"
+        },
+        "type": "border"
+      }
+    },
+    "top": {
+      "1": {
+        "value": {
+          "color": "{colors.blackAlpha.400}",
+          "width": "{borderWidth.1} 0 0 0",
+          "style": "solid"
+        },
+        "type": "border"
+      },
+      "2": {
+        "value": {
+          "color": "{colors.blackAlpha.400}",
+          "width": "{borderWidth.2} 0 0 0",
+          "style": "solid"
+        },
+        "type": "border"
+      },
+      "3": {
+        "value": {
+          "color": "{colors.blackAlpha.400}",
+          "width": "{borderWidth.3} 0 0 0",
+          "style": "solid"
+        },
+        "type": "border"
+      },
+      "4": {
+        "value": {
+          "color": "{colors.blackAlpha.400}",
+          "width": "{borderWidth.4} 0 0 0",
+          "style": "solid"
+        },
+        "type": "border"
+      },
+      "5": {
+        "value": {
+          "color": "{colors.blackAlpha.400}",
+          "width": "{borderWidth.5} 0 0 0",
+          "style": "solid"
+        },
+        "type": "border"
+      },
+      "6": {
+        "value": {
+          "color": "{colors.blackAlpha.400}",
+          "width": "{borderWidth.6} 0 0 0",
+          "style": "solid"
+        },
+        "type": "border"
+      },
+      "7": {
+        "value": {
+          "color": "{colors.blackAlpha.400}",
+          "width": "{borderWidth.7} 0 0 0",
+          "style": "solid"
+        },
+        "type": "border"
+      },
+      "8": {
+        "value": {
+          "color": "{colors.blackAlpha.400}",
+          "width": "{borderWidth.8} 0 0 0",
+          "style": "solid"
+        },
+        "type": "border"
+      }
+    },
+    "right": {
+      "1": {
+        "value": {
+          "color": "{colors.blackAlpha.400}",
+          "width": "0 {borderWidth.1} 0 0",
+          "style": "solid"
+        },
+        "type": "border"
+      },
+      "2": {
+        "value": {
+          "color": "{colors.blackAlpha.400}",
+          "width": "0 {borderWidth.2} 0 0",
+          "style": "solid"
+        },
+        "type": "border"
+      },
+      "3": {
+        "value": {
+          "color": "{colors.blackAlpha.400}",
+          "width": "0 {borderWidth.3} 0 0",
+          "style": "solid"
+        },
+        "type": "border"
+      },
+      "4": {
+        "value": {
+          "color": "{colors.blackAlpha.400}",
+          "width": "0 {borderWidth.4} 0 0",
+          "style": "solid"
+        },
+        "type": "border"
+      },
+      "5": {
+        "value": {
+          "color": "{colors.blackAlpha.400}",
+          "width": "0 {borderWidth.5} 0 0",
+          "style": "solid"
+        },
+        "type": "border"
+      },
+      "6": {
+        "value": {
+          "color": "{colors.blackAlpha.400}",
+          "width": "0 {borderWidth.6} 0 0",
+          "style": "solid"
+        },
+        "type": "border"
+      },
+      "7": {
+        "value": {
+          "color": "{colors.blackAlpha.400}",
+          "width": "0 {borderWidth.7} 0 0",
+          "style": "solid"
+        },
+        "type": "border"
+      },
+      "8": {
+        "value": {
+          "color": "{colors.blackAlpha.400}",
+          "width": "0 {borderWidth.8} 0 0",
+          "style": "solid"
+        },
+        "type": "border"
+      }
+    },
+    "bottom": {
+      "1": {
+        "value": {
+          "color": "{colors.blackAlpha.400}",
+          "width": "0 0 {borderWidth.1} 0",
+          "style": "solid"
+        },
+        "type": "border"
+      },
+      "2": {
+        "value": {
+          "color": "{colors.blackAlpha.400}",
+          "width": "0 0 {borderWidth.2} 0",
+          "style": "solid"
+        },
+        "type": "border"
+      },
+      "3": {
+        "value": {
+          "color": "{colors.blackAlpha.400}",
+          "width": "0 0 {borderWidth.3} 0",
+          "style": "solid"
+        },
+        "type": "border"
+      },
+      "4": {
+        "value": {
+          "color": "{colors.blackAlpha.400}",
+          "width": "0 0 {borderWidth.4} 0",
+          "style": "solid"
+        },
+        "type": "border"
+      },
+      "5": {
+        "value": {
+          "color": "{colors.blackAlpha.400}",
+          "width": "0 0 {borderWidth.5} 0",
+          "style": "solid"
+        },
+        "type": "border"
+      },
+      "6": {
+        "value": {
+          "color": "{colors.blackAlpha.400}",
+          "width": "0 0 {borderWidth.6} 0",
+          "style": "solid"
+        },
+        "type": "border"
+      },
+      "7": {
+        "value": {
+          "color": "{colors.blackAlpha.400}",
+          "width": "0 0 {borderWidth.7} 0",
+          "style": "solid"
+        },
+        "type": "border"
+      },
+      "8": {
+        "value": {
+          "color": "{colors.blackAlpha.400}",
+          "width": "0 0 {borderWidth.8} 0",
+          "style": "solid"
+        },
+        "type": "border"
+      }
+    },
+    "left": {
+      "1": {
+        "value": {
+          "color": "{colors.blackAlpha.400}",
+          "width": "0 0 0 {borderWidth.1}",
+          "style": "solid"
+        },
+        "type": "border"
+      },
+      "2": {
+        "value": {
+          "color": "{colors.blackAlpha.400}",
+          "width": "0 0 0 {borderWidth.2}",
+          "style": "solid"
+        },
+        "type": "border"
+      },
+      "3": {
+        "value": {
+          "color": "{colors.blackAlpha.400}",
+          "width": "0 0 0 {borderWidth.3}",
+          "style": "solid"
+        },
+        "type": "border"
+      },
+      "4": {
+        "value": {
+          "color": "{colors.blackAlpha.400}",
+          "width": "0 0 0 {borderWidth.4}",
+          "style": "solid"
+        },
+        "type": "border"
+      },
+      "5": {
+        "value": {
+          "color": "{colors.blackAlpha.400}",
+          "width": "0 0 0 {borderWidth.5}",
+          "style": "solid"
+        },
+        "type": "border"
+      },
+      "6": {
+        "value": {
+          "color": "{colors.blackAlpha.400}",
+          "width": "0 0 0 {borderWidth.6}",
+          "style": "solid"
+        },
+        "type": "border"
+      },
+      "7": {
+        "value": {
+          "color": "{colors.blackAlpha.400}",
+          "width": "0 0 0 {borderWidth.7}",
+          "style": "solid"
+        },
+        "type": "border"
+      },
+      "8": {
+        "value": {
+          "color": "{colors.blackAlpha.400}",
+          "width": "0 0 0 {borderWidth.8}",
+          "style": "solid"
+        },
+        "type": "border"
+      }
+    }
+  },
+  "paragraphSpacing": {
+    "0": {
+      "value": "0",
+      "type": "paragraphSpacing"
+    }
+  }
+}

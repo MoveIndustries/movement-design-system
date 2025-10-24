@@ -1,0 +1,42 @@
+import { Controls, Description, Meta, Primary, Stories } from "@storybook/blocks";
+
+import { Source } from "@/docs/blocks";
+
+import * as CollapsibleStories from "./Collapsible.stories";
+
+<Meta of={CollapsibleStories} />
+
+# Collapsible
+
+<Description of={CollapsibleStories} />
+
+<Primary />
+
+<Controls />
+
+### Basic Usage
+
+{/* prettier-ignore-start */}
+
+<Source code={`
+// MyComponent.tsx
+
+import { Button, Collapsible } from "@aptos-internal/design-system-web";
+
+export function MyComponent() {
+  return (
+    <Collapsible>
+      <Collapsible.Trigger asChild>
+        <Button>Toggle</Button>
+      </Collapsible.Trigger>
+      <Collapsible.Content>
+        Content
+      </Collapsible.Content>
+    <Collapsible/>
+  );
+}
+`} />
+
+{/* prettier-ignore-end */}
+
+<Stories of={CollapsibleStories} />

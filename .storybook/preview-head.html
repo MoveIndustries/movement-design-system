@@ -1,0 +1,147 @@
+<style>
+  /* Dark theme for code blocks - Using softer colors */
+  .docblock-source {
+    background-color: #3a3a3e !important;
+    border: 1px solid #45454F !important;
+    border-radius: 4px !important;
+  }
+
+  .docblock-source pre {
+    background-color: #3a3a3e !important;
+    color: #e5e5e5 !important;
+  }
+
+  .docblock-source code {
+    background-color: #3a3a3e !important;
+    color: #e5e5e5 !important;
+  }
+
+  /* Syntax highlighting for code blocks */
+  .docblock-source .token.comment,
+  .docblock-source .token.prolog,
+  .docblock-source .token.doctype,
+  .docblock-source .token.cdata {
+    color: #6b7280 !important;
+  }
+
+  .docblock-source .token.punctuation {
+    color: #d1d5db !important;
+  }
+
+  .docblock-source .token.namespace {
+    opacity: 0.7;
+  }
+
+  .docblock-source .token.property,
+  .docblock-source .token.tag,
+  .docblock-source .token.boolean,
+  .docblock-source .token.number,
+  .docblock-source .token.constant,
+  .docblock-source .token.symbol,
+  .docblock-source .token.deleted {
+    color: #fbbf24 !important;
+  }
+
+  .docblock-source .token.selector,
+  .docblock-source .token.attr-name,
+  .docblock-source .token.string,
+  .docblock-source .token.char,
+  .docblock-source .token.builtin,
+  .docblock-source .token.inserted {
+    color: #34d399 !important;
+  }
+
+  .docblock-source .token.operator,
+  .docblock-source .token.entity,
+  .docblock-source .token.url,
+  .language-css .token.string,
+  .style .token.string {
+    color: #60a5fa !important;
+  }
+
+  .docblock-source .token.atrule,
+  .docblock-source .token.attr-value,
+  .docblock-source .token.keyword {
+    color: #a78bfa !important;
+  }
+
+  .docblock-source .token.function,
+  .docblock-source .token.class-name {
+    color: #f87171 !important;
+  }
+
+  .docblock-source .token.regex,
+  .docblock-source .token.important,
+  .docblock-source .token.variable {
+    color: #fbbf24 !important;
+  }
+
+  .docblock-source .token.important,
+  .docblock-source .token.bold {
+    font-weight: bold;
+  }
+
+  .docblock-source .token.italic {
+    font-style: italic;
+  }
+
+  .docblock-source .token.entity {
+    cursor: help;
+  }
+
+  /* Inline code styling */
+  .docblock-source code:not(pre code) {
+    background-color: #4a4a4e !important;
+    color: #e5e5e5 !important;
+    padding: 2px 4px !important;
+    border-radius: 3px !important;
+    font-size: 0.875em !important;
+  }
+
+  /* Storybook specific code blocks */
+  .sb-show-main .docblock-source,
+  .sb-show-main .docblock-source pre,
+  .sb-show-main .docblock-source code {
+    background-color: #151517 !important;
+    color: #e5e5e5 !important;
+  }
+
+  /* Controls panel code blocks */
+  .sb-show-main .docblock-argstable code {
+    background-color: #4a4a4e !important;
+    color: #e5e5e5 !important;
+  }
+
+  /* Font loading optimization */
+  .wf-loading {
+    visibility: hidden;
+  }
+  
+  .wf-active {
+    visibility: visible;
+  }
+
+  /* Ensure fonts are applied to Storybook */
+  .sb-show-main {
+    font-family: var(--font-neue-haas-unica-pro), system-ui, sans-serif;
+    background-color: #1F1F21;
+  }
+
+  /* Apply heading fonts */
+  .sb-show-main h1,
+  .sb-show-main h2,
+  .sb-show-main h3,
+  .sb-show-main h4,
+  .sb-show-main h5,
+  .sb-show-main h6 {
+    font-family: var(--font-twk-everett), system-ui, sans-serif;
+  }
+
+  .docs-story :not(.sb-story *) {
+  transform: none;
+}
+
+.rejt-name {
+  color:#fbbf24 !important;
+}
+</style> 

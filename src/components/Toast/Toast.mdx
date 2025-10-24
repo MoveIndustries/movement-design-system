@@ -1,0 +1,107 @@
+import { Controls, Description, Meta, Primary, Stories } from "@storybook/blocks";
+
+import { Source, SubduedHeading } from "@/docs/blocks";
+
+import * as ToastStories from "./Toast.stories";
+
+<Meta of={ToastStories} />
+
+# Toast
+
+<Description of={ToastStories} />
+
+<Primary />
+
+<Controls />
+
+<Stories of={ToastStories} />
+
+<SubduedHeading>Additional Information</SubduedHeading>
+
+### Creating Toast Messages
+
+To start creating toast messages, you must first render the `Toaster` component somewhere in your application. This component is responsible for listening for invocations of the `toast` function and actually rendering the toast messages to the screen.
+
+Be sure to render this component only **once** in your application or else toast messages will be rendered multiple times. If you're using Next.js, I recommend rendering `Toaster` in the root layout component of your app (usually `src/app/layout.tsx`).
+
+{/* prettier-ignore-start */}
+
+<Source code={`
+// layout.tsx
+
+import { Toaster } from "@aptos-internal/design-system-web";
+
+export default function Layout({ children }: React.PropsWithChildren) {
+  return (
+    <html lang="en">
+      <body>
+        {/* This component should only appear once in your application */}
+        <Toaster />
+        {children}
+      </body>
+    </html>
+  );
+}
+`} />
+
+{/* prettier-ignore-end */}
+
+Once `Toaster` is rendered somewhere in your application, you can simply call the `toast` function to create a toast message. The arguments passed to this function serve as the props for the underlying `Toast` component.
+
+{/* prettier-ignore-start */}
+
+<Source code={`
+// MyComponent.tsx
+
+import { Button, Toast } from "@aptos-internal/design-system-web";
+
+export function MyComponent() {
+  const createToast = () => {
+    toast({
+      variant: "info",
+      title: "Toast Title",
+      description: "This is the description of the toast message.",
+    });
+  };
+
+  return <Button onClick={createToast}>Create Toast</Button>;
+}
+`} />
+
+{/* prettier-ignore-end */}
+
+In the example above, we call `toast` from within a React component as a result of a button click, but you can call this function from anywhere. For example, you could use this function to display a toast message as a result of an API call failing.
+
+### Adjusting Toast Duration
+
+By default, all toast messages will display for 5 seconds before they are automatically dismissed. However, you can customize the duration on a per-toast basis by passing a duration in milliseconds to the `toast` function.
+
+{/* prettier-ignore-start */}
+
+<Source code={`
+toast({
+  variant: "info",
+  title: "Short Toast",
+  description: "I'll only be here for 2 seconds",
+  duration: 2000,
+});
+`} />
+
+{/* prettier-ignore-end */}
+
+In the example above, we create a toast that will be dismissed sooner than toast messages that use the default duration value.
+
+{/* prettier-ignore-start */}
+
+<Source code={`
+toast({
+  variant: "info",
+  title: "Persistent Toast",
+  description: "I'll be here until the close button is pressed",
+  duration: Infinity,
+});
+`} />
+
+{/* prettier-ignore-end */}
+
+In the example above, we set the duration to `Infinity` which prevents the toast message from ever being dismissed automatically. In order to dismiss the toast, the user will have to manually press the close button in the top right corner of the toast message.

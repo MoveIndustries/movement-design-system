@@ -1,0 +1,222 @@
+{
+  "primary": {
+    "base": {
+      "$type": "color",
+      "$value": "{colors.guild-green.300}"
+    },
+    "darken": {
+      "$type": "color",
+      "$value": "{colors.guild-green.500}"
+    },
+    "darken-2": {
+      "$type": "color",
+      "$value": "{colors.guild-green.600}"
+    },
+    "lighten": {
+      "$type": "color",
+      "$value": "{colors.guild-green.200}"
+    },
+    "lighten-2": {
+      "$type": "color",
+      "$value": "{colors.guild-green.100}"
+    }
+  },
+  "secondary": {
+    "base": {
+      "$type": "color",
+      "$value": "{colors.byzantine-blue.400}"
+    },
+    "darken": {
+      "$type": "color",
+      "$value": "{colors.byzantine-blue.500}"
+    },
+    "darken-2": {
+      "$type": "color",
+      "$value": "{colors.byzantine-blue.800}"
+    },
+    "lighten": {
+      "$type": "color",
+      "$value": "{colors.byzantine-blue.300}"
+    },
+    "lighten-2": {
+      "$type": "color",
+      "$value": "{colors.byzantine-blue.100}"
+    }
+  },
+  "accent": {
+    "base": {
+      "$type": "color",
+      "$value": "{colors.protocol-pink.300}"
+    },
+    "darken": {
+      "$type": "color",
+      "$value": "{colors.protocol-pink.500}"
+    },
+    "darken-2": {
+      "$type": "color",
+      "$value": "{colors.protocol-pink.700}"
+    },
+    "lighten": {
+      "$type": "color",
+      "$value": "{colors.protocol-pink.200}"
+    },
+    "lighten-2": {
+      "$type": "color",
+      "$value": "{colors.protocol-pink.100}"
+    }
+  },
+  "background": {
+    "dark": {
+      "base": {
+        "$type": "color",
+        "$value": "{colors.neutrals.black}"
+      },
+      "lighten": {
+        "$type": "color",
+        "$value": "{colors.neutrals.blackAlpha.900}"
+      },
+      "lighten-2": {
+        "$type": "color",
+        "$value": "{colors.neutrals.blackAlpha.800}"
+      },
+      "lighten-3": {
+        "$type": "color",
+        "$value": "{colors.neutrals.blackAlpha.600}"
+      }
+    },
+    "light": {
+      "base": {
+        "$type": "color",
+        "$value": "{colors.neutrals.white}"
+      },
+      "lighten": {
+        "$type": "color",
+        "$value": "{colors.neutrals.whiteAlpha.200}"
+      },
+      "lighten-2": {
+        "$type": "color",
+        "$value": "{colors.neutrals.whiteAlpha.300}"
+      },
+      "lighten-3": {
+        "$type": "color",
+        "$value": "{colors.neutrals.whiteAlpha.400}"
+      },
+      "lighten-4": {
+        "$type": "color",
+        "$value": "{colors.neutrals.whiteAlpha.600}"
+      }
+    }
+  },
+  "foreground": {
+    "dark": {
+      "base": {
+        "$type": "color",
+        "$value": "{colors.neutrals.white}"
+      },
+      "lighten": {
+        "$type": "color",
+        "$value": "{colors.neutrals.whiteAlpha.700}"
+      },
+      "lighten-2": {
+        "$type": "color",
+        "$value": "{colors.neutrals.whiteAlpha.600}"
+      }
+    },
+    "light": {
+      "base": {
+        "$type": "color",
+        "$value": "{colors.neutrals.black}"
+      },
+      "lighten": {
+        "$type": "color",
+        "$value": "{colors.neutrals.blackAlpha.700}"
+      }
+    }
+  },
+  "feedback": {
+    "info": {
+      "base": {
+        "$type": "color",
+        "$value": "{primary.base}"
+      },
+      "darken": {
+        "$type": "color",
+        "$value": "{primary.darken}"
+      },
+      "fg": {
+        "$type": "color",
+        "$value": "{feedback.fg}"
+      }
+    },
+    "success": {
+      "base": {
+        "$type": "color",
+        "$value": "{colors.feedback.success.default}"
+      },
+      "darken": {
+        "$type": "color",
+        "$value": "{colors.feedback.success.dark}"
+      },
+      "fg": {
+        "$type": "color",
+        "$value": "{secondary.darken-2}"
+      }
+    },
+    "error": {
+      "base": {
+        "$type": "color",
+        "$value": "{colors.feedback.error.default}"
+      },
+      "darken": {
+        "$type": "color",
+        "$value": "{colors.feedback.error.dark}"
+      },
+      "fg": {
+        "$type": "color",
+        "$value": "{foreground.dark.base}"
+      }
+    },
+    "warning": {
+      "base": {
+        "$type": "color",
+        "$value": "{colors.feedback.warning.default}"
+      },
+      "darken": {
+        "$type": "color",
+        "$value": "{colors.feedback.warning.dark}"
+      },
+      "fg": {
+        "$type": "color",
+        "$value": "{foreground.dark.base}"
+      }
+    },
+    "base": {
+      "$type": "color",
+      "$value": "{background.light.base}"
+    },
+    "fg": {
+      "$type": "color",
+      "$value": "{foreground.light.base}"
+    }
+  },
+  "text": {
+    "base": {
+      "$type": "color",
+      "$value": "{foreground.dark.base}"
+    },
+    "contrast": {
+      "$type": "color",
+      "$value": "{foreground.light.base}"
+    },
+    "button": {
+      "$type": "color",
+      "$value": "{secondary.darken-2}"
+    }
+  },
+  "disabled": {
+    "base": {
+      "$type": "color",
+      "$value": "{colors.neutrals.whiteAlpha.600}"
+    }
+  }
+}
