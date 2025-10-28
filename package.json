@@ -50,7 +50,8 @@
     "preview": "vite preview",
     "storybook": "storybook dev -p 6006",
     "build-storybook": "storybook build",
-    "prepublishOnly": "npm run build:lib"
+    "prepublishOnly": "npm run build:lib",
+    "prepare": "pnpm run build"
   },
   "peerDependencies": {
     "react": "^18.0.0 || ^19.0.0",
