@@ -1,73 +1,374 @@
-# React + TypeScript + Vite
+# Movement Design System
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+A comprehensive, production-ready design system built with shadcn/ui components, Radix UI primitives, and Tailwind CSS. This library provides a complete set of accessible, customizable React components for building modern web applications.
 
-Currently, two official plugins are available:
+## Features
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) (or [oxc](https://oxc.rs) when used in [rolldown-vite](https://vite.dev/guide/rolldown)) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+- 🎨 **50+ Components** - Buttons, forms, dialogs, navigation, data display, and more
+- ♿ **Accessible** - Built on Radix UI primitives with ARIA support
+- 🎭 **Customizable** - Full theme customization with CSS variables
+- 🌗 **Dark Mode** - Built-in dark mode support
+- 📦 **Tree Shakeable** - Only import what you need
+- 🔷 **TypeScript** - Full type safety out of the box
+- 📚 **Storybook** - Interactive component documentation
 
-## React Compiler
+## Installation
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
-
-## Expanding the ESLint configuration
-
-If you are developing a production application, we recommend updating the configuration to enable type-aware lint rules:
-
-```js
-export default defineConfig([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
-
-      // Remove tseslint.configs.recommended and replace with this
-      tseslint.configs.recommendedTypeChecked,
-      // Alternatively, use this for stricter rules
-      tseslint.configs.strictTypeChecked,
-      // Optionally, add this for stylistic rules
-      tseslint.configs.stylisticTypeChecked,
-
-      // Other configs...
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
+```bash
+npm install @movementlabsxyz/movement-design-system
+# or
+pnpm add @movementlabsxyz/movement-design-system
+# or
+yarn add @movementlabsxyz/movement-design-system
 ```
 
-You can also install [eslint-plugin-react-x](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-x) and [eslint-plugin-react-dom](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-dom) for React-specific lint rules:
+## Peer Dependencies
+
+Make sure you have these installed in your project:
+
+```bash
+npm install react react-dom tailwindcss
+```
+
+## Setup
+
+### 1. Import Styles
+
+Import the design system styles in your main app file:
+
+```tsx
+// src/main.tsx or src/App.tsx
+import '@movementlabsxyz/movement-design-system/styles';
+```
+
+### 2. Configure Tailwind CSS
+
+Create or update your `tailwind.config.js`:
 
 ```js
-// eslint.config.js
-import reactX from 'eslint-plugin-react-x'
-import reactDom from 'eslint-plugin-react-dom'
-
-export default defineConfig([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
-      // Enable lint rules for React
-      reactX.configs['recommended-typescript'],
-      // Enable lint rules for React DOM
-      reactDom.configs.recommended,
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
+/** @type {import('tailwindcss').Config} */
+export default {
+  content: [
+    "./index.html",
+    "./src/**/*.{js,ts,jsx,tsx}",
+    "./node_modules/@movementlabsxyz/movement-design-system/dist/**/*.{js,mjs}"
+  ],
+  theme: {
+    extend: {
+      colors: {
+        border: "hsl(var(--border))",
+        input: "hsl(var(--input))",
+        ring: "hsl(var(--ring))",
+        background: "hsl(var(--background))",
+        foreground: "hsl(var(--foreground))",
+        primary: {
+          DEFAULT: "hsl(var(--primary))",
+          foreground: "hsl(var(--primary-foreground))",
+        },
+        secondary: {
+          DEFAULT: "hsl(var(--secondary))",
+          foreground: "hsl(var(--secondary-foreground))",
+        },
+        destructive: {
+          DEFAULT: "hsl(var(--destructive))",
+          foreground: "hsl(var(--destructive-foreground))",
+        },
+        muted: {
+          DEFAULT: "hsl(var(--muted))",
+          foreground: "hsl(var(--muted-foreground))",
+        },
+        accent: {
+          DEFAULT: "hsl(var(--accent))",
+          foreground: "hsl(var(--accent-foreground))",
+        },
+        card: {
+          DEFAULT: "hsl(var(--card))",
+          foreground: "hsl(var(--card-foreground))",
+        },
       },
-      // other options...
+      borderRadius: {
+        lg: "var(--radius)",
+        md: "calc(var(--radius) - 2px)",
+        sm: "calc(var(--radius) - 4px)",
+      },
     },
   },
-])
+  plugins: [],
+}
 ```
+
+### 3. Add CSS Variables
+
+Add these CSS variables to your `src/index.css`:
+
+```css
+@layer base {
+  :root {
+    --background: 0 0% 100%;
+    --foreground: 0 0% 3.9%;
+    --card: 0 0% 100%;
+    --card-foreground: 0 0% 3.9%;
+    --primary: 0 0% 9%;
+    --primary-foreground: 0 0% 98%;
+    --secondary: 0 0% 96.1%;
+    --secondary-foreground: 0 0% 9%;
+    --muted: 0 0% 96.1%;
+    --muted-foreground: 0 0% 45.1%;
+    --accent: 0 0% 96.1%;
+    --accent-foreground: 0 0% 9%;
+    --destructive: 0 84.2% 60.2%;
+    --destructive-foreground: 0 0% 98%;
+    --border: 0 0% 89.8%;
+    --input: 0 0% 89.8%;
+    --ring: 0 0% 3.9%;
+    --radius: 0.5rem;
+  }
+
+  .dark {
+    --background: 0 0% 3.9%;
+    --foreground: 0 0% 98%;
+    --card: 0 0% 3.9%;
+    --card-foreground: 0 0% 98%;
+    --primary: 0 0% 98%;
+    --primary-foreground: 0 0% 9%;
+    --secondary: 0 0% 14.9%;
+    --secondary-foreground: 0 0% 98%;
+    --muted: 0 0% 14.9%;
+    --muted-foreground: 0 0% 63.9%;
+    --accent: 0 0% 14.9%;
+    --accent-foreground: 0 0% 98%;
+    --destructive: 0 62.8% 30.6%;
+    --destructive-foreground: 0 0% 98%;
+    --border: 0 0% 14.9%;
+    --input: 0 0% 14.9%;
+    --ring: 0 0% 83.1%;
+  }
+}
+```
+
+## Usage
+
+### Basic Example
+
+```tsx
+import { Button, Card, CardHeader, CardTitle, CardContent } from '@movementlabsxyz/movement-design-system';
+
+function App() {
+  return (
+    <div className="p-8">
+      <Card>
+        <CardHeader>
+          <CardTitle>Welcome to Movement Design System</CardTitle>
+        </CardHeader>
+        <CardContent>
+          <p>Start building beautiful UIs with our component library.</p>
+          <Button className="mt-4">Get Started</Button>
+        </CardContent>
+      </Card>
+    </div>
+  );
+}
+```
+
+### Form Example
+
+```tsx
+import { Button, Input, Label } from '@movementlabsxyz/movement-design-system';
+
+function LoginForm() {
+  return (
+    <form className="space-y-4">
+      <div>
+        <Label htmlFor="email">Email</Label>
+        <Input id="email" type="email" placeholder="Enter your email" />
+      </div>
+      <div>
+        <Label htmlFor="password">Password</Label>
+        <Input id="password" type="password" placeholder="Enter your password" />
+      </div>
+      <Button type="submit" className="w-full">Sign In</Button>
+    </form>
+  );
+}
+```
+
+### Dialog Example
+
+```tsx
+import {
+  Dialog,
+  DialogContent,
+  DialogDescription,
+  DialogHeader,
+  DialogTitle,
+  DialogTrigger,
+  Button
+} from '@movementlabsxyz/movement-design-system';
+
+function MyDialog() {
+  return (
+    <Dialog>
+      <DialogTrigger asChild>
+        <Button>Open Dialog</Button>
+      </DialogTrigger>
+      <DialogContent>
+        <DialogHeader>
+          <DialogTitle>Are you sure?</DialogTitle>
+          <DialogDescription>
+            This action cannot be undone.
+          </DialogDescription>
+        </DialogHeader>
+      </DialogContent>
+    </Dialog>
+  );
+}
+```
+
+## Available Components
+
+### Layout
+- `Card`, `CardHeader`, `CardTitle`, `CardDescription`, `CardContent`, `CardFooter`
+- `Separator`
+- `AspectRatio`
+- `Resizable`, `ResizablePanel`, `ResizableHandle`
+- `ScrollArea`, `ScrollBar`
+- `Sidebar` and related components
+
+### Forms & Inputs
+- `Input`, `InputGroup`
+- `Textarea`
+- `Button`, `ButtonGroup`
+- `Checkbox`
+- `RadioGroup`, `RadioGroupItem`
+- `Select` and related components
+- `Switch`
+- `Slider`
+- `Label`
+- `Form` components
+- `Calendar`
+- `InputOTP`
+
+### Navigation
+- `NavigationMenu` and related components
+- `Menubar` and related components
+- `DropdownMenu` and related components
+- `ContextMenu` and related components
+- `Breadcrumb` and related components
+- `Tabs`, `TabsList`, `TabsTrigger`, `TabsContent`
+- `Pagination` and related components
+
+### Feedback
+- `Alert`, `AlertTitle`, `AlertDescription`
+- `AlertDialog` and related components
+- `Dialog` and related components
+- `Toast` (via Sonner)
+- `Progress`
+- `Spinner`
+- `Skeleton`
+
+### Data Display
+- `Table` and related components
+- `Badge`
+- `Avatar`, `AvatarImage`, `AvatarFallback`
+- `Tooltip` and related components
+- `HoverCard` and related components
+- `Accordion` and related components
+- `Collapsible` and related components
+- `Chart` components (via Recharts)
+- `Command` and related components
+- `Empty`
+
+### Overlays
+- `Sheet` and related components
+- `Drawer` and related components
+- `Popover` and related components
+
+### Utilities
+- `cn` - Utility function for class name merging
+- `useMobile` - Hook to detect mobile devices
+
+## TypeScript Support
+
+This library is built with TypeScript and provides full type definitions. You'll get autocomplete and type checking out of the box.
+
+```tsx
+import type { VariantProps } from '@movementlabsxyz/movement-design-system';
+import { Button, buttonVariants } from '@movementlabsxyz/movement-design-system';
+
+// Get variant types
+type ButtonVariants = VariantProps<typeof buttonVariants>;
+```
+
+## Storybook Documentation
+
+For interactive component documentation and examples, check out our Storybook:
+
+```bash
+# Clone the repository and run:
+pnpm install
+pnpm storybook
+```
+
+## Development
+
+### Project Structure
+
+```
+shadcn-storybook/
+├── src/
+│   ├── components/
+│   │   └── ui/          # Component library
+│   ├── lib/             # Utilities
+│   ├── hooks/           # Custom hooks
+│   ├── stories/         # Storybook stories
+│   └── index.ts         # Main entry point
+├── dist/                # Built library
+└── package.json
+```
+
+### Building the Library
+
+```bash
+# Build for production
+pnpm build:lib
+
+# Build Vite bundle
+pnpm build
+
+# Generate TypeScript types
+pnpm build:types
+```
+
+### Running Development
+
+```bash
+# Start Storybook
+pnpm storybook
+
+# Run tests
+pnpm test
+
+# Lint
+pnpm lint
+```
+
+## Contributing
+
+Contributions are welcome! Please read our contributing guidelines before submitting PRs.
+
+## License
+
+MIT
+
+## Credits
+
+Built with:
+- [shadcn/ui](https://ui.shadcn.com/)
+- [Radix UI](https://www.radix-ui.com/)
+- [Tailwind CSS](https://tailwindcss.com/)
+- [Vite](https://vitejs.dev/)
+- [Storybook](https://storybook.js.org/)
+
+---
+
+Made with ❤️ by Movement Labs

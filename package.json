@@ -2,13 +2,60 @@
   "name": "@movementlabsxyz/movement-design-system",
   "version": "1.0.0",
   "type": "module",
+  "description": "A comprehensive design system built with shadcn/ui components for Movement Labs",
+  "keywords": [
+    "react",
+    "design-system",
+    "shadcn",
+    "ui",
+    "components",
+    "tailwindcss",
+    "movement"
+  ],
+  "author": "Movement Labs",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": ""
+  },
+  "files": [
+    "dist",
+    "README.md"
+  ],
+  "main": "./dist/index.cjs",
+  "module": "./dist/index.js",
+  "types": "./dist/index.d.ts",
+  "exports": {
+    ".": {
+      "import": {
+        "types": "./dist/index.d.ts",
+        "default": "./dist/index.js"
+      },
+      "require": {
+        "types": "./dist/index.d.ts",
+        "default": "./dist/index.cjs"
+      }
+    },
+    "./styles": "./dist/style.css"
+  },
+  "sideEffects": [
+    "**/*.css"
+  ],
   "scripts": {
     "dev": "vite",
-    "build": "tsc -b && vite build",
+    "build": "vite build",
+    "build:types": "tsc --project tsconfig.build.json",
+    "build:lib": "npm run build && npm run build:types",
     "lint": "eslint .",
     "preview": "vite preview",
     "storybook": "storybook dev -p 6006",
-    "build-storybook": "storybook build"
+    "build-storybook": "storybook build",
+    "prepublishOnly": "npm run build:lib"
+  },
+  "peerDependencies": {
+    "react": "^18.0.0 || ^19.0.0",
+    "react-dom": "^18.0.0 || ^19.0.0",
+    "tailwindcss": "^4.0.0"
   },
   "dependencies": {
     "@hookform/resolvers": "^5.2.2",
@@ -47,19 +94,19 @@
     "input-otp": "^1.4.2",
     "lucide-react": "^0.548.0",
     "next-themes": "^0.4.6",
-    "react": "^19.1.1",
     "react-day-picker": "^9.11.1",
-    "react-dom": "^19.1.1",
     "react-hook-form": "^7.65.0",
     "react-resizable-panels": "^3.0.6",
     "recharts": "2.15.4",
     "sonner": "^2.0.7",
     "tailwind-merge": "^3.3.1",
-    "tailwindcss": "^4.1.16",
     "vaul": "^1.1.2",
     "zod": "^4.1.12"
   },
   "devDependencies": {
+    "react": "^19.1.1",
+    "react-dom": "^19.1.1",
+    "tailwindcss": "^4.1.16",
     "@chromatic-com/storybook": "^4.1.1",
     "@eslint/js": "^9.36.0",
     "@storybook/addon-a11y": "^9.1.15",
@@ -85,6 +132,7 @@
     "typescript": "~5.9.3",
     "typescript-eslint": "^8.45.0",
     "vite": "^7.1.7",
+    "vite-plugin-dts": "^4.3.0",
     "vitest": "^4.0.4"
   }
 }

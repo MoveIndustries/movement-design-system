@@ -1,0 +1,63 @@
+# Source files
+src/
+.storybook/
+
+# Stories and tests
+*.stories.tsx
+*.stories.ts
+*.test.tsx
+*.test.ts
+**/*.stories.tsx
+**/*.stories.ts
+**/*.test.tsx
+**/*.test.ts
+
+# Development files
+.vscode/
+.idea/
+*.log
+*.lock
+pnpm-lock.yaml
+package-lock.json
+yarn.lock
+
+# Config files
+.eslintrc
+.eslintrc.*
+eslint.config.js
+tsconfig.json
+tsconfig.app.json
+tsconfig.node.json
+tsconfig.build.json
+vite.config.ts
+vitest.shims.d.ts
+
+# Build artifacts
+node_modules/
+.pnpm-store/
+coverage/
+.turbo/
+storybook-static/
+
+# Git files
+.git/
+.gitignore
+.gitattributes
+
+# Development docs
+dev-log.md
+
+# HTML and dev assets
+index.html
+public/
+
+# App files (not needed for library)
+src/App.tsx
+src/App.css
+src/main.tsx
+src/assets/
+
+# Environment
+.env
+.env.*
+

@@ -1,0 +1,37 @@
+{
+  "extends": "./tsconfig.json",
+  "compilerOptions": {
+    "target": "ES2022",
+    "lib": ["ES2022", "DOM", "DOM.Iterable"],
+    "module": "ESNext",
+    "moduleResolution": "bundler",
+    "jsx": "react-jsx",
+    "declaration": true,
+    "declarationMap": true,
+    "emitDeclarationOnly": true,
+    "outDir": "./dist",
+    "rootDir": "./src",
+    "skipLibCheck": true,
+    "strict": true,
+    "baseUrl": ".",
+    "paths": {
+      "@/*": ["./src/*"]
+    }
+  },
+  "include": [
+    "src/components/**/*",
+    "src/lib/**/*",
+    "src/hooks/**/*",
+    "src/index.ts"
+  ],
+  "exclude": [
+    "src/stories/**/*",
+    "**/*.stories.tsx",
+    "**/*.test.tsx",
+    "src/App.tsx",
+    "src/main.tsx",
+    "node_modules",
+    "dist"
+  ]
+}
+
