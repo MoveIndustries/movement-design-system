@@ -61,8 +61,8 @@ export default defineConfig({
     lib: {
       entry: resolve(__dirname, 'src/index.ts'),
       name: 'movement-design-system',
-      formats: ['es'],
-      fileName: 'movement-design-system',
+      formats: ['es', 'cjs'],
+      fileName: 'index',
     },
     rollupOptions: {
       external: ['react', 'react/jsx-runtime'],
