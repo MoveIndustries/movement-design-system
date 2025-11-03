@@ -1,10 +1,13 @@
 @custom-variant dark (&:is(.dark *));
 
 @theme inline {
+  /* Border radius tokens */
   --radius-sm: calc(var(--radius) - 4px);
   --radius-md: calc(var(--radius) - 2px);
   --radius-lg: var(--radius);
   --radius-xl: calc(var(--radius) + 4px);
+  
+  /* Semantic color mappings */
   --color-background: var(--background);
   --color-foreground: var(--foreground);
   --color-card: var(--card);
@@ -20,6 +23,15 @@
   --color-accent: var(--accent);
   --color-accent-foreground: var(--accent-foreground);
   --color-destructive: var(--destructive);
+  --color-destructive-foreground: var(--destructive-foreground);
+  --color-info: var(--info);
+  --color-info-foreground: var(--info-foreground);
+  --color-success: var(--success);
+  --color-success-foreground: var(--success-foreground);
+  --color-warning: var(--warning);
+  --color-warning-foreground: var(--warning-foreground);
+  --color-error: var(--error);
+  --color-error-foreground: var(--error-foreground);
   --color-border: var(--border);
   --color-input: var(--input);
   --color-ring: var(--ring);
@@ -36,75 +48,246 @@
   --color-sidebar-accent-foreground: var(--sidebar-accent-foreground);
   --color-sidebar-border: var(--sidebar-border);
   --color-sidebar-ring: var(--sidebar-ring);
+  
+  /* Brand colors - Moveus Marigold */
+  --color-moveus-marigold-50: #fffbeb;
+  --color-moveus-marigold-100: #fff2bd;
+  --color-moveus-marigold-200: #ffea90;
+  --color-moveus-marigold-300: #ffe162;
+  --color-moveus-marigold-400: #ffd935;
+  --color-moveus-marigold-500: #ddba22;
+  --color-moveus-marigold-600: #bb9b13;
+  --color-moveus-marigold-700: #997e08;
+  --color-moveus-marigold-800: #776100;
+  --color-moveus-marigold-900: #554500;
+  
+  /* Brand colors - Guild Green */
+  --color-guild-green-50: #f2fff8;
+  --color-guild-green-100: #ccffe3;
+  --color-guild-green-200: #a7ffce;
+  --color-guild-green-300: #81ffba;
+  --color-guild-green-400: #6ce2a1;
+  --color-guild-green-500: #58c589;
+  --color-guild-green-600: #47a872;
+  --color-guild-green-700: #368a5c;
+  --color-guild-green-800: #286d47;
+  --color-guild-green-900: #1b5033;
+  
+  /* Brand colors - Byzantine Blue */
+  --color-byzantine-blue-50: #c2ceff;
+  --color-byzantine-blue-100: #859dff;
+  --color-byzantine-blue-200: #5c7cff;
+  --color-byzantine-blue-300: #335cff;
+  --color-byzantine-blue-400: #0337ff;
+  --color-byzantine-blue-500: #002cd6;
+  --color-byzantine-blue-600: #0024ad;
+  --color-byzantine-blue-700: #001b85;
+  --color-byzantine-blue-800: #00135c;
+  --color-byzantine-blue-900: #000c3d;
+  
+  /* Brand colors - Protocol Pink */
+  --color-protocol-pink-50: #fff1fc;
+  --color-protocol-pink-100: #ffc9f3;
+  --color-protocol-pink-200: #ffa0eb;
+  --color-protocol-pink-300: #ff77e2;
+  --color-protocol-pink-400: #eb66cf;
+  --color-protocol-pink-500: #ce52b4;
+  --color-protocol-pink-600: #b14199;
+  --color-protocol-pink-700: #94317f;
+  --color-protocol-pink-800: #762365;
+  --color-protocol-pink-900: #59184b;
+  
+  /* Brand colors - Oracle Orange */
+  --color-oracle-orange-50: #ffefec;
+  --color-oracle-orange-100: #ffcdc2;
+  --color-oracle-orange-200: #ffab97;
+  --color-oracle-orange-300: #ff886d;
+  --color-oracle-orange-400: #FF6642;
+  --color-oracle-orange-500: #ea5330;
+  --color-oracle-orange-600: #c83e1e;
+  --color-oracle-orange-700: #a62c10;
+  --color-oracle-orange-800: #841d05;
+  --color-oracle-orange-900: #621300;
+  
+  /* Neutrals */
+  --color-neutrals-white: #ffffff;
+  --color-neutrals-black: #000000;
+  
+  /* Neutrals - White Alpha */
+  --color-neutrals-white-alpha-50: #ffffff0a;
+  --color-neutrals-white-alpha-100: #ffffff0f;
+  --color-neutrals-white-alpha-200: #ffffff14;
+  --color-neutrals-white-alpha-300: #ffffff29;
+  --color-neutrals-white-alpha-400: #ffffff3d;
+  --color-neutrals-white-alpha-500: #ffffff5c;
+  --color-neutrals-white-alpha-600: #ffffff7a;
+  --color-neutrals-white-alpha-700: #ffffffa3;
+  --color-neutrals-white-alpha-800: #ffffffcc;
+  --color-neutrals-white-alpha-900: #ffffffeb;
+  
+  /* Neutrals - Black Alpha */
+  --color-neutrals-black-alpha-50: #0000000a;
+  --color-neutrals-black-alpha-100: #0000000f;
+  --color-neutrals-black-alpha-200: #00000014;
+  --color-neutrals-black-alpha-300: #00000029;
+  --color-neutrals-black-alpha-400: #0000003d;
+  --color-neutrals-black-alpha-500: #0000005c;
+  --color-neutrals-black-alpha-600: #0000007a;
+  --color-neutrals-black-alpha-700: #000000a3;
+  --color-neutrals-black-alpha-800: #000000cc;
+  --color-neutrals-black-alpha-900: #000000eb;
+  
+  /* Opacity values */
+  --opacity-1: 0.1;
+  --opacity-2: 0.2;
+  --opacity-3: 0.3;
+  --opacity-4: 0.4;
+  --opacity-5: 0.5;
+  --opacity-8: 0.8;
+  --opacity-9: 0.9;
+  --opacity-10: 1;
+  
+  /* Font families */
+  --font-family-heading: "TWK Everett", sans-serif;
+  --font-family-body: "Neue Haas Unica Pro", sans-serif;
+  --font-family-mono: "TWK Everett Mono", monospace;
+  
+  /* Container configuration */
+  --container-center: true;
+  --container-padding: 2rem;
+  --container-2xl: 1400px;
+  
+  /* Animations */
+  --animate-accordion-down: accordion-down 0.2s ease-out;
+  --animate-accordion-up: accordion-up 0.2s ease-out;
+  
+  @keyframes accordion-down {
+    from {
+      height: 0;
+    }
+    to {
+      height: var(--radix-accordion-content-height);
+    }
+  }
+  
+  @keyframes accordion-up {
+    from {
+      height: var(--radix-accordion-content-height);
+    }
+    to {
+      height: 0;
+    }
+  }
 }
 
 :root {
   --radius: 0.625rem;
-  --background: oklch(1 0 0);
-  --foreground: oklch(0.145 0 0);
-  --card: oklch(1 0 0);
-  --card-foreground: oklch(0.145 0 0);
-  --popover: oklch(1 0 0);
-  --popover-foreground: oklch(0.145 0 0);
-  --primary: oklch(0.205 0 0);
-  --primary-foreground: oklch(0.985 0 0);
-  --secondary: oklch(0.97 0 0);
-  --secondary-foreground: oklch(0.205 0 0);
-  --muted: oklch(0.97 0 0);
-  --muted-foreground: oklch(0.556 0 0);
-  --accent: oklch(0.97 0 0);
-  --accent-foreground: oklch(0.205 0 0);
-  --destructive: oklch(0.577 0.245 27.325);
-  --border: oklch(0.922 0 0);
-  --input: oklch(0.922 0 0);
-  --ring: oklch(0.708 0 0);
-  --chart-1: oklch(0.646 0.222 41.116);
-  --chart-2: oklch(0.6 0.118 184.704);
-  --chart-3: oklch(0.398 0.07 227.392);
-  --chart-4: oklch(0.828 0.189 84.429);
-  --chart-5: oklch(0.769 0.188 70.08);
-  --sidebar: oklch(0.985 0 0);
-  --sidebar-foreground: oklch(0.145 0 0);
-  --sidebar-primary: oklch(0.205 0 0);
-  --sidebar-primary-foreground: oklch(0.985 0 0);
-  --sidebar-accent: oklch(0.97 0 0);
-  --sidebar-accent-foreground: oklch(0.205 0 0);
-  --sidebar-border: oklch(0.922 0 0);
-  --sidebar-ring: oklch(0.708 0 0);
+  
+  /* Backgrounds & Foregrounds */
+  --background: hsl(0 0% 100%); /* white */
+  --foreground: hsl(0 0% 0%); /* black */
+  --card: hsl(0 0% 100%);
+  --card-foreground: hsl(0 0% 0%);
+  --popover: hsl(0 0% 100%);
+  --popover-foreground: hsl(0 0% 0%);
+  
+  /* Brand semantic colors (light mode) */
+  --primary: hsl(150 100% 75%); /* guild-green.300 */
+  --primary-foreground: hsl(0 0% 100%);
+  --secondary: hsl(227 100% 50%); /* byzantine-blue.400 */
+  --secondary-foreground: hsl(0 0% 100%);
+  --accent: hsl(304 100% 73%); /* protocol-pink.300 */
+  --accent-foreground: hsl(0 0% 100%);
+  --destructive: hsl(13 100% 63%); /* oracle-orange.400 */
+  --destructive-foreground: hsl(0 0% 100%);
+  
+  /* Feedback colors */
+  --info: hsl(227 100% 50%); /* byzantine-blue.400 */
+  --info-foreground: hsl(0 0% 100%);
+  --success: hsl(154 66% 66%); /* guild-green.400 */
+  --success-foreground: hsl(0 0% 100%);
+  --warning: hsl(47 100% 60%); /* moveus-marigold.400 */
+  --warning-foreground: hsl(0 0% 0%);
+  --error: hsl(13 100% 63%); /* oracle-orange.400 */
+  --error-foreground: hsl(0 0% 100%);
+  
+  /* Muted & UI elements */
+  --muted: hsl(150 100% 95%); /* guild-green.50 */
+  --muted-foreground: hsl(154 66% 50%); /* guild-green.500 */
+  --border: hsl(0 0% 90%);
+  --input: hsl(0 0% 90%);
+  --ring: hsl(150 100% 75%); /* guild-green.300 */
+  
+  /* Charts (using brand colors) */
+  --chart-1: hsl(154 66% 66%); /* guild-green.400 */
+  --chart-2: hsl(227 100% 50%); /* byzantine-blue.400 */
+  --chart-3: hsl(304 100% 73%); /* protocol-pink.300 */
+  --chart-4: hsl(13 100% 63%); /* oracle-orange.400 */
+  --chart-5: hsl(47 100% 60%); /* moveus-marigold.400 */
+  
+  /* Sidebar */
+  --sidebar: hsl(0 0% 98%);
+  --sidebar-foreground: hsl(0 0% 0%);
+  --sidebar-primary: hsl(150 100% 75%); /* guild-green.300 */
+  --sidebar-primary-foreground: hsl(0 0% 100%);
+  --sidebar-accent: hsl(150 100% 95%); /* guild-green.50 */
+  --sidebar-accent-foreground: hsl(0 0% 0%);
+  --sidebar-border: hsl(0 0% 90%);
+  --sidebar-ring: hsl(150 100% 75%);
 }
 
 .dark {
-  --background: oklch(0.145 0 0);
-  --foreground: oklch(0.985 0 0);
-  --card: oklch(0.205 0 0);
-  --card-foreground: oklch(0.985 0 0);
-  --popover: oklch(0.205 0 0);
-  --popover-foreground: oklch(0.985 0 0);
-  --primary: oklch(0.922 0 0);
-  --primary-foreground: oklch(0.205 0 0);
-  --secondary: oklch(0.269 0 0);
-  --secondary-foreground: oklch(0.985 0 0);
-  --muted: oklch(0.269 0 0);
-  --muted-foreground: oklch(0.708 0 0);
-  --accent: oklch(0.269 0 0);
-  --accent-foreground: oklch(0.985 0 0);
-  --destructive: oklch(0.704 0.191 22.216);
-  --border: oklch(1 0 0 / 10%);
-  --input: oklch(1 0 0 / 15%);
-  --ring: oklch(0.556 0 0);
-  --chart-1: oklch(0.488 0.243 264.376);
-  --chart-2: oklch(0.696 0.17 162.48);
-  --chart-3: oklch(0.769 0.188 70.08);
-  --chart-4: oklch(0.627 0.265 303.9);
-  --chart-5: oklch(0.645 0.246 16.439);
-  --sidebar: oklch(0.205 0 0);
-  --sidebar-foreground: oklch(0.985 0 0);
-  --sidebar-primary: oklch(0.488 0.243 264.376);
-  --sidebar-primary-foreground: oklch(0.985 0 0);
-  --sidebar-accent: oklch(0.269 0 0);
-  --sidebar-accent-foreground: oklch(0.985 0 0);
-  --sidebar-border: oklch(1 0 0 / 10%);
-  --sidebar-ring: oklch(0.556 0 0);
+  /* Dark mode backgrounds & foregrounds */
+  --background: hsl(0 0% 0%); /* black */
+  --foreground: hsl(0 0% 100%); /* white */
+  --card: hsl(0 0% 10%);
+  --card-foreground: hsl(0 0% 100%);
+  --popover: hsl(0 0% 10%);
+  --popover-foreground: hsl(0 0% 100%);
+  
+  /* Brand semantic colors (dark mode - slightly adjusted) */
+  --primary: hsl(154 66% 66%); /* guild-green.400 (slightly less bright) */
+  --primary-foreground: hsl(0 0% 0%);
+  --secondary: hsl(227 100% 65%); /* byzantine-blue.200 (lighter for dark mode) */
+  --secondary-foreground: hsl(0 0% 0%);
+  --accent: hsl(304 100% 73%); /* protocol-pink.300 */
+  --accent-foreground: hsl(0 0% 0%);
+  --destructive: hsl(13 100% 63%); /* oracle-orange.400 */
+  --destructive-foreground: hsl(0 0% 0%);
+  
+  /* Feedback colors (dark mode) */
+  --info: hsl(227 100% 65%); /* byzantine-blue.200 */
+  --info-foreground: hsl(0 0% 0%);
+  --success: hsl(154 66% 66%); /* guild-green.400 */
+  --success-foreground: hsl(0 0% 0%);
+  --warning: hsl(47 100% 60%); /* moveus-marigold.400 */
+  --warning-foreground: hsl(0 0% 0%);
+  --error: hsl(13 100% 63%); /* oracle-orange.400 */
+  --error-foreground: hsl(0 0% 0%);
+  
+  /* Muted & UI elements (dark mode) */
+  --muted: hsl(0 0% 15%);
+  --muted-foreground: hsl(0 0% 70%);
+  --border: hsl(0 0% 100% / 10%);
+  --input: hsl(0 0% 100% / 15%);
+  --ring: hsl(154 66% 66%); /* guild-green.400 */
+  
+  /* Charts (dark mode) */
+  --chart-1: hsl(154 66% 66%); /* guild-green.400 */
+  --chart-2: hsl(227 100% 65%); /* byzantine-blue.200 */
+  --chart-3: hsl(304 100% 73%); /* protocol-pink.300 */
+  --chart-4: hsl(13 100% 63%); /* oracle-orange.400 */
+  --chart-5: hsl(47 100% 60%); /* moveus-marigold.400 */
+  
+  /* Sidebar (dark mode) */
+  --sidebar: hsl(0 0% 10%);
+  --sidebar-foreground: hsl(0 0% 100%);
+  --sidebar-primary: hsl(154 66% 66%); /* guild-green.400 */
+  --sidebar-primary-foreground: hsl(0 0% 0%);
+  --sidebar-accent: hsl(0 0% 15%);
+  --sidebar-accent-foreground: hsl(0 0% 100%);
+  --sidebar-border: hsl(0 0% 100% / 10%);
+  --sidebar-ring: hsl(154 66% 66%);
 }
 
 @layer base {
@@ -113,5 +296,6 @@
   }
   body {
     @apply bg-background text-foreground;
+    font-family: var(--font-family-body);
   }
 }
