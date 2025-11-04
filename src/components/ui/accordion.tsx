@@ -1,19 +1,19 @@
-import * as React from "react"
-import * as AccordionPrimitive from "@radix-ui/react-accordion"
-import { ChevronDown, ChevronUp } from "lucide-react"
+import * as React from "react";
+import * as AccordionPrimitive from "@radix-ui/react-accordion";
+import { ChevronDown, ChevronUp } from "lucide-react";
 
-import { cn } from "@/lib/utils"
+import { cn } from "@/lib/utils";
 
 function Accordion({
   ...props
 }: React.ComponentProps<typeof AccordionPrimitive.Root>) {
-  return <AccordionPrimitive.Root data-slot="accordion" {...props} />
+  return <AccordionPrimitive.Root data-slot="accordion" {...props} />;
 }
 
 interface AccordionItemProps
   extends React.ComponentProps<typeof AccordionPrimitive.Item> {
-  showTopBorder?: boolean
-  showBottomBorder?: boolean
+  showTopBorder?: boolean;
+  showBottomBorder?: boolean;
 }
 
 function AccordionItem({
@@ -33,13 +33,13 @@ function AccordionItem({
       )}
       {...props}
     />
-  )
+  );
 }
 
 interface AccordionTriggerProps
   extends React.ComponentProps<typeof AccordionPrimitive.Trigger> {
-  icon?: React.ReactNode
-  showIcon?: boolean
+  icon?: React.ReactNode;
+  showIcon?: boolean;
 }
 
 function AccordionTrigger({
@@ -73,7 +73,7 @@ function AccordionTrigger({
         </div>
       </AccordionPrimitive.Trigger>
     </AccordionPrimitive.Header>
-  )
+  );
 }
 
 function AccordionContent({
@@ -89,7 +89,7 @@ function AccordionContent({
     >
       <div className={cn("pb-4 pr-12", className)}>{children}</div>
     </AccordionPrimitive.Content>
-  )
+  );
 }
 
-export { Accordion, AccordionItem, AccordionTrigger, AccordionContent }
+export { Accordion, AccordionItem, AccordionTrigger, AccordionContent };
