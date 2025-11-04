@@ -2,6 +2,7 @@
 import "./index.css";
 
 // Components
+export * from "./components/Icon";
 export {
   Accordion,
   AccordionContent,
