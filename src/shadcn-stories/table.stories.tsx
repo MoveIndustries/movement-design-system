@@ -8,99 +8,162 @@ import {
   TableHeader,
   TableRow,
 } from "../components/shadcn/table";
+import { useSortableData } from "../components/shadcn/table-hooks";
 
 const meta = {
   title: "UI/Table",
   component: Table,
   parameters: {
-    layout: "centered",
+    layout: "padded",
   },
   tags: ["autodocs"],
+  argTypes: {
+    variant: {
+      control: "select",
+      options: ["simple", "borders", "alternating"],
+      description: "Visual variant of the table",
+    },
+  },
 } satisfies Meta<typeof Table>;
 
 export default meta;
 type Story = StoryObj<typeof meta>;
 
-const invoices = [
+const users = [
   {
-    invoice: "INV001",
-    paymentStatus: "Paid",
-    totalAmount: "$250.00",
-    paymentMethod: "Credit Card",
+    id: "1",
+    name: "John Doe",
+    email: "john@example.com",
+    role: "Admin",
+    status: "Active",
   },
   {
-    invoice: "INV002",
-    paymentStatus: "Pending",
-    totalAmount: "$150.00",
-    paymentMethod: "PayPal",
+    id: "2",
+    name: "Jane Smith",
+    email: "jane@example.com",
+    role: "User",
+    status: "Active",
   },
   {
-    invoice: "INV003",
-    paymentStatus: "Unpaid",
-    totalAmount: "$350.00",
-    paymentMethod: "Bank Transfer",
+    id: "3",
+    name: "Bob Johnson",
+    email: "bob@example.com",
+    role: "User",
+    status: "Inactive",
   },
   {
-    invoice: "INV004",
-    paymentStatus: "Paid",
-    totalAmount: "$450.00",
-    paymentMethod: "Credit Card",
+    id: "4",
+    name: "Alice Williams",
+    email: "alice@example.com",
+    role: "Manager",
+    status: "Active",
   },
   {
-    invoice: "INV005",
-    paymentStatus: "Paid",
-    totalAmount: "$550.00",
-    paymentMethod: "PayPal",
+    id: "5",
+    name: "Charlie Brown",
+    email: "charlie@example.com",
+    role: "User",
+    status: "Active",
   },
 ];
 
-export const Default: Story = {
-  render: () => (
-    <Table>
-      <TableCaption>A list of your recent invoices.</TableCaption>
+function SortableTableContent() {
+  const sortedUsers = useSortableData(users);
+
+  return (
+    <>
       <TableHeader>
         <TableRow>
-          <TableHead className="w-[100px]">Invoice</TableHead>
-          <TableHead>Status</TableHead>
-          <TableHead>Method</TableHead>
-          <TableHead className="text-right">Amount</TableHead>
+          <TableHead sortKey="name">Name</TableHead>
+          <TableHead sortKey="email">Email</TableHead>
+          <TableHead sortKey="role">Role</TableHead>
+          <TableHead sortKey="status">Status</TableHead>
         </TableRow>
       </TableHeader>
       <TableBody>
-        {invoices.map((invoice) => (
-          <TableRow key={invoice.invoice}>
-            <TableCell className="font-medium">{invoice.invoice}</TableCell>
-            <TableCell>{invoice.paymentStatus}</TableCell>
-            <TableCell>{invoice.paymentMethod}</TableCell>
-            <TableCell className="text-right">{invoice.totalAmount}</TableCell>
+        {sortedUsers.map((user) => (
+          <TableRow key={user.id}>
+            <TableCell>{user.name}</TableCell>
+            <TableCell>{user.email}</TableCell>
+            <TableCell>{user.role}</TableCell>
+            <TableCell>{user.status}</TableCell>
           </TableRow>
         ))}
       </TableBody>
+    </>
+  );
+}
+
+export const Simple: Story = {
+  args: {
+    variant: "simple",
+  },
+  render: (args) => (
+    <Table {...args}>
+      <SortableTableContent />
     </Table>
   ),
 };
 
-export const Simple: Story = {
-  render: () => (
-    <Table>
+export const Borders: Story = {
+  args: {
+    variant: "borders",
+  },
+  render: (args) => (
+    <Table {...args}>
+      <SortableTableContent />
+    </Table>
+  ),
+};
+
+export const Alternating: Story = {
+  args: {
+    variant: "alternating",
+  },
+  render: (args) => (
+    <Table {...args}>
+      <SortableTableContent />
+    </Table>
+  ),
+};
+
+export const WithCaption: Story = {
+  args: {
+    variant: "simple",
+  },
+  render: (args) => (
+    <Table {...args}>
+      <TableCaption>
+        A list of users in the system. Click on column headers to sort.
+      </TableCaption>
+      <SortableTableContent />
+    </Table>
+  ),
+};
+
+export const NonSortable: Story = {
+  args: {
+    variant: "simple",
+  },
+  render: (args) => (
+    <Table {...args}>
       <TableHeader>
         <TableRow>
           <TableHead>Name</TableHead>
           <TableHead>Email</TableHead>
           <TableHead>Role</TableHead>
+          <TableHead>Status</TableHead>
         </TableRow>
       </TableHeader>
       <TableBody>
-        <TableRow>
-          <TableCell>John Doe</TableCell>
-          <TableCell>john@example.com</TableCell>
-          <TableCell>Admin</TableCell>
-        </TableRow>
-        <TableRow>
-          <TableCell>Jane Smith</TableCell>
-          <TableCell>jane@example.com</TableCell>
-          <TableCell>User</TableCell>
-        </TableRow>
+        {users.map((user) => (
+          <TableRow key={user.id}>
+            <TableCell>{user.name}</TableCell>
+            <TableCell>{user.email}</TableCell>
+            <TableCell>{user.role}</TableCell>
+            <TableCell>{user.status}</TableCell>
+          </TableRow>
+        ))}
       </TableBody>
     </Table>
   ),

@@ -303,6 +303,9 @@ export {
   TableHeader,
   TableRow,
 } from "./components/shadcn/table";
+export type { TableVariant } from "./components/shadcn/table";
+export { useTableSort, useSortableData } from "./components/shadcn/table-hooks";
+export type { SortDirection } from "./components/shadcn/table-hooks";
 export {
   Tabs,
   TabsContent,

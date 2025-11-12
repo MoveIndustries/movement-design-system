@@ -1,40 +1,74 @@
-import * as React from "react"
+import * as React from "react";
+import { ChevronDown, ChevronUp } from "lucide-react";
 
-import { cn } from "@/lib/utils"
+import { cn } from "@/lib/utils";
+import { TableContext, type SortDirection } from "./table-hooks";
 
-function Table({ className, ...props }: React.ComponentProps<"table">) {
+type TableVariant = "simple" | "borders" | "alternating";
+
+interface TableProps extends React.ComponentProps<"table"> {
+  variant?: TableVariant;
+}
+
+function Table({ className, variant = "simple", ...props }: TableProps) {
+  const [sortColumn, setSortColumn] = React.useState<string | null>(null);
+  const [sortDirection, setSortDirection] = React.useState<SortDirection>(null);
+
+  const handleSort = React.useCallback(
+    (column: string) => {
+      if (sortColumn === column) {
+        // Cycle through: asc -> desc -> null (unsorted)
+        if (sortDirection === "asc") {
+          setSortDirection("desc");
+        } else if (sortDirection === "desc") {
+          setSortDirection(null);
+          setSortColumn(null);
+        } else {
+          setSortDirection("asc");
+        }
+      } else {
+        // New column, start with ascending
+        setSortColumn(column);
+        setSortDirection("asc");
+      }
+    },
+    [sortColumn, sortDirection],
+  );
+
+  const contextValue = React.useMemo(
+    () => ({
+      variant,
+      sortColumn,
+      sortDirection,
+      onSort: handleSort,
+    }),
+    [variant, sortColumn, sortDirection, handleSort],
+  );
+
   return (
-    <div
-      data-slot="table-container"
-      className="relative w-full overflow-x-auto"
-    >
-      <table
-        data-slot="table"
-        className={cn("w-full caption-bottom text-sm", className)}
-        {...props}
-      />
-    </div>
-  )
+    <TableContext.Provider value={contextValue}>
+      <div
+        data-slot="table-container"
+        className={cn(
+          "relative w-full overflow-x-auto",
+          "rounded-base border border-[rgba(255,255,255,0.24)] p-4",
+          className,
+        )}
+      >
+        <table data-slot="table" className="w-full caption-bottom" {...props} />
+      </div>
+    </TableContext.Provider>
+  );
 }
 
 function TableHeader({ className, ...props }: React.ComponentProps<"thead">) {
   return (
-    <thead
-      data-slot="table-header"
-      className={cn("[&_tr]:border-b", className)}
-      {...props}
-    />
-  )
+    <thead data-slot="table-header" className={cn(className)} {...props} />
+  );
 }
 
 function TableBody({ className, ...props }: React.ComponentProps<"tbody">) {
-  return (
-    <tbody
-      data-slot="table-body"
-      className={cn("[&_tr:last-child]:border-0", className)}
-      {...props}
-    />
-  )
+  return <tbody data-slot="table-body" className={cn(className)} {...props} />;
 }
 
 function TableFooter({ className, ...props }: React.ComponentProps<"tfoot">) {
@@ -43,37 +77,88 @@ function TableFooter({ className, ...props }: React.ComponentProps<"tfoot">) {
       data-slot="table-footer"
       className={cn(
         "bg-muted/50 border-t font-medium [&>tr]:last:border-b-0",
-        className
+        className,
       )}
       {...props}
     />
-  )
+  );
 }
 
 function TableRow({ className, ...props }: React.ComponentProps<"tr">) {
+  const { variant } = React.useContext(TableContext);
+
   return (
     <tr
       data-slot="table-row"
       className={cn(
-        "hover:bg-muted/50 data-[state=selected]:bg-muted border-b transition-colors",
-        className
+        "h-12 transition-colors",
+        variant === "borders" &&
+          "[&>td]:border-b [&>td]:border-[rgba(255,255,255,0.24)] last:[&>td]:border-b-0",
+        variant === "alternating" && "even:bg-[rgba(255,255,255,0.16)]",
+        className,
       )}
       {...props}
     />
-  )
+  );
 }
 
-function TableHead({ className, ...props }: React.ComponentProps<"th">) {
+interface TableHeadProps extends React.ComponentProps<"th"> {
+  sortKey?: string;
+  sortable?: boolean;
+}
+
+function TableHead({
+  className,
+  sortKey,
+  sortable = !!sortKey,
+  children,
+  ...props
+}: TableHeadProps) {
+  const { sortColumn, sortDirection, onSort } = React.useContext(TableContext);
+
+  const isSorted = sortKey && sortColumn === sortKey;
+  const showSortIcon = sortable && sortKey;
+
+  const handleClick = () => {
+    if (sortable && sortKey) {
+      onSort(sortKey);
+    }
+  };
+
   return (
     <th
       data-slot="table-head"
       className={cn(
-        "text-foreground h-10 px-2 text-left align-middle font-medium whitespace-nowrap [&:has([role=checkbox])]:pr-0 [&>[role=checkbox]]:translate-y-[2px]",
-        className
+        "h-12 px-4 text-left align-middle",
+        "text-xs leading-[1.3] font-bold tracking-[1.2px] uppercase",
+        "text-[rgba(255,255,255,0.64)]",
+        "whitespace-nowrap",
+        "[&:has([role=checkbox])]:pr-0 [&>[role=checkbox]]:translate-y-[2px]",
+        sortable &&
+          "cursor-pointer transition-colors select-none hover:text-white",
+        className,
       )}
+      onClick={handleClick}
       {...props}
-    />
-  )
+    >
+      {showSortIcon ? (
+        <div className="flex items-center gap-1">
+          {children}
+          {isSorted && sortDirection === "asc" && (
+            <ChevronUp className="h-4 w-4 text-white" />
+          )}
+          {isSorted && sortDirection === "desc" && (
+            <ChevronDown className="h-4 w-4 text-white" />
+          )}
+          {(!isSorted || sortDirection === null) && (
+            <ChevronDown className="h-4 w-4 opacity-50" />
+          )}
+        </div>
+      ) : (
+        children
+      )}
+    </th>
+  );
 }
 
 function TableCell({ className, ...props }: React.ComponentProps<"td">) {
@@ -81,12 +166,16 @@ function TableCell({ className, ...props }: React.ComponentProps<"td">) {
     <td
       data-slot="table-cell"
       className={cn(
-        "p-2 align-middle whitespace-nowrap [&:has([role=checkbox])]:pr-0 [&>[role=checkbox]]:translate-y-[2px]",
-        className
+        "h-12 px-4 align-middle",
+        "text-sm leading-[1.4] font-normal",
+        "text-white",
+        "whitespace-nowrap",
+        "[&:has([role=checkbox])]:pr-0 [&>[role=checkbox]]:translate-y-[2px]",
+        className,
       )}
       {...props}
     />
-  )
+  );
 }
 
 function TableCaption({
@@ -99,7 +188,7 @@ function TableCaption({
       className={cn("text-muted-foreground mt-4 text-sm", className)}
       {...props}
     />
-  )
+  );
 }
 
 export {
@@ -111,4 +200,5 @@ export {
   TableRow,
   TableCell,
   TableCaption,
-}
+};
+export type { TableVariant };
