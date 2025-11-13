@@ -1,7 +1,7 @@
 {
   "name": "@movementlabsxyz/movement-design-system",
   "private": false,
-  "version": "0.1.11",
+  "version": "0.1.12",
   "type": "module",
   "description": "A comprehensive design system built with shadcn/ui components for Movement Labs",
   "keywords": [

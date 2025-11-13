@@ -4,6 +4,9 @@ import "./index.css";
 // Components
 export * from "./components/Icon";
 export { DottedBackground } from "./components/DottedBackground";
+export { IconButton } from "./components/IconButton/IconButton";
+export { Logo } from "./components/Logo/Logo";
+export { ProgressButton } from "./components/ProgressButton";
 export {
   Accordion,
   AccordionContent,
