@@ -46,7 +46,7 @@ export interface TypographyProps
 }
 
 const getDefaultElement = (
-  variant: VariantProps<typeof typographyVariants>["variant"]
+  variant: VariantProps<typeof typographyVariants>["variant"],
 ): React.ElementType => {
   switch (variant) {
     case "h1":
@@ -85,9 +85,13 @@ const Typography = React.forwardRef<HTMLElement, TypographyProps>(
         {...props}
       />
     );
-  }
+  },
 );
 
 Typography.displayName = "Typography";
 
-export { Typography, typographyVariants };
+// Shorthand alias
+const Text = Typography;
+Text.displayName = "Text";
+
+export { Typography, Text, typographyVariants };

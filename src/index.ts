@@ -308,7 +308,10 @@ export {
 } from "./components/shadcn/table";
 export type { TableVariant } from "./components/shadcn/table";
 export { useTableSort, useSortableData } from "./components/shadcn/table-hooks";
-export type { SortDirection, SortFunction } from "./components/shadcn/table-hooks";
+export type {
+  SortDirection,
+  SortFunction,
+} from "./components/shadcn/table-hooks";
 export {
   Tabs,
   TabsContent,
@@ -324,7 +327,11 @@ export {
   TooltipProvider,
   TooltipTrigger,
 } from "./components/shadcn/tooltip";
-export { Typography, typographyVariants } from "./components/shadcn/typography";
+export {
+  Typography,
+  Text,
+  typographyVariants,
+} from "./components/shadcn/typography";
 
 // Utilities
 export { cn } from "./lib/utils";
