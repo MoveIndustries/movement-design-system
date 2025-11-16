@@ -340,3 +340,96 @@ export const TableDefaultSort: Story = {
     );
   },
 };
+
+export const MobileView: Story = {
+  args: {
+    variant: "simple",
+  },
+  render: (args) => {
+    function MobileContent() {
+      const sortedUsers = useSortableData(users);
+
+      return (
+        <>
+          <TableHeader>
+            <TableRow>
+              <TableHead sortKey="name">Name</TableHead>
+              <TableHead sortKey="email">Email</TableHead>
+              <TableHead sortKey="role">Role</TableHead>
+              <TableHead sortKey="status">Status</TableHead>
+            </TableRow>
+          </TableHeader>
+          <TableBody>
+            {sortedUsers.map((user) => (
+              <TableRow key={user.id}>
+                <TableCell>{user.name}</TableCell>
+                <TableCell>{user.email}</TableCell>
+                <TableCell>{user.role}</TableCell>
+                <TableCell>{user.status}</TableCell>
+              </TableRow>
+            ))}
+          </TableBody>
+        </>
+      );
+    }
+
+    return (
+      <Table
+        {...args}
+        forceMobile={true}
+        mobileData={users}
+        mobileCardRender={(item) => {
+          const user = item as (typeof users)[0];
+          return (
+            <div className="rounded-lg border border-[rgba(255,255,255,0.16)] bg-[rgba(255,255,255,0.08)] p-4 backdrop-blur-sm">
+              <div className="mb-4 flex items-center justify-between">
+                <div className="flex items-center gap-3">
+                  <div className="flex h-10 w-10 items-center justify-center rounded-full bg-[conic-gradient(from_0deg,#a855f7,#3b82f6)] font-bold text-white">
+                    {user.name.charAt(0)}
+                  </div>
+                  <div>
+                    <div className="text-sm font-semibold text-white">
+                      {user.name}
+                    </div>
+                    <div className="text-xs text-[rgba(255,255,255,0.64)]">
+                      {user.email}
+                    </div>
+                  </div>
+                </div>
+                <div
+                  className={`rounded px-2 py-1 text-xs font-medium ${
+                    user.status === "Active"
+                      ? "bg-green-500/20 text-green-400"
+                      : "bg-gray-500/20 text-gray-400"
+                  }`}
+                >
+                  {user.status}
+                </div>
+              </div>
+              <div className="grid grid-cols-2 gap-4">
+                <div>
+                  <div className="mb-1 text-xs tracking-wider text-[rgba(255,255,255,0.48)] uppercase">
+                    Role
+                  </div>
+                  <div className="text-sm font-medium text-white">
+                    {user.role}
+                  </div>
+                </div>
+                <div>
+                  <div className="mb-1 text-xs tracking-wider text-[rgba(255,255,255,0.48)] uppercase">
+                    Email
+                  </div>
+                  <div className="truncate text-sm font-medium text-white">
+                    {user.email}
+                  </div>
+                </div>
+              </div>
+            </div>
+          );
+        }}
+      >
+        <MobileContent />
+      </Table>
+    );
+  },
+};

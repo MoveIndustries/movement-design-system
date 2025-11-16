@@ -2,6 +2,7 @@ import * as React from "react";
 import { ChevronDown, ChevronUp } from "lucide-react";
 
 import { cn } from "@/lib/utils";
+import { useIsMobile } from "@/hooks/use-mobile";
 import {
   TableContext,
   type SortDirection,
@@ -13,17 +14,26 @@ type TableVariant = "simple" | "borders" | "alternating";
 interface TableProps extends React.ComponentProps<"table"> {
   variant?: TableVariant;
   defaultSortFn?: SortFunction;
+  mobileCardRender?: <T>(item: T, index: number) => React.ReactNode;
+  mobileData?: unknown[];
+  forceMobile?: boolean;
 }
 
 function Table({
   className,
   variant = "simple",
   defaultSortFn,
+  mobileCardRender,
+  mobileData,
+  forceMobile,
+  children,
   ...props
 }: TableProps) {
   const [sortColumn, setSortColumn] = React.useState<string | null>(null);
   const [sortDirection, setSortDirection] = React.useState<SortDirection>(null);
   const columnSortFnsRef = React.useRef<Record<string, SortFunction>>({});
+  const isMobile = useIsMobile();
+  const shouldShowMobile = forceMobile || (isMobile && mobileCardRender && mobileData);
 
   const handleSort = React.useCallback(
     (column: string) => {
@@ -75,16 +85,35 @@ function Table({
 
   return (
     <TableContext.Provider value={contextValue}>
-      <div
-        data-slot="table-container"
-        className={cn(
-          "relative w-full overflow-x-auto",
-          "rounded-base border border-border-default p-4",
-          className,
-        )}
-      >
-        <table data-slot="table" className="w-full caption-bottom" {...props} />
-      </div>
+      {shouldShowMobile ? (
+        <div
+          data-slot="table-mobile-container"
+          className={cn(
+            "relative w-full",
+            "flex flex-col gap-3",
+            className,
+          )}
+        >
+          {mobileData?.map((item, index) => (
+            <div key={index}>
+              {mobileCardRender?.(item, index)}
+            </div>
+          ))}
+        </div>
+      ) : (
+        <div
+          data-slot="table-container"
+          className={cn(
+            "relative w-full overflow-x-auto",
+            "rounded-base border border-border-default p-4",
+            className,
+          )}
+        >
+          <table data-slot="table" className="w-full caption-bottom" {...props}>
+            {children}
+          </table>
+        </div>
+      )}
     </TableContext.Provider>
   );
 }

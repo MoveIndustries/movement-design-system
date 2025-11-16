@@ -31,9 +31,9 @@ const toggleGroupItemVariants = cva(
     variants: {
       variant: {
         default:
-          "bg-transparent rounded data-[state=on]:bg-[#81ffba] data-[state=on]:text-black data-[state=on]:shadow-[0px_2px_4px_0px_rgba(0,0,0,0.05)] data-[state=off]:text-white/25",
+          "bg-transparent rounded data-[state=on]:bg-[#81ffba] data-[state=on]:text-black data-[state=on]:shadow-[0px_2px_4px_0px_rgba(0,0,0,0.05)] data-[state=off]:text-muted-foreground",
         contained:
-          "rounded-[4px] data-[state=on]:bg-primary data-[state=on]:text-black data-[state=off]:bg-transparent data-[state=off]:text-white/[0.24] data-[state=off]:hover:bg-white/[0.08]",
+          "rounded-[4px] data-[state=on]:bg-primary data-[state=on]:text-black data-[state=off]:bg-transparent data-[state-off]:text-muted-foreground data-[state=off]:hover:bg-white/[0.08]",
       },
       size: {
         default: "h-8 px-4 text-base",

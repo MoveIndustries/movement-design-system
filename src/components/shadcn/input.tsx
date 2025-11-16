@@ -103,7 +103,7 @@ const Input = React.forwardRef<HTMLInputElement, InputProps>(
     const fontWeightClass = size === "lg" ? "font-light" : "font-normal";
     const lineHeightClass = size === "lg" ? "leading-[1.3]" : "leading-none";
 
-    // Input classes - glass style is default
+    // Input classes - glass style is default, white text reflects status
     const inputClasses = cn(
       "min-w-0 flex-1 bg-transparent py-3 outline-none",
       "text-white",
