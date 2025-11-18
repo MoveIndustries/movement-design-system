@@ -6,7 +6,10 @@ export * from "./components/Icon";
 export { DottedBackground } from "./components/DottedBackground";
 export { IconButton } from "./components/IconButton/IconButton";
 export { Logo } from "./components/Logo/Logo";
+export { MultiOutlineText } from "./components/MultiOutlineText";
 export { ProgressButton } from "./components/ProgressButton";
+export { WalletModal } from "./components/WalletModal";
+export type { ConnectWalletDialogProps } from "./components/WalletModal";
 export {
   Accordion,
   AccordionContent,

@@ -1,7 +1,7 @@
 {
   "name": "@movementlabsxyz/movement-design-system",
   "private": false,
-  "version": "0.1.16",
+  "version": "0.1.17",
   "type": "module",
   "description": "A comprehensive design system built with shadcn/ui components for Movement Labs",
   "keywords": [
@@ -62,7 +62,10 @@
     "tailwindcss": "^4.0.0"
   },
   "dependencies": {
+    "@aptos-labs/wallet-adapter-react": "^7.2.2",
     "@hookform/resolvers": "^5.2.2",
+    "@msafe/aptos-wallet-adapter": "^1.1.8",
+    "@okwallet/aptos-wallet-adapter": "^0.0.7",
     "@phosphor-icons/react": "^2.1.10",
     "@radix-ui/react-accordion": "^1.2.12",
     "@radix-ui/react-alert-dialog": "^1.1.15",
