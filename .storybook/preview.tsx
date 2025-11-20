@@ -11,15 +11,17 @@ const withDarkDottedBackground: Decorator = (Story, context) => {
   console.log(isDocs);
   return (
     <div
-      style={{
-        // backgroundColor: "#0a0a0a",
-        // backgroundImage:
-        //   "radial-gradient(circle, rgba(255, 255, 255, 0.1) 1px, transparent 1px)",
-        // backgroundSize: "20px 20px",
-        // height: "100%",
-        // width: "100%",
-        // padding: "2rem",
-      }}
+      style={
+        {
+          // backgroundColor: "#0a0a0a",
+          // backgroundImage:
+          //   "radial-gradient(circle, rgba(255, 255, 255, 0.1) 1px, transparent 1px)",
+          // backgroundSize: "20px 20px",
+          // height: "100%",
+          // width: "100%",
+          // padding: "2rem",
+        }
+      }
     >
       {/* <div
         style={{
@@ -162,7 +164,7 @@ const preview: Preview = {
 
     // Set default backgrounds to dark
     backgrounds: {
-        disable: true,
+      disable: true,
       options: {
         // dark: { name: "Dark", value: "#0A0A0A" },
       },

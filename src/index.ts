@@ -295,9 +295,15 @@ export {
 } from "./components/shadcn/sidebar";
 export { Skeleton } from "./components/shadcn/skeleton";
 export { Slider } from "./components/shadcn/slider";
-export { Toaster } from "./components/shadcn/sonner";
-export { toast } from "sonner";
+export { Toaster, toast } from "./components/shadcn/sonner";
+export type {
+  CreateToastArgs,
+  TypedToastArgs,
+} from "./components/shadcn/sonner";
 export { Spinner } from "./components/shadcn/spinner";
+export type { ToastVariant } from "./components/shadcn/toast-types";
+export { toastVariants } from "./components/shadcn/toast-types";
+export { GlobalToaster, toast as movementToast } from "./lib/global-toast";
 export { Switch } from "./components/shadcn/switch";
 export {
   Table,
