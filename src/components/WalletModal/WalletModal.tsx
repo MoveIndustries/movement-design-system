@@ -96,6 +96,7 @@ function ConnectWalletContent({
         ...grouped.installableWallets,
       ].some((w) => w.name.toLowerCase().includes("okx"));
       if (!hasOKX) {
+        // eslint-disable-next-line @typescript-eslint/no-explicit-any
         additionalInstallableWallets.push(new OKXWallet() as any);
       }
 
@@ -106,6 +107,7 @@ function ConnectWalletContent({
       ].some((w) => w.name.toLowerCase().includes("msafe"));
       if (!hasMSafe) {
         additionalInstallableWallets.push(
+          // eslint-disable-next-line @typescript-eslint/no-explicit-any
           new MSafeWalletAdapter(undefined, "MOVEMENT") as any,
         );
       }
@@ -124,9 +126,9 @@ function ConnectWalletContent({
   return (
     <div
       className={cn(
-        "flex w-full flex-col items-center justify-center gap-6 p-12 px-6 pb-6 md:max-w-[28.5rem]",
-        "z-[9999] mx-auto max-h-full overflow-y-auto md:max-h-[80vh]",
-        "bg-gradient-to-r from-[rgba(4,5,27,0.2)] to-[rgba(4,5,27,0.2)]",
+        "flex w-full flex-col items-center justify-center gap-6 p-12 px-6 pb-6 md:max-w-114",
+        "z-9999 mx-auto max-h-full overflow-y-auto md:max-h-[80vh]",
+        "bg-linear-to-r from-[rgba(4,5,27,0.2)] to-[rgba(4,5,27,0.2)]",
         "bg-[linear-gradient(152.97deg,rgba(0,0,0,0.8)_0%,rgba(0,0,0,0)_100%),radial-gradient(100%_100%_at_120.34%_112.85%,rgba(129,255,186,0.4)_0%,rgba(0,27,133,0.4)_100%)]",
         "backdrop-blur-[1.3125rem]",
       )}
@@ -135,7 +137,7 @@ function ConnectWalletContent({
         <button
           onClick={onClose}
           className={cn(
-            "absolute top-6 right-6 z-[9999] rounded-sm opacity-70",
+            "absolute top-6 right-6 z-9999 rounded-sm opacity-70",
             "cursor-pointer border border-white/20 bg-white/10 p-2 text-white",
             "transition-opacity hover:bg-white/20 hover:opacity-100",
             "focus:outline-none",
@@ -145,8 +147,8 @@ function ConnectWalletContent({
         </button>
       )}
 
-      <div className="flex w-full max-w-[25.5rem] flex-col items-center gap-4 p-0">
-        <div className="w-full max-w-[19rem] text-center font-['TWK_Everett_Mono',monospace] text-[32px] leading-[120%] font-medium tracking-[-1.28px] text-white">
+      <div className="flex w-full max-w-102 flex-col items-center gap-4 p-0">
+        <div className="w-full max-w-76 text-center font-['TWK_Everett_Mono',monospace] text-[32px] leading-[120%] font-medium tracking-[-1.28px] text-white">
           Connect Wallet
         </div>
         <div className="w-full max-w-[24rem] text-center font-['Neue_Haas_Unica_Pro',sans-serif] text-lg leading-[140%] font-normal text-white/48">
@@ -163,7 +165,7 @@ function ConnectWalletContent({
         </div>
       </div>
 
-      <div className="flex max-h-[42rem] w-full max-w-[25.5rem] flex-row flex-wrap content-center items-start justify-center gap-4 overflow-y-auto p-4 py-4">
+      <div className="flex max-h-168 w-full max-w-102 flex-row flex-wrap content-center items-start justify-center gap-4 overflow-y-auto p-4 py-4">
         {availableWallets.length > 0 ? (
           cleanWalletList(availableWallets).map((wallet) => (
             <div key={wallet.name} className="w-28 shrink-0">
@@ -172,7 +174,7 @@ function ConnectWalletContent({
           ))
         ) : (
           <>
-            <div className="h-px w-[23rem] bg-[var(--color-foreground-lighten-2,rgba(255,255,255,0.48))]" />
+            <div className="h-px w-92 bg-(--color-foreground-lighten-2,rgba(255,255,255,0.48))" />
             <span className="font-['TWK_Everett_Mono',monospace] text-lg leading-[21.60px] font-medium text-[#81FFBA]">
               Don&apos;t have a wallet?
             </span>
@@ -357,13 +359,21 @@ export function WalletModal({
   };
 
   return isMobile ? (
-    <Drawer open={true} onOpenChange={(open) => !open && onClose()}>
-      <DrawerContent className="z-[9999]">
+    <Drawer
+      open={true}
+      // eslint-disable-next-line @typescript-eslint/no-explicit-any
+      onOpenChange={(open: any) => !open && onClose()}
+    >
+      <DrawerContent className="z-9999">
         <ConnectWalletContent {...contentProps} showCloseButton={false} />
       </DrawerContent>
     </Drawer>
   ) : (
-    <Dialog open={true} onOpenChange={(open) => !open && onClose()}>
+    <Dialog
+      open={true}
+      // eslint-disable-next-line @typescript-eslint/no-explicit-any
+      onOpenChange={(open: any) => !open && onClose()}
+    >
       <DialogContent
         showCloseButton={false}
         className="border-0 bg-transparent p-0"
@@ -381,8 +391,8 @@ interface WalletRowProps {
 
 const gridCard = (child: React.ReactNode) => (
   <div className="group/wallet relative h-28 w-28 cursor-pointer rounded-lg backdrop-blur-[1.3125rem] transition-shadow duration-200 ease-in-out hover:shadow-[0.25rem_0.25rem_0_#81FFBA]">
-    <div className="absolute inset-0 rounded-lg bg-gradient-to-br from-white/[0.096] to-transparent backdrop-blur-[1.3125rem] group-hover/wallet:bg-gradient-to-br group-hover/wallet:from-white/40 group-hover/wallet:to-transparent" />
-    <div className="absolute top-1/2 left-1/2 flex h-[5.125rem] w-[5.125rem] -translate-x-1/2 -translate-y-1/2 flex-col items-center justify-center gap-2 p-0">
+    <div className="absolute inset-0 rounded-lg bg-linear-to-br from-white/[0.096] to-transparent backdrop-blur-[1.3125rem] group-hover/wallet:bg-gradient-to-br group-hover/wallet:from-white/40 group-hover/wallet:to-transparent" />
+    <div className="absolute top-1/2 left-1/2 flex h-20.5 w-[5.125rem] -translate-x-1/2 -translate-y-1/2 flex-col items-center justify-center gap-2 p-0">
       {child}
     </div>
   </div>
