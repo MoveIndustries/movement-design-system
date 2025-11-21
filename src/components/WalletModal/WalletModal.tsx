@@ -55,6 +55,7 @@ function cleanWalletList(
     "Tokenpocket",
     "Martian",
     "Rise",
+    "Petra",
   ];
   return wallets
     .filter(
@@ -88,34 +89,40 @@ function ConnectWalletContent({
       const grouped = groupAndSortWallets(wallets, walletSortingOptions);
 
       // Add OKX and MSafe as installable wallets if not already present
-      const additionalInstallableWallets = [];
+      const additionalInstallableWallets: (
+        | AdapterWallet
+        | AdapterNotDetectedWallet
+      )[] = [];
 
       // Check if OKX wallet is already in the lists
       const hasOKX = [
-        ...grouped.availableWallets,
-        ...grouped.installableWallets,
+        ...(grouped?.availableWallets ?? []),
+        ...(grouped?.installableWallets ?? []),
       ].some((w) => w.name.toLowerCase().includes("okx"));
       if (!hasOKX) {
-        // eslint-disable-next-line @typescript-eslint/no-explicit-any
-        additionalInstallableWallets.push(new OKXWallet() as any);
+        additionalInstallableWallets.push(
+          new OKXWallet() as AdapterNotDetectedWallet,
+        );
       }
 
       // Check if MSafe wallet is already in the lists
       const hasMSafe = [
-        ...grouped.availableWallets,
-        ...grouped.installableWallets,
+        ...(grouped?.availableWallets ?? []),
+        ...(grouped?.installableWallets ?? []),
       ].some((w) => w.name.toLowerCase().includes("msafe"));
       if (!hasMSafe) {
         additionalInstallableWallets.push(
-          // eslint-disable-next-line @typescript-eslint/no-explicit-any
-          new MSafeWalletAdapter(undefined, "MOVEMENT") as any,
+          new MSafeWalletAdapter(
+            undefined,
+            "MOVEMENT",
+          ) as unknown as AdapterNotDetectedWallet,
         );
       }
-
       return {
-        ...grouped,
+        aptosConnectWallets: grouped?.aptosConnectWallets ?? [],
+        availableWallets: grouped?.availableWallets ?? [],
         installableWallets: [
-          ...grouped.installableWallets,
+          ...(grouped?.installableWallets ?? []),
           ...additionalInstallableWallets,
         ],
       };
