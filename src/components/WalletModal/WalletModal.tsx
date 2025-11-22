@@ -15,8 +15,18 @@ import { useMemo, useState, useEffect } from "react";
 import { OKXWallet } from "@okwallet/aptos-wallet-adapter";
 import { MSafeWalletAdapter } from "@msafe/aptos-wallet-adapter";
 import { useIsMobile } from "@/hooks/use-mobile";
-import { Drawer, DrawerContent } from "@/components/shadcn/drawer";
-import { Dialog, DialogContent } from "@/components/shadcn/dialog";
+import {
+  Drawer,
+  DrawerContent,
+  DrawerTitle,
+  DrawerDescription,
+} from "@/components/shadcn/drawer";
+import {
+  Dialog,
+  DialogContent,
+  DialogTitle,
+  DialogDescription,
+} from "@/components/shadcn/dialog";
 import { cn } from "@/lib/utils";
 
 const nightlyWallet: AdapterNotDetectedWallet = {
@@ -372,6 +382,11 @@ export function WalletModal({
       onOpenChange={(open: any) => !open && onClose()}
     >
       <DrawerContent className="z-9999">
+        <DrawerTitle className="sr-only">Connect Wallet</DrawerTitle>
+        <DrawerDescription className="sr-only">
+          Securely connect your wallet to transfer digital assets to and from
+          the Movement network.
+        </DrawerDescription>
         <ConnectWalletContent {...contentProps} showCloseButton={false} />
       </DrawerContent>
     </Drawer>
@@ -385,6 +400,11 @@ export function WalletModal({
         showCloseButton={false}
         className="border-0 bg-transparent p-0"
       >
+        <DialogTitle className="sr-only">Connect Wallet</DialogTitle>
+        <DialogDescription className="sr-only">
+          Securely connect your wallet to transfer digital assets to and from
+          the Movement network.
+        </DialogDescription>
         <ConnectWalletContent {...contentProps} />
       </DialogContent>
     </Dialog>
