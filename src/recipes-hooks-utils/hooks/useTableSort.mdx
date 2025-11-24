@@ -1,0 +1,79 @@
+import { Meta } from "@storybook/addon-docs/blocks";
+
+<Meta title="Hooks/useTableSort" />
+
+# useTableSort
+
+A hook for accessing the current table sorting state. Must be used within a `Table` component that has sorting enabled.
+
+Returns an object containing:
+- `sortColumn`: The currently sorted column name (or `null` if no sorting)
+- `sortDirection`: The sort direction (`"asc"`, `"desc"`, or `null`)
+
+## Import
+
+```tsx
+import { useTableSort } from "@movementlabsxyz/movement-design-system";
+```
+
+## Basic Example
+
+```tsx
+import { useTableSort } from "@movementlabsxyz/movement-design-system";
+
+export function CustomTableHeader() {
+  const { sortColumn, sortDirection } = useTableSort();
+
+  return (
+    <div>
+      Currently sorting by: {sortColumn || "none"}
+      {sortDirection && ` (${sortDirection})`}
+    </div>
+  );
+}
+```
+
+## Sort Indicator
+
+```tsx
+import { useTableSort } from "@movementlabsxyz/movement-design-system";
+import { ArrowUp, ArrowDown } from "lucide-react";
+
+export function SortIndicator({ column }: { column: string }) {
+  const { sortColumn, sortDirection } = useTableSort();
+
+  if (sortColumn !== column) return null;
+
+  return sortDirection === "asc" ? <ArrowUp /> : <ArrowDown />;
+}
+```
+
+## Custom Table Info
+
+```tsx
+import { useTableSort, Table, TableBody, TableRow, TableCell } from "@movementlabsxyz/movement-design-system";
+
+export function TableWithInfo({ data }: { data: any[] }) {
+  const { sortColumn, sortDirection } = useTableSort();
+
+  return (
+    <>
+      <div className="mb-2 text-sm text-muted-foreground">
+        {sortColumn ? (
+          <span>Sorted by {sortColumn} ({sortDirection})</span>
+        ) : (
+          <span>No sorting applied</span>
+        )}
+      </div>
+      <Table sortable>
+        {/* Table content */}
+      </Table>
+    </>
+  );
+}
+```
+
+## Note
+
+This hook must be used within a `Table` component context. It will throw an error if used outside of a Table.
+

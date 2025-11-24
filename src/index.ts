@@ -3,6 +3,13 @@ import "./index.css";
 
 // Components
 export * from "./components/Icon";
+export { Branding } from "./components/Branding";
+export type {
+  BrandingProps,
+  BrandingTheme,
+  BrandingVariant,
+  BrandingColor,
+} from "./components/Branding";
 export { DottedBackground } from "./components/DottedBackground";
 export { IconButton } from "./components/IconButton/IconButton";
 export { Logo } from "./components/Logo/Logo";
@@ -33,6 +40,7 @@ export {
   Avatar,
   AvatarFallback,
   AvatarImage,
+  avatarVariants,
 } from "./components/shadcn/avatar";
 export { Badge, badgeVariants } from "./components/shadcn/badge";
 export {

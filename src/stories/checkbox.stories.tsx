@@ -3,7 +3,7 @@ import { Checkbox } from "../components/shadcn/checkbox";
 import { Label } from "../components/shadcn/label";
 
 const meta = {
-  title: "movement-design-system/Checkbox",
+  title: "form/Checkbox",
   component: Checkbox,
   parameters: {
     layout: "centered",

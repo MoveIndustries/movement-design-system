@@ -1,0 +1,146 @@
+import { Meta } from "@storybook/addon-docs/blocks";
+
+<Meta title="Hooks/useSortableData" />
+
+# useSortableData
+
+A hook for automatically sorting an array of data based on the current table's sort state. Must be used within a `Table` component.
+
+The hook accepts:
+- `data`: The array of data to sort
+- `sortFn`: (Optional) A custom sort function
+
+Returns the sorted data array.
+
+## Import
+
+```tsx
+import { useSortableData } from "@movementlabsxyz/movement-design-system";
+```
+
+## Basic Example
+
+```tsx
+import { 
+  useSortableData, 
+  Table, 
+  TableHeader, 
+  TableBody, 
+  TableRow, 
+  TableHead, 
+  TableCell 
+} from "@movementlabsxyz/movement-design-system";
+
+interface User {
+  id: number;
+  name: string;
+  email: string;
+  age: number;
+}
+
+export function UsersTable({ users }: { users: User[] }) {
+  const sortedUsers = useSortableData(users);
+
+  return (
+    <Table sortable defaultSortColumn="name">
+      <TableHeader>
+        <TableRow>
+          <TableHead sortable column="name">Name</TableHead>
+          <TableHead sortable column="email">Email</TableHead>
+          <TableHead sortable column="age">Age</TableHead>
+        </TableRow>
+      </TableHeader>
+      <TableBody>
+        {sortedUsers.map((user) => (
+          <TableRow key={user.id}>
+            <TableCell>{user.name}</TableCell>
+            <TableCell>{user.email}</TableCell>
+            <TableCell>{user.age}</TableCell>
+          </TableRow>
+        ))}
+      </TableBody>
+    </Table>
+  );
+}
+```
+
+## Custom Sort Function
+
+You can provide a custom sort function for complex sorting logic:
+
+```tsx
+import { useSortableData, type SortFunction } from "@movementlabsxyz/movement-design-system";
+
+interface Product {
+  name: string;
+  price: number;
+  inStock: boolean;
+}
+
+const customSortFn: SortFunction<Product> = (a, b, column, direction) => {
+  // Custom logic: sort by stock status first, then by the column
+  if (a.inStock !== b.inStock) {
+    return a.inStock ? -1 : 1;
+  }
+
+  const aValue = a[column as keyof Product];
+  const bValue = b[column as keyof Product];
+  
+  if (aValue === bValue) return 0;
+  const comparison = aValue < bValue ? -1 : 1;
+  return direction === "asc" ? comparison : -comparison;
+};
+
+export function ProductsTable({ products }: { products: Product[] }) {
+  const sortedProducts = useSortableData(products, customSortFn);
+  
+  return (
+    <Table sortable>
+      {/* Render sorted products */}
+    </Table>
+  );
+}
+```
+
+## Date Sorting
+
+```tsx
+import { useSortableData, type SortFunction } from "@movementlabsxyz/movement-design-system";
+
+interface Event {
+  id: string;
+  name: string;
+  date: string; // ISO date string
+}
+
+const dateSortFn: SortFunction<Event> = (a, b, column, direction) => {
+  if (column === "date") {
+    const dateA = new Date(a.date).getTime();
+    const dateB = new Date(b.date).getTime();
+    const comparison = dateA - dateB;
+    return direction === "asc" ? comparison : -comparison;
+  }
+  
+  // Default sorting for other columns
+  const aValue = a[column as keyof Event];
+  const bValue = b[column as keyof Event];
+  if (aValue === bValue) return 0;
+  const comparison = aValue < bValue ? -1 : 1;
+  return direction === "asc" ? comparison : -comparison;
+};
+
+export function EventsTable({ events }: { events: Event[] }) {
+  const sortedEvents = useSortableData(events, dateSortFn);
+  
+  return (
+    <Table sortable defaultSortColumn="date">
+      {/* Render events */}
+    </Table>
+  );
+}
+```
+
+## Note
+
+This hook must be used within a `Table` component context. The sorting happens automatically based on the table's sort state.
+

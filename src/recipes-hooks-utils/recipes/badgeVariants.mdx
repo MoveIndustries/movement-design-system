@@ -1,0 +1,78 @@
+import { Meta } from "@storybook/addon-docs/blocks";
+
+<Meta title="Recipes/badgeVariants" />
+
+# badgeVariants
+
+A recipe for creating badge styles. Badges are small status indicators or labels.
+
+## Import
+
+```tsx
+import { badgeVariants } from "@movementlabsxyz/movement-design-system";
+```
+
+## Variants
+
+### variant options
+
+- `default` - Primary badge style
+- `secondary` - Secondary badge style
+- `destructive` - Red/danger badge style
+- `outline` - Outlined badge style
+- `success` - Green success badge
+- `error` - Red error badge
+- `warning` - Yellow warning badge
+- `info` - Blue info badge
+
+## Basic Example
+
+```tsx
+import { badgeVariants } from "@movementlabsxyz/movement-design-system";
+
+export function StatusBadge({ status }: { status: "active" | "inactive" | "error" }) {
+  const variant = 
+    status === "active" ? "success" : 
+    status === "error" ? "error" : 
+    "secondary";
+  
+  return (
+    <span className={badgeVariants({ variant })}>
+      {status}
+    </span>
+  );
+}
+```
+
+## With Custom Elements
+
+```tsx
+import { badgeVariants } from "@movementlabsxyz/movement-design-system";
+
+export function CustomBadge({ count }: { count: number }) {
+  return (
+    <div className={badgeVariants({ variant: "default" })}>
+      {count} new messages
+    </div>
+  );
+}
+```
+
+## Multiple Badges
+
+```tsx
+import { badgeVariants } from "@movementlabsxyz/movement-design-system";
+
+export function StatusList({ items }: { items: Array<{ id: string; status: string }> }) {
+  return (
+    <div className="flex gap-2">
+      {items.map((item) => (
+        <span key={item.id} className={badgeVariants({ variant: "outline" })}>
+          {item.status}
+        </span>
+      ))}
+    </div>
+  );
+}
+```
+

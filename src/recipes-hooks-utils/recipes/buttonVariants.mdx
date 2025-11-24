@@ -1,0 +1,129 @@
+import { Meta } from "@storybook/addon-docs/blocks";
+
+<Meta title="Recipes/buttonVariants" />
+
+# buttonVariants
+
+A recipe for creating button styles with various visual variants and sizes. Use this when building custom button-like components that need to match the design system's button styling.
+
+## Import
+
+```tsx
+import { buttonVariants } from "@movementlabsxyz/movement-design-system";
+```
+
+## Variants
+
+### variant options
+
+- `default` - Primary button style
+- `secondary` - Secondary button style
+- `accent` - Accent button style
+- `destructive` - Red/danger button style
+- `success` - Green success button style
+- `warning` - Yellow warning button style
+- `outline` - Outlined button style
+- `ghost` - Minimal ghost button style
+- `link` - Link-styled button
+- `glow` - Special glow button with Movement branding
+
+### size options
+
+- `xs` - Extra small (h-6)
+- `sm` - Small (h-8)
+- `default` - Default size (h-10)
+- `lg` - Large (h-12)
+- `xl` - Extra large (h-14)
+- `2xl` - 2X large (h-16)
+- `icon` - Square icon button (size-9)
+- `icon-sm` - Small icon button (size-8)
+- `icon-lg` - Large icon button (size-10)
+
+## Basic Example
+
+```tsx
+import { buttonVariants } from "@movementlabsxyz/movement-design-system";
+import { Link } from "react-router-dom";
+
+// Create a link that looks like a button
+export function ButtonLink({ href, children }: { href: string; children: React.ReactNode }) {
+  return (
+    <Link 
+      to={href}
+      className={buttonVariants({ variant: "default", size: "lg" })}
+    >
+      {children}
+    </Link>
+  );
+}
+```
+
+## Conditional Variants
+
+```tsx
+import { buttonVariants } from "@movementlabsxyz/movement-design-system";
+
+export function StatusButton({ 
+  status, 
+  onClick 
+}: { 
+  status: "idle" | "success" | "error"; 
+  onClick: () => void 
+}) {
+  const variant = 
+    status === "success" ? "success" : 
+    status === "error" ? "destructive" : 
+    "default";
+  
+  return (
+    <button 
+      className={buttonVariants({ variant, size: "default" })}
+      onClick={onClick}
+    >
+      {status === "success" ? "Saved!" : status === "error" ? "Error" : "Save"}
+    </button>
+  );
+}
+```
+
+## With Custom Classes
+
+```tsx
+import { buttonVariants, cn } from "@movementlabsxyz/movement-design-system";
+
+export function PulsingButton() {
+  return (
+    <button 
+      className={cn(
+        buttonVariants({ variant: "default", size: "lg" }),
+        "animate-pulse" // Add custom animation
+      )}
+    >
+      Pulsing Button
+    </button>
+  );
+}
+```
+
+## Type Safety with VariantProps
+
+```tsx
+import { buttonVariants, type VariantProps } from "@movementlabsxyz/movement-design-system";
+
+interface CustomButtonProps extends VariantProps<typeof buttonVariants> {
+  loading?: boolean;
+  children: React.ReactNode;
+}
+
+export function CustomButton({ variant, size, loading, children }: CustomButtonProps) {
+  return (
+    <button 
+      className={buttonVariants({ variant, size })}
+      disabled={loading}
+    >
+      {loading ? "Loading..." : children}
+    </button>
+  );
+}
+```
+

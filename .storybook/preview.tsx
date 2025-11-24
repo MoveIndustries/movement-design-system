@@ -148,7 +148,7 @@ const preview: Preview = {
     layout: "centered",
     options: {
       storySort: {
-        order: ["theme", "movement-design-system", "shadcn"],
+        order: ["theme", "Blocks", "movement-design-system", "shadcn"],
       },
     },
 

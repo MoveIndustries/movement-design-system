@@ -15,7 +15,7 @@ import {
 } from "lucide-react";
 
 const meta = {
-  title: "movement-design-system/Input",
+  title: "form/Input",
   component: Input,
   parameters: {
     layout: "centered",

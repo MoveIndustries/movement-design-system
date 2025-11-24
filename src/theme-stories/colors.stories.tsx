@@ -1,10 +1,26 @@
 import type { Meta, StoryObj } from "@storybook/react-vite";
+import {
+  Title,
+  Subtitle,
+  Description,
+  Controls,
+  Stories,
+} from "@storybook/addon-docs/blocks";
 
 const meta: Meta = {
   title: "theme/Colors",
   tags: ["autodocs"],
   parameters: {
     docs: {
+      page: () => (
+        <>
+          <Title />
+          <Subtitle />
+          <Description />
+          <Controls />
+          <Stories />
+        </>
+      ),
       description: {
         component:
           "Color palette and semantic tokens for the design system. All colors are available as Tailwind classes (e.g., `bg-guild-green-300`) and CSS variables (e.g., `var(--primary)`).",

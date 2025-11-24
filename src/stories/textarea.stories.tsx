@@ -3,7 +3,7 @@ import { Textarea } from "../components/shadcn/textarea";
 import { Label } from "../components/shadcn/label";
 
 const meta = {
-  title: "movement-design-system/Textarea",
+  title: "form/Textarea",
   component: Textarea,
   parameters: {
     layout: "centered",

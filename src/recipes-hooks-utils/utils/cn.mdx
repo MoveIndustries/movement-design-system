@@ -1,0 +1,141 @@
+import { Meta } from "@storybook/addon-docs/blocks";
+
+<Meta title="Utils/cn" />
+
+# cn
+
+A utility function for merging Tailwind CSS class names. It combines `clsx` for conditional classes and `tailwind-merge` to intelligently resolve conflicting Tailwind classes.
+
+This is particularly useful when you need to merge component classes with user-provided classes, ensuring that later classes override earlier ones correctly.
+
+## Import
+
+```tsx
+import { cn } from "@movementlabsxyz/movement-design-system";
+```
+
+## Basic Usage
+
+```tsx
+import { cn } from "@movementlabsxyz/movement-design-system";
+
+// Basic usage
+const className = cn("px-4 py-2", "bg-blue-500", "text-white");
+// => "px-4 py-2 bg-blue-500 text-white"
+```
+
+## Conditional Classes
+
+```tsx
+import { cn } from "@movementlabsxyz/movement-design-system";
+
+const buttonClass = cn(
+  "px-4 py-2 rounded",
+  isActive && "bg-blue-500",
+  isDisabled && "opacity-50 cursor-not-allowed"
+);
+```
+
+## Merging with User Classes
+
+```tsx
+import { cn } from "@movementlabsxyz/movement-design-system";
+
+function Button({ className, ...props }: { className?: string }) {
+  return (
+    <button
+      className={cn(
+        "px-4 py-2 bg-blue-500 text-white rounded",
+        className // User can override default styles
+      )}
+      {...props}
+    />
+  );
+}
+
+// Usage: This will result in bg-red-500 instead of bg-blue-500
+<Button className="bg-red-500" />
+```
+
+## With Recipes
+
+```tsx
+import { cn, buttonVariants } from "@movementlabsxyz/movement-design-system";
+
+export function CustomButton({ className }: { className?: string }) {
+  return (
+    <button
+      className={cn(
+        buttonVariants({ variant: "default", size: "lg" }),
+        "animate-pulse", // Add custom animation
+        className // User overrides
+      )}
+    >
+      Pulsing Button
+    </button>
+  );
+}
+```
+
+## Array of Classes
+
+```tsx
+import { cn } from "@movementlabsxyz/movement-design-system";
+
+const classes = [
+  "base-class",
+  isActive && "active-class",
+  isError && "error-class",
+];
+
+const merged = cn(...classes);
+```
+
+## Complex Example
+
+```tsx
+import { cn } from "@movementlabsxyz/movement-design-system";
+
+function Card({ 
+  variant = "default", 
+  elevated = false, 
+  className 
+}: { 
+  variant?: "default" | "bordered" | "filled"; 
+  elevated?: boolean; 
+  className?: string;
+}) {
+  return (
+    <div
+      className={cn(
+        // Base styles
+        "rounded-lg p-4",
+        // Variant styles
+        variant === "default" && "bg-white",
+        variant === "bordered" && "border-2 border-gray-200",
+        variant === "filled" && "bg-gray-100",
+        // Conditional styles
+        elevated && "shadow-lg",
+        // User overrides
+        className
+      )}
+    >
+      Card content
+    </div>
+  );
+}
+```
+
+## Why Use cn?
+
+The `cn` utility handles Tailwind class conflicts intelligently. For example:
+
+```tsx
+// Without cn (both classes applied, unpredictable result)
+<div className="bg-blue-500 bg-red-500">Content</div>
+
+// With cn (last class wins)
+<div className={cn("bg-blue-500", "bg-red-500")}>Content</div>
+// => "bg-red-500"
+```
+

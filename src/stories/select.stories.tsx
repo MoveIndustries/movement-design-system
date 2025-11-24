@@ -11,7 +11,7 @@ import {
 import { WalletIcon } from "lucide-react";
 
 const meta = {
-  title: "movement-design-system/Select",
+  title: "form/Select",
   component: Select,
   parameters: {
     layout: "centered",

@@ -1,0 +1,102 @@
+import { Meta } from "@storybook/addon-docs/blocks";
+
+<Meta title="Hooks/useIsMobile" />
+
+# useIsMobile
+
+A hook for detecting if the current viewport is mobile-sized (below 768px). Returns `undefined` on the first render before hydration to prevent hydration mismatches in SSR environments.
+
+The hook listens to window resize events and updates automatically when the viewport size changes.
+
+## Import
+
+```tsx
+import { useIsMobile } from "@movementlabsxyz/movement-design-system";
+```
+
+## Basic Example
+
+```tsx
+import { useIsMobile } from "@movementlabsxyz/movement-design-system";
+
+export function ResponsiveComponent() {
+  const isMobile = useIsMobile();
+
+  if (isMobile === undefined) {
+    // Optionally render a loading state during initial hydration
+    return null;
+  }
+
+  return (
+    <div>
+      {isMobile ? (
+        <div>Mobile View</div>
+      ) : (
+        <div>Desktop View</div>
+      )}
+    </div>
+  );
+}
+```
+
+## Responsive Layout
+
+```tsx
+import { useIsMobile } from "@movementlabsxyz/movement-design-system";
+
+export function ResponsiveNav() {
+  const isMobile = useIsMobile();
+
+  return (
+    <nav>
+      {isMobile ? (
+        <MobileMenu />
+      ) : (
+        <DesktopMenu />
+      )}
+    </nav>
+  );
+}
+```
+
+## Conditional Rendering
+
+```tsx
+import { useIsMobile } from "@movementlabsxyz/movement-design-system";
+
+export function ProductCard({ product }: { product: Product }) {
+  const isMobile = useIsMobile();
+
+  return (
+    <div>
+      <h2>{product.name}</h2>
+      {isMobile ? (
+        <MobileProductDetails product={product} />
+      ) : (
+        <DesktopProductDetails product={product} />
+      )}
+    </div>
+  );
+}
+```
+
+## With Button Sizes
+
+```tsx
+import { useIsMobile, Button } from "@movementlabsxyz/movement-design-system";
+
+export function ResponsiveButton({ children }: { children: React.ReactNode }) {
+  const isMobile = useIsMobile();
+
+  return (
+    <Button size={isMobile ? "sm" : "lg"}>
+      {children}
+    </Button>
+  );
+}
+```
+
+## Breakpoint
+
+The hook uses a breakpoint of **768px** (mobile < 768px, desktop >= 768px).
+

@@ -2,7 +2,7 @@ import type { Meta, StoryObj } from '@storybook/react';
 import { MultiOutlineText } from '@/components/MultiOutlineText';
 
 const meta = {
-  title: 'Components/MultiOutlineText',
+  title: 'movement design system/MultiOutlineText',
   component: MultiOutlineText,
   parameters: {
     layout: 'centered',

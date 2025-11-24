@@ -3,7 +3,7 @@ import { Toggle } from "../components/shadcn/toggle";
 import { Bold, Italic, Underline } from "lucide-react";
 
 const meta = {
-  title: "shadcn/Toggle",
+  title: "form/Toggle",
   component: Toggle,
   parameters: {
     layout: "centered",

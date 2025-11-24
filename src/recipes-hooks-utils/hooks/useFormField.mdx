@@ -1,0 +1,106 @@
+import { Meta } from "@storybook/addon-docs/blocks";
+
+<Meta title="Hooks/useFormField" />
+
+# useFormField
+
+A hook for accessing form field state and IDs in form components. Must be used within a `FormField` component from React Hook Form integration.
+
+Returns an object containing:
+- `id`: Unique ID for the form item
+- `name`: Field name from React Hook Form
+- `formItemId`: ID for the form item element
+- `formDescriptionId`: ID for the description element
+- `formMessageId`: ID for the error message element
+- `error`: Field error object from React Hook Form
+- Other field state from React Hook Form
+
+**Note**: This hook is primarily for internal use when building custom form components. Most users should use the provided `Form` components directly.
+
+## Import
+
+```tsx
+import { useFormField } from "@movementlabsxyz/movement-design-system";
+```
+
+## Basic Example
+
+```tsx
+import { useFormField, FormItem, FormLabel, FormControl } from "@movementlabsxyz/movement-design-system";
+
+export function CustomFormInput() {
+  const { error, formItemId } = useFormField();
+
+  return (
+    <FormItem>
+      <FormLabel>Custom Input</FormLabel>
+      <FormControl>
+        <input
+          id={formItemId}
+          className={error ? "border-red-500" : ""}
+        />
+      </FormControl>
+      {error && <p className="text-red-500">{error.message}</p>}
+    </FormItem>
+  );
+}
+```
+
+## Custom Error Display
+
+```tsx
+import { useFormField, FormItem, FormLabel, FormControl } from "@movementlabsxyz/movement-design-system";
+
+export function EnhancedFormInput() {
+  const { error, formItemId, formDescriptionId } = useFormField();
+
+  return (
+    <FormItem>
+      <FormLabel>Enhanced Input</FormLabel>
+      <FormControl>
+        <input
+          id={formItemId}
+          aria-describedby={formDescriptionId}
+          aria-invalid={!!error}
+          className={error ? "border-red-500 focus:ring-red-500" : ""}
+        />
+      </FormControl>
+      {error && (
+        <div className="flex items-center gap-2 text-red-500 text-sm mt-1">
+          <AlertCircle size={16} />
+          <span>{error.message}</span>
+        </div>
+      )}
+    </FormItem>
+  );
+}
+```
+
+## Conditional Rendering
+
+```tsx
+import { useFormField, FormItem, FormLabel, FormControl } from "@movementlabsxyz/movement-design-system";
+
+export function ConditionalFormInput() {
+  const { error, name, formItemId } = useFormField();
+
+  return (
+    <FormItem>
+      <FormLabel>
+        {name} {error && "(has errors)"}
+      </FormLabel>
+      <FormControl>
+        <input
+          id={formItemId}
+          className={error ? "border-destructive" : "border-input"}
+        />
+      </FormControl>
+    </FormItem>
+  );
+}
+```
+
+## Note
+
+This hook must be used within a `FormField` component. It's primarily intended for building custom form components. For most use cases, use the provided `Form` components directly.
+

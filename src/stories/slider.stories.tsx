@@ -2,7 +2,7 @@ import type { Meta, StoryObj } from "@storybook/react-vite";
 import { Slider } from "../components/shadcn/slider";
 
 const meta = {
-  title: "movement-design-system/Slider",
+  title: "form/Slider",
   component: Slider,
   parameters: {
     layout: "centered",

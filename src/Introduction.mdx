@@ -1,0 +1,151 @@
+import { Meta } from "@storybook/addon-docs/blocks";
+
+<Meta title="Introduction" />
+
+# Movement Design System
+
+A comprehensive design system built with shadcn/ui components for Movement Labs applications. This library provides a collection of beautifully designed, accessible, and customizable React components powered by Tailwind CSS v4.
+
+## 📚 Documentation
+
+For complete documentation and live examples, visit:
+[https://movement-design-system-docs-git-shadcn-movement-labs.vercel.app/](https://movement-design-system-docs-git-shadcn-movement-labs.vercel.app/)
+
+## 🚀 Installation
+
+### Prerequisites
+
+- React 18+ or 19+
+- Tailwind CSS v4
+- PostCSS
+
+### Step 1: Install the Design System
+
+Install the package from the `shadcn` branch:
+
+```bash
+npm install @movementlabsxyz/movement-design-system@shadcn
+# or
+pnpm add @movementlabsxyz/movement-design-system@shadcn
+# or
+yarn add @movementlabsxyz/movement-design-system@shadcn
+```
+
+### Step 2: Set Up Tailwind CSS
+
+Ensure you have a standard Tailwind CSS setup with PostCSS. If you haven't set this up yet, follow the [Tailwind CSS v4 installation guide](https://tailwindcss.com/docs/installation).
+
+### Step 3: Import Styles
+
+Add the following imports to your `global.css` file **in this exact order** (the order is important!):
+
+```css
+@import "movement-design-system/component-styles";
+@import "movement-design-system/theme";
+@import "tailwindcss";
+```
+
+> ⚠️ **Important**: The order of these imports matters! Make sure to import the component styles and theme before Tailwind CSS.
+
+## 📦 Usage
+
+Import and use components in your React application:
+
+```tsx
+import { Button, Card, Input } from '@movementlabsxyz/movement-design-system';
+
+function App() {
+  return (
+    <div>
+      <Card>
+        <Input placeholder="Enter text..." />
+        <Button>Submit</Button>
+      </Card>
+    </div>
+  );
+}
+```
+
+## 🧩 Blocks - Pre-built Patterns
+
+In addition to individual components, the design system includes **Blocks**: pre-built, production-ready patterns composed from multiple components. These blocks serve as examples and starting points for common UI patterns in Movement applications.
+
+### What are Blocks?
+
+Blocks are complete, copy-paste-ready code examples that demonstrate how to combine components from the design system to create real-world UI patterns. Each block is fully functional and can be customized to fit your specific needs.
+
+### Available Blocks
+
+- **StakingBalance** - Glass-morphism card displaying staking stats, total staked amount, active delegations, and rewards
+- **StakeForm** - Complete staking form with validator selection, amount input, and gradient styling
+- **ValidatorsTable** - Comprehensive validators table with sorting, progress bars, and detailed metrics
+- **MobileValidatorsTable** - Responsive validators table that automatically switches between table and card layouts
+- **PaginatedTable** - Full-featured table with sorting, pagination, and multiple style variants
+
+### Using Blocks
+
+Browse the **Blocks** section in the sidebar to see live examples with full source code. Simply copy the code and adapt it to your needs—all blocks are built exclusively with components from this design system.
+
+## ✨ Features
+
+### 🎨 Built-in Fonts
+Fonts are bundled with the library and work out of the box—no additional configuration needed!
+
+### 💡 IntelliSense Support
+Full TypeScript support with IntelliSense for all components and their props.
+
+### 🎯 shadcn/ui API
+New components follow the familiar shadcn/ui API for consistency and ease of use.
+
+### 🌈 Customizable Theming
+Built on Tailwind CSS v4 with CSS variables for easy customization.
+
+## ⚙️ Recommended Setup
+
+### Automatic Class Sorting with Prettier
+
+We recommend using Prettier's automatic class sorting for Tailwind CSS to keep your classes organized:
+
+1. Install the Prettier plugin:
+
+```bash
+npm install -D prettier prettier-plugin-tailwindcss
+# or
+pnpm add -D prettier prettier-plugin-tailwindcss
+```
+
+2. Add to your `.prettierrc` or `prettier.config.js`:
+
+```json
+{
+  "plugins": ["prettier-plugin-tailwindcss"]
+}
+```
+
+For more information, see the [official Tailwind CSS blog post](https://tailwindcss.com/blog/automatic-class-sorting-with-prettier).
+
+## 📝 Current Status
+
+### ⚠️ Work in Progress
+
+This design system is actively being developed. Please note:
+
+- **Not all components have been ported yet** from the original design system
+- **New components use the shadcn API**, providing a modern and familiar interface
+- **API stability**: The API for unfinished components may change in future releases
+- **Documentation updates**: We will clearly separate finished and in-progress components in the documentation
+
+## 🤝 Contributing
+
+This is an internal design system for Movement Labs. If you're part of the team and want to contribute, please reach out to the design system maintainers.
+
+## 📄 License
+
+MIT License - see the LICENSE file for details.
+
+---
+
+**Package**: `@movementlabsxyz/movement-design-system`  
+**Version**: 0.1.18  
+**Maintainer**: Movement Labs
+

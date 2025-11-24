@@ -1,0 +1,105 @@
+import { Meta } from "@storybook/addon-docs/blocks";
+
+<Meta title="Recipes/typographyVariants" />
+
+# typographyVariants
+
+A recipe for creating text styles that match the design system's typography scale.
+
+## Import
+
+```tsx
+import { typographyVariants } from "@movementlabsxyz/movement-design-system";
+```
+
+## Variants
+
+### variant options
+
+- `h1` through `h6` - Heading styles
+- `p` - Paragraph (default)
+- `lead` - Lead paragraph
+- `large` - Large text
+- `small` - Small text
+- `muted` - Muted text color
+- `blockquote` - Blockquote style
+- `code` - Inline code with background
+- `inlineCode` - Inline code
+- `list` - List style
+- `label` - Form label style
+- `mono` - Monospace font
+- `uppercase` - Uppercase with tracking
+
+### affects options
+
+- `default` - Default spacing
+- `removePMargin` - Remove paragraph top margin (except first)
+- `removeMargin` - Remove all margins
+
+## Basic Example
+
+```tsx
+import { typographyVariants } from "@movementlabsxyz/movement-design-system";
+
+export function Article() {
+  return (
+    <article>
+      <h1 className={typographyVariants({ variant: "h1" })}>
+        Article Title
+      </h1>
+      <p className={typographyVariants({ variant: "lead" })}>
+        This is a lead paragraph that stands out.
+      </p>
+      <p className={typographyVariants({ variant: "p" })}>
+        Regular paragraph text.
+      </p>
+      <code className={typographyVariants({ variant: "code" })}>
+        const example = true;
+      </code>
+    </article>
+  );
+}
+```
+
+## Custom Heading Component
+
+```tsx
+import { typographyVariants } from "@movementlabsxyz/movement-design-system";
+
+export function Heading({ 
+  level, 
+  children 
+}: { 
+  level: 1 | 2 | 3 | 4 | 5 | 6; 
+  children: React.ReactNode 
+}) {
+  const Tag = `h${level}` as const;
+  const variant = `h${level}` as const;
+  
+  return (
+    <Tag className={typographyVariants({ variant })}>
+      {children}
+    </Tag>
+  );
+}
+```
+
+## With Custom Spacing
+
+```tsx
+import { typographyVariants } from "@movementlabsxyz/movement-design-system";
+
+export function ArticleContent() {
+  return (
+    <div>
+      <p className={typographyVariants({ variant: "p", affects: "removePMargin" })}>
+        First paragraph with controlled margins.
+      </p>
+      <p className={typographyVariants({ variant: "p", affects: "removePMargin" })}>
+        Second paragraph with controlled margins.
+      </p>
+    </div>
+  );
+}
+```
+

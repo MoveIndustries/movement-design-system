@@ -4,7 +4,7 @@ import { WalletModal } from "@/components/WalletModal";
 import { Button } from "@/components/shadcn/button";
 
 const meta: Meta<typeof WalletModal> = {
-  title: "Components/WalletModal",
+title: "Movement Design System/WalletModal",
   component: WalletModal,
   parameters: {
     layout: "centered",

@@ -1,0 +1,90 @@
+import { Meta } from "@storybook/addon-docs/blocks";
+
+<Meta title="Recipes/toastVariants" />
+
+# toastVariants
+
+The `toastVariants` export is an array of valid toast variant types, not a CVA recipe. It's useful for validation and type narrowing.
+
+## Import
+
+```tsx
+import { toastVariants, type ToastVariant } from "@movementlabsxyz/movement-design-system";
+```
+
+## Available Values
+
+The array contains: `["info", "error", "warning", "success"]`
+
+## Validation Example
+
+```tsx
+import { toastVariants, type ToastVariant } from "@movementlabsxyz/movement-design-system";
+
+// Validate if a string is a valid toast variant
+export function isToastVariant(value: string): value is ToastVariant {
+  return toastVariants.includes(value as ToastVariant);
+}
+
+// Usage
+const variant = "success";
+if (isToastVariant(variant)) {
+  // TypeScript now knows variant is ToastVariant
+  console.log("Valid variant:", variant);
+}
+```
+
+## Type-Safe Selector
+
+```tsx
+import { toastVariants, type ToastVariant } from "@movementlabsxyz/movement-design-system";
+
+export function ToastVariantSelector({ 
+  onSelect 
+}: { 
+  onSelect: (variant: ToastVariant) => void 
+}) {
+  return (
+    <div className="flex gap-2">
+      {toastVariants.map((variant) => (
+        <button 
+          key={variant} 
+          onClick={() => onSelect(variant)}
+          className="px-4 py-2 rounded"
+        >
+          {variant}
+        </button>
+      ))}
+    </div>
+  );
+}
+```
+
+## Dynamic Toast Creation
+
+```tsx
+import { toastVariants, toast, type ToastVariant } from "@movementlabsxyz/movement-design-system";
+
+export function NotificationDemo() {
+  const showToast = (variant: ToastVariant) => {
+    toast[variant]({
+      title: `${variant} toast`,
+      description: `This is a ${variant} notification`,
+    });
+  };
+
+  return (
+    <div className="flex gap-2">
+      {toastVariants.map((variant) => (
+        <button 
+          key={variant} 
+          onClick={() => showToast(variant)}
+        >
+          Show {variant}
+        </button>
+      ))}
+    </div>
+  );
+}
+```
+

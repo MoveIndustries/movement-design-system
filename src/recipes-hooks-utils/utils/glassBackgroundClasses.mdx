@@ -1,0 +1,116 @@
+import { Meta } from "@storybook/addon-docs/blocks";
+
+<Meta title="Utils/glassBackgroundClasses" />
+
+# glassBackgroundClasses
+
+An object containing the class names for glass morphism backgrounds. Use these with the `glassBackgroundStyles`.
+
+## Import
+
+```tsx
+import { glassBackgroundClasses } from "@movementlabsxyz/movement-design-system";
+```
+
+## Available Classes
+
+- `glassBackgroundClasses.dark`: Glass effect for dark backgrounds
+- `glassBackgroundClasses.light`: Glass effect for light backgrounds
+
+## Basic Example
+
+```tsx
+import { glassBackgroundClasses } from "@movementlabsxyz/movement-design-system";
+
+export function GlassCard() {
+  const isDarkMode = true; // Get from your theme context
+  
+  return (
+    <div 
+      className={
+        isDarkMode 
+          ? glassBackgroundClasses.dark 
+          : glassBackgroundClasses.light
+      }
+    >
+      <div className="p-6">
+        Card with glass morphism effect
+      </div>
+    </div>
+  );
+}
+```
+
+## With Theme Hook
+
+```tsx
+import { glassBackgroundClasses } from "@movementlabsxyz/movement-design-system";
+import { useTheme } from "next-themes";
+
+export function ThemedGlassCard() {
+  const { theme } = useTheme();
+  
+  return (
+    <div 
+      className={
+        theme === "dark" 
+          ? glassBackgroundClasses.dark 
+          : glassBackgroundClasses.light
+      }
+    >
+      <div className="p-6">
+        Theme-aware glass card
+      </div>
+    </div>
+  );
+}
+```
+
+## Combined with Gradient Borders
+
+```tsx
+import { 
+  glassBackgroundClasses, 
+  gradientBorderClasses, 
+  cn 
+} from "@movementlabsxyz/movement-design-system";
+
+export function PremiumCard({ error }: { error?: boolean }) {
+  return (
+    <div 
+      className={cn(
+        "relative rounded-lg",
+        glassBackgroundClasses.dark,
+        error ? gradientBorderClasses.error : gradientBorderClasses.glow
+      )}
+    >
+      <div className="p-6">
+        Premium card with glass background and gradient border
+      </div>
+    </div>
+  );
+}
+```
+
+## Modal Backdrop
+
+```tsx
+import { glassBackgroundClasses } from "@movementlabsxyz/movement-design-system";
+
+export function GlassModal({ children }: { children: React.ReactNode }) {
+  return (
+    <div className="fixed inset-0 flex items-center justify-center">
+      <div 
+        className={`${glassBackgroundClasses.dark} rounded-lg p-8 max-w-md w-full`}
+      >
+        {children}
+      </div>
+    </div>
+  );
+}
+```
+
+## Important
+
+Make sure to inject `glassBackgroundStyles` into your app before using these classes. See the [glassBackgroundStyles](/docs/recipes-hooks-utils-utils-glassbackgroundstyles--docs) documentation for setup instructions.
+

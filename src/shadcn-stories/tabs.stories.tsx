@@ -18,7 +18,7 @@ import { Input } from "../components/shadcn/input";
 import { Label } from "../components/shadcn/label";
 
 const meta = {
-  title: "UI/Tabs",
+  title: "movement design system/Tabs",
   component: Tabs,
   parameters: {
     layout: "centered",

@@ -1,0 +1,96 @@
+import { Meta } from "@storybook/addon-docs/blocks";
+
+<Meta title="Recipes, Hooks & Utils" />
+
+# Recipes, Hooks & Utils
+
+This section provides comprehensive documentation for all utility functions, hooks, recipes, and theme scales available in the Movement Design System.
+
+## 🎨 Recipes (6 total)
+
+CVA variant functions for building custom styled components:
+
+- **[buttonVariants](/docs/recipes-buttonvariants--docs)** - Button styling with 10 variants and 11 sizes
+- **[badgeVariants](/docs/recipes-badgevariants--docs)** - Badge styling with 8 variants
+- **[toggleVariants](/docs/recipes-togglevariants--docs)** - Toggle buttons with 2 variants and 3 sizes
+- **[typographyVariants](/docs/recipes-typographyvariants--docs)** - Typography scale with 17 variants
+- **[navigationMenuTriggerStyle](/docs/recipes-navigationmenutriggerstyle--docs)** - Navigation menu trigger styling
+- **[toastVariants](/docs/recipes-toastvariants--docs)** - Toast variant types array
+
+## 🎣 Hooks (5 total)
+
+React hooks for responsive design, tables, sidebars, and forms:
+
+- **[useIsMobile](/docs/hooks-useismobile--docs)** - Detect mobile viewport (< 768px)
+- **[useTableSort](/docs/hooks-usetablesort--docs)** - Access table sorting state
+- **[useSortableData](/docs/hooks-usesortabledata--docs)** - Sort data by table state
+- **[useSidebar](/docs/hooks-usesidebar--docs)** - Control sidebar state
+- **[useFormField](/docs/hooks-useformfield--docs)** - Form field state (internal use)
+
+## 🔧 Utilities (5 total)
+
+Utility functions for class names and styling effects:
+
+- **[cn](/docs/utils-cn--docs)** - Merge Tailwind class names intelligently
+- **[gradientBorderStyles](/docs/utils-gradientborderstyles--docs)** - CSS for gradient borders
+- **[gradientBorderClasses](/docs/utils-gradientborderclasses--docs)** - Gradient border class names
+- **[glassBackgroundStyles](/docs/utils-glassbackgroundstyles--docs)** - CSS for glass morphism
+- **[glassBackgroundClasses](/docs/utils-glassbackgroundclasses--docs)** - Glass background class names
+
+## 🎨 Theme Scales (6 total)
+
+Design tokens for consistent spacing, sizing, and styling:
+
+- **[spacing](/docs/theme-scales-spacing--docs)** - Spacing values (0-100, px)
+- **[sizes](/docs/theme-scales-sizes--docs)** - Size values (spacing + semantic)
+- **[radii](/docs/theme-scales-radii--docs)** - Border radius (sm to 3xl, full)
+- **[borderWidths](/docs/theme-scales-borderwidths--docs)** - Border widths (0-8)
+- **[shadows](/docs/theme-scales-shadows--docs)** - Box shadows (xs to 2xl, inner)
+- **[zIndex](/docs/theme-scales-zindex--docs)** - Z-index layering (hide to tooltip)
+
+## 📦 Quick Start
+
+```tsx
+// Common imports
+import {
+  // Recipes
+  buttonVariants,
+  badgeVariants,
+  
+  // Hooks
+  useIsMobile,
+  useTableSort,
+  
+  // Utilities
+  cn,
+  gradientBorderClasses,
+  
+  // Theme Scales
+  spacing,
+  radii,
+  shadows,
+  
+  // Types
+  type VariantProps,
+  type SortDirection
+} from "@movementlabsxyz/movement-design-system";
+```
+
+## 💡 Pro Tips
+
+1. **Use `cn` for all class merging** - It intelligently handles Tailwind class conflicts
+2. **Recipes are composable** - Combine them with your own classes using `cn`
+3. **Theme scales work with inline styles** - Perfect when you need JS values
+4. **Hooks handle SSR** - `useIsMobile` returns `undefined` initially to prevent hydration issues
+5. **Types are exported** - Use `VariantProps<typeof buttonVariants>` for type safety
+
+## 📊 Summary
+
+| Category | Items | All Exported |
+|----------|-------|--------------|
+| Recipes | 6 | ✅ |
+| Hooks | 5 | ✅ |
+| Utilities | 5 | ✅ |
+| Theme Scales | 6 | ✅ |
+| **Total** | **22** | ✅ |
+

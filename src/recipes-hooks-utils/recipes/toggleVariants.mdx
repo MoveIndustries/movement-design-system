@@ -1,0 +1,82 @@
+import { Meta } from "@storybook/addon-docs/blocks";
+
+<Meta title="Recipes/toggleVariants" />
+
+# toggleVariants
+
+A recipe for creating toggle button styles. Toggles are buttons that can be in an "on" or "off" state.
+
+## Import
+
+```tsx
+import { toggleVariants } from "@movementlabsxyz/movement-design-system";
+```
+
+## Variants
+
+### variant options
+
+- `default` - Transparent background
+- `outline` - With border outline
+
+### size options
+
+- `sm` - Small (h-8)
+- `default` - Default size (h-9)
+- `lg` - Large (h-10)
+
+## Basic Example
+
+```tsx
+import { toggleVariants } from "@movementlabsxyz/movement-design-system";
+
+export function CustomToggle({ 
+  pressed, 
+  onToggle 
+}: { 
+  pressed: boolean; 
+  onToggle: () => void 
+}) {
+  return (
+    <button
+      className={toggleVariants({ variant: "outline", size: "default" })}
+      data-state={pressed ? "on" : "off"}
+      onClick={onToggle}
+    >
+      {pressed ? "On" : "Off"}
+    </button>
+  );
+}
+```
+
+## Toggle Group
+
+```tsx
+import { toggleVariants } from "@movementlabsxyz/movement-design-system";
+
+export function ToggleGroup({ 
+  selected, 
+  onChange 
+}: { 
+  selected: string; 
+  onChange: (value: string) => void 
+}) {
+  const options = ["left", "center", "right"];
+  
+  return (
+    <div className="flex gap-1">
+      {options.map((option) => (
+        <button
+          key={option}
+          className={toggleVariants({ variant: "default", size: "sm" })}
+          data-state={selected === option ? "on" : "off"}
+          onClick={() => onChange(option)}
+        >
+          {option}
+        </button>
+      ))}
+    </div>
+  );
+}
+```
+

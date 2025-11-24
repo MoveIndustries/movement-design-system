@@ -1,0 +1,105 @@
+import { Meta } from "@storybook/addon-docs/blocks";
+
+<Meta title="Utils/glassBackgroundStyles" />
+
+# glassBackgroundStyles
+
+A string containing CSS for creating glass morphism backgrounds with backdrop blur. This should be injected into your application's global styles.
+
+The styles create two classes:
+- `.glass-background-dark`: Glass effect for dark themes
+- `.glass-background-light`: Glass effect for light themes
+
+## Import
+
+```tsx
+import { glassBackgroundStyles } from "@movementlabsxyz/movement-design-system";
+```
+
+## Setup
+
+Inject the styles once at your app root:
+
+```tsx
+import { glassBackgroundStyles } from "@movementlabsxyz/movement-design-system";
+
+// In your global CSS file or style injection
+const styleElement = document.createElement('style');
+styleElement.innerHTML = glassBackgroundStyles;
+document.head.appendChild(styleElement);
+```
+
+## In a React Component
+
+```tsx
+import { glassBackgroundStyles } from "@movementlabsxyz/movement-design-system";
+
+export function GlobalStyles() {
+  return (
+    <style dangerouslySetInnerHTML={{ __html: glassBackgroundStyles }} />
+  );
+}
+
+// Then use in App.tsx
+function App() {
+  return (
+    <>
+      <GlobalStyles />
+      <YourApp />
+    </>
+  );
+}
+```
+
+## Combined with Gradient Borders
+
+```tsx
+import { glassBackgroundStyles, gradientBorderStyles } from "@movementlabsxyz/movement-design-system";
+
+export function AllGlobalStyles() {
+  return (
+    <style 
+      dangerouslySetInnerHTML={{ 
+        __html: glassBackgroundStyles + gradientBorderStyles 
+      }} 
+    />
+  );
+}
+```
+
+## CSS Classes Created
+
+Once injected, these classes are available:
+
+### .glass-background-dark
+Glass morphism effect for dark themes with dark gradient and light border.
+
+### .glass-background-light
+Glass morphism effect for light themes with light gradient and dark border.
+
+## Usage Example
+
+After injecting the styles, use with `glassBackgroundClasses`:
+
+```tsx
+import { glassBackgroundClasses } from "@movementlabsxyz/movement-design-system";
+
+export function GlassCard() {
+  const isDarkMode = true; // Get from your theme context
+  
+  return (
+    <div 
+      className={
+        isDarkMode 
+          ? glassBackgroundClasses.dark 
+          : glassBackgroundClasses.light
+      }
+    >
+      <div className="p-6">
+        Card with glass morphism effect
+      </div>
+    </div>
+  );
+}
+```
+

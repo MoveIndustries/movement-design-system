@@ -9,7 +9,7 @@ import {
 import { Search, X, DollarSign } from "lucide-react";
 
 const meta = {
-  title: "shadcn/InputGroup",
+  title: "form/InputGroup",
   component: InputGroup,
   parameters: {
     layout: "centered",

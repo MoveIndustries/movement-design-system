@@ -1,0 +1,96 @@
+import { Meta } from "@storybook/addon-docs/blocks";
+
+<Meta title="Utils/gradientBorderClasses" />
+
+# gradientBorderClasses
+
+An object containing the class names for gradient borders. Use these with the `gradientBorderStyles`.
+
+**Note**: Elements using these classes must have `position: relative` for the border to work correctly.
+
+## Import
+
+```tsx
+import { gradientBorderClasses } from "@movementlabsxyz/movement-design-system";
+```
+
+## Available Classes
+
+- `gradientBorderClasses.glow`: Gradient border with Movement brand colors
+- `gradientBorderClasses.error`: Solid red border for errors
+
+## Basic Example
+
+```tsx
+import { gradientBorderClasses } from "@movementlabsxyz/movement-design-system";
+
+export function GlowCard() {
+  return (
+    <div className={`relative rounded-lg ${gradientBorderClasses.glow}`}>
+      <div className="p-4">
+        Card with gradient glow border
+      </div>
+    </div>
+  );
+}
+```
+
+## Error State
+
+```tsx
+import { gradientBorderClasses } from "@movementlabsxyz/movement-design-system";
+
+export function ErrorInput() {
+  return (
+    <div className={`relative rounded ${gradientBorderClasses.error}`}>
+      <input className="w-full p-2" />
+    </div>
+  );
+}
+```
+
+## Conditional Borders
+
+```tsx
+import { gradientBorderClasses, cn } from "@movementlabsxyz/movement-design-system";
+
+export function ConditionalCard({ hasError }: { hasError: boolean }) {
+  return (
+    <div 
+      className={cn(
+        "relative rounded-lg p-4",
+        hasError ? gradientBorderClasses.error : gradientBorderClasses.glow
+      )}
+    >
+      Card content
+    </div>
+  );
+}
+```
+
+## With Other Styles
+
+```tsx
+import { gradientBorderClasses, glassBackgroundClasses, cn } from "@movementlabsxyz/movement-design-system";
+
+export function PremiumCard() {
+  return (
+    <div 
+      className={cn(
+        "relative rounded-lg",
+        glassBackgroundClasses.dark,
+        gradientBorderClasses.glow
+      )}
+    >
+      <div className="p-6">
+        Premium card with glass background and gradient border
+      </div>
+    </div>
+  );
+}
+```
+
+## Important
+
+Make sure to inject `gradientBorderStyles` into your app before using these classes. See the [gradientBorderStyles](/docs/recipes-hooks-utils-utils-gradientborderstyles--docs) documentation for setup instructions.
+

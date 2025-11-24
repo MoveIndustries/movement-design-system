@@ -3,7 +3,7 @@ import { Switch } from "../components/shadcn/switch";
 import { Label } from "../components/shadcn/label";
 
 const meta = {
-  title: "shadcn/Switch",
+  title: "form/Switch",
   component: Switch,
   parameters: {
     layout: "centered",

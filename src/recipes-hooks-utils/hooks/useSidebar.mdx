@@ -1,0 +1,119 @@
+import { Meta } from "@storybook/addon-docs/blocks";
+
+<Meta title="Hooks/useSidebar" />
+
+# useSidebar
+
+A hook for controlling sidebar state in applications using the Sidebar component. Must be used within a `SidebarProvider`.
+
+Returns an object containing:
+- `state`: The sidebar state (`"expanded"` or `"collapsed"`)
+- `open`: Whether the sidebar is open on desktop
+- `setOpen`: Function to set the sidebar open state on desktop
+- `openMobile`: Whether the sidebar is open on mobile
+- `setOpenMobile`: Function to set the sidebar open state on mobile
+- `isMobile`: Whether the current viewport is mobile
+- `toggleSidebar`: Function to toggle the sidebar (handles mobile/desktop automatically)
+
+## Import
+
+```tsx
+import { useSidebar } from "@movementlabsxyz/movement-design-system";
+```
+
+## Basic Example
+
+```tsx
+import { useSidebar, SidebarProvider, Sidebar, SidebarContent } from "@movementlabsxyz/movement-design-system";
+
+export function SidebarToggleButton() {
+  const { state, toggleSidebar } = useSidebar();
+
+  return (
+    <button onClick={toggleSidebar}>
+      {state === "expanded" ? "Collapse" : "Expand"} Sidebar
+    </button>
+  );
+}
+
+export function App() {
+  return (
+    <SidebarProvider>
+      <Sidebar>
+        <SidebarContent>
+          <SidebarToggleButton />
+          {/* Other sidebar content */}
+        </SidebarContent>
+      </Sidebar>
+      {/* Main content */}
+    </SidebarProvider>
+  );
+}
+```
+
+## Custom Toggle Button
+
+```tsx
+import { useSidebar } from "@movementlabsxyz/movement-design-system";
+import { Menu, X } from "lucide-react";
+
+export function CustomSidebarToggle() {
+  const { state, toggleSidebar } = useSidebar();
+
+  return (
+    <button 
+      onClick={toggleSidebar}
+      className="p-2 rounded hover:bg-gray-100"
+    >
+      {state === "expanded" ? <X size={20} /> : <Menu size={20} />}
+    </button>
+  );
+}
+```
+
+## Responsive Behavior
+
+```tsx
+import { useSidebar } from "@movementlabsxyz/movement-design-system";
+
+export function SidebarHeader() {
+  const { isMobile, state } = useSidebar();
+
+  return (
+    <div className="p-4">
+      {isMobile ? (
+        <h2>Mobile Menu</h2>
+      ) : (
+        <h2>{state === "expanded" ? "Full Navigation" : "Nav"}</h2>
+      )}
+    </div>
+  );
+}
+```
+
+## Programmatic Control
+
+```tsx
+import { useSidebar } from "@movementlabsxyz/movement-design-system";
+
+export function SidebarController() {
+  const { setOpen, open } = useSidebar();
+
+  const handleAction = () => {
+    // Do something
+    // Then close the sidebar
+    setOpen(false);
+  };
+
+  return (
+    <button onClick={handleAction}>
+      Action and Close
+    </button>
+  );
+}
+```
+
+## Note
+
+This hook must be used within a `SidebarProvider` component. It will throw an error if used outside of the provider.
+

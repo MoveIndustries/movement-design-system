@@ -1,0 +1,103 @@
+import { Meta } from "@storybook/addon-docs/blocks";
+
+<Meta title="Utils/gradientBorderStyles" />
+
+# gradientBorderStyles
+
+A string containing CSS for creating gradient borders using the CSS mask technique. This should be injected into your application's global styles.
+
+The styles create two classes:
+- `.gradient-border-glow`: A 1px gradient border with Movement's brand colors (teal to green)
+- `.gradient-border-error`: A 1px solid red border for error states
+
+## Import
+
+```tsx
+import { gradientBorderStyles } from "@movementlabsxyz/movement-design-system";
+```
+
+## Setup
+
+Inject the styles once at your app root:
+
+```tsx
+import { gradientBorderStyles } from "@movementlabsxyz/movement-design-system";
+
+// In your global CSS file or style injection
+const styleElement = document.createElement('style');
+styleElement.innerHTML = gradientBorderStyles;
+document.head.appendChild(styleElement);
+```
+
+## In a React Component
+
+```tsx
+import { gradientBorderStyles } from "@movementlabsxyz/movement-design-system";
+
+export function GlobalStyles() {
+  return (
+    <style dangerouslySetInnerHTML={{ __html: gradientBorderStyles }} />
+  );
+}
+
+// Then use in App.tsx
+function App() {
+  return (
+    <>
+      <GlobalStyles />
+      <YourApp />
+    </>
+  );
+}
+```
+
+## In Next.js _app.tsx
+
+```tsx
+import { gradientBorderStyles } from "@movementlabsxyz/movement-design-system";
+import Head from "next/head";
+
+export default function App({ Component, pageProps }) {
+  return (
+    <>
+      <Head>
+        <style dangerouslySetInnerHTML={{ __html: gradientBorderStyles }} />
+      </Head>
+      <Component {...pageProps} />
+    </>
+  );
+}
+```
+
+## CSS Classes Created
+
+Once injected, these classes are available:
+
+### .gradient-border-glow
+A gradient border with Movement's brand colors (linear gradient from teal to green).
+
+### .gradient-border-error
+A solid red border for error states.
+
+## Usage Example
+
+After injecting the styles, use with `gradientBorderClasses`:
+
+```tsx
+import { gradientBorderClasses } from "@movementlabsxyz/movement-design-system";
+
+export function GlowCard() {
+  return (
+    <div className={`relative rounded-lg ${gradientBorderClasses.glow}`}>
+      <div className="p-4">
+        Card with gradient glow border
+      </div>
+    </div>
+  );
+}
+```
+
+## Note
+
+Elements using these classes must have `position: relative` for the border to work correctly.
+

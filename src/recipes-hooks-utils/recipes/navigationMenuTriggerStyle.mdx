@@ -1,0 +1,85 @@
+import { Meta } from "@storybook/addon-docs/blocks";
+
+<Meta title="Recipes/navigationMenuTriggerStyle" />
+
+# navigationMenuTriggerStyle
+
+A recipe for styling navigation menu trigger buttons. This is primarily used with the NavigationMenu component but can be applied to custom elements.
+
+## Import
+
+```tsx
+import { navigationMenuTriggerStyle } from "@movementlabsxyz/movement-design-system";
+```
+
+## Basic Example
+
+```tsx
+import { navigationMenuTriggerStyle } from "@movementlabsxyz/movement-design-system";
+
+export function CustomNavButton({ 
+  children, 
+  onClick 
+}: { 
+  children: React.ReactNode; 
+  onClick: () => void 
+}) {
+  return (
+    <button 
+      className={navigationMenuTriggerStyle()}
+      onClick={onClick}
+    >
+      {children}
+    </button>
+  );
+}
+```
+
+## With Conditional Styling
+
+```tsx
+import { navigationMenuTriggerStyle, cn } from "@movementlabsxyz/movement-design-system";
+
+export function NavLink({ 
+  href, 
+  active 
+}: { 
+  href: string; 
+  active?: boolean 
+}) {
+  return (
+    <a
+      href={href}
+      className={cn(
+        navigationMenuTriggerStyle(),
+        active && "bg-semantic-alt-1"
+      )}
+    >
+      Link
+    </a>
+  );
+}
+```
+
+## Navigation Bar
+
+```tsx
+import { navigationMenuTriggerStyle } from "@movementlabsxyz/movement-design-system";
+
+export function NavigationBar({ items }: { items: Array<{ label: string; href: string }> }) {
+  return (
+    <nav className="flex gap-2">
+      {items.map((item) => (
+        <a
+          key={item.href}
+          href={item.href}
+          className={navigationMenuTriggerStyle()}
+        >
+          {item.label}
+        </a>
+      ))}
+    </nav>
+  );
+}
+```
+

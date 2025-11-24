@@ -4,7 +4,7 @@ import { CryptoAmountInput } from "../components/shadcn/crypto-amount-input";
 import { DottedBackground } from "../components/DottedBackground";
 
 const meta = {
-  title: "movement-design-system/CryptoAmountInput",
+  title: "form/CryptoAmountInput",
   component: CryptoAmountInput,
   parameters: {
     layout: "centered",
