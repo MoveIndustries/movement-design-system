@@ -3,10 +3,7 @@ import * as AvatarPrimitive from "@radix-ui/react-avatar";
 
 import { cn } from "@/lib/utils";
 import { cva, type VariantProps } from "class-variance-authority";
-import {
-  gradientBorderStyles,
-  gradientBorderClasses,
-} from "@/lib/border-styles";
+import { gradientBorderClasses } from "@/lib/border-styles";
 
 const avatarVariants = cva(
   "relative flex size-8 shrink-0 overflow-hidden rounded-full",
@@ -31,16 +28,11 @@ export interface AvatarProps
 
 function Avatar({ className, border, ...props }: AvatarProps) {
   return (
-    <>
-      {border === "glow" && (
-        <style dangerouslySetInnerHTML={{ __html: gradientBorderStyles }} />
-      )}
-      <AvatarPrimitive.Root
-        data-slot="avatar"
-        className={cn(avatarVariants({ border }), className)}
-        {...props}
-      />
-    </>
+    <AvatarPrimitive.Root
+      data-slot="avatar"
+      className={cn(avatarVariants({ border }), className)}
+      {...props}
+    />
   );
 }
 

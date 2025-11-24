@@ -92,5 +92,11 @@ export function PremiumCard() {
 
 ## Important
 
-Make sure to inject `gradientBorderStyles` into your app before using these classes. See the [gradientBorderStyles](/docs/recipes-hooks-utils-utils-gradientborderstyles--docs) documentation for setup instructions.
+**No setup required!** The CSS for these classes is automatically included when you import the design system's main CSS:
+
+```tsx
+import "@movementlabsxyz/movement-design-system/style.css";
+```
+
+Elements using these classes must have `position: relative` for the border to work correctly.
 

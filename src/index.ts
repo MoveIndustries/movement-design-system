@@ -228,6 +228,7 @@ export {
   Sheet,
   SheetClose,
   SheetContent,
+  sheetContentVariants,
   SheetDescription,
   SheetFooter,
   SheetHeader,
@@ -312,13 +313,10 @@ export {
 // Utilities
 export { cn } from "./lib/utils";
 export {
-  gradientBorderStyles,
   gradientBorderClasses,
-  glassBackgroundStyles,
   glassBackgroundClasses,
 } from "./lib/border-styles";
 export {
-  gradientBackgroundStyles,
   gradientBackgroundClasses,
   getGradientClass,
 } from "./lib/gradient-styles";

@@ -23,6 +23,11 @@ function copyThemePlugin() {
       const filesToCopy = [
         { src: "src/theme.css", dest: "dist/theme.css", name: "theme.css" },
         { src: "src/fonts.css", dest: "dist/fonts.css", name: "fonts.css" },
+        {
+          src: "src/recipes.css",
+          dest: "dist/recipes.css",
+          name: "recipes.css",
+        },
       ];
 
       filesToCopy.forEach(({ src, dest, name }) => {
@@ -95,7 +100,7 @@ export default defineConfig({
         "@aptos-labs/wallet-adapter-react",
         /^@aptos-labs\//,
         /^@radix-ui\//,
-        "tailwindcss"
+        "tailwindcss",
       ],
     },
   },

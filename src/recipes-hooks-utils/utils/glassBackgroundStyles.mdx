@@ -1,71 +1,33 @@
 import { Meta } from "@storybook/addon-docs/blocks";
 
-<Meta title="Utils/glassBackgroundStyles" />
+<Meta title="Utils/Glass Background Recipe" />
 
-# glassBackgroundStyles
+# Glass Background Recipe
 
-A string containing CSS for creating glass morphism backgrounds with backdrop blur. This should be injected into your application's global styles.
+CSS recipe for creating glass morphism backgrounds with backdrop blur. These styles are automatically included when you import the design system.
 
-The styles create two classes:
+The recipe provides two classes:
 - `.glass-background-dark`: Glass effect for dark themes
 - `.glass-background-light`: Glass effect for light themes
 
 ## Import
 
+The CSS is automatically available when you import the design system. To use the class names in your code:
+
 ```tsx
-import { glassBackgroundStyles } from "@movementlabsxyz/movement-design-system";
+import { glassBackgroundClasses } from "@movementlabsxyz/movement-design-system";
 ```
 
 ## Setup
 
-Inject the styles once at your app root:
+**No setup required!** The CSS is automatically included when you import the design system's main CSS:
 
 ```tsx
-import { glassBackgroundStyles } from "@movementlabsxyz/movement-design-system";
-
-// In your global CSS file or style injection
-const styleElement = document.createElement('style');
-styleElement.innerHTML = glassBackgroundStyles;
-document.head.appendChild(styleElement);
+// In your app entry point (e.g., main.tsx, index.tsx, _app.tsx)
+import "@movementlabsxyz/movement-design-system/style.css";
 ```
 
-## In a React Component
-
-```tsx
-import { glassBackgroundStyles } from "@movementlabsxyz/movement-design-system";
-
-export function GlobalStyles() {
-  return (
-    <style dangerouslySetInnerHTML={{ __html: glassBackgroundStyles }} />
-  );
-}
-
-// Then use in App.tsx
-function App() {
-  return (
-    <>
-      <GlobalStyles />
-      <YourApp />
-    </>
-  );
-}
-```
-
-## Combined with Gradient Borders
-
-```tsx
-import { glassBackgroundStyles, gradientBorderStyles } from "@movementlabsxyz/movement-design-system";
-
-export function AllGlobalStyles() {
-  return (
-    <style 
-      dangerouslySetInnerHTML={{ 
-        __html: glassBackgroundStyles + gradientBorderStyles 
-      }} 
-    />
-  );
-}
-```
+The glass background styles are part of the `recipes.css` file that's automatically imported with the design system.
 
 ## CSS Classes Created
 

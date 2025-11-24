@@ -1,73 +1,33 @@
 import { Meta } from "@storybook/addon-docs/blocks";
 
-<Meta title="Utils/gradientBorderStyles" />
+<Meta title="Utils/Gradient Border Recipe" />
 
-# gradientBorderStyles
+# Gradient Border Recipe
 
-A string containing CSS for creating gradient borders using the CSS mask technique. This should be injected into your application's global styles.
+CSS recipe for creating gradient borders using the CSS mask technique. These styles are automatically included when you import the design system.
 
-The styles create two classes:
+The recipe provides two classes:
 - `.gradient-border-glow`: A 1px gradient border with Movement's brand colors (teal to green)
 - `.gradient-border-error`: A 1px solid red border for error states
 
 ## Import
 
+The CSS is automatically available when you import the design system. To use the class names in your code:
+
 ```tsx
-import { gradientBorderStyles } from "@movementlabsxyz/movement-design-system";
+import { gradientBorderClasses } from "@movementlabsxyz/movement-design-system";
 ```
 
 ## Setup
 
-Inject the styles once at your app root:
+**No setup required!** The CSS is automatically included when you import the design system's main CSS:
 
 ```tsx
-import { gradientBorderStyles } from "@movementlabsxyz/movement-design-system";
-
-// In your global CSS file or style injection
-const styleElement = document.createElement('style');
-styleElement.innerHTML = gradientBorderStyles;
-document.head.appendChild(styleElement);
+// In your app entry point (e.g., main.tsx, index.tsx, _app.tsx)
+import "@movementlabsxyz/movement-design-system/style.css";
 ```
 
-## In a React Component
-
-```tsx
-import { gradientBorderStyles } from "@movementlabsxyz/movement-design-system";
-
-export function GlobalStyles() {
-  return (
-    <style dangerouslySetInnerHTML={{ __html: gradientBorderStyles }} />
-  );
-}
-
-// Then use in App.tsx
-function App() {
-  return (
-    <>
-      <GlobalStyles />
-      <YourApp />
-    </>
-  );
-}
-```
-
-## In Next.js _app.tsx
-
-```tsx
-import { gradientBorderStyles } from "@movementlabsxyz/movement-design-system";
-import Head from "next/head";
-
-export default function App({ Component, pageProps }) {
-  return (
-    <>
-      <Head>
-        <style dangerouslySetInnerHTML={{ __html: gradientBorderStyles }} />
-      </Head>
-      <Component {...pageProps} />
-    </>
-  );
-}
-```
+The gradient border styles are part of the `recipes.css` file that's automatically imported with the design system.
 
 ## CSS Classes Created
 

@@ -10,6 +10,23 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 
 ## [Unreleased]
 
+### Changed
+
+#### Styling Recipes
+- **BREAKING**: Moved styling recipes to dedicated `recipes.css` file
+- **BREAKING**: Removed `gradientBorderStyles` CSS string export - styles now automatically included
+- **BREAKING**: Removed `glassBackgroundStyles` CSS string export - styles now automatically included  
+- **BREAKING**: Removed `gradientBackgroundStyles` CSS string export - styles now automatically included
+- Improved developer experience: no manual style injection required
+- Class name exports remain unchanged: `gradientBorderClasses`, `glassBackgroundClasses`, `gradientBackgroundClasses`
+- Updated all components to remove inline style injections
+- Updated documentation to reflect automatic CSS inclusion
+
+**Migration Guide:**
+- Remove any manual `<style dangerouslySetInnerHTML={{ __html: gradientBorderStyles }} />` injections
+- Simply import the design system CSS: `import "@movementlabsxyz/movement-design-system/style.css"`
+- Continue using class name exports as before: `gradientBorderClasses.glow`, etc.
+
 ### Added
 
 #### Core Components

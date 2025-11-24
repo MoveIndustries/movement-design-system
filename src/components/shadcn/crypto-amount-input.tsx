@@ -2,10 +2,7 @@ import * as React from "react";
 import { cva, type VariantProps } from "class-variance-authority";
 
 import { cn } from "@/lib/utils";
-import {
-  gradientBorderStyles,
-  gradientBorderClasses,
-} from "@/lib/border-styles";
+import { gradientBorderClasses } from "@/lib/border-styles";
 
 /**
  * CryptoAmountInput component - specialized input for crypto amounts
@@ -216,77 +213,74 @@ const CryptoAmountInput = React.forwardRef<
     };
 
     return (
-      <>
-        <style dangerouslySetInnerHTML={{ __html: gradientBorderStyles }} />
-        <div
-          className={cn(
-            cryptoAmountInputVariants({ state: currentState }),
-            className,
-          )}
-        >
-          <div className={containerVariants({ state: currentState })}>
-            {/* Input and MAX button row */}
-            <div className="flex w-full flex-1 items-center justify-between gap-4">
-              <input
-                ref={inputRef}
-                type="text"
-                inputMode="decimal"
-                value={value}
-                onChange={handleInputChange}
-                onFocus={handleFocus}
-                onWheel={handleWheel}
-                placeholder={placeholder}
+      <div
+        className={cn(
+          cryptoAmountInputVariants({ state: currentState }),
+          className,
+        )}
+      >
+        <div className={containerVariants({ state: currentState })}>
+          {/* Input and MAX button row */}
+          <div className="flex w-full flex-1 items-center justify-between gap-4">
+            <input
+              ref={inputRef}
+              type="text"
+              inputMode="decimal"
+              value={value}
+              onChange={handleInputChange}
+              onFocus={handleFocus}
+              onWheel={handleWheel}
+              placeholder={placeholder}
+              disabled={disabled}
+              className={inputVariants({ state: currentState })}
+              data-slot="crypto-input"
+              {...props}
+            />
+            {balance !== "0" && (
+              <button
+                type="button"
+                onClick={onMaxClick}
                 disabled={disabled}
-                className={inputVariants({ state: currentState })}
-                data-slot="crypto-input"
-                {...props}
-              />
-              {balance !== "0" && (
-                <button
-                  type="button"
-                  onClick={onMaxClick}
-                  disabled={disabled}
-                  className={maxButtonVariants({ state: currentState })}
-                  data-slot="max-button"
-                >
-                  MAX
-                </button>
-              )}
-            </div>
-
-            {/* Balance info row */}
-            <div className="flex h-5 w-full items-center justify-end gap-0.5 text-right">
-              <WalletIcon
-                className={cn(
-                  balanceTextVariants({ state: currentState }),
-                  "h-4 w-4 -translate-y-[2px] md:h-5 md:w-5",
-                )}
-              />
-              <span className={balanceTextVariants({ state: currentState })}>
-                {balance}
-              </span>
-              <span className={balanceTextVariants({ state: currentState })}>
-                {token}
-              </span>
-              <span
-                className={cn(
-                  balanceTextVariants({ state: currentState }),
-                  "underline decoration-dotted underline-offset-2",
-                )}
+                className={maxButtonVariants({ state: currentState })}
+                data-slot="max-button"
               >
-                Available
-              </span>
-            </div>
-
-            {/* Error message badge */}
-            {error && errorMessage && (
-              <div className="bg-destructive pointer-events-none absolute top-0 left-0 z-20 rounded-tl-xl rounded-br-lg px-2 py-1 text-[10px] font-normal text-white md:rounded-tl-2xl md:px-3 md:text-xs">
-                {errorMessage}
-              </div>
+                MAX
+              </button>
             )}
           </div>
+
+          {/* Balance info row */}
+          <div className="flex h-5 w-full items-center justify-end gap-0.5 text-right">
+            <WalletIcon
+              className={cn(
+                balanceTextVariants({ state: currentState }),
+                "h-4 w-4 -translate-y-[2px] md:h-5 md:w-5",
+              )}
+            />
+            <span className={balanceTextVariants({ state: currentState })}>
+              {balance}
+            </span>
+            <span className={balanceTextVariants({ state: currentState })}>
+              {token}
+            </span>
+            <span
+              className={cn(
+                balanceTextVariants({ state: currentState }),
+                "underline decoration-dotted underline-offset-2",
+              )}
+            >
+              Available
+            </span>
+          </div>
+
+          {/* Error message badge */}
+          {error && errorMessage && (
+            <div className="bg-destructive pointer-events-none absolute top-0 left-0 z-20 rounded-tl-xl rounded-br-lg px-2 py-1 text-[10px] font-normal text-white md:rounded-tl-2xl md:px-3 md:text-xs">
+              {errorMessage}
+            </div>
+          )}
         </div>
-      </>
+      </div>
     );
   },
 );

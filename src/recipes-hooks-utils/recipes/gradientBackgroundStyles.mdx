@@ -2,18 +2,28 @@ import { Meta } from "@storybook/addon-docs/blocks";
 
 <Meta title="Recipes/gradientBackgroundStyles" />
 
-# gradientBackgroundStyles
+# Gradient Background Recipes
 
 Reusable gradient background recipes for consistent styling across the application. These gradients are optimized for the Movement design system's color palette.
+
+**CSS is automatically included** when you import the design system - no manual setup required!
 
 ## Import
 
 ```tsx
 import { 
-  gradientBackgroundStyles, 
   gradientBackgroundClasses,
   getGradientClass 
 } from "@movementlabsxyz/movement-design-system";
+```
+
+## Setup
+
+**No setup required!** The CSS is automatically included when you import the design system's main CSS:
+
+```tsx
+// In your app entry point (e.g., main.tsx, index.tsx, _app.tsx)
+import "@movementlabsxyz/movement-design-system/style.css";
 ```
 
 ## Available Gradients
@@ -82,17 +92,11 @@ export function Card({ variant }: { variant: 'mintCyan' | 'glassOverlay' }) {
 }
 ```
 
-### Method 3: Injecting Styles Globally
+### Method 3: Using Raw CSS Class Names
+
+Since the CSS is automatically included, you can also use the raw class names directly:
 
 ```tsx
-import { gradientBackgroundStyles } from "@movementlabsxyz/movement-design-system";
-
-// In your app entry point (e.g., main.tsx or _app.tsx)
-const styleTag = document.createElement('style');
-styleTag.innerHTML = gradientBackgroundStyles;
-document.head.appendChild(styleTag);
-
-// Then use class names directly in your components
 export function Feature() {
   return (
     <div className="gradient-mint-cyan">

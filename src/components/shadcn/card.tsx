@@ -3,9 +3,7 @@ import { cva, type VariantProps } from "class-variance-authority";
 
 import { cn } from "@/lib/utils";
 import {
-  gradientBorderStyles,
   gradientBorderClasses,
-  glassBackgroundStyles,
   glassBackgroundClasses,
 } from "@/lib/border-styles";
 
@@ -45,39 +43,31 @@ function Card({ className, variant, children, ...props }: CardProps) {
   const isDefault = !variant || variant === "default";
 
   return (
-    <>
-      {/* Inject CSS for glass background and gradient border effects */}
-      <style
-        dangerouslySetInnerHTML={{
-          __html: `${glassBackgroundStyles}${isGlow ? gradientBorderStyles : ""}`,
-        }}
-      />
-      {/* Outer container: provides background, border, shadow, and padding */}
-      <div
-        data-slot="card"
-        className={cn(cardVariants({ variant }), className)}
-        {...props}
-      >
-        {/* Glow variant: absolutely positioned gradient border effect layer */}
-        {isGlow && (
-          <div
-            className={cn(
-              "absolute inset-0 rounded-[inherit]",
-              cardInnerVariants({ variant }),
-            )}
-          />
-        )}
-        {/* Inner wrapper: controls spacing between card sections (Header/Content/Footer) */}
+    /* Outer container: provides background, border, shadow, and padding */
+    <div
+      data-slot="card"
+      className={cn(cardVariants({ variant }), className)}
+      {...props}
+    >
+      {/* Glow variant: absolutely positioned gradient border effect layer */}
+      {isGlow && (
         <div
           className={cn(
-            "flex flex-col gap-4 md:gap-6",
-            (isGlow || isDefault) && "relative z-10",
+            "absolute inset-0 rounded-[inherit]",
+            cardInnerVariants({ variant }),
           )}
-        >
-          {children}
-        </div>
+        />
+      )}
+      {/* Inner wrapper: controls spacing between card sections (Header/Content/Footer) */}
+      <div
+        className={cn(
+          "flex flex-col gap-4 md:gap-6",
+          (isGlow || isDefault) && "relative z-10",
+        )}
+      >
+        {children}
       </div>
-    </>
+    </div>
   );
 }
 
