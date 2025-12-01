@@ -26,10 +26,10 @@ function AccordionItem({
     <AccordionPrimitive.Item
       data-slot="accordion-item"
       className={cn(
-        showTopBorder && "border-t border-border-default",
-        showBottomBorder && "border-b border-border-default",
+        showTopBorder && "border-border-default border-t",
+        showBottomBorder && "border-border-default border-b",
         "last:border-b-0",
-        className
+        className,
       )}
       {...props}
     />
@@ -54,22 +54,22 @@ function AccordionTrigger({
       <AccordionPrimitive.Trigger
         data-slot="accordion-trigger"
         className={cn(
-          "group focus-visible:border-ring focus-visible:ring-ring/50 flex flex-1 items-center justify-between gap-4 rounded-md py-4 text-left text-lg font-bold transition-all outline-none hover:underline focus-visible:ring-[3px] disabled:pointer-events-none disabled:opacity-50",
-          className
+          "group focus-visible:border-ring focus-visible:ring-ring/50 flex flex-1 cursor-pointer items-center justify-between gap-4 rounded-md py-4 text-left text-lg font-bold transition-all outline-none hover:underline focus-visible:ring-[3px] disabled:pointer-events-none disabled:opacity-50",
+          className,
         )}
         {...props}
       >
         <div className="flex flex-1 items-center gap-2">
           {showIcon && icon && (
-            <div className="size-6 shrink-0 flex items-center justify-center">
+            <div className="flex size-6 shrink-0 items-center justify-center">
               {icon}
             </div>
           )}
           <span className="flex-1">{children}</span>
         </div>
-        <div className="size-8 shrink-0 flex items-center justify-center relative">
+        <div className="relative flex size-8 shrink-0 items-center justify-center">
           <ChevronDown className="text-fg-subtle group-data-[state=open]:text-fg-base pointer-events-none size-5 transition-all duration-200 group-data-[state=open]:scale-0 group-data-[state=open]:opacity-0" />
-          <ChevronUp className="text-fg-base pointer-events-none size-5 transition-all duration-200 group-data-[state=closed]:scale-0 group-data-[state=closed]:opacity-0 absolute inset-0 m-auto" />
+          <ChevronUp className="text-fg-base pointer-events-none absolute inset-0 m-auto size-5 transition-all duration-200 group-data-[state=closed]:scale-0 group-data-[state=closed]:opacity-0" />
         </div>
       </AccordionPrimitive.Trigger>
     </AccordionPrimitive.Header>
@@ -87,7 +87,7 @@ function AccordionContent({
       className="data-[state=closed]:animate-accordion-up data-[state=open]:animate-accordion-down overflow-hidden text-base"
       {...props}
     >
-      <div className={cn("pb-4 pr-12", className)}>{children}</div>
+      <div className={cn("pr-12 pb-4", className)}>{children}</div>
     </AccordionPrimitive.Content>
   );
 }
