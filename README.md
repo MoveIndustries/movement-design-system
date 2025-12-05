@@ -20,6 +20,14 @@ A production-ready design system built with shadcn/ui components, Radix UI primi
 
 ## 📦 Installation
 
+### Prerequisites
+
+- React 18+ or 19+
+- Tailwind CSS v4
+- PostCSS
+
+### Install the Package
+
 ```bash
 npm install @movementlabsxyz/movement-design-system
 # or
@@ -28,377 +36,119 @@ pnpm add @movementlabsxyz/movement-design-system
 yarn add @movementlabsxyz/movement-design-system
 ```
 
-## Peer Dependencies
+### Setup Tailwind CSS
 
-Make sure you have these installed in your project:
+Ensure you have a standard Tailwind CSS setup with PostCSS. If you haven't set this up yet, follow the [Tailwind CSS v4 installation guide](https://tailwindcss.com/docs/installation).
 
-```bash
-npm install react react-dom tailwindcss
-```
+### Import Styles
 
-## Setup
-
-### 1. Import Styles
-
-Import the design system styles in your main app file:
-
-```tsx
-// src/main.tsx or src/App.tsx
-import '@movementlabsxyz/movement-design-system/styles';
-```
-
-### 2. Configure Tailwind CSS
-
-Create or update your `tailwind.config.js`:
-
-```js
-/** @type {import('tailwindcss').Config} */
-export default {
-  content: [
-    "./index.html",
-    "./src/**/*.{js,ts,jsx,tsx}",
-    "./node_modules/@movementlabsxyz/movement-design-system/dist/**/*.{js,mjs}"
-  ],
-  theme: {
-    extend: {
-      colors: {
-        border: "hsl(var(--border))",
-        input: "hsl(var(--input))",
-        ring: "hsl(var(--ring))",
-        background: "hsl(var(--background))",
-        foreground: "hsl(var(--foreground))",
-        primary: {
-          DEFAULT: "hsl(var(--primary))",
-          foreground: "hsl(var(--primary-foreground))",
-        },
-        secondary: {
-          DEFAULT: "hsl(var(--secondary))",
-          foreground: "hsl(var(--secondary-foreground))",
-        },
-        destructive: {
-          DEFAULT: "hsl(var(--destructive))",
-          foreground: "hsl(var(--destructive-foreground))",
-        },
-        muted: {
-          DEFAULT: "hsl(var(--muted))",
-          foreground: "hsl(var(--muted-foreground))",
-        },
-        accent: {
-          DEFAULT: "hsl(var(--accent))",
-          foreground: "hsl(var(--accent-foreground))",
-        },
-        card: {
-          DEFAULT: "hsl(var(--card))",
-          foreground: "hsl(var(--card-foreground))",
-        },
-      },
-      borderRadius: {
-        lg: "var(--radius)",
-        md: "calc(var(--radius) - 2px)",
-        sm: "calc(var(--radius) - 4px)",
-      },
-    },
-  },
-  plugins: [],
-}
-```
-
-### 3. Add CSS Variables
-
-Add these CSS variables to your `src/index.css`:
+Add the following imports to your `global.css` file **in this exact order** (the order is important!):
 
 ```css
-@layer base {
-  :root {
-    --background: 0 0% 100%;
-    --foreground: 0 0% 3.9%;
-    --card: 0 0% 100%;
-    --card-foreground: 0 0% 3.9%;
-    --primary: 0 0% 9%;
-    --primary-foreground: 0 0% 98%;
-    --secondary: 0 0% 96.1%;
-    --secondary-foreground: 0 0% 9%;
-    --muted: 0 0% 96.1%;
-    --muted-foreground: 0 0% 45.1%;
-    --accent: 0 0% 96.1%;
-    --accent-foreground: 0 0% 9%;
-    --destructive: 0 84.2% 60.2%;
-    --destructive-foreground: 0 0% 98%;
-    --border: 0 0% 89.8%;
-    --input: 0 0% 89.8%;
-    --ring: 0 0% 3.9%;
-    --radius: 0.5rem;
-  }
-
-  .dark {
-    --background: 0 0% 3.9%;
-    --foreground: 0 0% 98%;
-    --card: 0 0% 3.9%;
-    --card-foreground: 0 0% 98%;
-    --primary: 0 0% 98%;
-    --primary-foreground: 0 0% 9%;
-    --secondary: 0 0% 14.9%;
-    --secondary-foreground: 0 0% 98%;
-    --muted: 0 0% 14.9%;
-    --muted-foreground: 0 0% 63.9%;
-    --accent: 0 0% 14.9%;
-    --accent-foreground: 0 0% 98%;
-    --destructive: 0 62.8% 30.6%;
-    --destructive-foreground: 0 0% 98%;
-    --border: 0 0% 14.9%;
-    --input: 0 0% 14.9%;
-    --ring: 0 0% 83.1%;
-  }
-}
+@import "movement-design-system/component-styles";
+@import "movement-design-system/theme";
+@import "tailwindcss";
 ```
 
-## Usage
+> ⚠️ **Important**: The order of these imports matters! Make sure to import the component styles and theme before Tailwind CSS.
 
-### Basic Example
+## 🚀 Quick Start
 
 ```tsx
-import { Button, Card, CardHeader, CardTitle, CardContent } from '@movementlabsxyz/movement-design-system';
+import { Button, Card, Input } from '@movementlabsxyz/movement-design-system';
 
 function App() {
   return (
-    <div className="p-8">
-      <Card>
-        <CardHeader>
-          <CardTitle>Welcome to Movement Design System</CardTitle>
-        </CardHeader>
-        <CardContent>
-          <p>Start building beautiful UIs with our component library.</p>
-          <Button className="mt-4">Get Started</Button>
-        </CardContent>
-      </Card>
-    </div>
+    <Card>
+      <Input placeholder="Enter text..." />
+      <Button>Submit</Button>
+    </Card>
   );
 }
 ```
 
-### Form Example
+## 📚 Components & Blocks
+
+### 50+ Production-Ready Components
+
+- **Layout** - Card, Separator, AspectRatio, Resizable, ScrollArea, Sidebar
+- **Forms & Inputs** - Input, Textarea, Button, Checkbox, RadioGroup, Select, Switch, Slider, Label, Form, Calendar
+- **Navigation** - NavigationMenu, Menubar, DropdownMenu, ContextMenu, Breadcrumb, Tabs, Pagination
+- **Feedback** - Alert, AlertDialog, Dialog, Toast, Progress, Spinner, Skeleton
+- **Data Display** - Table, Badge, Avatar, Tooltip, HoverCard, Accordion, Collapsible, Chart, Command, Empty
+- **Overlays** - Sheet, Drawer, Popover
+- **Utilities** - `cn()` function, `useMobile` hook
+
+### Pre-built Blocks
+
+Copy-paste ready patterns built with design system components:
+
+- **StakingBalance** - Glass-morphism card with staking stats and rewards
+- **StakeForm** - Complete staking form with validator selection
+- **ValidatorsTable** - Comprehensive table with sorting and metrics
+- **MobileValidatorsTable** - Responsive table with card layouts
+- **PaginatedTable** - Full-featured table with sorting and pagination
+
+Browse the **Blocks** section in [Storybook](https://movement-design-system-docs-git-shadcn-movement-labs.vercel.app/) for live examples with full source code.
+
+## 📖 Documentation
+
+**[View Interactive Storybook →](https://movement-design-system-docs-git-shadcn-movement-labs.vercel.app/)**
+
+Explore live examples, API documentation, and copy-paste ready code snippets for all components and blocks.
+
+### TypeScript Support
+
+Full TypeScript support with IntelliSense and type safety:
 
 ```tsx
-import { Button, Input, Label } from '@movementlabsxyz/movement-design-system';
+import { Button, type VariantProps, buttonVariants } from '@movementlabsxyz/movement-design-system';
 
-function LoginForm() {
-  return (
-    <form className="space-y-4">
-      <div>
-        <Label htmlFor="email">Email</Label>
-        <Input id="email" type="email" placeholder="Enter your email" />
-      </div>
-      <div>
-        <Label htmlFor="password">Password</Label>
-        <Input id="password" type="password" placeholder="Enter your password" />
-      </div>
-      <Button type="submit" className="w-full">Sign In</Button>
-    </form>
-  );
-}
-```
-
-### Dialog Example
-
-```tsx
-import {
-  Dialog,
-  DialogContent,
-  DialogDescription,
-  DialogHeader,
-  DialogTitle,
-  DialogTrigger,
-  Button
-} from '@movementlabsxyz/movement-design-system';
-
-function MyDialog() {
-  return (
-    <Dialog>
-      <DialogTrigger asChild>
-        <Button>Open Dialog</Button>
-      </DialogTrigger>
-      <DialogContent>
-        <DialogHeader>
-          <DialogTitle>Are you sure?</DialogTitle>
-          <DialogDescription>
-            This action cannot be undone.
-          </DialogDescription>
-        </DialogHeader>
-      </DialogContent>
-    </Dialog>
-  );
-}
-```
-
-## Available Components
-
-### Layout
-- `Card`, `CardHeader`, `CardTitle`, `CardDescription`, `CardContent`, `CardFooter`
-- `Separator`
-- `AspectRatio`
-- `Resizable`, `ResizablePanel`, `ResizableHandle`
-- `ScrollArea`, `ScrollBar`
-- `Sidebar` and related components
-
-### Forms & Inputs
-- `Input`, `InputGroup`
-- `Textarea`
-- `Button`, `ButtonGroup`
-- `Checkbox`
-- `RadioGroup`, `RadioGroupItem`
-- `Select` and related components
-- `Switch`
-- `Slider`
-- `Label`
-- `Form` components
-- `Calendar`
-- `InputOTP`
-
-### Navigation
-- `NavigationMenu` and related components
-- `Menubar` and related components
-- `DropdownMenu` and related components
-- `ContextMenu` and related components
-- `Breadcrumb` and related components
-- `Tabs`, `TabsList`, `TabsTrigger`, `TabsContent`
-- `Pagination` and related components
-
-### Feedback
-- `Alert`, `AlertTitle`, `AlertDescription`
-- `AlertDialog` and related components
-- `Dialog` and related components
-- `Toast` (via Sonner)
-- `Progress`
-- `Spinner`
-- `Skeleton`
-
-### Data Display
-- `Table` and related components
-- `Badge`
-- `Avatar`, `AvatarImage`, `AvatarFallback`
-- `Tooltip` and related components
-- `HoverCard` and related components
-- `Accordion` and related components
-- `Collapsible` and related components
-- `Chart` components (via Recharts)
-- `Command` and related components
-- `Empty`
-
-### Overlays
-- `Sheet` and related components
-- `Drawer` and related components
-- `Popover` and related components
-
-### Utilities
-- `cn` - Utility function for class name merging
-- `useMobile` - Hook to detect mobile devices
-
-## TypeScript Support
-
-This library is built with TypeScript and provides full type definitions. You'll get autocomplete and type checking out of the box.
-
-```tsx
-import type { VariantProps } from '@movementlabsxyz/movement-design-system';
-import { Button, buttonVariants } from '@movementlabsxyz/movement-design-system';
-
-// Get variant types
 type ButtonVariants = VariantProps<typeof buttonVariants>;
 ```
 
-## 📚 Documentation
+## 🛠️ Development
 
-### Interactive Storybook
-
-Explore components with live examples and code snippets:
-
-**[View Storybook Documentation →](https://movement-design-system-docs-git-shadcn-movement-labs.vercel.app/)**
-
-### Local Development
-
-Run Storybook locally:
+### Run Locally
 
 ```bash
-# Clone the repository
+# Clone and install
 git clone https://github.com/movementlabsxyz/movement-design-system.git
 cd movement-design-system
-
-# Install dependencies
 pnpm install
 
 # Start Storybook
 pnpm storybook
-```
 
-## Development
-
-### Project Structure
-
-```
-shadcn-storybook/
-├── src/
-│   ├── components/
-│   │   └── ui/          # Component library
-│   ├── lib/             # Utilities
-│   ├── hooks/           # Custom hooks
-│   ├── stories/         # Storybook stories
-│   └── index.ts         # Main entry point
-├── dist/                # Built library
-└── package.json
-```
-
-### Building the Library
-
-```bash
-# Build for production
+# Build library
 pnpm build:lib
-
-# Build Vite bundle
-pnpm build
-
-# Generate TypeScript types
-pnpm build:types
-```
-
-### Running Development
-
-```bash
-# Start Storybook
-pnpm storybook
 
 # Run tests
 pnpm test
-
-# Lint
-pnpm lint
 ```
 
 ## 🤝 Contributing
 
-We welcome contributions! If you find a bug or have a feature request, please open an issue on [GitHub](https://github.com/movementlabsxyz/movement-design-system/issues).
+Contributions are welcome! Please open an issue first to discuss major changes.
 
-For major changes, please open an issue first to discuss what you would like to change.
-
-## 📄 License
-
-[MIT](https://opensource.org/licenses/MIT) © Movement Labs
-
-## 🙏 Credits
-
-Built with:
-- [shadcn/ui](https://ui.shadcn.com/) - Component architecture
-- [Radix UI](https://www.radix-ui.com/) - Accessible primitives
-- [Tailwind CSS v4](https://tailwindcss.com/) - Styling framework
-- [Vite](https://vitejs.dev/) - Build tool
-- [Storybook](https://storybook.js.org/) - Documentation
-- [TypeScript](https://www.typescriptlang.org/) - Type safety
+- [Report Issues](https://github.com/movementlabsxyz/movement-design-system/issues)
+- [View Source](https://github.com/movementlabsxyz/movement-design-system)
 
 ## 🔗 Links
 
-- [Documentation](https://movement-design-system-docs-git-shadcn-movement-labs.vercel.app/)
-- [GitHub Repository](https://github.com/movementlabsxyz/movement-design-system)
-- [npm Package](https://www.npmjs.com/package/@movementlabsxyz/movement-design-system)
-- [Issue Tracker](https://github.com/movementlabsxyz/movement-design-system/issues)
+- [📚 Documentation](https://movement-design-system-docs-git-shadcn-movement-labs.vercel.app/)
+- [📦 npm Package](https://www.npmjs.com/package/@movementlabsxyz/movement-design-system)
+- [🐙 GitHub Repository](https://github.com/movementlabsxyz/movement-design-system)
+- [🐛 Issue Tracker](https://github.com/movementlabsxyz/movement-design-system/issues)
 
----
+## 🙏 Built With
 
-Made with ❤️ by [Movement Labs](https://movementlabs.xyz)
+- [shadcn/ui](https://ui.shadcn.com/) - Component architecture
+- [Radix UI](https://www.radix-ui.com/) - Accessible primitives
+- [Tailwind CSS v4](https://tailwindcss.com/) - Styling
+- [TypeScript](https://www.typescriptlang.org/) - Type safety
+- [Storybook](https://storybook.js.org/) - Documentation
+
+## 📄 License
+
+[MIT](https://opensource.org/licenses/MIT) © [Movement Labs](https://movementlabs.xyz)
