@@ -1,6 +1,6 @@
 "use client";
 
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { useIsMobile } from "@/hooks/use-mobile";
 import { cn } from "@/lib/utils";
 
@@ -13,6 +13,8 @@ interface MultiOutlineTextProps {
   letterSpacing?: string;
   textAlign?: string;
   className?: string;
+  waitForFont?: boolean;
+  fontFamily?: string;
   outlines?: Array<{
     color: string;
     width: { base: string; md: string };
@@ -27,15 +29,39 @@ export default function MultiOutlineText({
   letterSpacing = "1.28px",
   textAlign = "center",
   className,
+  waitForFont = true,
+  fontFamily = "TWK Everett, sans-serif",
   outlines = [
     { color: "#002CD6", width: { base: "2px", md: "3px" } },
     { color: "#ffd935", width: { base: "4px", md: "5px" } },
   ],
 }: MultiOutlineTextProps) {
   const isMobile = useIsMobile();
+  const [fontLoaded, setFontLoaded] = useState(!waitForFont);
 
   // Check if children contains only text
   const isTextOnly = typeof children === "string";
+
+  // Wait for font to load if requested
+  useEffect(() => {
+    if (!waitForFont || typeof document === "undefined") {
+      setFontLoaded(true);
+      return;
+    }
+
+    const loadFont = async () => {
+      try {
+        const fontSize = isMobile ? 36 : 64;
+        await document.fonts.load(`${fontWeight} ${fontSize}px ${fontFamily}`);
+        setFontLoaded(true);
+      } catch {
+        await document.fonts.ready;
+        setFontLoaded(true);
+      }
+    };
+
+    loadFont();
+  }, [waitForFont, fontWeight, fontFamily, isMobile]);
 
   // Function to measure text width accurately
   const measureTextWidth = (
@@ -50,7 +76,7 @@ export default function MultiOutlineText({
     const context = canvas.getContext("2d");
     if (!context) return text.length * fontSize * 0.6; // Fallback
 
-    context.font = `${fontWeight} ${fontSize}px TWK Everett, sans-serif`;
+    context.font = `${fontWeight} ${fontSize}px ${fontFamily}`;
     const metrics = context.measureText(text);
 
     // Add letter spacing contribution (letterSpacing * (length - 1))
@@ -63,12 +89,16 @@ export default function MultiOutlineText({
   if (isTextOnly) {
     // Use SVG rendering for text-only content
     const fontSize = isMobile ? 36 : 64;
-    const textWidth = measureTextWidth(
-      children as string,
-      fontSize,
-      fontWeight,
-      letterSpacing,
-    );
+    
+    // Only measure after font is loaded for accuracy
+    const textWidth = fontLoaded
+      ? measureTextWidth(
+          children as string,
+          fontSize,
+          fontWeight,
+          letterSpacing,
+        )
+      : (children as string).length * fontSize * 0.6; // Fallback while loading
 
     // Calculate max stroke width to add as padding
     const maxStroke = Math.max(
@@ -86,6 +116,8 @@ export default function MultiOutlineText({
         className={cn("w-auto overflow-visible", className)}
         style={{
           height: isMobile ? "36px" : "64px",
+          opacity: fontLoaded ? 1 : 0,
+          transition: "opacity 0.2s ease-in-out",
         }}
       >
         {/* Render strokes from largest to smallest */}
@@ -102,7 +134,7 @@ export default function MultiOutlineText({
               textAnchor="middle"
               dominantBaseline="middle"
               style={{
-                fontFamily: "TWK Everett, sans-serif",
+                fontFamily: fontFamily,
                 fontSize: `${fontSize}px`,
                 fontWeight: fontWeight,
                 letterSpacing: letterSpacing,
@@ -125,7 +157,7 @@ export default function MultiOutlineText({
           textAnchor="middle"
           dominantBaseline="middle"
           style={{
-            fontFamily: "TWK Everett, sans-serif",
+            fontFamily: fontFamily,
             fontSize: `${fontSize}px`,
             fontWeight: fontWeight,
             letterSpacing: letterSpacing,
@@ -160,7 +192,7 @@ export default function MultiOutlineText({
               fontWeight,
               lineHeight,
               letterSpacing,
-              fontFamily: "TWK Everett, sans-serif",
+              fontFamily: fontFamily,
               zIndex: index,
               WebkitTextStrokeWidth: `${strokeWidth * 2}px`,
               WebkitTextStrokeColor: outline.color,
@@ -185,7 +217,7 @@ export default function MultiOutlineText({
           fontWeight,
           lineHeight,
           letterSpacing,
-          fontFamily: "TWK Everett, sans-serif",
+          fontFamily: fontFamily,
           zIndex: outlines.length,
           color: color,
           WebkitTextFillColor: color,
