@@ -17,9 +17,12 @@
   inset: 0;
   padding: 1px;
   border-radius: inherit;
-  background: linear-gradient(136deg, #81FFBA 0%, #00FFF9 100%);
-  -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+  background: radial-gradient(59.92% 76.24% at 50% 50%, #81FFBA 0%, rgba(129, 255, 186, 0.00) 100%), 
+              radial-gradient(59.97% 79.12% at 50% 50%, #81FFBA 18.75%, rgba(129, 255, 186, 0.00) 100%), 
+              radial-gradient(76.68% 94.29% at 50% 50%, #FFF 0%, rgba(255, 255, 255, 0.00) 100%);
+  -webkit-mask: linear-gradient(#000 0 0) content-box, linear-gradient(#000 0 0);
   -webkit-mask-composite: xor;
+  mask: linear-gradient(#000 0 0) content-box, linear-gradient(#000 0 0);
   mask-composite: exclude;
   pointer-events: none;
 }

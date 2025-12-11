@@ -1,7 +1,7 @@
 {
   "name": "@movementlabsxyz/movement-design-system",
   "private": false,
-  "version": "1.0.1",
+  "version": "1.0.2",
   "type": "module",
   "description": "Production-ready design system built with shadcn/ui components, Radix UI, and Tailwind CSS for Movement Labs",
   "keywords": [
@@ -14,7 +14,7 @@
     "movement",
     "radix-ui"
   ],
-  "author": "Movement Labs",
+  "author": "Movement Network",
   "license": "MIT",
   "repository": {
     "type": "git",
