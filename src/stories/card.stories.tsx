@@ -118,6 +118,106 @@ export const Glow: Story = {
   ),
 };
 
+export const Iridescent: Story = {
+  render: () => (
+    <DottedBackground variant="gradient">
+      <div className="flex h-full min-h-[500px] items-center justify-center p-8">
+        <Card variant="iridescent" className="w-96">
+          <CardHeader>
+            <CardTitle>Iridescent Border Card</CardTitle>
+            <CardDescription>
+              A sleek linear gradient border effect
+            </CardDescription>
+          </CardHeader>
+          <CardContent>
+            <p className="text-sm">
+              The iridescent variant features a smooth linear gradient border
+              at 136 degrees, transitioning from mint green (#81ffba) to cyan
+              (#00fff9), creating a modern and vibrant look.
+            </p>
+          </CardContent>
+          <CardFooter>
+            <Button>Explore</Button>
+          </CardFooter>
+        </Card>
+      </div>
+    </DottedBackground>
+  ),
+};
+
+export const AllBorderVariants: Story = {
+  render: () => (
+    <DottedBackground variant="gradient">
+      <div className="flex h-full min-h-[700px] items-center justify-center p-8">
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-8 max-w-6xl w-full">
+          <div className="flex flex-col gap-4">
+            <Card className="w-full">
+              <CardHeader>
+                <CardTitle>Glass Background</CardTitle>
+                <CardDescription>Default with glass effect</CardDescription>
+              </CardHeader>
+              <CardContent>
+                <p className="text-sm">
+                  Card with glass dark background (default) featuring backdrop
+                  blur and subtle gradient.
+                </p>
+              </CardContent>
+              <CardFooter>
+                <Button className="w-full">Default</Button>
+              </CardFooter>
+            </Card>
+            <p className="text-white/60 text-xs text-center">
+              Default variant - Glass background
+            </p>
+          </div>
+
+          <div className="flex flex-col gap-4">
+            <Card variant="glow" className="w-full">
+              <CardHeader>
+                <CardTitle>Gradient Glow</CardTitle>
+                <CardDescription>Radial gradient glow</CardDescription>
+              </CardHeader>
+              <CardContent>
+                <p className="text-sm">
+                  Card with radial gradient glow border featuring multiple
+                  gradient layers for a luminous effect.
+                </p>
+              </CardContent>
+              <CardFooter>
+                <Button className="w-full">Glow</Button>
+              </CardFooter>
+            </Card>
+            <p className="text-white/60 text-xs text-center">
+              Glow variant - Radial gradient border
+            </p>
+          </div>
+
+          <div className="flex flex-col gap-4">
+            <Card variant="iridescent" className="w-full">
+              <CardHeader>
+                <CardTitle>Iridescent</CardTitle>
+                <CardDescription>Linear gradient border</CardDescription>
+              </CardHeader>
+              <CardContent>
+                <p className="text-sm">
+                  Card with smooth linear gradient border transitioning from
+                  mint to cyan at 136°.
+                </p>
+              </CardContent>
+              <CardFooter>
+                <Button className="w-full">Iridescent</Button>
+              </CardFooter>
+            </Card>
+            <p className="text-white/60 text-xs text-center">
+              Iridescent variant - Linear gradient border
+            </p>
+          </div>
+        </div>
+      </div>
+    </DottedBackground>
+  ),
+};
+
 export const GlowComparison: Story = {
   render: () => (
     <DottedBackground variant="gradient">

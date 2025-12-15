@@ -14,6 +14,7 @@ const cardVariants = cva(
       variant: {
         default: cn(glassBackgroundClasses.dark),
         glow: "backdrop-blur-[21px] border-0",
+        iridescent: "backdrop-blur-[21px] border-0",
       },
     },
     defaultVariants: {
@@ -27,6 +28,7 @@ const cardInnerVariants = cva("", {
     variant: {
       default: "",
       glow: gradientBorderClasses.glow,
+      iridescent: gradientBorderClasses.iridescent,
     },
   },
   defaultVariants: {
@@ -40,6 +42,7 @@ interface CardProps
 
 function Card({ className, variant, children, ...props }: CardProps) {
   const isGlow = variant === "glow";
+  const isIridescent = variant === "iridescent";
   const isDefault = !variant || variant === "default";
 
   return (
@@ -49,13 +52,13 @@ function Card({ className, variant, children, ...props }: CardProps) {
       className={cn(
         cardVariants({ variant }),
         "flex flex-col gap-4 md:gap-6",
-        (isGlow || isDefault) && "relative z-10",
+        (isGlow || isIridescent || isDefault) && "relative z-10",
         className,
       )}
       {...props}
     >
-      {/* Glow variant: absolutely positioned gradient border effect layer */}
-      {isGlow && (
+      {/* Glow/Iridescent variant: absolutely positioned gradient border effect layer */}
+      {(isGlow || isIridescent) && (
         <div
           className={cn(
             "absolute inset-0 rounded-[inherit] pointer-events-none",
