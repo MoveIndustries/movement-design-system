@@ -61,7 +61,7 @@ function Card({ className, variant, children, ...props }: CardProps) {
       {(isGlow || isIridescent) && (
         <div
           className={cn(
-            "absolute inset-0 rounded-[inherit] pointer-events-none",
+            "pointer-events-none absolute inset-0 rounded-[inherit]",
             cardInnerVariants({ variant }),
           )}
         />
