@@ -28,3 +28,4 @@ storybook-static
 
 .pnpm-store/
 .ignore/
+/styled-system/

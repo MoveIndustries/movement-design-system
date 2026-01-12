@@ -11,7 +11,7 @@ interface MultiOutlineTextProps {
   fontWeight?: string;
   lineHeight?: string;
   letterSpacing?: string;
-  textAlign?: string;
+  textAlign?: "left" | "right" | "center" | "justify" | "start" | "end";
   className?: string;
   waitForFont?: boolean;
   fontFamily?: string;
@@ -43,19 +43,39 @@ export default function MultiOutlineText({
   // Check if children contains only text
   const isTextOnly = typeof children === "string";
 
-  // Wait for font to load if requested
+  // Calculate SVG font size upfront for the effect
+  const defaultSize = isMobile ? 36 : 64;
+  const svgFontSize = fontSize ? parseFloat(fontSize) : defaultSize;
+
+  // Calculate actual text width using canvas measureText
+  const getTextWidth = (text: string, font: string) => {
+    // Check if we're in browser environment
+    if (typeof document === "undefined") {
+      return text.length * svgFontSize * 0.8;
+    }
+
+    const canvas = document.createElement("canvas");
+    const context = canvas.getContext("2d");
+    if (!context) return text.length * svgFontSize * 0.6;
+    context.font = font;
+    const metrics = context.measureText(text);
+    return metrics.width;
+  };
+
+  const font = `${fontWeight} ${svgFontSize}px ${fontFamily}`;
+  const textWidth = isTextOnly ? getTextWidth(children as string, font) : 0;
+
+  // Wait for font to load if requested (must be at top level)
   useEffect(() => {
-    if (!waitForFont || typeof document === "undefined") {
+    if (!waitForFont || typeof document === "undefined" || !isTextOnly) {
       setFontLoaded(true);
       return;
     }
 
     const loadFont = async () => {
       try {
-        const defaultSize = isMobile ? 36 : 64;
-        const sizeToLoad = fontSize ? parseFloat(fontSize) : defaultSize;
         await document.fonts.load(
-          `${fontWeight} ${sizeToLoad}px ${fontFamily}`,
+          `${fontWeight} ${svgFontSize}px ${fontFamily}`,
         );
         setFontLoaded(true);
       } catch {
@@ -65,62 +85,24 @@ export default function MultiOutlineText({
     };
 
     loadFont();
-  }, [waitForFont, fontWeight, fontFamily, fontSize, isMobile]);
-
-  // Function to measure text width accurately
-  const measureTextWidth = (
-    text: string,
-    fontSize: number,
-    fontWeight: string,
-    letterSpacing: string,
-  ): number => {
-    if (typeof document === "undefined") return text.length * fontSize * 0.6; // SSR fallback
-
-    const canvas = document.createElement("canvas");
-    const context = canvas.getContext("2d");
-    if (!context) return text.length * fontSize * 0.6; // Fallback
-
-    context.font = `${fontWeight} ${fontSize}px ${fontFamily}`;
-    const metrics = context.measureText(text);
-
-    // Add letter spacing contribution (letterSpacing * (length - 1))
-    const letterSpacingPx = parseFloat(letterSpacing);
-    const totalLetterSpacing = letterSpacingPx * (text.length - 1);
-
-    return metrics.width + totalLetterSpacing;
-  };
+  }, [waitForFont, fontWeight, fontFamily, fontSize, isMobile, textWidth, isTextOnly, svgFontSize]);
 
   if (isTextOnly) {
     // Use SVG rendering for text-only content
-    const defaultSize = isMobile ? 36 : 64;
-    const computedFontSize = fontSize ? parseFloat(fontSize) : defaultSize;
-
-    // Only measure after font is loaded for accuracy
-    const textWidth = fontLoaded
-      ? measureTextWidth(
-          children as string,
-          computedFontSize,
-          fontWeight,
-          letterSpacing,
-        )
-      : (children as string).length * computedFontSize * 0.6; // Fallback while loading
-
-    // Calculate max stroke width to add as padding
-    const maxStroke = Math.max(
-      ...outlines.map(
-        (o) => parseFloat(isMobile ? o.width.base : o.width.md) * 2,
-      ),
-    );
-
-    const estimatedWidth = textWidth + maxStroke * 2; // Add stroke padding on both sides
-    const height = computedFontSize * 1.2; // Adding padding for strokes
+    const height = svgFontSize;
 
     return (
       <svg
-        viewBox={`0 0 ${estimatedWidth} ${height}`}
-        className={cn("w-auto overflow-visible", className)}
+        viewBox={`0 0 ${textWidth} ${height}`}
+        className={className}
         style={{
-          height: fontSize || (isMobile ? "36px" : "64px"),
+          width: "auto",
+          height: `${svgFontSize}px`,
+          overflow: "visible",
+          display: "inline-block",
+          verticalAlign: "middle",
+          margin: 0,
+          padding: 0,
           opacity: fontLoaded ? 1 : 0,
           transition: "opacity 0.2s ease-in-out",
         }}
@@ -137,10 +119,10 @@ export default function MultiOutlineText({
               x="50%"
               y="50%"
               textAnchor="middle"
-              dominantBaseline="middle"
+              dominantBaseline="central"
               style={{
                 fontFamily: fontFamily,
-                fontSize: `${computedFontSize}px`,
+                fontSize: `${svgFontSize}px`,
                 fontWeight: fontWeight,
                 letterSpacing: letterSpacing,
                 fill: "none",
@@ -160,10 +142,10 @@ export default function MultiOutlineText({
           x="50%"
           y="50%"
           textAnchor="middle"
-          dominantBaseline="middle"
+          dominantBaseline="central"
           style={{
             fontFamily: fontFamily,
-            fontSize: `${computedFontSize}px`,
+            fontSize: `${svgFontSize}px`,
             fontWeight: fontWeight,
             letterSpacing: letterSpacing,
             fill: color,
@@ -177,7 +159,14 @@ export default function MultiOutlineText({
 
   // Use CSS rendering for mixed content (text + elements)
   return (
-    <div className={cn("relative inline-flex items-center", className)}>
+    <div
+      className={cn("relative inline-flex items-center", className)}
+      style={{
+        margin: 0,
+        padding: 0,
+        gap: 0,
+      }}
+    >
       {[...outlines].reverse().map((outline, index) => {
         const strokeWidth = parseFloat(
           isMobile ? outline.width.base : outline.width.md,
@@ -190,16 +179,19 @@ export default function MultiOutlineText({
             className={cn(
               "absolute top-0 left-0 m-0 inline-flex items-center",
               !fontSize && "text-[36px] md:text-[56px] lg:text-[64px]",
-              "font-[900]",
+              "font-black",
             )}
             style={{
-              textAlign: textAlign as any,
+              textAlign: textAlign,
               fontSize: fontSize,
               fontWeight,
               lineHeight,
               letterSpacing,
               fontFamily: fontFamily,
               zIndex: index,
+              margin: 0,
+              padding: 0,
+              gap: 0,
               WebkitTextStrokeWidth: `${strokeWidth * 2}px`,
               WebkitTextStrokeColor: outline.color,
               WebkitTextFillColor: "transparent",
@@ -216,16 +208,19 @@ export default function MultiOutlineText({
         className={cn(
           "relative m-0 inline-flex items-center",
           !fontSize && "text-[36px] md:text-[56px] lg:text-[64px]",
-          "font-[900]",
+          "font-black",
         )}
         style={{
-          textAlign: textAlign as any,
+          textAlign: textAlign,
           fontSize: fontSize,
           fontWeight,
           lineHeight,
           letterSpacing,
           fontFamily: fontFamily,
           zIndex: outlines.length,
+          margin: 0,
+          padding: 0,
+          gap: 0,
           color: color,
           WebkitTextFillColor: color,
         }}
