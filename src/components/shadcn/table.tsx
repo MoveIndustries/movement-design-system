@@ -152,7 +152,8 @@ function TableRow({ className, ...props }: React.ComponentProps<"tr">) {
         variant !== "alternating" && "transition-colors",
         variant === "borders" &&
           "[&>td]:border-b [&>td]:border-[rgba(255,255,255,0.24)] last:[&>td]:border-b-0",
-        variant === "alternating" && "even:bg-[rgba(255,255,255,0.16)]",
+        variant === "alternating" &&
+          "even:bg-[var(--table-bg-alt,rgba(255,255,255,0.08))]",
         className,
       )}
       {...props}

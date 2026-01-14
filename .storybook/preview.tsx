@@ -27,7 +27,10 @@ const withThemeProvider: Decorator = (Story, context) => {
   return (
     <ThemeProvider defaultTheme={theme} storageKey="storybook-theme">
       <ThemeSync theme={theme} />
-      <div className="bg-background text-foreground" style={{ minHeight: "100%" }}>
+      <div
+        className="bg-background text-foreground"
+        style={{ minHeight: "100%" }}
+      >
         {/* <div
         style={{
           position: "absolute",
