@@ -111,6 +111,8 @@ export const Toaster = () => {
         },
       }}
       visibleToasts={isMobile ? 1 : 3}
+      mobileOffset={0}
+      className={isMobile ? "[&]:!top-0 [&]:!left-0 [&]:!right-0 [&]:!transform-none" : ""}
     />
   );
 };

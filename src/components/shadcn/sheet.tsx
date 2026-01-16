@@ -49,7 +49,7 @@ const sheetContentVariants = cva(
   {
     variants: {
       variant: {
-        default: "bg-background",
+        default: "bg-card",
         glass: cn(
           gradientBackgroundClasses.glassOverlay,
           "backdrop-blur-xl border-0"
