@@ -1,7 +1,6 @@
 import React from "react";
 import { cva, type VariantProps } from "class-variance-authority";
 import { cn } from "../../lib/utils";
-import { useIsMobile } from "../../hooks/use-mobile";
 import FooterBigSvg from "../../assets/branding/footer-big.svg";
 import FooterSmallSvg from "../../assets/branding/footer-small.svg";
 
@@ -288,8 +287,11 @@ function DesktopFooter({
       {/* Main content area */}
       <div className="flex items-start justify-between">
         {/* Logo section - left side */}
-        <div className="flex items-center">
-          <img src={FooterBigSvg} alt="Move Industries" className="h-24 w-auto" />
+        <div className="flex items-center shrink-0">
+          {/* Small logo for smaller desktop screens */}
+          <img src={FooterSmallSvg} alt="Move Industries" className="h-24 w-auto block xl:!hidden" />
+          {/* Big logo for larger screens */}
+          <img src={FooterBigSvg} alt="Move Industries" className="h-24 w-auto hidden xl:!block" />
         </div>
 
         {/* Navigation columns - right side */}
@@ -394,8 +396,6 @@ function Footer({
   copyright = "© 2026 Move Industries. All rights reserved.",
   ...props
 }: FooterProps) {
-  const isMobile = useIsMobile();
-
   const sharedProps = {
     showHeading,
     heading,
@@ -406,11 +406,14 @@ function Footer({
 
   return (
     <footer data-slot="footer" className={cn("w-full", className)} {...props}>
-      {isMobile ? (
+      {/* Mobile footer - shown below lg breakpoint (1024px) */}
+      <div className="block lg:!hidden">
         <MobileFooter {...sharedProps} />
-      ) : (
+      </div>
+      {/* Desktop footer - shown at lg breakpoint and above */}
+      <div className="hidden lg:!block">
         <DesktopFooter {...sharedProps} />
-      )}
+      </div>
     </footer>
   );
 }

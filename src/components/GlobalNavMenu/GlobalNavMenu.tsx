@@ -50,8 +50,8 @@ const iconGradients: Record<string, string> = {
     "linear-gradient(130deg, rgba(255, 234, 144, 1) 24%, rgba(255, 217, 53, 1) 79%)",
   "delegated-staking":
     "linear-gradient(130deg, rgba(0, 255, 249, 1) 34%, rgba(129, 255, 186, 1) 79%)",
-  "name-service":
-    "linear-gradient(130deg, rgba(240, 104, 212, 1) 34%, rgba(182, 67, 158, 1) 79%)",
+  // "name-service":
+  //   "linear-gradient(130deg, rgba(240, 104, 212, 1) 34%, rgba(182, 67, 158, 1) 79%)",
   parthenon:
     "linear-gradient(135deg, rgba(175, 133, 73, 1) 15%, rgba(251, 230, 123, 1) 38%, rgba(252, 251, 231, 1) 53%, rgba(247, 209, 78, 1) 70%, rgba(212, 160, 65, 1) 86%)",
   explorer:
@@ -80,11 +80,11 @@ const DelegatedStakingIcon = () => (
   </svg>
 );
 
-const NameServiceIcon = () => (
-  <svg xmlns="http://www.w3.org/2000/svg" width="36" height="36" viewBox="0 0 46 46" fill="none">
-    <path d="M42.3927 1.90477C43.174 1.90477 43.8096 2.50938 43.8096 3.25249L43.8096 22.2349C43.8096 22.978 43.174 23.5826 42.3927 23.5826L29.9738 23.5826C26.7479 23.5826 24.1332 26.0697 24.1332 29.1383L24.1332 33.3675C24.1332 34.7546 22.9459 35.884 21.4876 35.884L15.0125 35.884C11.7866 35.884 9.17184 38.3711 9.17184 41.4396L9.17184 42.5518C9.17184 43.2454 8.57874 43.8095 7.84959 43.8095L3.22705 43.8095C2.4979 43.8095 1.9048 43.2454 1.9048 42.5518L1.9048 38.1548C1.9048 37.4612 2.4979 36.897 3.22705 36.897L3.75743 36.897C6.98333 36.897 9.59806 34.4098 9.59806 31.3413L9.59806 24.5744C9.59806 23.1873 10.7853 22.0579 12.2436 22.0579L15.1804 22.0579C18.4063 22.0579 21.021 19.5708 21.021 16.5022L21.021 3.25249C21.021 2.50937 21.6566 1.90477 22.4379 1.90477L42.3927 1.90477Z" fill="#7B256A"/>
-  </svg>
-);
+// const NameServiceIcon = () => (
+//   <svg xmlns="http://www.w3.org/2000/svg" width="36" height="36" viewBox="0 0 46 46" fill="none">
+//     <path d="M42.3927 1.90477C43.174 1.90477 43.8096 2.50938 43.8096 3.25249L43.8096 22.2349C43.8096 22.978 43.174 23.5826 42.3927 23.5826L29.9738 23.5826C26.7479 23.5826 24.1332 26.0697 24.1332 29.1383L24.1332 33.3675C24.1332 34.7546 22.9459 35.884 21.4876 35.884L15.0125 35.884C11.7866 35.884 9.17184 38.3711 9.17184 41.4396L9.17184 42.5518C9.17184 43.2454 8.57874 43.8095 7.84959 43.8095L3.22705 43.8095C2.4979 43.8095 1.9048 43.2454 1.9048 42.5518L1.9048 38.1548C1.9048 37.4612 2.4979 36.897 3.22705 36.897L3.75743 36.897C6.98333 36.897 9.59806 34.4098 9.59806 31.3413L9.59806 24.5744C9.59806 23.1873 10.7853 22.0579 12.2436 22.0579L15.1804 22.0579C18.4063 22.0579 21.021 19.5708 21.021 16.5022L21.021 3.25249C21.021 2.50937 21.6566 1.90477 22.4379 1.90477L42.3927 1.90477Z" fill="#7B256A"/>
+//   </svg>
+// );
 
 const ParthenonIcon = () => (
   <svg xmlns="http://www.w3.org/2000/svg" width="36" height="36" viewBox="0 0 46 46" fill="none">
@@ -144,7 +144,7 @@ const MoveDocsIcon = () => (
 const productIcons: Record<string, React.FC> = {
   bridge: BridgeIcon,
   "delegated-staking": DelegatedStakingIcon,
-  "name-service": NameServiceIcon,
+  // "name-service": NameServiceIcon,
   parthenon: ParthenonIcon,
   explorer: ExplorerIcon,
   "move-docs": MoveDocsIcon,
@@ -219,12 +219,12 @@ const defaultNavItems: NavMenuItem[] = [
       "Earn rewards by delegating your stake to validators securing the Movement network.",
     href: "https://staking.movementnetwork.xyz/",
   },
-  {
-    id: "name-service",
-    title: "NAME SERVICE",
-    description:
-      "Coming soon. Register and manage human-readable names for wallets, apps, and on-chain identities.",
-  },
+  // {
+  //   id: "name-service",
+  //   title: "NAME SERVICE",
+  //   description:
+  //     "Coming soon. Register and manage human-readable names for wallets, apps, and on-chain identities.",
+  // },
   {
     id: "parthenon",
     title: "PARTHENON",
@@ -344,9 +344,9 @@ function DesktopMenuContent({
       <div className="px-10 pb-10">
         <div className="flex gap-10">
           {/* Apps columns grouped together - flex-1 below xl to fill space, auto width at xl+ */}
-          <div className="flex gap-4 flex-1 xl:flex-none justify-center xl:justify-start">
+          <div className="flex gap-4 flex-1 xl:!flex-none justify-center xl:!justify-start">
             {/* Left apps column */}
-            <div className="flex-1 xl:flex-none max-w-[356px]">
+            <div className="flex-1 xl:!flex-none max-w-[356px]">
               <p className="font-heading font-black text-lg text-white tracking-wider mb-4">
                 APPS
               </p>
@@ -365,7 +365,7 @@ function DesktopMenuContent({
             </div>
 
             {/* Right apps column */}
-            <div className="flex flex-col flex-1 xl:flex-none max-w-[345px]">
+            <div className="flex flex-col flex-1 xl:!flex-none max-w-[345px]">
               <div className="h-[47px]" /> {/* Spacer to align with "APPS" header */}
               {rightItems.map((item) => (
                 <ProductBlock
@@ -381,7 +381,7 @@ function DesktopMenuContent({
           </div>
 
           {/* Right section - Video and Alliance (hidden on tablet, shown on xl+) */}
-          <div className="hidden xl:flex flex-1 flex-col items-center justify-center gap-8">
+          <div className="hidden xl:!flex flex-1 flex-col items-center justify-center gap-8">
             {showVideoSection && (
               <div className="w-[384px] h-[224px] rounded-lg overflow-hidden">
                 <iframe

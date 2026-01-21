@@ -26,7 +26,7 @@ const buttonVariants = cva(
         ghost:
           "hover:bg-accent hover:text-accent-foreground dark:hover:bg-accent/50",
         link: "text-primary underline-offset-4 hover:underline",
-        glow: "w-full max-w-[522px] p-3 bg-primary border-0 font-mono text-secondary rounded-lg text-2xl font-bold leading-6 tracking-[-0.06rem] uppercase relative overflow-hidden backdrop-blur-[21px] shadow-[8px_8px_0_0_hsl(var(--secondary))] hover:-translate-y-px hover:bg-background hover:shadow-[-8px_-8px_0_0_hsl(var(--secondary))] active:translate-y-0 disabled:opacity-50 disabled:cursor-not-allowed transition-all duration-200 ease-in-out",
+        glow: "w-full max-w-[522px] p-3 bg-[#81FFBA] border-0 font-mono text-[#0237FE] rounded-lg text-2xl font-bold leading-6 tracking-[-0.06rem] uppercase relative overflow-hidden backdrop-blur-[21px] shadow-[8px_8px_0_0_#0337FF] hover:-translate-y-px hover:bg-white hover:shadow-[-8px_-8px_0_0_#0337FF] active:translate-y-0 disabled:opacity-50 disabled:cursor-not-allowed transition-all duration-200 ease-in-out",
       },
       size: {
         xs: "h-6 px-3 text-xs gap-1.5",
