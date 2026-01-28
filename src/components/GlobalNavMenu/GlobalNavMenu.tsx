@@ -537,7 +537,7 @@ function GlobalNavMenu({
         )}
       >
         {/* Custom close button */}
-        <SheetClose className="absolute top-6 right-6 z-10 border-0 rounded-sm opacity-70 transition-opacity hover:opacity-100 focus:outline-none focus:ring-2 focus:ring-white/20 focus:ring-offset-2 focus:ring-offset-black disabled:pointer-events-none">
+        <SheetClose className="absolute top-6 right-6 z-10 border-0 rounded-full p-2 opacity-70 cursor-pointer transition-all hover:opacity-100 hover:bg-white/10 focus:outline-none focus:ring-2 focus:ring-white/20 focus:ring-offset-2 focus:ring-offset-black disabled:pointer-events-none">
           <X size={24} weight="bold" className="text-white" />
           <span className="sr-only">Close</span>
         </SheetClose>
