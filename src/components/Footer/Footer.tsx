@@ -276,10 +276,10 @@ function DesktopFooter({
   className,
 }: DesktopFooterProps) {
   return (
-    <div className={cn("relative w-full bg-black px-12 py-12", className)}>
+    <div className={cn("relative w-full bg-black px-12 py-20", className)}>
       {/* Heading centered */}
       {showHeading && (
-        <h2 className="mb-10 text-center text-[32px] font-black uppercase leading-[48px] text-white">
+        <h2 className="mb-16 text-center text-[32px] font-black uppercase leading-[48px] text-white">
           {heading}
         </h2>
       )}
@@ -313,7 +313,7 @@ function DesktopFooter({
       </div>
 
       {/* Copyright at bottom center */}
-      <p className="mt-10 text-center text-base text-white/60">{copyright}</p>
+      <p className="mt-16 text-center text-base text-white/60">{copyright}</p>
     </div>
   );
 }
@@ -405,7 +405,7 @@ function Footer({
   };
 
   return (
-    <footer data-slot="footer" className={cn("w-full lg:mt-16", className)} {...props}>
+    <footer data-slot="footer" className={cn("w-full", className)} {...props}>
       {/* Mobile footer - shown below lg breakpoint (1024px) */}
       <div className="block lg:!hidden">
         <MobileFooter {...sharedProps} />
