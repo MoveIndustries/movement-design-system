@@ -344,7 +344,7 @@ function DesktopMenuContent({
       </div>
 
       {/* Main content */}
-      <div className="px-10 pb-6">
+      <div className="px-10 pb-6 max-w-[1400px] mx-auto">
         <div className="flex gap-10">
           {/* Apps columns grouped together - flex-1 below xl to fill space, auto width at xl+ */}
           <div className="flex gap-4 flex-1 xl:!flex-none justify-center xl:!justify-start">
