@@ -19,6 +19,7 @@
     }
   },
   "include": [
+    "src/svg.d.ts",
     "src/components/**/*",
     "src/lib/**/*",
     "src/hooks/**/*",

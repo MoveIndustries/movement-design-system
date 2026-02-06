@@ -108,7 +108,7 @@ const TriangleBullet = React.forwardRef<
       ref={ref}
       className={cn(
         "shrink-0 transition-colors",
-        sizeClasses[size],
+        size && sizeClasses[size],
         className
       )}
       {...props}
