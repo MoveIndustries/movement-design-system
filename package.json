@@ -26,7 +26,8 @@
   },
   "files": [
     "dist",
-    "README.md"
+    "README.md",
+    "CHANGELOG.md"
   ],
   "main": "./dist/index.cjs",
   "module": "./dist/index.js",
