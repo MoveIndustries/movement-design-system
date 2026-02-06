@@ -1,9 +1,9 @@
 {
-  "name": "@movementlabsxyz/movement-design-system",
+  "name": "@moveindustries/movement-design-system",
   "private": false,
   "version": "1.0.0",
   "type": "module",
-  "description": "Production-ready design system built with shadcn/ui components, Radix UI, and Tailwind CSS for Movement Labs",
+  "description": "Production-ready design system built with shadcn/ui components, Radix UI, and Tailwind CSS for Move Industries",
   "keywords": [
     "react",
     "design-system",
@@ -18,11 +18,11 @@
   "license": "MIT",
   "repository": {
     "type": "git",
-    "url": "https://github.com/movementlabsxyz/movement-design-system"
+    "url": "https://github.com/MoveIndustries/movement-design-system"
   },
-  "homepage": "https://github.com/movementlabsxyz/movement-design-system#readme",
+  "homepage": "https://github.com/MoveIndustries/movement-design-system#readme",
   "bugs": {
-    "url": "https://github.com/movementlabsxyz/movement-design-system/issues"
+    "url": "https://github.com/MoveIndustries/movement-design-system/issues"
   },
   "files": [
     "dist",
