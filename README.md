@@ -69,7 +69,7 @@ pnpm test
 
 ## Documentation
 
-See the full component documentation in [Storybook](https://movement-design-system-docs-git-shadcn-movement-labs.vercel.app/).
+See the full component documentation in [Storybook](https://movement-design-system-docs.vercel.app/).
 
 ## License
 
