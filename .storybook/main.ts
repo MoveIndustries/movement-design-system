@@ -14,6 +14,11 @@ const config: StorybookConfig = {
   "framework": {
     "name": "@storybook/react-vite",
     "options": {}
+  },
+  viteFinal: async (config) => {
+    config.resolve = config.resolve || {};
+    config.resolve.dedupe = ['react', 'react-dom', '@mdx-js/react'];
+    return config;
   }
 };
 export default config;
