@@ -301,6 +301,10 @@ function ConnectWalletContent({
   );
 }
 
+/**
+ * @deprecated Use `WalletModal` or `WalletSelector` from `@moveindustries/wallet-adapter-move-design` instead.
+ * This component will be removed in a future major version.
+ */
 export function WalletModal({
   onClose,
   ...walletSortingOptions
@@ -309,6 +313,9 @@ export function WalletModal({
   const isMobile = useIsMobile();
 
   useEffect(() => {
+    console.warn(
+      "[movement-design-system] WalletModal is deprecated. Use WalletModal or WalletSelector from @moveindustries/wallet-adapter-move-design instead."
+    );
     setMounted(true);
     return () => setMounted(false);
   }, []);

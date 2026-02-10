@@ -100,6 +100,8 @@ export default defineConfig({
         "@aptos-labs/wallet-adapter-react",
         /^@aptos-labs\//,
         /^@radix-ui\//,
+        "@okwallet/aptos-wallet-adapter",
+        "@msafe/aptos-wallet-adapter",
         "tailwindcss",
       ],
     },
