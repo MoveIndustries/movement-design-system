@@ -1,6 +1,6 @@
 import type { Meta, StoryObj } from "@storybook/react";
 import { useState } from "react";
-import { AptosWalletAdapterProvider } from "@aptos-labs/wallet-adapter-react";
+import { MovementWalletAdapterProvider } from "@moveindustries/wallet-adapter-react";
 import { WalletModal } from "@/components/WalletModal";
 import { Button } from "@/components/shadcn/button";
 
@@ -19,7 +19,7 @@ const meta: Meta<typeof WalletModal> = {
   tags: ["autodocs"],
   decorators: [
     (Story: React.ComponentType) => (
-      <AptosWalletAdapterProvider
+      <MovementWalletAdapterProvider
         // autoConnect={true}
         onError={(error) => {
           console.log("Wallet error:", error);
@@ -32,7 +32,7 @@ const meta: Meta<typeof WalletModal> = {
         }}
       >
         <Story />
-      </AptosWalletAdapterProvider>
+      </MovementWalletAdapterProvider>
     ),
   ],
 };

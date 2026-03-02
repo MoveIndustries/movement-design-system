@@ -9,7 +9,7 @@ import {
   isInstallRequired,
   useWallet,
   WalletReadyState,
-} from "@aptos-labs/wallet-adapter-react";
+} from "@moveindustries/wallet-adapter-react";
 
 import { useMemo, useState, useEffect } from "react";
 import { OKXWallet } from "@okwallet/aptos-wallet-adapter";
@@ -121,7 +121,7 @@ function ConnectWalletContent({
   const { wallets } = useWallet();
   const [isMoreWalletsOpen, setIsMoreWalletsOpen] = useState(false);
   const isMobile = useIsMobile();
-  const { aptosConnectWallets, availableWallets, installableWallets } =
+  const { availableWallets, installableWallets } =
     useMemo(() => {
       const grouped = groupAndSortWallets(wallets, walletSortingOptions);
 
@@ -164,7 +164,6 @@ function ConnectWalletContent({
         );
       }
       return {
-        aptosConnectWallets: grouped?.aptosConnectWallets ?? [],
         availableWallets: grouped?.availableWallets ?? [],
         installableWallets: [
           ...(grouped?.installableWallets ?? []),
@@ -172,8 +171,6 @@ function ConnectWalletContent({
         ],
       };
     }, [wallets, walletSortingOptions]);
-
-  const hasAptosConnectWallets = false; // keep original logic toggle
 
   return (
     <div
@@ -286,17 +283,6 @@ function ConnectWalletContent({
         )}
       </div>
 
-      {hasAptosConnectWallets && (
-        <div className="flex flex-col gap-3">
-          {aptosConnectWallets.map((wallet) => (
-            <AptosConnectWalletRow
-              key={wallet.name}
-              wallet={wallet}
-              onConnect={onClose}
-            />
-          ))}
-        </div>
-      )}
     </div>
   );
 }
@@ -432,24 +418,3 @@ function IconWalletCard({ wallet, onConnect }: WalletRowProps) {
   );
 }
 
-function AptosConnectWalletRow({ wallet, onConnect }: WalletRowProps) {
-  return (
-    <WalletItem wallet={wallet} onConnect={onConnect}>
-      <WalletItem.ConnectButton asChild>
-        <button
-          className={cn(
-            "inline-flex w-full items-center justify-center gap-4 whitespace-nowrap",
-            "rounded-md text-sm font-medium transition-colors",
-            "focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:outline-none",
-            "disabled:pointer-events-none disabled:opacity-50",
-            "border-input bg-background hover:bg-accent hover:text-accent-foreground border",
-            "h-11 px-2",
-          )}
-        >
-          <WalletItem.Icon className="h-5 w-5" />
-          <WalletItem.Name className="text-sm font-normal md:text-base" />
-        </button>
-      </WalletItem.ConnectButton>
-    </WalletItem>
-  );
-}

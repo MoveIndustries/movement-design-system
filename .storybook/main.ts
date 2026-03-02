@@ -18,6 +18,13 @@ const config: StorybookConfig = {
   viteFinal: async (config) => {
     config.resolve = config.resolve || {};
     config.resolve.dedupe = ['react', 'react-dom', '@mdx-js/react'];
+
+    // Polyfill process.env for wallet adapter dependencies that use Node.js globals
+    config.define = {
+      ...config.define,
+      'process.env': {},
+    };
+
     return config;
   }
 };
