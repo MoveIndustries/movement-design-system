@@ -15,11 +15,18 @@ const dirname =
     ? __dirname
     : path.dirname(fileURLToPath(import.meta.url));
 
-// Plugin to copy theme files to dist
+// Plugin to copy theme files to dist (only runs during library build, not Storybook)
 function copyThemePlugin() {
   return {
     name: "copy-theme",
     closeBundle() {
+      // Skip during Storybook builds - these files are only needed for the npm package
+      if (process.env.STORYBOOK === "true") {
+        return;
+      }
+
+      // Use process.cwd() for reliable path resolution (dirname can be wrong when vite compiles config to temp dir)
+      const projectRoot = process.cwd();
       const filesToCopy = [
         { src: "src/theme.css", dest: "dist/theme.css", name: "theme.css" },
         { src: "src/fonts.css", dest: "dist/fonts.css", name: "fonts.css" },
@@ -31,8 +38,8 @@ function copyThemePlugin() {
       ];
 
       filesToCopy.forEach(({ src, dest, name }) => {
-        const srcPath = resolve(dirname, src);
-        const destPath = resolve(dirname, dest);
+        const srcPath = resolve(projectRoot, src);
+        const destPath = resolve(projectRoot, dest);
         if (fs.existsSync(srcPath)) {
           fs.copyFileSync(srcPath, destPath);
           console.log(`✓ Copied ${name} to dist/`);
