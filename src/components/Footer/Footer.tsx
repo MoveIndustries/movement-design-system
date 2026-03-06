@@ -1,8 +1,8 @@
 import React from "react";
 import { cva, type VariantProps } from "class-variance-authority";
 import { cn } from "../../lib/utils";
-import FooterBigSvg from "../../assets/branding/footer-big.svg";
-import FooterSmallSvg from "../../assets/branding/footer-small.svg";
+import MovementWordmark from "../../assets/branding/Movement-marigold.svg";
+import MovementLogo from "../icon/assets/move-logo.svg";
 
 // Social media icons as inline SVGs
 const XIcon = () => (
@@ -151,7 +151,7 @@ export interface FooterProps extends React.HTMLAttributes<HTMLElement> {
 
   /**
    * Copyright text
-   * @default "© 2026 Move Industries. All rights reserved."
+   * @default "© 2026 Movement Network Foundation. All rights reserved."
    */
   copyright?: string;
 }
@@ -287,11 +287,11 @@ function DesktopFooter({
       {/* Main content area */}
       <div className="flex items-center justify-between">
         {/* Logo section - left side */}
-        <div className="flex items-center shrink-0">
-          {/* Small logo for smaller desktop screens */}
-          <img src={FooterSmallSvg} alt="Move Industries" className="h-24 w-auto block xl:!hidden" />
-          {/* Big logo for larger screens */}
-          <img src={FooterBigSvg} alt="Move Industries" className="h-24 w-auto hidden xl:!block" />
+        <div className="flex shrink items-center">
+          {/* M logo for medium desktop screens */}
+          <img src={MovementLogo} alt="Movement" className="block h-24 w-auto xl:!hidden" />
+          {/* Full wordmark for wide screens */}
+          <img src={MovementWordmark} alt="Movement" className="hidden h-8 max-w-64 w-auto xl:!block" />
         </div>
 
         {/* Navigation columns - right side */}
@@ -342,7 +342,7 @@ function MobileFooter({
     <div className={cn("relative w-full bg-black px-6 py-10", className)}>
       {/* Logo centered at top */}
       <div className="flex flex-col items-center gap-4">
-        <img src={FooterSmallSvg} alt="Move Industries" className="h-24 w-auto" />
+        <img src={MovementWordmark} alt="Movement" className="h-8 w-auto" />
       </div>
 
       {/* Heading centered below logo */}
@@ -393,7 +393,7 @@ function Footer({
   heading = "Serving the People's Chain. powered by Move.",
   columns = defaultColumns,
   socialLinks = defaultSocialLinks,
-  copyright = "© 2026 Move Industries. All rights reserved.",
+  copyright = "© 2026 Movement Network Foundation. All rights reserved.",
   ...props
 }: FooterProps) {
   const sharedProps = {

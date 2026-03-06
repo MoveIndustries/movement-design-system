@@ -140,7 +140,7 @@ export const Desktop: Story = {
         { platform: "linkedin", href: "#" },
         { platform: "github", href: "#" },
       ]}
-      copyright={args.copyright ?? "© 2026 Move Industries. All rights reserved."}
+      copyright={args.copyright ?? "© 2026 Movement Network Foundation. All rights reserved."}
     />
   ),
   args: {
@@ -189,7 +189,7 @@ export const DesktopWithoutHeading: Story = {
         { platform: "linkedin", href: "#" },
         { platform: "github", href: "#" },
       ]}
-      copyright="© 2026 Move Industries. All rights reserved."
+      copyright="© 2026 Movement Network Foundation. All rights reserved."
     />
   ),
 };
@@ -240,7 +240,7 @@ export const Mobile: Story = {
           { platform: "linkedin", href: "#" },
           { platform: "github", href: "#" },
         ]}
-        copyright={args.copyright ?? "© 2026 Move Industries. All rights reserved."}
+        copyright={args.copyright ?? "© 2026 Movement Network Foundation. All rights reserved."}
       />
     </div>
   ),
@@ -291,7 +291,7 @@ export const MobileWithoutHeading: Story = {
           { platform: "linkedin", href: "#" },
           { platform: "github", href: "#" },
         ]}
-        copyright="© 2026 Move Industries. All rights reserved."
+        copyright="© 2026 Movement Network Foundation. All rights reserved."
       />
     </div>
   ),
@@ -345,7 +345,7 @@ export const SideBySide: Story = {
             { platform: "linkedin", href: "#" },
             { platform: "github", href: "#" },
           ]}
-          copyright="© 2026 Move Industries. All rights reserved."
+          copyright="© 2026 Movement Network Foundation. All rights reserved."
         />
       </div>
       <div>
@@ -390,7 +390,7 @@ export const SideBySide: Story = {
               { platform: "linkedin", href: "#" },
               { platform: "github", href: "#" },
             ]}
-            copyright="© 2026 Move Industries. All rights reserved."
+            copyright="© 2026 Movement Network Foundation. All rights reserved."
           />
         </div>
       </div>
