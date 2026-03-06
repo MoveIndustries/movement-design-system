@@ -196,11 +196,12 @@ const defaultColumns: FooterColumn[] = [
 ];
 
 const defaultSocialLinks: SocialLink[] = [
-  { platform: "x", href: "https://x.com/moveindustries" },
-  { platform: "discord", href: "https://discord.gg/G6SaA7Eq" },
-  { platform: "github", href: "https://github.com/movementlabsxyz/movement" },
+  { platform: "x", href: "https://x.com/movement_xyz" },
+  { platform: "discord", href: "https://discord.gg/moveindustries" },
+  { platform: "github", href: "https://github.com/moveindustries" },
   { platform: "reddit", href: "https://www.reddit.com/r/MovementXYZ/" },
   { platform: "linkedin", href: "https://www.linkedin.com/company/move-industries-blockchain" },
+  { platform: "telegram", href: "https://t.me/movementlabsxyz" },
 ];
 
 // Shared sub-components
