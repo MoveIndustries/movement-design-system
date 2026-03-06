@@ -4,7 +4,46 @@ All notable changes to this project will be documented in this file.
 
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/), and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
-## [Unreleased]
+## [1.0.5] - 2026-03-06
+
+### Changed
+- **Footer** — Rebrand from Move Industries to Movement
+  - Replace footer logos with `Movement-marigold.svg` (wordmark) and `move-logo.svg` (M icon)
+  - Desktop wide (xl+): Full "Movement" wordmark
+  - Desktop medium (lg to xl): M logo only
+  - Mobile: Full "Movement" wordmark centered at top
+  - Update default copyright to "Movement Network Foundation"
+  - Update all logo alt text to "Movement"
+
+## [1.0.4] - 2026-03-04
+
+### Changed
+- Set transitive dependencies as direct dependencies for better compatibility
+
+### Added
+- **Icon** — Add `gMOVE` (liquid staking token) icon
+
+### Fixed
+- Use React DOM properties for better compatibility
+
+## [1.0.3] - 2026-02-28
+
+### Changed
+- **WalletModal** — Mark as deprecated, remove wallet adapter dependencies from bundle
+
+### Fixed
+- Fix mobile drawer background styling
+
+## [1.0.2] - 2026-02-20
+
+### Fixed
+- Restore `@okwallet/aptos-wallet-adapter` and `@msafe/aptos-wallet-adapter` dependencies
+
+## [1.0.1] - 2026-02-10
+
+### Fixed
+- **GlobalNavMenu** — Add max-width to desktop content to prevent overflow
+- Revert footer margin changes
 
 ## [1.0.0] - 2026-02-05
 
