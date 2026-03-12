@@ -4,6 +4,14 @@ All notable changes to this project will be documented in this file.
 
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/), and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [1.0.7] - 2026-03-12
+
+### Changed
+- **GlobalNavMenu** — Replace header logo with Movement branding
+  - Replace `heading-big.svg` (Move Industries) with `Movement-marigold.svg`
+  - Desktop: `h-10` height
+  - Mobile: `h-7` height
+
 ## [1.0.6] - 2026-03-06
 
 ### Changed

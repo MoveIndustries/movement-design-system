@@ -10,7 +10,7 @@ import {
 import { Skeleton } from "@/components/shadcn/skeleton";
 import { cn } from "@/lib/utils";
 import { useIsMobile } from "@/hooks/use-mobile";
-import HeadingBigSvg from "@/assets/branding/heading-big.svg";
+import MovementMarigoldSvg from "@/assets/branding/Movement-marigold.svg";
 
 // Custom grid icon for the trigger
 const GridIcon = ({ className }: { className?: string }) => (
@@ -340,7 +340,7 @@ function DesktopMenuContent({
     <div className="relative w-full min-h-[600px] bg-black">
       {/* Header with branding */}
       <div className="h-[104px] flex items-center justify-center backdrop-blur-[10px]">
-        <img src={HeadingBigSvg} alt="Move Industries" className="h-16 w-auto" />
+        <img src={MovementMarigoldSvg} alt="Movement" className="h-10 w-auto" />
       </div>
 
       {/* Main content */}
@@ -453,7 +453,7 @@ function MobileMenuContent({ items, onItemClick }: MobileMenuContentProps) {
     <div className="relative w-full min-h-screen max-h-screen overflow-y-auto bg-black">
       {/* Header with branding */}
       <div className="pt-6 pb-4 px-6 flex justify-center">
-        <img src={HeadingBigSvg} alt="Move Industries" className="h-10 w-auto" />
+        <img src={MovementMarigoldSvg} alt="Movement" className="h-7 w-auto" />
       </div>
 
       {/* Apps section */}
