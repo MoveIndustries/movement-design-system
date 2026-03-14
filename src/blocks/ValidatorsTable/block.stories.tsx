@@ -12,7 +12,8 @@ import {
 } from "@/components/shadcn/table";
 import { Button } from "@/components/shadcn/button";
 import { Progress } from "@/components/shadcn/progress";
-import { MoveIcon, Plant } from "@/components/Icon";
+import { Plant } from "@phosphor-icons/react";
+import { MoveIcon } from "@/components/Icon";
 import { useSortableData, useTableSort } from "@/components/shadcn/table-hooks";
 import { cn } from "@/lib/utils";
 

@@ -4,6 +4,22 @@ All notable changes to this project will be documented in this file.
 
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/), and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [1.1.0] - 2026-03-14
+
+### Changed
+
+- **Bundle size** — Reduced from ~13MB to <500KB by externalizing dependencies
+  - Removed re-export of entire Phosphor icon library (~9,500 icons)
+  - Externalized lucide-react, recharts, sonner, vaul, and all Radix UI primitives
+  - Only small utilities (clsx, tailwind-merge, class-variance-authority) remain bundled
+
+- **Icons** — Phosphor icons are no longer re-exported from this package
+  - Import icons directly from `@phosphor-icons/react` instead
+  - Custom asset icons (AptosLogoIcon, MoveIcon, etc.) are still exported
+
+- **Dependencies** — Most UI dependencies moved to peerDependencies
+  - Consumers must install: `@phosphor-icons/react`, `lucide-react`, `sonner`, `vaul`, `recharts`, `@radix-ui/*`, and others
+
 ## [1.0.7] - 2026-03-12
 
 ### Changed
@@ -21,7 +37,7 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
   - GitHub: `https://github.com/moveindustries`
   - Add Telegram: `https://t.me/movementlabsxyz`
 
-## [1.0.5] - 2026-03-06
+w## [1.0.5] - 2026-03-06
 
 ### Changed
 - **Footer** — Rebrand from Move Industries to Movement

@@ -28,7 +28,8 @@ import {
   DialogDescription,
 } from "@/components/shadcn/dialog";
 import { cn } from "@/lib/utils";
-import { XIcon, CaretDownIcon, NightlyIcon } from "@/components/Icon";
+import { XIcon, CaretDownIcon } from "@phosphor-icons/react";
+import { NightlyIcon } from "@/components/Icon";
 
 const nightlyWallet: AdapterNotDetectedWallet = {
   name: "Nightly Wallet",

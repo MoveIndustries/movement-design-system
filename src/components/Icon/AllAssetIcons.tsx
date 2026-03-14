@@ -1,5 +1,6 @@
 import { forwardRef, ReactElement } from "react";
-import { Icon, IconBase, IconWeight } from "@phosphor-icons/react";
+import type { Icon, IconWeight } from "@phosphor-icons/react";
+import { IconBase } from "@phosphor-icons/react";
 
 
 // AptosLogoIcon Component
