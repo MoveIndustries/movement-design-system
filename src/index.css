@@ -1,5 +1,5 @@
-@import "tailwindcss";
-@import "tw-animate-css";
-@import "./fonts.css";
+/* Design system component styles - Tailwind is NOT bundled here */
+/* Consumers must import tailwindcss separately in their own CSS */
+/* Fonts are NOT bundled here to avoid bloat - import /fonts separately if needed */
 @import "./theme.css";
 @import "./recipes.css";

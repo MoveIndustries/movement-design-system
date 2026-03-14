@@ -49,11 +49,16 @@ function copyThemePlugin() {
   };
 }
 
+// Check if we're building the library (not Storybook dev)
+const isLibBuild = process.env.npm_lifecycle_event === "build";
+
 // More info at: https://storybook.js.org/docs/next/writing-tests/integrations/vitest-addon
 export default defineConfig({
   plugins: [
     react(),
-    tailwindcss(),
+    // Only include Tailwind plugin for dev/Storybook, NOT for library builds
+    // Library consumers will use their own Tailwind build
+    ...(isLibBuild ? [] : [tailwindcss()]),
     dts({
       tsconfigPath: "tsconfig.build.json",
     }),
@@ -93,6 +98,8 @@ export default defineConfig({
     ],
   },
   build: {
+    // Don't inline any assets (especially fonts) as base64
+    assetsInlineLimit: 0,
     lib: {
       entry: resolve(__dirname, "src/index.ts"),
       name: "movement-design-system",
