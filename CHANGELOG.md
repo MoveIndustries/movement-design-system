@@ -8,17 +8,22 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 
 ### Changed
 
-- **Bundle size** — Reduced from ~13MB to <500KB by externalizing dependencies
+- **Bundle size** — Reduced to ~1.2MB (431KB gzipped) by externalizing dependencies
   - Removed re-export of entire Phosphor icon library (~9,500 icons)
   - Externalized lucide-react, recharts, sonner, vaul, and all Radix UI primitives
   - Only small utilities (clsx, tailwind-merge, class-variance-authority) remain bundled
 
-- **Icons** — Phosphor icons are no longer re-exported from this package
-  - Import icons directly from `@phosphor-icons/react` instead
-  - Custom asset icons (AptosLogoIcon, MoveIcon, etc.) are still exported
+- **Icons** — Phosphor icons no longer re-exported
+  - Import Phosphor icons directly from `@phosphor-icons/react`
+  - Asset icons (MoveIcon, USDCIcon, etc.) still exported from main bundle
 
 - **Dependencies** — Most UI dependencies moved to peerDependencies
   - Consumers must install: `@phosphor-icons/react`, `lucide-react`, `sonner`, `vaul`, `recharts`, `@radix-ui/*`, and others
+
+- **WalletModal** — Simplified and lightened
+  - `@moveindustries/wallet-adapter-react` moved to peerDependencies (consumers must install it)
+  - Removed auto-adding of OKX and MSafe wallets (reduced bundle by ~6MB)
+  - WalletModal now displays only the wallets provided by your app's WalletProvider
 
 ## [1.0.7] - 2026-03-12
 
@@ -37,7 +42,7 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
   - GitHub: `https://github.com/moveindustries`
   - Add Telegram: `https://t.me/movementlabsxyz`
 
-w## [1.0.5] - 2026-03-06
+## [1.0.5] - 2026-03-06
 
 ### Changed
 - **Footer** — Rebrand from Move Industries to Movement

@@ -14,7 +14,7 @@ export type {
 } from "./components/theme";
 
 // Components
-export * from "./components/Icon";
+export * from "./components/Icon/AllAssetIcons";
 export { Branding } from "./components/Branding";
 export type {
   BrandingProps,
@@ -46,13 +46,7 @@ export { IconButton } from "./components/IconButton/IconButton";
 export { Logo } from "./components/Logo/Logo";
 export { MultiOutlineText } from "./components/MultiOutlineText";
 export { ProgressButton } from "./components/ProgressButton";
-/**
- * @deprecated Use `WalletModal` or `WalletSelector` from `@moveindustries/wallet-adapter-move-design` instead.
- */
 export { WalletModal } from "./components/WalletModal";
-/**
- * @deprecated Use `ConnectWalletDialogProps` from `@moveindustries/wallet-adapter-move-design` instead.
- */
 export type { ConnectWalletDialogProps } from "./components/WalletModal";
 export {
   Accordion,

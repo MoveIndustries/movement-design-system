@@ -12,8 +12,6 @@ import {
 } from "@moveindustries/wallet-adapter-react";
 
 import { useMemo, useState, useEffect } from "react";
-import { OKXWallet } from "@okwallet/aptos-wallet-adapter";
-import { MSafeWalletAdapter } from "@msafe/aptos-wallet-adapter";
 import { useIsMobile } from "@/hooks/use-mobile";
 import {
   Drawer,
@@ -29,7 +27,7 @@ import {
 } from "@/components/shadcn/dialog";
 import { cn } from "@/lib/utils";
 import { XIcon, CaretDownIcon } from "@phosphor-icons/react";
-import { NightlyIcon } from "@/components/Icon";
+import { NightlyIcon } from "@/components/Icon/AllAssetIcons";
 
 const nightlyWallet: AdapterNotDetectedWallet = {
   name: "Nightly Wallet",
@@ -126,7 +124,7 @@ function ConnectWalletContent({
     useMemo(() => {
       const grouped = groupAndSortWallets(wallets, walletSortingOptions);
 
-      // Add OKX and MSafe as installable wallets if not already present
+      // Add Nightly as installable wallet if not already present
       const additionalInstallableWallets: (
         | AdapterWallet
         | AdapterNotDetectedWallet
@@ -140,30 +138,6 @@ function ConnectWalletContent({
         additionalInstallableWallets.push(nightlyWallet);
       }
 
-      // Check if OKX wallet is already in the lists
-      const hasOKX = [
-        ...(grouped?.availableWallets ?? []),
-        ...(grouped?.installableWallets ?? []),
-      ].some((w) => w.name.toLowerCase().includes("okx"));
-      if (!hasOKX) {
-        additionalInstallableWallets.push(
-          new OKXWallet() as AdapterNotDetectedWallet,
-        );
-      }
-
-      // Check if MSafe wallet is already in the lists
-      const hasMSafe = [
-        ...(grouped?.availableWallets ?? []),
-        ...(grouped?.installableWallets ?? []),
-      ].some((w) => w.name.toLowerCase().includes("msafe"));
-      if (!hasMSafe) {
-        additionalInstallableWallets.push(
-          new MSafeWalletAdapter(
-            undefined,
-            "MOVEMENT",
-          ) as unknown as AdapterNotDetectedWallet,
-        );
-      }
       return {
         availableWallets: grouped?.availableWallets ?? [],
         installableWallets: [
@@ -288,10 +262,6 @@ function ConnectWalletContent({
   );
 }
 
-/**
- * @deprecated Use `WalletModal` or `WalletSelector` from `@moveindustries/wallet-adapter-move-design` instead.
- * This component will be removed in a future major version.
- */
 export function WalletModal({
   onClose,
   ...walletSortingOptions
@@ -300,9 +270,6 @@ export function WalletModal({
   const isMobile = useIsMobile();
 
   useEffect(() => {
-    console.warn(
-      "[movement-design-system] WalletModal is deprecated. Use WalletModal or WalletSelector from @moveindustries/wallet-adapter-move-design instead."
-    );
     setMounted(true);
     return () => setMounted(false);
   }, []);
