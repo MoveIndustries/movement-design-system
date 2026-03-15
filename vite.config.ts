@@ -65,9 +65,8 @@ const isLibBuild = process.env.npm_lifecycle_event === "build";
 export default defineConfig({
   plugins: [
     react(),
-    // Only include Tailwind plugin for dev/Storybook, NOT for library builds
-    // Library consumers will use their own Tailwind build
-    ...(isLibBuild ? [] : [tailwindcss()]),
+    // Include Tailwind for all builds - CSS must be pre-compiled for consumers
+    tailwindcss(),
     dts({
       tsconfigPath: "tsconfig.build.json",
     }),
