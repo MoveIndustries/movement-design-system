@@ -4,6 +4,26 @@ All notable changes to this project will be documented in this file.
 
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/), and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [1.1.3] - 2026-03-15
+
+### Fixed
+
+- **Peer dependency bloat** — Consumers no longer need to install unused dependencies
+  - Carousel, Form, Drawer, and WalletModal moved to separate tree-shakeable entry points
+  - Carousel, Form, and Drawer deps are bundled — no installs required
+  - WalletModal still requires `@moveindustries/wallet-adapter-react` as peer dep (for shared context)
+  - Removed 8 unused peer dependencies (recharts, react-day-picker, date-fns, cmdk, input-otp, react-resizable-panels, zod, @hookform/resolvers)
+
+  ```ts
+  // These work without installing extra deps
+  import { Carousel } from "@moveindustries/movement-design-system/carousel"
+  import { Form } from "@moveindustries/movement-design-system/forms"
+  import { Drawer } from "@moveindustries/movement-design-system/drawer"
+
+  // This requires: pnpm add @moveindustries/wallet-adapter-react
+  import { WalletModal } from "@moveindustries/movement-design-system/wallet"
+  ```
+
 ## [1.1.1] - 2026-03-15
 
 ### Fixed

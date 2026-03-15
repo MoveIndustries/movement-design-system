@@ -46,8 +46,8 @@ export { IconButton } from "./components/IconButton/IconButton";
 export { Logo } from "./components/Logo/Logo";
 export { MultiOutlineText } from "./components/MultiOutlineText";
 export { ProgressButton } from "./components/ProgressButton";
-export { WalletModal } from "./components/WalletModal";
-export type { ConnectWalletDialogProps } from "./components/WalletModal";
+// WalletModal moved to separate entry point:
+// import { WalletModal } from "@moveindustries/movement-design-system/wallet"
 export {
   Accordion,
   AccordionContent,
@@ -94,13 +94,8 @@ export {
   CardHeader,
   CardTitle,
 } from "./components/shadcn/card";
-export {
-  Carousel,
-  CarouselContent,
-  CarouselItem,
-  CarouselNext,
-  CarouselPrevious,
-} from "./components/shadcn/carousel";
+// Carousel components moved to separate entry point:
+// import { Carousel, ... } from "@moveindustries/movement-design-system/carousel"
 export { Checkbox } from "./components/shadcn/checkbox";
 export {
   Dialog,
@@ -113,16 +108,8 @@ export {
   DialogTitle,
   DialogTrigger,
 } from "./components/shadcn/dialog";
-export {
-  Drawer,
-  DrawerClose,
-  DrawerContent,
-  DrawerDescription,
-  DrawerFooter,
-  DrawerHeader,
-  DrawerTitle,
-  DrawerTrigger,
-} from "./components/shadcn/drawer";
+// Drawer components moved to separate entry point:
+// import { Drawer, ... } from "@moveindustries/movement-design-system/drawer"
 export {
   DropdownMenu,
   DropdownMenuCheckboxItem,
@@ -153,16 +140,8 @@ export {
   FieldSet,
   FieldTitle,
 } from "./components/shadcn/field";
-export {
-  Form,
-  FormControl,
-  FormDescription,
-  FormField,
-  FormItem,
-  FormLabel,
-  FormMessage,
-  useFormField,
-} from "./components/shadcn/form";
+// Form components moved to separate entry point:
+// import { Form, ... } from "@moveindustries/movement-design-system/forms"
 export {
   HoverCard,
   HoverCardContent,

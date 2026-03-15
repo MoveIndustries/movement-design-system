@@ -23,7 +23,11 @@
     "src/components/**/*",
     "src/lib/**/*",
     "src/hooks/**/*",
-    "src/index.ts"
+    "src/index.ts",
+    "src/carousel.ts",
+    "src/forms.ts",
+    "src/drawer.ts",
+    "src/wallet.ts"
   ],
   "exclude": [
     "src/stories/**/*",
