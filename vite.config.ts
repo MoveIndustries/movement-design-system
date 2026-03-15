@@ -21,7 +21,12 @@ function copyThemePlugin() {
     name: "copy-theme",
     closeBundle() {
       // Skip during Storybook builds - these files are only needed for the npm package
-      if (process.env.STORYBOOK === "true") {
+      // Check multiple indicators since STORYBOOK env var may not always be set
+      if (
+        process.env.STORYBOOK === "true" ||
+        process.env.npm_lifecycle_event === "build-storybook" ||
+        process.env.npm_lifecycle_script?.includes("storybook")
+      ) {
         return;
       }
 
@@ -40,20 +45,29 @@ function copyThemePlugin() {
       filesToCopy.forEach(({ src, dest, name }) => {
         const srcPath = resolve(projectRoot, src);
         const destPath = resolve(projectRoot, dest);
-        if (fs.existsSync(srcPath)) {
-          fs.copyFileSync(srcPath, destPath);
-          console.log(`✓ Copied ${name} to dist/`);
+        try {
+          if (fs.existsSync(srcPath)) {
+            fs.copyFileSync(srcPath, destPath);
+            console.log(`✓ Copied ${name} to dist/`);
+          }
+        } catch {
+          // Silently ignore copy failures (e.g., during Storybook builds)
         }
       });
     },
   };
 }
 
+// Check if we're building the library (not Storybook dev)
+const isLibBuild = process.env.npm_lifecycle_event === "build";
+
 // More info at: https://storybook.js.org/docs/next/writing-tests/integrations/vitest-addon
 export default defineConfig({
   plugins: [
     react(),
-    tailwindcss(),
+    // Only include Tailwind plugin for dev/Storybook, NOT for library builds
+    // Library consumers will use their own Tailwind build
+    ...(isLibBuild ? [] : [tailwindcss()]),
     dts({
       tsconfigPath: "tsconfig.build.json",
     }),
@@ -93,21 +107,39 @@ export default defineConfig({
     ],
   },
   build: {
+    // Don't inline any assets (especially fonts) as base64
+    assetsInlineLimit: 0,
     lib: {
-      entry: resolve(__dirname, "src/index.ts"),
+      entry: {
+        index: resolve(__dirname, "src/index.ts"),
+      },
       name: "movement-design-system",
       formats: ["es", "cjs"],
-      fileName: "index",
     },
     rollupOptions: {
       external: [
         "react",
         "react/jsx-runtime",
         "react-dom",
+        /^@radix-ui\//,
+        /^@phosphor-icons\//,
+        "lucide-react",
+        "recharts",
+        "sonner",
+        "vaul",
+        "cmdk",
+        "embla-carousel-react",
+        "react-day-picker",
+        "date-fns",
+        "input-otp",
+        "react-hook-form",
+        "@hookform/resolvers",
+        "zod",
         "@moveindustries/wallet-adapter-react",
         /^@moveindustries\//,
-        /^@radix-ui\//,
         "tailwindcss",
+        "next-themes",
+        "react-resizable-panels",
       ],
     },
   },

@@ -6,7 +6,7 @@ const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
 
 const assetsDir = path.join(__dirname, 'assets');
-const outputFilePath = path.join(__dirname, 'AllAssetIcons.tsx');
+const outputFilePath = path.join(__dirname, 'Icons.tsx');
 
 // Automatically read all SVG files from the assets directory
 const assetFiles = fs.readdirSync(assetsDir)
@@ -103,7 +103,7 @@ ${componentName}.displayName = "${componentName}";\n
 
   const outputContent = imports + components;
   fs.writeFileSync(outputFilePath, outputContent);
-  console.log('Generated AllAssetIcons.tsx with all asset icons');
+  console.log('Generated Icons.tsx');
 };
 
 generateIcons();

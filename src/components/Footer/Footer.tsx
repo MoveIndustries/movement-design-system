@@ -2,7 +2,7 @@ import React from "react";
 import { cva, type VariantProps } from "class-variance-authority";
 import { cn } from "../../lib/utils";
 import MovementWordmark from "../../assets/branding/Movement-marigold.svg";
-import MovementLogo from "../icon/assets/move-logo.svg";
+import MovementLogo from "../Icon/assets/move-logo.svg";
 
 // Social media icons as inline SVGs
 const XIcon = () => (

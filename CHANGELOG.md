@@ -4,6 +4,27 @@ All notable changes to this project will be documented in this file.
 
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/), and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [1.1.0] - 2026-03-14
+
+### Changed
+
+- **Bundle size** — Reduced from ~13.5MB to ~1.2MB (431KB gzipped, 91% reduction) by externalizing dependencies
+  - Removed re-export of entire Phosphor icon library (~9,500 icons)
+  - Externalized lucide-react, recharts, sonner, vaul, and all Radix UI primitives
+  - Only small utilities (clsx, tailwind-merge, class-variance-authority) remain bundled
+
+- **Icons** — Phosphor icons no longer re-exported
+  - Import Phosphor icons directly from `@phosphor-icons/react`
+  - Asset icons (MoveIcon, USDCIcon, etc.) still exported from main bundle
+
+- **Dependencies** — Most UI dependencies moved to peerDependencies
+  - Consumers must install: `@phosphor-icons/react`, `lucide-react`, `sonner`, `vaul`, `recharts`, `@radix-ui/*`, and others
+
+- **WalletModal** — Simplified and lightened
+  - `@moveindustries/wallet-adapter-react` moved to peerDependencies (consumers must install it)
+  - Removed auto-adding of OKX and MSafe wallets (reduced bundle by ~6MB)
+  - WalletModal now displays only the wallets provided by your app's WalletProvider
+
 ## [1.0.7] - 2026-03-12
 
 ### Changed
