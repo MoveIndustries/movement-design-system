@@ -21,7 +21,12 @@ function copyThemePlugin() {
     name: "copy-theme",
     closeBundle() {
       // Skip during Storybook builds - these files are only needed for the npm package
-      if (process.env.STORYBOOK === "true") {
+      // Check multiple indicators since STORYBOOK env var may not always be set
+      if (
+        process.env.STORYBOOK === "true" ||
+        process.env.npm_lifecycle_event === "build-storybook" ||
+        process.env.npm_lifecycle_script?.includes("storybook")
+      ) {
         return;
       }
 
@@ -40,9 +45,13 @@ function copyThemePlugin() {
       filesToCopy.forEach(({ src, dest, name }) => {
         const srcPath = resolve(projectRoot, src);
         const destPath = resolve(projectRoot, dest);
-        if (fs.existsSync(srcPath)) {
-          fs.copyFileSync(srcPath, destPath);
-          console.log(`✓ Copied ${name} to dist/`);
+        try {
+          if (fs.existsSync(srcPath)) {
+            fs.copyFileSync(srcPath, destPath);
+            console.log(`✓ Copied ${name} to dist/`);
+          }
+        } catch {
+          // Silently ignore copy failures (e.g., during Storybook builds)
         }
       });
     },

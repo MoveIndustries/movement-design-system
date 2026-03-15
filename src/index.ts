@@ -14,7 +14,7 @@ export type {
 } from "./components/theme";
 
 // Components
-export * from "./components/Icon/AllAssetIcons";
+export * from "./components/Icon";
 export { Branding } from "./components/Branding";
 export type {
   BrandingProps,

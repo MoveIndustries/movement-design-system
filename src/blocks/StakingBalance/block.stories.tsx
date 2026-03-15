@@ -1,7 +1,7 @@
 import type { Meta, StoryObj } from "@storybook/react-vite";
 import * as React from "react";
 import { cn } from "@/lib/utils";
-import { MoveIcon } from "@/components/Icon/AssetIcons";
+import { MoveIcon } from "@/components/Icon";
 import { Card, CardContent, CardHeader } from "@/components/shadcn/card";
 import { Typography } from "@/components/shadcn/typography";
 import { Plant } from "@phosphor-icons/react";

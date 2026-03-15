@@ -8,7 +8,7 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 
 ### Changed
 
-- **Bundle size** — Reduced to ~1.2MB (431KB gzipped) by externalizing dependencies
+- **Bundle size** — Reduced from ~13.5MB to ~1.2MB (431KB gzipped, 91% reduction) by externalizing dependencies
   - Removed re-export of entire Phosphor icon library (~9,500 icons)
   - Externalized lucide-react, recharts, sonner, vaul, and all Radix UI primitives
   - Only small utilities (clsx, tailwind-merge, class-variance-authority) remain bundled
