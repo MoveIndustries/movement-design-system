@@ -1,5 +1,5 @@
-/* Design system component styles - Tailwind is NOT bundled here */
-/* Consumers must import tailwindcss separately in their own CSS */
+/* Design system styles */
 /* Fonts are NOT bundled here to avoid bloat - import /fonts separately if needed */
+@import "tailwindcss";
 @import "./theme.css";
 @import "./recipes.css";
