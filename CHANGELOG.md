@@ -4,6 +4,14 @@ All notable changes to this project will be documented in this file.
 
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/), and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [1.1.5] - 2026-03-16
+
+### Added
+
+- **WalletModal description prop** — Added optional `description` prop to customize the text shown below the title
+  - Default: "Securely connect your wallet to the Movement Network."
+  - Pass custom `React.ReactNode` to override
+
 ## [1.1.4] - 2026-03-15
 
 ### Fixed

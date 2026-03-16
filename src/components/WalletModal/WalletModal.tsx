@@ -80,6 +80,8 @@ const DownloadText = () => (
 
 export interface ConnectWalletDialogProps extends WalletSortingOptions {
   onClose: () => void;
+  /** Custom description text shown below the title. Defaults to "Securely connect your wallet to the Movement Network." */
+  description?: React.ReactNode;
 }
 
 function cleanWalletList(
@@ -110,11 +112,13 @@ function cleanWalletList(
 interface ConnectWalletContentProps extends WalletSortingOptions {
   onClose: () => void;
   showCloseButton?: boolean;
+  description?: React.ReactNode;
 }
 
 function ConnectWalletContent({
   onClose,
   showCloseButton = true,
+  description = "Securely connect your wallet to the Movement Network.",
   ...walletSortingOptions
 }: ConnectWalletContentProps) {
   const { wallets } = useWallet();
@@ -174,18 +178,11 @@ function ConnectWalletContent({
         <div className="w-full max-w-76 text-center font-['TWK_Everett_Mono',monospace] text-[32px] leading-[120%] font-medium tracking-[-1.28px] text-white">
           Connect Wallet
         </div>
-        <div className="w-full max-w-sm text-center font-['Neue_Haas_Unica_Pro',sans-serif] text-lg leading-[140%] font-normal text-white/48">
-          Securely connect your{" "}
-          <a
-            className="cursor-pointer text-white/48 underline decoration-dotted hover:text-white"
-            href="https://docs.movementnetwork.xyz/general/usingmovement/connect_to_movement"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            wallet
-          </a>{" "}
-          to transfer digital assets to and from the Movement network.
-        </div>
+        {description && (
+          <div className="w-full max-w-sm text-center font-['Neue_Haas_Unica_Pro',sans-serif] text-lg leading-[140%] font-normal text-white/48">
+            {description}
+          </div>
+        )}
       </div>
 
       <div className="flex max-h-168 w-full max-w-102 flex-row flex-wrap content-center items-start justify-center gap-4 overflow-y-auto p-4 py-4">
@@ -264,6 +261,7 @@ function ConnectWalletContent({
 
 export function WalletModal({
   onClose,
+  description,
   ...walletSortingOptions
 }: ConnectWalletDialogProps) {
   const [mounted, setMounted] = useState(false);
@@ -280,6 +278,7 @@ export function WalletModal({
 
   const contentProps = {
     onClose,
+    description,
     ...walletSortingOptions,
   };
 
@@ -292,8 +291,7 @@ export function WalletModal({
       <DrawerContent className="z-9999">
         <DrawerTitle className="sr-only">Connect Wallet</DrawerTitle>
         <DrawerDescription className="sr-only">
-          Securely connect your wallet to transfer digital assets to and from
-          the Movement network.
+          Connect your wallet to continue.
         </DrawerDescription>
         <ConnectWalletContent {...contentProps} showCloseButton={false} />
       </DrawerContent>
@@ -310,8 +308,7 @@ export function WalletModal({
       >
         <DialogTitle className="sr-only">Connect Wallet</DialogTitle>
         <DialogDescription className="sr-only">
-          Securely connect your wallet to transfer digital assets to and from
-          the Movement network.
+          Connect your wallet to continue.
         </DialogDescription>
         <ConnectWalletContent {...contentProps} />
       </DialogContent>
