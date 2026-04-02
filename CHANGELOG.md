@@ -4,6 +4,17 @@ All notable changes to this project will be documented in this file.
 
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/), and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [1.1.6] - 2026-03-30
+
+### Changed
+
+- **WalletModal** — Wallet list tiles use each wallet’s `icon` from the adapter (`WalletItem.Icon`), not a hardcoded Nightly asset.
+
+### Added
+
+- **Storybook — DebugAdapterMetadata** — Inspect `useWallet().wallets` (thumbnails, shallow JSON, `console.table`, warnings when multiple names share the same icon or Chrome Web Store URL in adapter data).
+- **Storybook — WithSortingOptions** — Example `sortAvailableWallets` that places Nightly first and sorts the rest alphabetically by name.
+
 ## [1.1.5] - 2026-03-16
 
 ### Added

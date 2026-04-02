@@ -1,7 +1,7 @@
 {
   "name": "@moveindustries/movement-design-system",
   "private": false,
-  "version": "1.1.5",
+  "version": "1.1.6",
   "type": "module",
   "description": "Production-ready design system built with shadcn/ui components, Radix UI, and Tailwind CSS for Move Industries",
   "keywords": [
@@ -150,7 +150,7 @@
     "vaul": "^1.1.2"
   },
   "devDependencies": {
-    "@moveindustries/wallet-adapter-react": "^7.4.1",
+    "@moveindustries/wallet-adapter-react": "^7.4.2",
     "@hookform/resolvers": "^5.2.2",
     "@phosphor-icons/react": "^2.1.10",
     "@radix-ui/react-accordion": "^1.2.12",

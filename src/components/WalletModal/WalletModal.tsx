@@ -331,7 +331,8 @@ const gridCard = (child: React.ReactNode) => (
 );
 
 /**
- * Icon-style wallet card that preserves WalletItem logic (connect/install)
+ * Icon-style wallet card that preserves WalletItem logic (connect/install).
+ * Icons come from each wallet’s `icon` field via WalletItem.Icon.
  */
 function IconWalletCard({ wallet, onConnect }: WalletRowProps) {
   const installRequired = isInstallRequired(wallet);
@@ -343,7 +344,7 @@ function IconWalletCard({ wallet, onConnect }: WalletRowProps) {
           {gridCard(
             <>
               <div className="h-14 w-14">
-                <WalletItem.Icon className="h-full w-full" />
+                <WalletItem.Icon className="h-full w-full object-contain" />
               </div>
               <div className="flex h-4.5 w-20.5 items-center justify-center text-center font-['TWK_Everett_Mono',monospace] text-lg leading-[100%] font-normal tracking-[-0.06em] text-white">
                 {cleanWalletName(wallet.name)}
@@ -367,7 +368,7 @@ function IconWalletCard({ wallet, onConnect }: WalletRowProps) {
           {gridCard(
             <>
               <div className="h-14 w-14">
-                <WalletItem.Icon className="h-full w-full" />
+                <WalletItem.Icon className="h-full w-full object-contain" />
               </div>
               <div className="flex h-4.5 w-20.5 items-center justify-center text-center font-['TWK_Everett_Mono',monospace] text-lg leading-[100%] font-normal tracking-[-0.06em] text-white">
                 {cleanWalletName(wallet.name)}
