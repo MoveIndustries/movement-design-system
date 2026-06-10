@@ -4,6 +4,32 @@ All notable changes to this project will be documented in this file.
 
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/), and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [1.2.0] - 2026-06-10
+
+Rebrand release: aligns the design system with the cyan brand and ABC Oracle fonts already shipped across the consumer apps, and removes legacy components no app uses. Drop-in for all current consumers — none import a removed export (see migration note).
+
+### Changed
+
+- **Colors** — Brand palette is now Movement cyan (`#15EDEB`) + neutrals. The `guild-green-*` tokens were recolored to the cyan ramp (names kept for back-compat), `byzantine-blue-*` recolored to neutral grays, and the legacy `--primary` / `--ring` / chart / sidebar tokens point at cyan. Feedback colors (`success`/`warning`/`error`/`info`) set to a functional palette. `recipes.css` gradients and the `Button` `glow` variant recolored to cyan.
+- **WalletModal** — Rebuilt to the finalized design: flat `#2d2d2d` card, hairline white border, `24px` radius, flat `#090909` wallet tiles, ABC Oracle type via `var(--font-display)`, cyan accent via `var(--color-accent)`, no desktop close button. Public API unchanged.
+- **Fonts** — Components reference `var(--font-display | --font-serif | --font-mono)` instead of hardcoded families.
+
+### Added
+
+- **`/fonts` entry** — now ships ABC Oracle + RecifeText (`@font-face` + `.woff2`). Optional; Next.js apps that self-host via `next/font` can ignore it.
+
+### Removed
+
+- **Brand ramps** — `moveus-marigold`, `protocol-pink`, `oracle-orange` (cyan + neutrals only now).
+- **Fonts** — TWK Everett / Neue Haas Unica Pro (replaced by ABC Oracle / RecifeText).
+- **Components** (zero consumers): `AlertDialog`, `AspectRatio`, `ButtonGroup`, `Checkbox`, `CryptoAmountInput`, `Empty`, `Field`, `Form`, `HoverCard`, `InputGroup`, `Item`, `List`, `Menubar`, `NavigationMenu`, `Popover`, `RadioGroup`, `ScrollArea`, `Separator`, `Sidebar`, `Switch`, `Textarea`, `Toggle`, `Branding`, `DottedBackground`, `Logo`, `MultiOutlineText`, `ThemeSwitcher` / `ThemeToggle` / `useTheme`.
+- **`/forms` entry point** (the `react-hook-form` form components).
+- Internal `src/blocks/` app-specific composites (never exported).
+
+### Migration
+
+No consumer currently imports any removed export, so the bump is drop-in. Apps may delete their now-redundant local color/WalletModal/font override CSS, which the design system now provides natively.
+
 ## [1.1.6] - 2026-03-30
 
 ### Changed
