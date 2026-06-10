@@ -26,7 +26,7 @@ import {
   DialogDescription,
 } from "@/components/shadcn/dialog";
 import { cn } from "@/lib/utils";
-import { XIcon, CaretDownIcon } from "@phosphor-icons/react";
+import { CaretDownIcon } from "@phosphor-icons/react";
 import { NightlyIcon } from "@/components/Icon";
 
 const nightlyWallet: AdapterNotDetectedWallet = {
@@ -111,19 +111,16 @@ function cleanWalletList(
 // Separate content component for reuse in both Drawer and Modal
 interface ConnectWalletContentProps extends WalletSortingOptions {
   onClose: () => void;
-  showCloseButton?: boolean;
   description?: React.ReactNode;
 }
 
 function ConnectWalletContent({
   onClose,
-  showCloseButton = true,
   description = "Securely connect your wallet to the Movement Network.",
   ...walletSortingOptions
 }: ConnectWalletContentProps) {
   const { wallets } = useWallet();
   const [isMoreWalletsOpen, setIsMoreWalletsOpen] = useState(false);
-  const isMobile = useIsMobile();
   const { availableWallets, installableWallets } =
     useMemo(() => {
       const grouped = groupAndSortWallets(wallets, walletSortingOptions);
@@ -155,31 +152,18 @@ function ConnectWalletContent({
     <div
       className={cn(
         "flex w-full flex-col items-center justify-center gap-6 px-6 pt-12 pb-6 md:max-w-114",
-        "z-9999 mx-auto max-h-full overflow-y-auto md:max-h-[80vh]",
-        "bg-[linear-gradient(0deg,rgba(4,5,27,0.2),rgba(4,5,27,0.2)),linear-gradient(152.97deg,rgba(0,0,0,0.8)_0%,rgba(0,0,0,0)_100%),radial-gradient(100%_100%_at_120.34%_112.85%,rgba(129,255,186,0.4)_0%,rgba(0,27,133,0.4)_100%)]",
-        "backdrop-blur-[1.3125rem]",
+        "z-9999 mx-auto max-h-full overflow-y-auto overflow-hidden md:max-h-[80vh]",
+        // Figma "Connect Wallet/empty" (node 7887:9734): flat dark-gray card,
+        // hairline white stroke, 24px radius — no gradient/blur.
+        "rounded-[24px] border-[0.5px] border-white bg-[#2d2d2d]",
       )}
     >
-      {showCloseButton && !isMobile && (
-        <button
-          onClick={onClose}
-          className={cn(
-            "absolute top-6 right-6 z-9999 rounded-sm opacity-70",
-            "cursor-pointer border border-white/20 bg-white/10 p-2 text-white",
-            "transition-opacity hover:bg-white/20 hover:opacity-100",
-            "focus:outline-none",
-          )}
-        >
-          <XIcon size={16} weight="bold" />
-        </button>
-      )}
-
       <div className="flex w-full max-w-102 flex-col items-center gap-4 p-0">
-        <div className="w-full max-w-76 text-center font-['TWK_Everett_Mono',monospace] text-[32px] leading-[120%] font-medium tracking-[-1.28px] text-white">
+        <div className="w-full max-w-76 text-center font-[family-name:var(--font-display,sans-serif)] text-[32px] leading-[120%] font-normal tracking-[-0.03em] text-white">
           Connect Wallet
         </div>
         {description && (
-          <div className="w-full max-w-sm text-center font-['Neue_Haas_Unica_Pro',sans-serif] text-lg leading-[140%] font-normal text-white/48">
+          <div className="w-full max-w-sm text-center font-[family-name:var(--font-display,sans-serif)] text-lg leading-[140%] font-normal text-white/48">
             {description}
           </div>
         )}
@@ -195,15 +179,17 @@ function ConnectWalletContent({
         ) : (
           <>
             <div className="h-px w-92 bg-[rgba(255,255,255,0.48)]" />
-            <span className="font-['TWK_Everett_Mono',monospace] text-lg leading-[21.60px] font-medium text-primary">
+            <span className="font-[family-name:var(--font-display,sans-serif)] text-lg leading-[21.60px] font-medium text-[var(--color-accent,#15EDEB)]">
               Don&apos;t have a wallet?
             </span>
             <button
               className={cn(
-                "h-10 w-full rounded-full bg-accent px-4 py-1 [&_path]:fill-white",
+                // Nightly download pill — violet is the Nightly brand colour
+                // (Figma 7887:9734), not a Movement accent.
+                "h-10 w-full rounded-full bg-[#6067F9] px-4 py-1 [&_path]:fill-white",
                 "inline-flex cursor-pointer items-center justify-center gap-2 border-none",
                 "transition-all duration-200 ease-[ease]",
-                "hover:bg-background hover:text-foreground [&:hover_path]:fill-foreground",
+                "hover:opacity-90",
               )}
               onClick={() => window.open(nightlyWallet.url, "_blank")}
             >
@@ -293,7 +279,7 @@ export function WalletModal({
         <DrawerDescription className="sr-only">
           Connect your wallet to continue.
         </DrawerDescription>
-        <ConnectWalletContent {...contentProps} showCloseButton={false} />
+        <ConnectWalletContent {...contentProps} />
       </DrawerContent>
     </Drawer>
   ) : (
@@ -322,8 +308,8 @@ interface WalletRowProps {
 }
 
 const gridCard = (child: React.ReactNode) => (
-  <div className="group/wallet relative h-28 w-28 cursor-pointer rounded-lg backdrop-blur-[1.3125rem] transition-shadow duration-200 ease-in-out hover:shadow-[0.25rem_0.25rem_0_hsl(var(--primary))]">
-    <div className="absolute inset-0 rounded-lg bg-linear-to-br from-white/[0.096] to-transparent backdrop-blur-[1.3125rem] group-hover/wallet:from-white/40" />
+  <div className="group/wallet relative h-28 w-28 cursor-pointer rounded-lg transition-shadow duration-200 ease-in-out hover:shadow-[0.25rem_0.25rem_0_var(--color-accent,#15EDEB)]">
+    <div className="absolute inset-0 rounded-lg bg-[#090909]" />
     <div className="absolute top-1/2 left-1/2 flex h-20.5 w-20.5 -translate-x-1/2 -translate-y-1/2 flex-col items-center justify-center gap-2 p-0">
       {child}
     </div>
@@ -346,11 +332,11 @@ function IconWalletCard({ wallet, onConnect }: WalletRowProps) {
               <div className="h-14 w-14">
                 <WalletItem.Icon className="h-full w-full object-contain" />
               </div>
-              <div className="flex h-4.5 w-20.5 items-center justify-center text-center font-['TWK_Everett_Mono',monospace] text-lg leading-[100%] font-normal tracking-[-0.06em] text-white">
+              <div className="flex h-4.5 w-20.5 items-center justify-center text-center font-[family-name:var(--font-display,sans-serif)] text-lg leading-[100%] font-normal tracking-[-0.06em] text-white">
                 {cleanWalletName(wallet.name)}
               </div>
-              <div className="absolute top-[-1rem] left-1/2 z-9999 hidden h-5 w-28 -translate-x-1/2 items-center justify-center overflow-hidden rounded-t-lg bg-primary/80 group-hover/wallet:inline-flex">
-                <span className="font-['TWK_Everett_Mono',monospace] text-xs leading-[14px] font-bold tracking-[0.40px] text-secondary uppercase">
+              <div className="absolute top-[-1rem] left-1/2 z-9999 hidden h-5 w-28 -translate-x-1/2 items-center justify-center overflow-hidden rounded-t-lg bg-[var(--color-accent,#15EDEB)]/80 group-hover/wallet:inline-flex">
+                <span className="font-[family-name:var(--font-display,sans-serif)] text-xs leading-[14px] font-bold tracking-[0.40px] text-black uppercase">
                   INSTALL
                 </span>
               </div>
@@ -370,7 +356,7 @@ function IconWalletCard({ wallet, onConnect }: WalletRowProps) {
               <div className="h-14 w-14">
                 <WalletItem.Icon className="h-full w-full object-contain" />
               </div>
-              <div className="flex h-4.5 w-20.5 items-center justify-center text-center font-['TWK_Everett_Mono',monospace] text-lg leading-[100%] font-normal tracking-[-0.06em] text-white">
+              <div className="flex h-4.5 w-20.5 items-center justify-center text-center font-[family-name:var(--font-display,sans-serif)] text-lg leading-[100%] font-normal tracking-[-0.06em] text-white">
                 {cleanWalletName(wallet.name)}
               </div>
             </>,

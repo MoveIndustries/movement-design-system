@@ -9,7 +9,6 @@ import {
   CardAction,
 } from "../components/shadcn/card";
 import { Button } from "../components/shadcn/button";
-import { DottedBackground } from "../components/DottedBackground";
 
 const meta = {
   title: "movement-design-system/Card",
@@ -25,7 +24,7 @@ type Story = StoryObj<typeof meta>;
 
 export const Default: Story = {
   render: () => (
-    <DottedBackground variant="gradient">
+    <div>
       <div className="flex h-full min-h-[500px] items-center justify-center p-8">
         <Card className="w-96">
           <CardHeader>
@@ -40,7 +39,7 @@ export const Default: Story = {
           </CardFooter>
         </Card>
       </div>
-    </DottedBackground>
+    </div>
   ),
 };
 
@@ -94,7 +93,7 @@ export const WithAction: Story = {
 
 export const Glow: Story = {
   render: () => (
-    <DottedBackground variant="gradient">
+    <div>
       <div className="flex h-full min-h-[500px] items-center justify-center p-8">
         <Card variant="glow" className="w-96">
           <CardHeader>
@@ -114,13 +113,13 @@ export const Glow: Story = {
           </CardFooter>
         </Card>
       </div>
-    </DottedBackground>
+    </div>
   ),
 };
 
 export const Iridescent: Story = {
   render: () => (
-    <DottedBackground variant="gradient">
+    <div>
       <div className="flex h-full min-h-[500px] items-center justify-center p-8">
         <Card variant="iridescent" className="w-96">
           <CardHeader>
@@ -141,13 +140,13 @@ export const Iridescent: Story = {
           </CardFooter>
         </Card>
       </div>
-    </DottedBackground>
+    </div>
   ),
 };
 
 export const AllBorderVariants: Story = {
   render: () => (
-    <DottedBackground variant="gradient">
+    <div>
       <div className="flex h-full min-h-[700px] items-center justify-center p-8">
         <div className="grid grid-cols-1 md:grid-cols-3 gap-8 max-w-6xl w-full">
           <div className="flex flex-col gap-4">
@@ -214,13 +213,13 @@ export const AllBorderVariants: Story = {
           </div>
         </div>
       </div>
-    </DottedBackground>
+    </div>
   ),
 };
 
 export const GlowComparison: Story = {
   render: () => (
-    <DottedBackground variant="gradient">
+    <div>
       <div className="flex h-full min-h-[600px] items-center justify-center p-8">
         <div className="grid grid-cols-1 md:grid-cols-2 gap-8 max-w-4xl">
           <div className="flex flex-col gap-4">
@@ -260,13 +259,13 @@ export const GlowComparison: Story = {
           </div>
         </div>
       </div>
-    </DottedBackground>
+    </div>
   ),
 };
 
 export const GridLayout: Story = {
   render: () => (
-    <DottedBackground variant="gradient">
+    <div>
       <div className="flex h-full min-h-[800px] items-center justify-center p-8">
         <div className="w-full max-w-7xl">
           <h2 className="text-white text-3xl font-bold mb-8 text-center">
@@ -413,13 +412,13 @@ export const GridLayout: Story = {
           </div>
         </div>
       </div>
-    </DottedBackground>
+    </div>
   ),
 };
 
 export const GridLayoutDots: Story = {
   render: () => (
-    <DottedBackground variant="dots">
+    <div>
       <div className="flex h-full min-h-[800px] items-center justify-center p-8">
         <div className="w-full max-w-7xl">
           <h2 className="text-white text-3xl font-bold mb-8 text-center">
@@ -566,6 +565,6 @@ export const GridLayoutDots: Story = {
           </div>
         </div>
       </div>
-    </DottedBackground>
+    </div>
   ),
 };

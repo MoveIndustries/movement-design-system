@@ -11,7 +11,7 @@
    * This theme implements a layered token system based on Movement Design Tokens:
    * 
    * Layer 1: Primitives (spacing, sizing, radii, borders, shadows, opacity)
-   * Layer 2: Brand Colors (moveus-marigold, guild-green, etc.)
+   * Layer 2: Brand Color (Movement cyan, exposed as guild-green-* names)
    * Layer 3: Semantic Base (bg, fg, border, feedback)
    * Layer 4: Component Tokens (accordion, badge, input, etc.)
    * Layer 5: Legacy Mappings (--primary, --secondary, etc.)
@@ -188,65 +188,32 @@
    * LAYER 2: BRAND COLOR TOKENS
    * ======================================================================== */
   
-  /* Brand colors - Moveus Marigold */
-  --color-moveus-marigold-50: #fffbeb;
-  --color-moveus-marigold-100: #fff2bd;
-  --color-moveus-marigold-200: #ffea90;
-  --color-moveus-marigold-300: #ffe162;
-  --color-moveus-marigold-400: #ffd935;
-  --color-moveus-marigold-500: #ddba22;
-  --color-moveus-marigold-600: #bb9b13;
-  --color-moveus-marigold-700: #997e08;
-  --color-moveus-marigold-800: #776100;
-  --color-moveus-marigold-900: #554500;
-  
-  /* Brand colors - Guild Green */
-  --color-guild-green-50: #f2fff8;
-  --color-guild-green-100: #ccffe3;
-  --color-guild-green-200: #a7ffce;
-  --color-guild-green-300: #81ffba;
-  --color-guild-green-400: #6ce2a1;
-  --color-guild-green-500: #58c589;
-  --color-guild-green-600: #47a872;
-  --color-guild-green-700: #368a5c;
-  --color-guild-green-800: #286d47;
-  --color-guild-green-900: #1b5033;
-  
-  /* Brand colors - Byzantine Blue */
-  --color-byzantine-blue-50: #c2ceff;
-  --color-byzantine-blue-100: #859dff;
-  --color-byzantine-blue-200: #5c7cff;
-  --color-byzantine-blue-300: #335cff;
-  --color-byzantine-blue-400: #0337ff;
-  --color-byzantine-blue-500: #002cd6;
-  --color-byzantine-blue-600: #0024ad;
-  --color-byzantine-blue-700: #001b85;
-  --color-byzantine-blue-800: #00135c;
-  --color-byzantine-blue-900: #000c3d;
-  
-  /* Brand colors - Protocol Pink */
-  --color-protocol-pink-50: #fff1fc;
-  --color-protocol-pink-100: #ffc9f3;
-  --color-protocol-pink-200: #ffa0eb;
-  --color-protocol-pink-300: #ff77e2;
-  --color-protocol-pink-400: #eb66cf;
-  --color-protocol-pink-500: #ce52b4;
-  --color-protocol-pink-600: #b14199;
-  --color-protocol-pink-700: #94317f;
-  --color-protocol-pink-800: #762365;
-  --color-protocol-pink-900: #59184b;
-  
-  /* Brand colors - Oracle Orange */
-  --color-oracle-orange-50: #ffefec;
-  --color-oracle-orange-100: #ffcdc2;
-  --color-oracle-orange-200: #ffab97;
-  --color-oracle-orange-300: #ff886d;
-  --color-oracle-orange-400: #FF6642;
-  --color-oracle-orange-500: #ea5330;
-  --color-oracle-orange-600: #c83e1e;
-  --color-oracle-orange-700: #a62c10;
-  --color-oracle-orange-800: #841d05;
-  --color-oracle-orange-900: #621300;
+  /* Brand color - Movement Cyan (#15EDEB). The `guild-green-*` token names are
+   * kept for backward-compat with existing utility classes, but now resolve to
+   * the cyan ramp — cyan is the single Movement brand colour. */
+  --color-guild-green-50: #E8FCFC;
+  --color-guild-green-100: #C5F6F5;
+  --color-guild-green-200: #8FF0EE;
+  --color-guild-green-300: #15EDEB;
+  --color-guild-green-400: #14D6D4;
+  --color-guild-green-500: #12BCBA;
+  --color-guild-green-600: #0FA09E;
+  --color-guild-green-700: #0B7775;
+  --color-guild-green-800: #084F4E;
+  --color-guild-green-900: #042827;
+
+  /* Neutrals ramp (was "Byzantine Blue"). The royal-blue secondary is retired;
+   * these names now resolve to near-black neutrals, matching the apps. */
+  --color-byzantine-blue-50: #d6d6d6;
+  --color-byzantine-blue-100: #b0b0b0;
+  --color-byzantine-blue-200: #8a8a8a;
+  --color-byzantine-blue-300: #4d4d4d;
+  --color-byzantine-blue-400: #1d1d1d;
+  --color-byzantine-blue-500: #1d1d1d;
+  --color-byzantine-blue-600: #141414;
+  --color-byzantine-blue-700: #0f0f0f;
+  --color-byzantine-blue-800: #0a0a0a;
+  --color-byzantine-blue-900: #050505;
   
   /* Neutrals */
   --color-neutrals-white: #ffffff;
@@ -287,10 +254,13 @@
   --opacity-9: 0.9;
   --opacity-10: 1; */
   
-  /* Font families */
-  --font-heading: "TWK Everett", sans-serif;
-  --font-body: "Neue Haas Unica Pro", sans-serif;
-  --font-mono: "TWK Everett Mono", monospace;
+  /* Font families — brand faces are provided by the consuming app via
+   * --font-display / --font-serif (ABC Oracle, RecifeText), self-hosted with
+   * next/font. The DS only references those semantic vars; it no longer ships
+   * TWK Everett / Neue Haas. Fallbacks cover standalone (e.g. Storybook). */
+  --font-heading: var(--font-display, ui-sans-serif, system-ui, sans-serif);
+  --font-body: var(--font-display, ui-sans-serif, system-ui, sans-serif);
+  --font-mono: var(--font-display, ui-monospace, monospace);
   
   /* Container configuration */
   --container-center: true;
@@ -399,14 +369,14 @@
   --semantic-border-strong: rgba(0, 0, 0, 0.24);
   
   /* Feedback semantic tokens */
-  --semantic-feedback-success-default: var(--color-guild-green-600);
-  --semantic-feedback-success-light: var(--color-guild-green-50);
+  --semantic-feedback-success-default: #16A34A;
+  --semantic-feedback-success-light: #DCFCE7;
   --semantic-feedback-error-default: #D82C2D;
   --semantic-feedback-error-light: #ffeaea;
-  --semantic-feedback-warning-default: var(--color-oracle-orange-600);
-  --semantic-feedback-warning-light: var(--color-oracle-orange-50);
-  --semantic-feedback-info-default: var(--color-byzantine-blue-500);
-  --semantic-feedback-info-light: var(--color-byzantine-blue-50);
+  --semantic-feedback-warning-default: #CA8A04;
+  --semantic-feedback-warning-light: #FEF9C3;
+  --semantic-feedback-info-default: #2563EB;
+  --semantic-feedback-info-light: #DBEAFE;
   
   /* Disabled state */
   --semantic-disabled-base: var(--color-neutrals-black-alpha-300);
@@ -425,13 +395,13 @@
    * --primary-foreground     → semantic.brand.primary.on-primary
    * --secondary              → semantic.brand.secondary.default (byzantine-blue.400)
    * --secondary-foreground   → semantic.brand.secondary.on-secondary
-   * --accent                 → semantic.brand.accent.default (protocol-pink.400)
+   * --accent                 → semantic.brand.accent.default (cyan-soft)
    * --accent-foreground      → semantic.brand.accent.on-accent
    * --destructive            → semantic.brand.error.default
    * --destructive-foreground → semantic.brand.error.on-error
    * --success                → semantic.brand.success.default (guild-green.400)
    * --success-foreground     → semantic.brand.success.on-success
-   * --warning                → semantic.brand.warning.default (oracle-orange.500)
+   * --warning                → semantic.brand.warning.default (functional yellow)
    * --warning-foreground     → semantic.brand.warning.on-warning
    * --error                  → semantic.brand.error.default (#D82C2D)
    * --error-foreground       → semantic.brand.error.on-error
@@ -459,49 +429,49 @@
   --popover: hsl(0 0% 100%); /* white - menu/dropdown bg */
   --popover-foreground: hsl(0 0% 0%); /* black - menu text */
   
-  /* Brand semantic colors (light theme) */
-  --primary: hsl(154 66% 66%); /* guild-green.400 */
-  --primary-foreground: hsl(0 0% 0%); /* black - for green bg */
-  --secondary: hsl(228 100% 50%); /* byzantine-blue.400 */
-  --secondary-foreground: hsl(0 0% 100%); /* white - for blue bg */
-  --accent: hsl(304 100% 73%); /* protocol-pink.300 */
-  --accent-foreground: hsl(0 0% 0%); /* black - for pink bg */
+  /* Brand semantic colors (light theme) — Movement cyan #15EDEB */
+  --primary: hsl(179 84% 51%); /* cyan #15EDEB */
+  --primary-foreground: hsl(0 0% 10%); /* near-black - for cyan bg */
+  --secondary: hsl(0 0% 11%); /* near-black (royal blue retired) */
+  --secondary-foreground: hsl(0 0% 100%); /* white - on near-black */
+  --accent: hsl(176 64% 88%); /* cyan-soft #C9F6F3 - subtle bg */
+  --accent-foreground: hsl(0 0% 10%); /* near-black - on cyan-soft */
   --destructive: hsl(0 72% 51%); /* red for destructive actions */
   --destructive-foreground: hsl(0 0% 100%); /* white */
-  
-  /* Feedback colors - for alerts/toasts */
-  --info: hsl(228 100% 50%); /* byzantine-blue.400 */
+
+  /* Feedback colors - functional (not brand) */
+  --info: hsl(217 91% 60%); /* #3B82F6 */
   --info-foreground: hsl(0 0% 100%); /* white */
-  --success: hsl(154 66% 66%); /* guild-green.400 */
-  --success-foreground: hsl(0 0% 0%); /* black */
-  --warning: hsl(47 100% 60%); /* moveus-marigold.400 */
-  --warning-foreground: hsl(0 0% 0%); /* black */
+  --success: hsl(158 64% 49%); /* #29CF96 */
+  --success-foreground: hsl(0 0% 10%); /* near-black */
+  --warning: hsl(48 95% 53%); /* #FACC15 */
+  --warning-foreground: hsl(0 0% 10%); /* near-black */
   --error: hsl(0 72% 51%); /* red */
   --error-foreground: hsl(0 0% 100%); /* white */
-  
+
   /* Muted & UI elements */
   --muted: hsl(0 0% 96%); /* light muted bg */
   --muted-foreground: hsl(0 0% 40%); /* muted gray */
   --border: hsl(0 0% 0% / 12%); /* rgba(0,0,0,0.12) */
   --input: hsl(0 0% 0% / 12%); /* rgba(0,0,0,0.12) */
-  --ring: hsl(154 66% 66%); /* guild-green.400 - focus ring */
-  
-  /* Charts (using brand colors) */
-  --chart-1: hsl(154 66% 66%); /* guild-green.400 */
-  --chart-2: hsl(228 100% 50%); /* byzantine-blue.400 */
-  --chart-3: hsl(304 100% 73%); /* protocol-pink.300 */
-  --chart-4: hsl(13 100% 63%); /* oracle-orange.400 */
-  --chart-5: hsl(47 100% 60%); /* moveus-marigold.400 */
-  
+  --ring: hsl(179 84% 51%); /* cyan - focus ring */
+
+  /* Charts */
+  --chart-1: hsl(179 84% 51%); /* cyan */
+  --chart-2: hsl(0 0% 40%); /* neutral */
+  --chart-3: hsl(217 91% 60%); /* info blue */
+  --chart-4: hsl(158 64% 49%); /* success green */
+  --chart-5: hsl(48 95% 53%); /* warning yellow */
+
   /* Sidebar */
   --sidebar: hsl(0 0% 98%); /* light */
   --sidebar-foreground: hsl(0 0% 0%); /* black */
-  --sidebar-primary: hsl(154 66% 66%); /* guild-green.400 */
+  --sidebar-primary: hsl(179 84% 51%); /* cyan */
   --sidebar-primary-foreground: hsl(0 0% 0%); /* black */
   --sidebar-accent: hsl(0 0% 96%); /* light gray */
   --sidebar-accent-foreground: hsl(0 0% 0%); /* black */
   --sidebar-border: hsl(0 0% 0% / 10%);
-  --sidebar-ring: hsl(154 66% 66%);
+  --sidebar-ring: hsl(179 84% 51%);
 }
 
 .dark {
@@ -524,14 +494,14 @@
   --semantic-border-strong: rgba(255, 255, 255, 0.24);
   
   /* Feedback semantic tokens (dark mode - brighter variants for visibility) */
-  --semantic-feedback-success-default: var(--color-guild-green-400);
-  --semantic-feedback-success-light: var(--color-guild-green-900);
+  --semantic-feedback-success-default: #29CF96;
+  --semantic-feedback-success-light: #0f3d2c;
   --semantic-feedback-error-default: #ff4d4d;
   --semantic-feedback-error-light: #3d1414;
-  --semantic-feedback-warning-default: var(--color-oracle-orange-400);
-  --semantic-feedback-warning-light: var(--color-oracle-orange-900);
-  --semantic-feedback-info-default: var(--color-byzantine-blue-300);
-  --semantic-feedback-info-light: var(--color-byzantine-blue-900);
+  --semantic-feedback-warning-default: #FACC15;
+  --semantic-feedback-warning-light: #3d3408;
+  --semantic-feedback-info-default: #3B82F6;
+  --semantic-feedback-info-light: #14213d;
   
   /* Disabled state */
   --semantic-disabled-base: rgba(255, 255, 255, 0.16);
@@ -549,22 +519,22 @@
   --popover-foreground: hsl(0 0% 100%);
   
   /* Brand semantic colors (dark mode) */
-  --primary: hsl(150 100% 75%); /* guild-green.300 - brighter for dark mode */
+  --primary: hsl(179 84% 51%); /* guild-green.300 - brighter for dark mode */
   --primary-foreground: hsl(0 0% 0%);
-  --secondary: hsl(228 100% 65%); /* byzantine-blue.200 - lighter for dark mode */
-  --secondary-foreground: hsl(0 0% 0%);
-  --accent: hsl(304 100% 73%); /* protocol-pink.300 */
-  --accent-foreground: hsl(0 0% 0%);
+  --secondary: hsl(0 0% 9%); /* near-black (royal blue retired) */
+  --secondary-foreground: hsl(0 0% 100%); /* white - on near-black */
+  --accent: hsl(180 40% 16%); /* dark cyan tint - subtle bg */
+  --accent-foreground: hsl(179 84% 51%); /* cyan - on dark tint */
   --destructive: hsl(0 72% 60%); /* brighter red for dark mode */
   --destructive-foreground: hsl(0 0% 100%);
-  
-  /* Feedback colors (dark mode) */
-  --info: hsl(228 100% 65%); /* byzantine-blue.200 */
-  --info-foreground: hsl(0 0% 0%);
-  --success: hsl(150 100% 75%); /* guild-green.300 - brighter */
-  --success-foreground: hsl(0 0% 0%);
-  --warning: hsl(47 100% 60%); /* moveus-marigold.400 */
-  --warning-foreground: hsl(0 0% 0%);
+
+  /* Feedback colors (dark mode) - functional */
+  --info: hsl(217 91% 60%); /* #3B82F6 */
+  --info-foreground: hsl(0 0% 100%);
+  --success: hsl(158 64% 49%); /* #29CF96 */
+  --success-foreground: hsl(0 0% 10%);
+  --warning: hsl(48 95% 53%); /* #FACC15 */
+  --warning-foreground: hsl(0 0% 10%);
   --error: hsl(0 72% 60%); /* brighter red */
   --error-foreground: hsl(0 0% 100%);
   
@@ -573,24 +543,24 @@
   --muted-foreground: hsl(0 0% 64%);
   --border: hsl(0 0% 100% / 12%);
   --input: hsl(0 0% 100% / 12%);
-  --ring: hsl(150 100% 75%); /* guild-green.300 */
+  --ring: hsl(179 84% 51%); /* guild-green.300 */
   
   /* Charts (dark mode) */
-  --chart-1: hsl(150 100% 75%); /* guild-green.300 */
-  --chart-2: hsl(228 100% 65%); /* byzantine-blue.200 */
-  --chart-3: hsl(304 100% 73%); /* protocol-pink.300 */
-  --chart-4: hsl(13 100% 63%); /* oracle-orange.400 */
-  --chart-5: hsl(47 100% 60%); /* moveus-marigold.400 */
+  --chart-1: hsl(179 84% 51%); /* cyan */
+  --chart-2: hsl(0 0% 64%); /* neutral */
+  --chart-3: hsl(217 91% 60%); /* info blue */
+  --chart-4: hsl(158 64% 49%); /* success green */
+  --chart-5: hsl(48 95% 53%); /* warning yellow */
   
   /* Sidebar (dark mode) */
   --sidebar: hsl(0 0% 5%);
   --sidebar-foreground: hsl(0 0% 100%);
-  --sidebar-primary: hsl(150 100% 75%); /* guild-green.300 */
+  --sidebar-primary: hsl(179 84% 51%); /* guild-green.300 */
   --sidebar-primary-foreground: hsl(0 0% 0%);
   --sidebar-accent: hsl(0 0% 15%);
   --sidebar-accent-foreground: hsl(0 0% 100%);
   --sidebar-border: hsl(0 0% 100% / 10%);
-  --sidebar-ring: hsl(150 100% 75%);
+  --sidebar-ring: hsl(179 84% 51%);
 }
 
 /* ============================================================================

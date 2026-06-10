@@ -426,7 +426,7 @@ function DesktopMenuContent({
                   The first dual-rewards cashback program in Move history.{" "}
                   <a
                     href="https://www.movementnetwork.xyz/article/movement-kast-faq"
-                    className="text-[#81ffba] underline decoration-dotted cursor-pointer"
+                    className="text-[#15EDEB] underline decoration-dotted cursor-pointer"
                     target="_blank"
                     rel="noopener noreferrer"
                   >

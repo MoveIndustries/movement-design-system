@@ -53,16 +53,6 @@
         "default": "./dist/carousel.cjs"
       }
     },
-    "./forms": {
-      "import": {
-        "types": "./dist/forms.d.ts",
-        "default": "./dist/forms.js"
-      },
-      "require": {
-        "types": "./dist/forms.d.ts",
-        "default": "./dist/forms.cjs"
-      }
-    },
     "./drawer": {
       "import": {
         "types": "./dist/drawer.d.ts",

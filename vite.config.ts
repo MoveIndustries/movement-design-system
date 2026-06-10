@@ -34,12 +34,12 @@ function copyThemePlugin() {
       const projectRoot = process.cwd();
       const filesToCopy = [
         { src: "src/theme.css", dest: "dist/theme.css", name: "theme.css" },
-        { src: "src/fonts.css", dest: "dist/fonts.css", name: "fonts.css" },
         {
           src: "src/recipes.css",
           dest: "dist/recipes.css",
           name: "recipes.css",
         },
+        { src: "src/fonts.css", dest: "dist/fonts.css", name: "fonts.css" },
       ];
 
       filesToCopy.forEach(({ src, dest, name }) => {
@@ -54,6 +54,18 @@ function copyThemePlugin() {
           // Silently ignore copy failures (e.g., during Storybook builds)
         }
       });
+
+      // Copy brand font assets so dist/fonts.css url('./assets/fonts/...') resolves
+      try {
+        const fontsSrc = resolve(projectRoot, "src/assets/fonts");
+        const fontsDest = resolve(projectRoot, "dist/assets/fonts");
+        if (fs.existsSync(fontsSrc)) {
+          fs.cpSync(fontsSrc, fontsDest, { recursive: true });
+          console.log("✓ Copied font assets to dist/assets/fonts");
+        }
+      } catch {
+        // Silently ignore copy failures (e.g., during Storybook builds)
+      }
     },
   };
 }
@@ -112,7 +124,6 @@ export default defineConfig({
       entry: {
         index: resolve(__dirname, "src/index.ts"),
         carousel: resolve(__dirname, "src/carousel.ts"),
-        forms: resolve(__dirname, "src/forms.ts"),
         drawer: resolve(__dirname, "src/drawer.ts"),
         wallet: resolve(__dirname, "src/wallet.ts"),
       },
