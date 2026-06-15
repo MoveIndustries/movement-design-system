@@ -21,11 +21,6 @@ export type {
   FooterColumn,
   SocialLink,
 } from "./components/Footer";
-export { GlobalNavMenu, productBlockVariants } from "./components/GlobalNavMenu";
-export type {
-  GlobalNavMenuProps,
-  NavMenuItem,
-} from "./components/GlobalNavMenu";
 export { IconButton } from "./components/IconButton/IconButton";
 export { ProgressButton } from "./components/ProgressButton";
 // WalletModal moved to separate entry point:
@@ -107,6 +102,11 @@ export {
   PaginationPrevious,
 } from "./components/shadcn/pagination";
 export type { PaginationVariant } from "./components/shadcn/pagination";
+export {
+  Popover,
+  PopoverContent,
+  PopoverTrigger,
+} from "./components/shadcn/popover";
 export { Progress } from "./components/shadcn/progress";
 export {
   Select,

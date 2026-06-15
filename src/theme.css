@@ -11,7 +11,7 @@
    * This theme implements a layered token system based on Movement Design Tokens:
    * 
    * Layer 1: Primitives (spacing, sizing, radii, borders, shadows, opacity)
-   * Layer 2: Brand Color (Movement cyan, exposed as guild-green-* names)
+   * Layer 2: Brand Color (Movement cyan — `--color-cyan-*` ramp) + neutrals
    * Layer 3: Semantic Base (bg, fg, border, feedback)
    * Layer 4: Component Tokens (accordion, badge, input, etc.)
    * Layer 5: Legacy Mappings (--primary, --secondary, etc.)
@@ -188,32 +188,30 @@
    * LAYER 2: BRAND COLOR TOKENS
    * ======================================================================== */
   
-  /* Brand color - Movement Cyan (#15EDEB). The `guild-green-*` token names are
-   * kept for backward-compat with existing utility classes, but now resolve to
-   * the cyan ramp — cyan is the single Movement brand colour. */
-  --color-guild-green-50: #E8FCFC;
-  --color-guild-green-100: #C5F6F5;
-  --color-guild-green-200: #8FF0EE;
-  --color-guild-green-300: #15EDEB;
-  --color-guild-green-400: #14D6D4;
-  --color-guild-green-500: #12BCBA;
-  --color-guild-green-600: #0FA09E;
-  --color-guild-green-700: #0B7775;
-  --color-guild-green-800: #084F4E;
-  --color-guild-green-900: #042827;
+  /* Brand color — Movement Cyan. Single source of truth for the brand ramp;
+   * `--color-cyan-300` (#15EDEB) is the primary Movement brand colour. */
+  --color-cyan-50: #E8FCFC;
+  --color-cyan-100: #C5F6F5;
+  --color-cyan-200: #8FF0EE;
+  --color-cyan-300: #15EDEB;
+  --color-cyan-400: #14D6D4;
+  --color-cyan-500: #12BCBA;
+  --color-cyan-600: #0FA09E;
+  --color-cyan-700: #0B7775;
+  --color-cyan-800: #084F4E;
+  --color-cyan-900: #042827;
 
-  /* Neutrals ramp (was "Byzantine Blue"). The royal-blue secondary is retired;
-   * these names now resolve to near-black neutrals, matching the apps. */
-  --color-byzantine-blue-50: #d6d6d6;
-  --color-byzantine-blue-100: #b0b0b0;
-  --color-byzantine-blue-200: #8a8a8a;
-  --color-byzantine-blue-300: #4d4d4d;
-  --color-byzantine-blue-400: #1d1d1d;
-  --color-byzantine-blue-500: #1d1d1d;
-  --color-byzantine-blue-600: #141414;
-  --color-byzantine-blue-700: #0f0f0f;
-  --color-byzantine-blue-800: #0a0a0a;
-  --color-byzantine-blue-900: #050505;
+  /* Neutral ramp — near-black grays for app surfaces. */
+  --color-neutrals-50: #d6d6d6;
+  --color-neutrals-100: #b0b0b0;
+  --color-neutrals-200: #8a8a8a;
+  --color-neutrals-300: #4d4d4d;
+  --color-neutrals-400: #1d1d1d;
+  --color-neutrals-500: #1d1d1d;
+  --color-neutrals-600: #141414;
+  --color-neutrals-700: #0f0f0f;
+  --color-neutrals-800: #0a0a0a;
+  --color-neutrals-900: #050505;
   
   /* Neutrals */
   --color-neutrals-white: #ffffff;
@@ -391,21 +389,21 @@
    * 
    * LEGACY VARIABLE          → NEW TOKEN PATH
    * -------------------------------------------------------------------------
-   * --primary                → semantic.brand.primary.default (guild-green.300)
+   * --primary                → semantic.brand.primary.default (cyan.300)
    * --primary-foreground     → semantic.brand.primary.on-primary
-   * --secondary              → semantic.brand.secondary.default (byzantine-blue.400)
+   * --secondary              → semantic.brand.secondary.default (neutrals.400)
    * --secondary-foreground   → semantic.brand.secondary.on-secondary
    * --accent                 → semantic.brand.accent.default (cyan-soft)
    * --accent-foreground      → semantic.brand.accent.on-accent
    * --destructive            → semantic.brand.error.default
    * --destructive-foreground → semantic.brand.error.on-error
-   * --success                → semantic.brand.success.default (guild-green.400)
+   * --success                → semantic.brand.success.default (functional green)
    * --success-foreground     → semantic.brand.success.on-success
    * --warning                → semantic.brand.warning.default (functional yellow)
    * --warning-foreground     → semantic.brand.warning.on-warning
    * --error                  → semantic.brand.error.default (#D82C2D)
    * --error-foreground       → semantic.brand.error.on-error
-   * --info                   → semantic.feedback.info.default (byzantine-blue.400)
+   * --info                   → semantic.feedback.info.default (functional blue)
    * --info-foreground        → semantic.feedback.info.on-info
    * --muted                  → semantic.bg.alt-1
    * --muted-foreground       → semantic.fg.muted
@@ -519,7 +517,7 @@
   --popover-foreground: hsl(0 0% 100%);
   
   /* Brand semantic colors (dark mode) */
-  --primary: hsl(179 84% 51%); /* guild-green.300 - brighter for dark mode */
+  --primary: hsl(179 84% 51%); /* cyan.300 - brighter for dark mode */
   --primary-foreground: hsl(0 0% 0%);
   --secondary: hsl(0 0% 9%); /* near-black (royal blue retired) */
   --secondary-foreground: hsl(0 0% 100%); /* white - on near-black */
@@ -543,7 +541,7 @@
   --muted-foreground: hsl(0 0% 64%);
   --border: hsl(0 0% 100% / 12%);
   --input: hsl(0 0% 100% / 12%);
-  --ring: hsl(179 84% 51%); /* guild-green.300 */
+  --ring: hsl(179 84% 51%); /* cyan.300 */
   
   /* Charts (dark mode) */
   --chart-1: hsl(179 84% 51%); /* cyan */
@@ -555,7 +553,7 @@
   /* Sidebar (dark mode) */
   --sidebar: hsl(0 0% 5%);
   --sidebar-foreground: hsl(0 0% 100%);
-  --sidebar-primary: hsl(179 84% 51%); /* guild-green.300 */
+  --sidebar-primary: hsl(179 84% 51%); /* cyan.300 */
   --sidebar-primary-foreground: hsl(0 0% 0%);
   --sidebar-accent: hsl(0 0% 15%);
   --sidebar-accent-foreground: hsl(0 0% 100%);

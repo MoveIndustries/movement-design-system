@@ -23,7 +23,7 @@ const meta: Meta = {
       ),
       description: {
         component:
-          "Color palette and semantic tokens for the design system. All colors are available as Tailwind classes (e.g., `bg-guild-green-300`) and CSS variables (e.g., `var(--primary)`).",
+          "Color palette and semantic tokens for the design system. All colors are available as Tailwind classes (e.g., `bg-cyan-300`) and CSS variables (e.g., `var(--primary)`).",
       },
     },
   },
@@ -34,8 +34,7 @@ type Story = StoryObj;
 
 // Brand color palettes
 const brandColors = {
-  // Movement Cyan — the single brand colour. (Exposed under the legacy
-  // `guild-green-*` token names for backward-compat.)
+  // Movement Cyan — the single brand colour (`--color-cyan-*` ramp).
   "Movement Cyan": {
     50: "#E8FCFC",
     100: "#C5F6F5",
@@ -445,7 +444,7 @@ export const TokenReferenceChain: Story = {
                 Layer 1: Primitive
               </div>
               <div className="flex-1 p-3 bg-muted rounded font-mono text-sm">
-                #81ffba (guild-green.300)
+                #15EDEB (cyan.300)
               </div>
             </div>
             <div className="flex items-center gap-4">
@@ -457,7 +456,7 @@ export const TokenReferenceChain: Story = {
                 Layer 2: Brand
               </div>
               <div className="flex-1 p-3 bg-muted rounded font-mono text-sm">
-                --color-guild-green-300: #81ffba
+                --color-cyan-300: #15EDEB
               </div>
             </div>
             <div className="flex items-center gap-4">
@@ -469,7 +468,7 @@ export const TokenReferenceChain: Story = {
                 Layer 3: Semantic
               </div>
               <div className="flex-1 p-3 bg-muted rounded font-mono text-sm">
-                semantic.brand.primary.default → guild-green.300
+                semantic.brand.primary.default → cyan.300
               </div>
             </div>
             <div className="flex items-center gap-4">
@@ -495,7 +494,7 @@ export const TokenReferenceChain: Story = {
               <div className="flex-1 flex items-center gap-4">
                 <div
                   className="h-16 w-24 rounded-lg"
-                  style={{ backgroundColor: "#81ffba" }}
+                  style={{ backgroundColor: "#15EDEB" }}
                 />
                 <button className="px-6 py-3 bg-primary text-primary-foreground rounded-lg font-medium">
                   Primary Button
@@ -514,7 +513,7 @@ export const TokenReferenceChain: Story = {
                 Layer 1: Primitive
               </div>
               <div className="flex-1 p-3 bg-muted rounded font-mono text-sm">
-                #6ce2a1 (guild-green.400)
+                #16A34A (functional green)
               </div>
             </div>
             <div className="flex items-center gap-4">
@@ -526,7 +525,7 @@ export const TokenReferenceChain: Story = {
                 Layer 2: Brand
               </div>
               <div className="flex-1 p-3 bg-muted rounded font-mono text-sm">
-                feedback.success.default → guild-green.400
+                feedback.success.default → functional green
               </div>
             </div>
             <div className="flex items-center gap-4">
@@ -564,7 +563,7 @@ export const TokenReferenceChain: Story = {
               <div className="flex-1 flex items-center gap-4">
                 <div
                   className="h-16 w-24 rounded-lg"
-                  style={{ backgroundColor: "#6ce2a1" }}
+                  style={{ backgroundColor: "#16A34A" }}
                 />
                 <div className="p-4 bg-success/10 border border-success rounded-lg">
                   <p className="text-sm font-medium">Success message!</p>
@@ -585,7 +584,7 @@ export const TokenReferenceChain: Story = {
               • <strong>Semantic Meaning:</strong> Use{" "}
               <code className="bg-background px-1 rounded">--primary</code>{" "}
               instead of{" "}
-              <code className="bg-background px-1 rounded">#81ffba</code>
+              <code className="bg-background px-1 rounded">#15EDEB</code>
             </li>
             <li>
               • <strong>Theme Switching:</strong> Dark/light modes swap semantic
@@ -669,20 +668,11 @@ export const UsageExamples: Story = {
         <div className="space-y-4">
           <h3 className="text-lg font-semibold">Badges</h3>
           <div className="flex flex-wrap gap-3">
-            <span className="px-3 py-1 bg-guild-green-400 text-white rounded-full text-sm font-medium">
+            <span className="px-3 py-1 bg-cyan-400 text-black rounded-full text-sm font-medium">
               Active
             </span>
-            <span className="px-3 py-1 bg-byzantine-blue-400 text-white rounded-full text-sm font-medium">
+            <span className="px-3 py-1 bg-neutrals-400 text-white rounded-full text-sm font-medium">
               New
-            </span>
-            <span className="px-3 py-1 bg-protocol-pink-400 text-white rounded-full text-sm font-medium">
-              Featured
-            </span>
-            <span className="px-3 py-1 bg-oracle-orange-400 text-white rounded-full text-sm font-medium">
-              Hot
-            </span>
-            <span className="px-3 py-1 bg-moveus-marigold-400 text-black rounded-full text-sm font-medium">
-              Popular
             </span>
           </div>
         </div>
@@ -691,22 +681,16 @@ export const UsageExamples: Story = {
         <div className="space-y-4">
           <h3 className="text-lg font-semibold">Cards with Brand Colors</h3>
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
-            <div className="p-6 bg-linear-to-br from-guild-green-400 to-guild-green-600 rounded-lg text-white">
-              <h4 className="font-bold text-lg mb-2">Guild Green</h4>
+            <div className="p-6 bg-linear-to-br from-cyan-300 to-cyan-600 rounded-lg text-black">
+              <h4 className="font-bold text-lg mb-2">Cyan</h4>
               <p className="text-sm opacity-90">
-                Primary brand color for success and positive actions
+                The Movement brand color — primary actions and accents
               </p>
             </div>
-            <div className="p-6 bg-linear-to-br from-byzantine-blue-400 to-byzantine-blue-600 rounded-lg text-white">
-              <h4 className="font-bold text-lg mb-2">Byzantine Blue</h4>
+            <div className="p-6 bg-linear-to-br from-neutrals-400 to-neutrals-600 rounded-lg text-white">
+              <h4 className="font-bold text-lg mb-2">Neutral</h4>
               <p className="text-sm opacity-90">
-                Secondary color for information and trust
-              </p>
-            </div>
-            <div className="p-6 bg-linear-to-br from-protocol-pink-300 to-protocol-pink-500 rounded-lg text-white">
-              <h4 className="font-bold text-lg mb-2">Protocol Pink</h4>
-              <p className="text-sm opacity-90">
-                Accent color for highlights and emphasis
+                Near-black grays for surfaces and secondary UI
               </p>
             </div>
           </div>
