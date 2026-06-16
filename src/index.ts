@@ -2,27 +2,11 @@
 import "./index.css";
 
 // Theme
-export {
-  ThemeProvider,
-  ThemeSwitcher,
-  ThemeToggle,
-  useTheme,
-} from "./components/theme";
-export type {
-  ThemeProviderProps,
-  ThemeSwitcherProps,
-} from "./components/theme";
+export { ThemeProvider } from "./components/theme";
+export type { ThemeProviderProps } from "./components/theme";
 
 // Components
 export * from "./components/Icon";
-export { Branding } from "./components/Branding";
-export type {
-  BrandingProps,
-  BrandingTheme,
-  BrandingVariant,
-  BrandingColor,
-} from "./components/Branding";
-export { DottedBackground } from "./components/DottedBackground";
 export {
   Footer,
   DesktopFooter,
@@ -37,14 +21,7 @@ export type {
   FooterColumn,
   SocialLink,
 } from "./components/Footer";
-export { GlobalNavMenu, productBlockVariants } from "./components/GlobalNavMenu";
-export type {
-  GlobalNavMenuProps,
-  NavMenuItem,
-} from "./components/GlobalNavMenu";
 export { IconButton } from "./components/IconButton/IconButton";
-export { Logo } from "./components/Logo/Logo";
-export { MultiOutlineText } from "./components/MultiOutlineText";
 export { ProgressButton } from "./components/ProgressButton";
 // WalletModal moved to separate entry point:
 // import { WalletModal } from "@moveindustries/movement-design-system/wallet"
@@ -54,19 +31,7 @@ export {
   AccordionItem,
   AccordionTrigger,
 } from "./components/shadcn/accordion";
-export {
-  AlertDialog,
-  AlertDialogAction,
-  AlertDialogCancel,
-  AlertDialogContent,
-  AlertDialogDescription,
-  AlertDialogFooter,
-  AlertDialogHeader,
-  AlertDialogTitle,
-  AlertDialogTrigger,
-} from "./components/shadcn/alert-dialog";
 export { Alert, AlertDescription, AlertTitle } from "./components/shadcn/alert";
-export { AspectRatio } from "./components/shadcn/aspect-ratio";
 export {
   Avatar,
   AvatarFallback,
@@ -84,7 +49,6 @@ export {
   BreadcrumbSeparator,
 } from "./components/shadcn/breadcrumb";
 export { Button, buttonVariants } from "./components/shadcn/button";
-export { ButtonGroup } from "./components/shadcn/button-group";
 export {
   Card,
   CardAction,
@@ -96,7 +60,6 @@ export {
 } from "./components/shadcn/card";
 // Carousel components moved to separate entry point:
 // import { Carousel, ... } from "@moveindustries/movement-design-system/carousel"
-export { Checkbox } from "./components/shadcn/checkbox";
 export {
   Dialog,
   DialogClose,
@@ -127,78 +90,8 @@ export {
   DropdownMenuSubTrigger,
   DropdownMenuTrigger,
 } from "./components/shadcn/dropdown-menu";
-export { Empty } from "./components/shadcn/empty";
-export {
-  Field,
-  FieldContent,
-  FieldDescription,
-  FieldError,
-  FieldGroup,
-  FieldLabel,
-  FieldLegend,
-  FieldSeparator,
-  FieldSet,
-  FieldTitle,
-} from "./components/shadcn/field";
-// Form components moved to separate entry point:
-// import { Form, ... } from "@moveindustries/movement-design-system/forms"
-export {
-  HoverCard,
-  HoverCardContent,
-  HoverCardTrigger,
-} from "./components/shadcn/hover-card";
 export { Input } from "./components/shadcn/input";
-export {
-  CryptoAmountInput,
-  WalletIcon,
-} from "./components/shadcn/crypto-amount-input";
-export {
-  InputGroup,
-  InputGroupAddon,
-  InputGroupButton,
-  InputGroupInput,
-  InputGroupText,
-  InputGroupTextarea,
-} from "./components/shadcn/input-group";
-export { Item } from "./components/shadcn/item";
 export { Label } from "./components/shadcn/label";
-export {
-  List,
-  ListItem,
-  listVariants,
-  listItemVariants,
-  bulletVariants,
-} from "./components/shadcn/list";
-export type { ListProps, ListItemProps } from "./components/shadcn/list";
-export {
-  Menubar,
-  MenubarCheckboxItem,
-  MenubarContent,
-  MenubarGroup,
-  MenubarItem,
-  MenubarLabel,
-  MenubarMenu,
-  MenubarPortal,
-  MenubarRadioGroup,
-  MenubarRadioItem,
-  MenubarSeparator,
-  MenubarShortcut,
-  MenubarSub,
-  MenubarSubContent,
-  MenubarSubTrigger,
-  MenubarTrigger,
-} from "./components/shadcn/menubar";
-export {
-  NavigationMenu,
-  NavigationMenuContent,
-  NavigationMenuIndicator,
-  NavigationMenuItem,
-  NavigationMenuLink,
-  NavigationMenuList,
-  NavigationMenuTrigger,
-  NavigationMenuViewport,
-  navigationMenuTriggerStyle,
-} from "./components/shadcn/navigation-menu";
 export {
   Pagination,
   PaginationContent,
@@ -207,20 +100,14 @@ export {
   PaginationLink,
   PaginationNext,
   PaginationPrevious,
-  BulletPagination,
 } from "./components/shadcn/pagination";
-export type {
-  PaginationVariant,
-  BulletPaginationProps,
-} from "./components/shadcn/pagination";
+export type { PaginationVariant } from "./components/shadcn/pagination";
 export {
   Popover,
   PopoverContent,
   PopoverTrigger,
 } from "./components/shadcn/popover";
 export { Progress } from "./components/shadcn/progress";
-export { RadioGroup, RadioGroupItem } from "./components/shadcn/radio-group";
-export { ScrollArea, ScrollBar } from "./components/shadcn/scroll-area";
 export {
   Select,
   SelectContent,
@@ -233,7 +120,6 @@ export {
   SelectTrigger,
   SelectValue,
 } from "./components/shadcn/select";
-export { Separator } from "./components/shadcn/separator";
 export {
   Sheet,
   SheetClose,
@@ -245,32 +131,6 @@ export {
   SheetTitle,
   SheetTrigger,
 } from "./components/shadcn/sheet";
-export {
-  Sidebar,
-  SidebarContent,
-  SidebarFooter,
-  SidebarGroup,
-  SidebarGroupAction,
-  SidebarGroupContent,
-  SidebarGroupLabel,
-  SidebarHeader,
-  SidebarInput,
-  SidebarInset,
-  SidebarMenu,
-  SidebarMenuAction,
-  SidebarMenuBadge,
-  SidebarMenuButton,
-  SidebarMenuItem,
-  SidebarMenuSkeleton,
-  SidebarMenuSub,
-  SidebarMenuSubButton,
-  SidebarMenuSubItem,
-  SidebarProvider,
-  SidebarRail,
-  SidebarSeparator,
-  SidebarTrigger,
-  useSidebar,
-} from "./components/shadcn/sidebar";
 export { Skeleton } from "./components/shadcn/skeleton";
 export { Slider } from "./components/shadcn/slider";
 export { Toaster, toast } from "./components/shadcn/sonner";
@@ -282,7 +142,6 @@ export { Spinner } from "./components/shadcn/spinner";
 export type { ToastVariant } from "./components/shadcn/toast-types";
 export { toastVariants } from "./components/shadcn/toast-types";
 export { GlobalToaster, toast as movementToast } from "./lib/global-toast";
-export { Switch } from "./components/shadcn/switch";
 export {
   Table,
   TableBody,
@@ -305,8 +164,6 @@ export {
   TabsList,
   TabsTrigger,
 } from "./components/shadcn/tabs";
-export { Textarea } from "./components/shadcn/textarea";
-export { Toggle, toggleVariants } from "./components/shadcn/toggle";
 export { ToggleGroup, ToggleGroupItem } from "./components/shadcn/toggle-group";
 export {
   Tooltip,
@@ -322,27 +179,10 @@ export {
 
 // Utilities
 export { cn } from "./lib/utils";
-export {
-  gradientBorderClasses,
-  glassBackgroundClasses,
-} from "./lib/border-styles";
-export {
-  gradientBackgroundClasses,
-  getGradientClass,
-} from "./lib/gradient-styles";
+export { gradientBorderClasses } from "./lib/border-styles";
 
 // Hooks
 export { useIsMobile } from "./hooks/use-mobile";
-
-// Theme scales
-export {
-  spacing,
-  sizes,
-  radii,
-  borderWidths,
-  shadows,
-  zIndex,
-} from "./lib/scales";
 
 // Re-export useful types
 export type { VariantProps } from "class-variance-authority";

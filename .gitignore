@@ -29,3 +29,5 @@ storybook-static
 .pnpm-store/
 .ignore/
 /styled-system/
+# Local pack artifact (used for testing against apps via file: deps)
+*.tgz

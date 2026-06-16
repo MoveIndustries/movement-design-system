@@ -2,6 +2,7 @@
 
 import type { Preview, Decorator } from "@storybook/react-vite";
 import React, { useEffect } from "react";
+import "../src/fonts.css";
 import "../src/index.css";
 import { createStorybookTheme } from "./theme";
 import { ThemeProvider } from "../src/components/theme/theme-provider";

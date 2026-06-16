@@ -1,7 +1,7 @@
 {
   "name": "@moveindustries/movement-design-system",
   "private": false,
-  "version": "1.1.6",
+  "version": "1.2.0",
   "type": "module",
   "description": "Production-ready design system built with shadcn/ui components, Radix UI, and Tailwind CSS for Move Industries",
   "keywords": [
@@ -51,16 +51,6 @@
       "require": {
         "types": "./dist/carousel.d.ts",
         "default": "./dist/carousel.cjs"
-      }
-    },
-    "./forms": {
-      "import": {
-        "types": "./dist/forms.d.ts",
-        "default": "./dist/forms.js"
-      },
-      "require": {
-        "types": "./dist/forms.d.ts",
-        "default": "./dist/forms.cjs"
       }
     },
     "./drawer": {

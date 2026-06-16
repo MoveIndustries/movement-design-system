@@ -4,6 +4,33 @@ All notable changes to this project will be documented in this file.
 
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/), and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [1.2.0] - 2026-06-15
+
+Rebrand release: aligns the design system with the cyan brand and ABC Oracle fonts already shipped across the consumer apps, and removes legacy components no app uses. Drop-in for all current consumers — none import a removed export (see migration note).
+
+### Changed
+
+- **Colors** — Brand palette is now Movement cyan (`#15EDEB`) + neutrals, with proper names: the brand ramp is `--color-cyan-*` and the neutral ramp is `--color-neutrals-*`. The legacy `--primary` / `--ring` / chart / sidebar tokens point at cyan. Feedback colors (`success`/`warning`/`error`/`info`) set to a functional palette. `recipes.css` gradients and the `Button` `glow` variant recolored to cyan.
+- **WalletModal** — Rebuilt to the finalized design: flat `#2d2d2d` card, hairline white border, `24px` radius, flat `#090909` wallet tiles, ABC Oracle type via `var(--font-display)`, no desktop close button. The brand-cyan accents (wallet-tile hover glow, INSTALL pill, "Don't have a wallet?" link) now use the brand token `var(--color-cyan-300)` directly, so the hover highlight is consistently cyan across all sites without per-app overrides. Public API unchanged.
+- **Fonts** — Components reference `var(--font-display | --font-serif | --font-mono)` instead of hardcoded families.
+
+### Added
+
+- **`/fonts` entry** — now ships ABC Oracle + RecifeText (`@font-face` + `.woff2`). Optional; Next.js apps that self-host via `next/font` can ignore it.
+
+### Removed
+
+- **Brand ramps** — `moveus-marigold`, `protocol-pink`, `oracle-orange` (cyan + neutrals only now).
+- **Legacy brand-color token names** — `guild-green-*` and `byzantine-blue-*` removed; use `--color-cyan-*` and `--color-neutrals-*`. (The consumer apps define these names locally in their own `tokens.css`/`theme.css`, so this is non-breaking for them.)
+- **Fonts** — TWK Everett / Neue Haas Unica Pro (replaced by ABC Oracle / RecifeText).
+- **Components** (zero consumers): `AlertDialog`, `AspectRatio`, `ButtonGroup`, `Checkbox`, `CryptoAmountInput`, `Empty`, `Field`, `Form`, `HoverCard`, `InputGroup`, `Item`, `List`, `Menubar`, `NavigationMenu`, `RadioGroup`, `ScrollArea`, `Separator`, `Sidebar`, `Switch`, `Textarea`, `Toggle`, `Branding`, `DottedBackground`, `Logo`, `MultiOutlineText`, `ThemeSwitcher` / `ThemeToggle` / `useTheme`, `GlobalNavMenu` (+ `productBlockVariants`, `GlobalNavMenuProps`, `NavMenuItem`).
+- **`/forms` entry point** (the `react-hook-form` form components).
+- Internal `src/blocks/` app-specific composites (never exported).
+
+### Migration
+
+No consumer currently imports any removed export, so the bump is drop-in. Apps may delete their now-redundant local color/WalletModal/font override CSS, which the design system now provides natively.
+
 ## [1.1.6] - 2026-03-30
 
 ### Changed

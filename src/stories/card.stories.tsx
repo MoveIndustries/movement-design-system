@@ -9,7 +9,6 @@ import {
   CardAction,
 } from "../components/shadcn/card";
 import { Button } from "../components/shadcn/button";
-import { DottedBackground } from "../components/DottedBackground";
 
 const meta = {
   title: "movement-design-system/Card",
@@ -25,7 +24,7 @@ type Story = StoryObj<typeof meta>;
 
 export const Default: Story = {
   render: () => (
-    <DottedBackground variant="gradient">
+    <div>
       <div className="flex h-full min-h-[500px] items-center justify-center p-8">
         <Card className="w-96">
           <CardHeader>
@@ -40,7 +39,7 @@ export const Default: Story = {
           </CardFooter>
         </Card>
       </div>
-    </DottedBackground>
+    </div>
   ),
 };
 
@@ -94,7 +93,7 @@ export const WithAction: Story = {
 
 export const Glow: Story = {
   render: () => (
-    <DottedBackground variant="gradient">
+    <div>
       <div className="flex h-full min-h-[500px] items-center justify-center p-8">
         <Card variant="glow" className="w-96">
           <CardHeader>
@@ -105,8 +104,8 @@ export const Glow: Story = {
           </CardHeader>
           <CardContent>
             <p className="text-sm">
-              The glow variant features a beautiful gradient border that transitions
-              from guild-green to cyan, with a glass backdrop blur effect.
+              The glow variant features a beautiful cyan gradient border, with a
+              glass backdrop blur effect.
             </p>
           </CardContent>
           <CardFooter>
@@ -114,13 +113,13 @@ export const Glow: Story = {
           </CardFooter>
         </Card>
       </div>
-    </DottedBackground>
+    </div>
   ),
 };
 
 export const Iridescent: Story = {
   render: () => (
-    <DottedBackground variant="gradient">
+    <div>
       <div className="flex h-full min-h-[500px] items-center justify-center p-8">
         <Card variant="iridescent" className="w-96">
           <CardHeader>
@@ -132,8 +131,8 @@ export const Iridescent: Story = {
           <CardContent>
             <p className="text-sm">
               The iridescent variant features a smooth linear gradient border
-              at 136 degrees, transitioning from mint green (#81ffba) to cyan
-              (#00fff9), creating a modern and vibrant look.
+              at 136 degrees in Movement cyan tones, creating a modern and
+              vibrant look.
             </p>
           </CardContent>
           <CardFooter>
@@ -141,13 +140,13 @@ export const Iridescent: Story = {
           </CardFooter>
         </Card>
       </div>
-    </DottedBackground>
+    </div>
   ),
 };
 
 export const AllBorderVariants: Story = {
   render: () => (
-    <DottedBackground variant="gradient">
+    <div>
       <div className="flex h-full min-h-[700px] items-center justify-center p-8">
         <div className="grid grid-cols-1 md:grid-cols-3 gap-8 max-w-6xl w-full">
           <div className="flex flex-col gap-4">
@@ -214,13 +213,13 @@ export const AllBorderVariants: Story = {
           </div>
         </div>
       </div>
-    </DottedBackground>
+    </div>
   ),
 };
 
 export const GlowComparison: Story = {
   render: () => (
-    <DottedBackground variant="gradient">
+    <div>
       <div className="flex h-full min-h-[600px] items-center justify-center p-8">
         <div className="grid grid-cols-1 md:grid-cols-2 gap-8 max-w-4xl">
           <div className="flex flex-col gap-4">
@@ -249,8 +248,7 @@ export const GlowComparison: Story = {
               </CardHeader>
               <CardContent>
                 <p className="text-sm">
-                  Card with gradient glow border effect that transitions from
-                  guild-green to cyan.
+                  Card with a cyan gradient glow border effect.
                 </p>
               </CardContent>
             </Card>
@@ -260,13 +258,13 @@ export const GlowComparison: Story = {
           </div>
         </div>
       </div>
-    </DottedBackground>
+    </div>
   ),
 };
 
 export const GridLayout: Story = {
   render: () => (
-    <DottedBackground variant="gradient">
+    <div>
       <div className="flex h-full min-h-[800px] items-center justify-center p-8">
         <div className="w-full max-w-7xl">
           <h2 className="text-white text-3xl font-bold mb-8 text-center">
@@ -282,7 +280,7 @@ export const GridLayout: Story = {
                 <div className="space-y-2">
                   <div className="flex justify-between text-sm">
                     <span className="text-muted-foreground">APY</span>
-                    <span className="font-mono font-bold text-guild-green-300">
+                    <span className="font-mono font-bold text-cyan-300">
                       12.5%
                     </span>
                   </div>
@@ -372,13 +370,13 @@ export const GridLayout: Story = {
                 <div className="space-y-2">
                   <div className="flex justify-between text-sm">
                     <span className="text-muted-foreground">Total Value</span>
-                    <span className="font-mono font-bold text-guild-green-300">
+                    <span className="font-mono font-bold text-cyan-300">
                       $12,345.67
                     </span>
                   </div>
                   <div className="flex justify-between text-sm">
                     <span className="text-muted-foreground">24h Change</span>
-                    <span className="font-mono text-guild-green-300">+5.2%</span>
+                    <span className="font-mono text-cyan-300">+5.2%</span>
                   </div>
                 </div>
               </CardContent>
@@ -413,13 +411,13 @@ export const GridLayout: Story = {
           </div>
         </div>
       </div>
-    </DottedBackground>
+    </div>
   ),
 };
 
 export const GridLayoutDots: Story = {
   render: () => (
-    <DottedBackground variant="dots">
+    <div>
       <div className="flex h-full min-h-[800px] items-center justify-center p-8">
         <div className="w-full max-w-7xl">
           <h2 className="text-white text-3xl font-bold mb-8 text-center">
@@ -435,7 +433,7 @@ export const GridLayoutDots: Story = {
                 <div className="space-y-2">
                   <div className="flex justify-between text-sm">
                     <span className="text-muted-foreground">APY</span>
-                    <span className="font-mono font-bold text-guild-green-300">
+                    <span className="font-mono font-bold text-cyan-300">
                       12.5%
                     </span>
                   </div>
@@ -525,13 +523,13 @@ export const GridLayoutDots: Story = {
                 <div className="space-y-2">
                   <div className="flex justify-between text-sm">
                     <span className="text-muted-foreground">Total Value</span>
-                    <span className="font-mono font-bold text-guild-green-300">
+                    <span className="font-mono font-bold text-cyan-300">
                       $12,345.67
                     </span>
                   </div>
                   <div className="flex justify-between text-sm">
                     <span className="text-muted-foreground">24h Change</span>
-                    <span className="font-mono text-guild-green-300">+5.2%</span>
+                    <span className="font-mono text-cyan-300">+5.2%</span>
                   </div>
                 </div>
               </CardContent>
@@ -566,6 +564,6 @@ export const GridLayoutDots: Story = {
           </div>
         </div>
       </div>
-    </DottedBackground>
+    </div>
   ),
 };

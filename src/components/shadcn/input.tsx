@@ -14,7 +14,7 @@ import { cn } from "@/lib/utils";
  * - Icon support (left/right)
  * - Clearable functionality
  * - Error state
- * - Custom cursor color (guild-green-300)
+ * - Custom cursor color (cyan-300)
  */
 const inputVariants = cva(
   "flex w-full items-center gap-3 backdrop-blur-[21px] bg-transparent transition-[border-color,box-shadow] outline-none",
@@ -117,7 +117,7 @@ const Input = React.forwardRef<HTMLInputElement, InputProps>(
       "disabled:pointer-events-none disabled:cursor-not-allowed",
       "file:text-foreground file:inline-flex file:h-7 file:border-0 file:bg-transparent file:text-sm file:font-medium",
       error && "text-destructive caret-destructive",
-      !error && "caret-guild-green-300",
+      !error && "caret-cyan-300",
     );
 
     return (

@@ -4,7 +4,6 @@ import {
   AvatarImage,
   AvatarFallback,
 } from "../components/shadcn/avatar";
-import { Branding } from "../components/Branding";
 
 const meta = {
   title: "movement-design-system/Avatar",
@@ -189,100 +188,3 @@ export const BorderVariantsWithSizes: Story = {
   ),
 };
 
-export const WithBrandingLogo: Story = {
-  render: () => (
-    <div className="flex items-center gap-4">
-      <Avatar className="size-8">
-        <Branding
-          theme="labs"
-          variant="moveus"
-          color="color"
-          className="size-full object-cover"
-        />
-        <AvatarFallback>ML</AvatarFallback>
-      </Avatar>
-      <Avatar>
-        <Branding
-          theme="labs"
-          variant="moveus"
-          color="color"
-          className="size-full object-cover"
-        />
-        <AvatarFallback>ML</AvatarFallback>
-      </Avatar>
-      <Avatar className="size-12">
-        <Branding
-          theme="labs"
-          variant="moveus"
-          color="color"
-          className="size-full object-cover"
-        />
-        <AvatarFallback>ML</AvatarFallback>
-      </Avatar>
-      <Avatar className="size-16">
-        <Branding
-          theme="labs"
-          variant="moveus"
-          color="color"
-          className="size-full object-cover"
-        />
-        <AvatarFallback>ML</AvatarFallback>
-      </Avatar>
-    </div>
-  ),
-};
-
-export const BrandingWithBorders: Story = {
-  render: () => (
-    <div className="flex items-center gap-6">
-      <div className="flex flex-col items-center gap-2">
-        <Avatar border="none" className="size-12">
-          <Branding
-            theme="labs"
-            variant="moveus"
-            color="color"
-            className="size-full object-cover"
-          />
-          <AvatarFallback>ML</AvatarFallback>
-        </Avatar>
-        <span className="text-muted-foreground text-xs">None</span>
-      </div>
-      <div className="flex flex-col items-center gap-2">
-        <Avatar border="glow" className="size-12">
-          <Branding
-            theme="labs"
-            variant="moveus"
-            color="color"
-            className="size-full object-cover"
-          />
-          <AvatarFallback>ML</AvatarFallback>
-        </Avatar>
-        <span className="text-muted-foreground text-xs">Glow</span>
-      </div>
-      <div className="flex flex-col items-center gap-2">
-        <Avatar border="guild" className="size-12">
-          <Branding
-            theme="labs"
-            variant="moveus"
-            color="color"
-            className="size-full object-cover"
-          />
-          <AvatarFallback>ML</AvatarFallback>
-        </Avatar>
-        <span className="text-muted-foreground text-xs">Guild</span>
-      </div>
-      <div className="flex flex-col items-center gap-2">
-        <Avatar border="byzantine" className="size-12">
-          <Branding
-            theme="labs"
-            variant="moveus"
-            color="color"
-            className="size-full object-cover"
-          />
-          <AvatarFallback>ML</AvatarFallback>
-        </Avatar>
-        <span className="text-muted-foreground text-xs">Byzantine</span>
-      </div>
-    </div>
-  ),
-};

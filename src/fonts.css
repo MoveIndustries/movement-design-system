@@ -1,331 +1,90 @@
-/* TWK Everett - Heading Font */
-@font-face {
-  font-family: 'TWK Everett';
-  src: url('./assets/fonts/TWKEverett-Hairline.otf') format('opentype');
-  font-weight: 100;
-  font-style: normal;
-  font-display: swap;
-}
+/* ============================================================================
+ * Movement brand fonts — ABC Oracle (Dinamo) + RecifeText (Bold Monkeys)
+ * ----------------------------------------------------------------------------
+ * Optional. Next.js apps self-host these via next/font/local and provide
+ * --font-display / --font-serif themselves, so they DON'T need this file.
+ * Storybook and non-Next consumers import it to get the real brand faces:
+ *   @import "@moveindustries/movement-design-system/fonts";
+ * ============================================================================ */
 
+/* ABC Oracle — primary sans / display */
 @font-face {
-  font-family: 'TWK Everett';
-  src: url('./assets/fonts/TWKEverett-HairlineItalic.otf') format('opentype');
-  font-weight: 100;
-  font-style: italic;
-  font-display: swap;
-}
-
-@font-face {
-  font-family: 'TWK Everett';
-  src: url('./assets/fonts/TWKEverett-Ultralight.otf') format('opentype');
-  font-weight: 150;
-  font-style: normal;
-  font-display: swap;
-}
-
-@font-face {
-  font-family: 'TWK Everett';
-  src: url('./assets/fonts/TWKEverett-UltralightItalic.otf') format('opentype');
-  font-weight: 150;
-  font-style: italic;
-  font-display: swap;
-}
-
-@font-face {
-  font-family: 'TWK Everett';
-  src: url('./assets/fonts/TWKEverett-Thin.otf') format('opentype');
-  font-weight: 200;
-  font-style: normal;
-  font-display: swap;
-}
-
-@font-face {
-  font-family: 'TWK Everett';
-  src: url('./assets/fonts/TWKEverett-ThinItalic.otf') format('opentype');
-  font-weight: 200;
-  font-style: italic;
-  font-display: swap;
-}
-
-@font-face {
-  font-family: 'TWK Everett';
-  src: url('./assets/fonts/TWKEverett-Light.otf') format('opentype');
-  font-weight: 300;
-  font-style: normal;
-  font-display: swap;
-}
-
-@font-face {
-  font-family: 'TWK Everett';
-  src: url('./assets/fonts/TWKEverett-LightItalic.otf') format('opentype');
-  font-weight: 300;
-  font-style: italic;
-  font-display: swap;
-}
-
-@font-face {
-  font-family: 'TWK Everett';
-  src: url('./assets/fonts/TWKEverett-Regular.otf') format('opentype');
+  font-family: "ABC Oracle";
+  src: url("./assets/fonts/oracle/ABCOracle-Regular.woff2") format("woff2");
   font-weight: 400;
   font-style: normal;
   font-display: swap;
 }
-
 @font-face {
-  font-family: 'TWK Everett';
-  src: url('./assets/fonts/TWKEverett-RegularItalic.otf') format('opentype');
+  font-family: "ABC Oracle";
+  src: url("./assets/fonts/oracle/ABCOracle-RegularItalic.woff2") format("woff2");
   font-weight: 400;
   font-style: italic;
   font-display: swap;
 }
-
 @font-face {
-  font-family: 'TWK Everett';
-  src: url('./assets/fonts/TWKEverett-Medium.otf') format('opentype');
+  font-family: "ABC Oracle";
+  src: url("./assets/fonts/oracle/ABCOracle-Medium.woff2") format("woff2");
   font-weight: 500;
   font-style: normal;
   font-display: swap;
 }
-
 @font-face {
-  font-family: 'TWK Everett';
-  src: url('./assets/fonts/TWKEverett-MediumItalic.otf') format('opentype');
+  font-family: "ABC Oracle";
+  src: url("./assets/fonts/oracle/ABCOracle-MediumItalic.woff2") format("woff2");
   font-weight: 500;
   font-style: italic;
   font-display: swap;
 }
-
 @font-face {
-  font-family: 'TWK Everett';
-  src: url('./assets/fonts/TWKEverett-Bold.otf') format('opentype');
+  font-family: "ABC Oracle";
+  src: url("./assets/fonts/oracle/ABCOracle-Bold.woff2") format("woff2");
   font-weight: 700;
   font-style: normal;
   font-display: swap;
 }
-
 @font-face {
-  font-family: 'TWK Everett';
-  src: url('./assets/fonts/TWKEverett-BoldItalic.otf') format('opentype');
+  font-family: "ABC Oracle";
+  src: url("./assets/fonts/oracle/ABCOracle-BoldItalic.woff2") format("woff2");
   font-weight: 700;
   font-style: italic;
   font-display: swap;
 }
 
+/* RecifeText — serif, emphasis */
 @font-face {
-  font-family: 'TWK Everett';
-  src: url('./assets/fonts/TWKEverett-Extrabold.otf') format('opentype');
-  font-weight: 800;
-  font-style: normal;
-  font-display: swap;
-}
-
-@font-face {
-  font-family: 'TWK Everett';
-  src: url('./assets/fonts/TWKEverett-ExtraboldItalic.otf') format('opentype');
-  font-weight: 800;
-  font-style: italic;
-  font-display: swap;
-}
-
-@font-face {
-  font-family: 'TWK Everett';
-  src: url('./assets/fonts/TWKEverett-Black.otf') format('opentype');
-  font-weight: 900;
-  font-style: normal;
-  font-display: swap;
-}
-
-@font-face {
-  font-family: 'TWK Everett';
-  src: url('./assets/fonts/TWKEverett-BlackItalic.otf') format('opentype');
-  font-weight: 900;
-  font-style: italic;
-  font-display: swap;
-}
-
-@font-face {
-  font-family: 'TWK Everett';
-  src: url('./assets/fonts/TWKEverett-Super.otf') format('opentype');
-  font-weight: 950;
-  font-style: normal;
-  font-display: swap;
-}
-
-@font-face {
-  font-family: 'TWK Everett';
-  src: url('./assets/fonts/TWKEverett-SuperItalic.otf') format('opentype');
-  font-weight: 950;
-  font-style: italic;
-  font-display: swap;
-}
-
-/* TWK Everett Mono - Monospace Font */
-@font-face {
-  font-family: 'TWK Everett Mono';
-  src: url('./assets/fonts/TWKEverettMono-Hairline.otf') format('opentype');
-  font-weight: 100;
-  font-style: normal;
-  font-display: swap;
-}
-
-@font-face {
-  font-family: 'TWK Everett Mono';
-  src: url('./assets/fonts/TWKEverettMono-HairlineItalic.otf') format('opentype');
-  font-weight: 100;
-  font-style: italic;
-  font-display: swap;
-}
-
-@font-face {
-  font-family: 'TWK Everett Mono';
-  src: url('./assets/fonts/TWKEverettMono-Ultralight.otf') format('opentype');
-  font-weight: 150;
-  font-style: normal;
-  font-display: swap;
-}
-
-@font-face {
-  font-family: 'TWK Everett Mono';
-  src: url('./assets/fonts/TWKEverettMono-UltralightItalic.otf') format('opentype');
-  font-weight: 150;
-  font-style: italic;
-  font-display: swap;
-}
-
-@font-face {
-  font-family: 'TWK Everett Mono';
-  src: url('./assets/fonts/TWKEverettMono-Thin.otf') format('opentype');
-  font-weight: 200;
-  font-style: normal;
-  font-display: swap;
-}
-
-@font-face {
-  font-family: 'TWK Everett Mono';
-  src: url('./assets/fonts/TWKEverettMono-ThinItalic.otf') format('opentype');
-  font-weight: 200;
-  font-style: italic;
-  font-display: swap;
-}
-
-@font-face {
-  font-family: 'TWK Everett Mono';
-  src: url('./assets/fonts/TWKEverettMono-Light.otf') format('opentype');
-  font-weight: 300;
-  font-style: normal;
-  font-display: swap;
-}
-
-@font-face {
-  font-family: 'TWK Everett Mono';
-  src: url('./assets/fonts/TWKEverettMono-LightItalic.otf') format('opentype');
-  font-weight: 300;
-  font-style: italic;
-  font-display: swap;
-}
-
-@font-face {
-  font-family: 'TWK Everett Mono';
-  src: url('./assets/fonts/TWKEverettMono-Regular.otf') format('opentype');
+  font-family: "RecifeText";
+  src: url("./assets/fonts/recife/RecifeTextWeb-Regular.woff2") format("woff2");
   font-weight: 400;
   font-style: normal;
   font-display: swap;
 }
-
 @font-face {
-  font-family: 'TWK Everett Mono';
-  src: url('./assets/fonts/TWKEverettMono-RegularItalic.otf') format('opentype');
+  font-family: "RecifeText";
+  src: url("./assets/fonts/recife/RecifeTextWeb-RegularItalic.woff2") format("woff2");
   font-weight: 400;
   font-style: italic;
   font-display: swap;
 }
-
 @font-face {
-  font-family: 'TWK Everett Mono';
-  src: url('./assets/fonts/TWKEverettMono-Medium.otf') format('opentype');
+  font-family: "RecifeText";
+  src: url("./assets/fonts/recife/RecifeTextWeb-Medium.woff2") format("woff2");
   font-weight: 500;
   font-style: normal;
   font-display: swap;
 }
-
 @font-face {
-  font-family: 'TWK Everett Mono';
-  src: url('./assets/fonts/TWKEverettMono-MediumItalic.otf') format('opentype');
-  font-weight: 500;
-  font-style: italic;
-  font-display: swap;
-}
-
-@font-face {
-  font-family: 'TWK Everett Mono';
-  src: url('./assets/fonts/TWKEverettMono-Bold.otf') format('opentype');
+  font-family: "RecifeText";
+  src: url("./assets/fonts/recife/RecifeTextWeb-Bold.woff2") format("woff2");
   font-weight: 700;
   font-style: normal;
   font-display: swap;
 }
 
-@font-face {
-  font-family: 'TWK Everett Mono';
-  src: url('./assets/fonts/TWKEverettMono-BoldItalic.otf') format('opentype');
-  font-weight: 700;
-  font-style: italic;
-  font-display: swap;
+/* Semantic font vars — only applied when this file is imported. Apps that
+ * self-host via next/font set these themselves and never load this file. */
+:root {
+  --font-display: "ABC Oracle", ui-sans-serif, system-ui, sans-serif;
+  --font-serif: "RecifeText", ui-serif, Georgia, serif;
+  --font-mono: "ABC Oracle", ui-monospace, monospace;
 }
-
-@font-face {
-  font-family: 'TWK Everett Mono';
-  src: url('./assets/fonts/TWKEverettMono-Extrabold.otf') format('opentype');
-  font-weight: 800;
-  font-style: normal;
-  font-display: swap;
-}
-
-@font-face {
-  font-family: 'TWK Everett Mono';
-  src: url('./assets/fonts/TWKEverettMono-ExtraboldItalic.otf') format('opentype');
-  font-weight: 800;
-  font-style: italic;
-  font-display: swap;
-}
-
-@font-face {
-  font-family: 'TWK Everett Mono';
-  src: url('./assets/fonts/TWKEverettMono-Black.otf') format('opentype');
-  font-weight: 900;
-  font-style: normal;
-  font-display: swap;
-}
-
-@font-face {
-  font-family: 'TWK Everett Mono';
-  src: url('./assets/fonts/TWKEverettMono-BlackItalic.otf') format('opentype');
-  font-weight: 900;
-  font-style: italic;
-  font-display: swap;
-}
-
-@font-face {
-  font-family: 'TWK Everett Mono';
-  src: url('./assets/fonts/TWKEverettMono-Super.otf') format('opentype');
-  font-weight: 950;
-  font-style: normal;
-  font-display: swap;
-}
-
-@font-face {
-  font-family: 'TWK Everett Mono';
-  src: url('./assets/fonts/TWKEverettMono-SuperItalic.otf') format('opentype');
-  font-weight: 950;
-  font-style: italic;
-  font-display: swap;
-}
-
-/* Neue Haas Unica Pro - Body Font */
-@font-face {
-  font-family: 'Neue Haas Unica Pro';
-  src: url('./assets/fonts/NeueHaasUnicaPro.otf') format('opentype');
-  font-weight: 400;
-  font-style: normal;
-  font-display: swap;
-}
-
