@@ -81,10 +81,14 @@
   font-display: swap;
 }
 
-/* Semantic font vars — only applied when this file is imported. Apps that
- * self-host via next/font set these themselves and never load this file. */
+/* Semantic font vars — only applied when this file is imported. These are the
+ * single source the design system's `.font-*` utilities resolve through (see
+ * the @theme block in theme.css). Apps that self-host via next/font set these
+ * themselves and never load this file. Only the two brand faces are defined;
+ * there is no brand monospace, so --font-mono is intentionally left unset and
+ * `.font-mono` falls back to the generic system monospace (a consuming app can
+ * set --font-mono itself if it wants a specific one). */
 :root {
   --font-display: "ABC Oracle", ui-sans-serif, system-ui, sans-serif;
   --font-serif: "RecifeText", ui-serif, Georgia, serif;
-  --font-mono: "ABC Oracle", ui-monospace, monospace;
 }
