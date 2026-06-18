@@ -4,6 +4,18 @@ All notable changes to this project will be documented in this file.
 
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/), and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [1.2.1] - 2026-06-17
+
+Unified footer release. Replaces the pre-rebrand `Footer` with the Bridge footer — the source-of-truth design — so Bridge, Staking, Explorer, and Faucet all render one consistent footer from a single source.
+
+### Changed
+
+- **Footer** — Rebuilt to match the Bridge footer: solid-black slab with a "Powered by Movement" monogram + wordmark (left), Explore / Builders / Resource link columns (right), a hairline divider, and a legal row with `Movement © {year}` + Terms/Privacy (left) and X / Discord / GitHub / Telegram / LinkedIn social icons (right). Now a single responsive component (stacks below the `md` breakpoint) instead of separate desktop/mobile trees. Framework-agnostic (plain `<a>`, inline-SVG icons) and self-contained: width/padding read `var(--container-max)` / `var(--container-padding-x)` with the Bridge reference values (`1728px` / `clamp(1rem, 5.8vw, 100px)`) as fallbacks, and typography reads `var(--font-display)`. Sensible defaults render the full Movement footer with no props.
+
+### Removed
+
+- **`DesktopFooter`, `MobileFooter`** exports and the `footerLinkVariants` / `footerHeaderVariants` / `socialIconVariants` style helpers — the footer is now one responsive component. The `FooterProps` shape changed (`showHeading` / `heading` removed; `legalLinks`, `brandHref`, `brandLabel` added). No consumer app passed footer props, so this is a drop-in `<Footer />` swap.
+
 ## [1.2.0] - 2026-06-15
 
 Rebrand release: aligns the design system with the cyan brand and ABC Oracle fonts already shipped across the consumer apps, and removes legacy components no app uses. Drop-in for all current consumers — none import a removed export (see migration note).
