@@ -137,7 +137,10 @@ export default defineConfig({
         "react-dom",
         /^@radix-ui\//,
         /^@phosphor-icons\//,
-        "lucide-react",
+        // lucide-react is intentionally NOT external: it's a stateless leaf
+        // icon lib, so we bundle the handful of icons we use (tree-shaken via
+        // its `sideEffects:false`). This makes the DS self-contained for icons
+        // — consumers never hit a lucide-react peer/version conflict.
         "sonner",
         "tailwindcss",
         "next-themes",
