@@ -4,6 +4,27 @@ All notable changes to this project will be documented in this file.
 
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/), and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [1.2.1] - 2026-06-17
+
+Unified footer release. Replaces the pre-rebrand `Footer` with the Bridge footer — the source-of-truth design — so Bridge, Staking, Explorer, and Faucet all render one consistent footer from a single source. Also repairs the brand-font wiring (the `font-*` utilities were partly broken) and removes ~4.8 MB of unused legacy font files from the package.
+
+### Changed
+
+- **Footer** — Rebuilt to match the Bridge footer: solid-black slab with a "Powered by Movement" monogram + wordmark (left), Explore / Builders / Resource link columns (right), a hairline divider, and a legal row with `Movement © {year}` + Terms/Privacy (left) and X / Discord / GitHub / Telegram / LinkedIn social icons (right). Now a single responsive component (stacks below the `md` breakpoint) instead of separate desktop/mobile trees. Framework-agnostic (plain `<a>`, inline-SVG icons) and self-contained: width/padding read `var(--container-max)` / `var(--container-padding-x)` with the Bridge reference values (`1728px` / `clamp(1rem, 5.8vw, 100px)`) as fallbacks, and typography reads `var(--font-display)`. Sensible defaults render the full Movement footer with no props.
+
+### Fixed
+
+- **Fonts** — Repaired the `font-*` token wiring so the brand faces actually render. `@theme` was missing `--font-display`, `--font-sans`, and `--font-serif`, so the `font-display` / `font-sans` classes used across components generated nothing and RecifeText was never reachable; `body` referenced an undefined `--font-family-body` and fell back to the browser default. `@theme` now defines `font-sans` / `font-display` / `font-heading` / `font-body` (→ `var(--font-display)` — ABC Oracle), `font-serif` (→ `var(--font-serif)` — RecifeText), and `font-mono` (→ generic system monospace; no longer mis-mapped to ABC Oracle, and deliberately not an imposed stack — consumers can set `--font-mono` if they want a specific one), and `body` reads `var(--font-display)`. Fixes apply to every consumer, not just Storybook.
+
+### Removed
+
+- **`DesktopFooter`, `MobileFooter`** exports and the `footerLinkVariants` / `footerHeaderVariants` / `socialIconVariants` style helpers — the footer is now one responsive component. The `FooterProps` shape changed (`showHeading` / `heading` removed; `legalLinks`, `brandHref`, `brandLabel` added). No consumer app passed footer props, so this is a drop-in `<Footer />` swap.
+- **Unused font files** — the 41 legacy `TWKEverett*` / `NeueHaasUnicaPro` `.otf` files (~4.8 MB) were still in `src/assets/fonts/` and copied into the published package, though no `@font-face` or component referenced them. Removed; the package now ships only the ABC Oracle + RecifeText `.woff2` files actually used.
+
+### Added
+
+- **Storybook — Theme/Fonts** — a Fonts section showcasing ABC Oracle (display/sans), RecifeText (serif), the monospace stack, their weights/italics, and the `font-*` utilities with what each resolves to. Stale "TWK Everett / Neue Haas Unica Pro" copy in the Typography stories updated to the real faces.
+
 ## [1.2.0] - 2026-06-15
 
 Rebrand release: aligns the design system with the cyan brand and ABC Oracle fonts already shipped across the consumer apps, and removes legacy components no app uses. Drop-in for all current consumers — none import a removed export (see migration note).

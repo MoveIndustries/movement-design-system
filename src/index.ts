@@ -7,19 +7,13 @@ export type { ThemeProviderProps } from "./components/theme";
 
 // Components
 export * from "./components/Icon";
-export {
-  Footer,
-  DesktopFooter,
-  MobileFooter,
-  footerLinkVariants,
-  footerHeaderVariants,
-  socialIconVariants,
-} from "./components/Footer";
+export { Footer } from "./components/Footer";
 export type {
   FooterProps,
   FooterLink,
   FooterColumn,
   SocialLink,
+  SocialPlatform,
 } from "./components/Footer";
 export { IconButton } from "./components/IconButton/IconButton";
 export { ProgressButton } from "./components/ProgressButton";

@@ -56,7 +56,7 @@ export const AllVariants: Story = {
       <div>
         <Typography variant="h1">Heading 1</Typography>
         <Typography variant="muted" className="mt-2">
-          Default heading style with TWK Everett font
+          Default heading style with the ABC Oracle font
         </Typography>
       </div>
 
@@ -97,7 +97,7 @@ export const AllVariants: Story = {
 
       <div>
         <Typography variant="p">
-          This is a paragraph of text using the Neue Haas Unica Pro font. It
+          This is a paragraph of text using the ABC Oracle font. It
           provides excellent readability for body content and maintains
           comfortable line height for extended reading.
         </Typography>
@@ -157,8 +157,8 @@ export const AllVariants: Story = {
 
       <div>
         <Typography variant="mono">
-          This text uses the TWK Everett Mono font, perfect for technical
-          content and data.
+          This text uses the monospace font, perfect for technical content and
+          data.
         </Typography>
       </div>
 
@@ -230,25 +230,27 @@ export const ArticleExample: Story = {
         <Typography variant="inlineCode" as="span">
           font-heading
         </Typography>{" "}
-        utility applies TWK Everett, which is perfect for creating impactful
+        utility applies ABC Oracle, which is perfect for creating impactful
         headlines and establishing visual hierarchy. Meanwhile,{" "}
         <Typography variant="inlineCode" as="span">
           font-body
         </Typography>{" "}
-        uses Neue Haas Unica Pro for comfortable, extended reading.
+        also uses ABC Oracle for comfortable, extended reading.
       </Typography>
 
       <Typography variant="h3">Code and Technical Content</Typography>
 
       <Typography variant="p" affects="removePMargin">
-        For technical documentation and code examples, we use TWK Everett Mono:
+        For technical documentation and code examples, we use a monospace
+        stack:
       </Typography>
 
       <Typography variant="code">
         const typography = {"{"}
-        {"\n  "}heading: "TWK Everett",
-        {"\n  "}body: "Neue Haas Unica Pro",
-        {"\n  "}mono: "TWK Everett Mono"
+        {"\n  "}heading: "ABC Oracle",
+        {"\n  "}body: "ABC Oracle",
+        {"\n  "}serif: "RecifeText",
+        {"\n  "}mono: "system monospace"
         {"\n"}
         {"}"};
       </Typography>

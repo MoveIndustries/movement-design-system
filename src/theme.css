@@ -252,13 +252,23 @@
   --opacity-9: 0.9;
   --opacity-10: 1; */
   
-  /* Font families — brand faces are provided by the consuming app via
-   * --font-display / --font-serif (ABC Oracle, RecifeText), self-hosted with
-   * next/font. The DS only references those semantic vars; it no longer ships
-   * TWK Everett / Neue Haas. Fallbacks cover standalone (e.g. Storybook). */
+  /* Font families. The brand faces are exposed as semantic vars set on :root:
+   * --font-display (ABC Oracle — sans + display) and --font-serif (RecifeText).
+   * There is no brand monospace, so --font-mono is left undefined and defers to
+   * the generic system monospace (or whatever a consumer sets). Consuming apps
+   * set the brand vars themselves
+   * (self-hosted via next/font); the optional `/fonts` entry sets them too for
+   * Storybook and non-Next consumers. Every utility below resolves through
+   * those vars, with standalone fallbacks so type degrades gracefully when no
+   * brand fonts are loaded. Because this is `@theme inline`, the tokens are NOT
+   * re-emitted to :root — they only generate the `.font-*` utilities — so the
+   * inner `var(--font-display)` always reads the :root value, never itself. */
+  --font-sans: var(--font-display, ui-sans-serif, system-ui, sans-serif);
+  --font-display: var(--font-display, ui-sans-serif, system-ui, sans-serif);
   --font-heading: var(--font-display, ui-sans-serif, system-ui, sans-serif);
   --font-body: var(--font-display, ui-sans-serif, system-ui, sans-serif);
-  --font-mono: var(--font-display, ui-monospace, monospace);
+  --font-serif: var(--font-serif, ui-serif, Georgia, serif);
+  --font-mono: var(--font-mono, ui-monospace, monospace);
   
   /* Container configuration */
   --container-center: true;
@@ -613,6 +623,6 @@
   }
   body {
     @apply bg-background text-foreground;
-    font-family: var(--font-family-body);
+    font-family: var(--font-display, ui-sans-serif, system-ui, sans-serif);
   }
 }
