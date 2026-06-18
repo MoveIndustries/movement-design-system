@@ -3,3 +3,7 @@
 @import "tailwindcss";
 @import "./theme.css";
 @import "./recipes.css";
+/* Self-contained footer styles (scoped, literal, own bundled font) — compiled
+ * into the published component-styles bundle so the footer renders identically
+ * in every app without depending on host Tailwind/theme/import-order. */
+@import "./components/Footer/footer.css";

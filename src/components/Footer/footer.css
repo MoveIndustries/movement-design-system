@@ -1,0 +1,214 @@
+/* =============================================================================
+ * Movement unified Footer — SELF-CONTAINED styles.
+ *
+ * The footer must render identically in every consuming app regardless of that
+ * app's Tailwind config, theme tokens, CSS-variable wiring, or stylesheet
+ * import order. To guarantee that, the footer does NOT use ambient Tailwind
+ * utility classes (which each app re-compiles with its own values and can
+ * clobber) and does NOT read host CSS variables (`--font-display`,
+ * `--container-max`, …). Everything below is:
+ *   - scoped under `.mvmt-footer` / `[data-slot="footer"]`
+ *   - expressed in literal values (px / rem / fixed breakpoints)
+ *   - bundled with its own brand font under a private family name
+ *
+ * Class-based selectors (`.mvmt-footer__x`) are 0,1,0 — equal to a Tailwind
+ * utility — but because the footer markup carries no utility classes there is
+ * nothing to tie-break against; combined with the private font + literal
+ * values, the result is immune to host CSS. This file is compiled into the
+ * published `component-styles` bundle, which every app already imports.
+ * ===========================================================================*/
+
+.mvmt-footer {
+  width: 100%;
+  margin-top: 32px;
+  background-color: #000;
+  color: #fff;
+  /* ABC Oracle — every Movement app self-hosts it and exposes it via
+   * --font-display; fall back to the DS's own "ABC Oracle" face (when the
+   * app imports the DS /fonts entry) and then a generic sans. Not bundled
+   * inline here on purpose: inlining the woff2 as base64 would add ~190KB to
+   * the shared CSS bundle for no visual gain (the font already resolves to
+   * Oracle on every app). */
+  font-family: var(--font-display, "ABC Oracle"), ui-sans-serif, system-ui,
+    sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+.mvmt-footer__inner {
+  margin-inline: auto;
+  max-width: 1728px;
+  padding-inline: clamp(1rem, 5.8vw, 100px);
+  padding-block: 56px;
+}
+
+/* Top row — wordmark + columns */
+.mvmt-footer__top {
+  display: flex;
+  flex-direction: column;
+  gap: 40px;
+}
+
+.mvmt-footer__brand {
+  display: inline-flex;
+  flex-shrink: 0;
+  align-items: center;
+  gap: 12px;
+  text-decoration: none;
+  color: inherit;
+  transition: opacity 0.2s ease;
+}
+.mvmt-footer__brand:hover {
+  opacity: 0.8;
+}
+
+.mvmt-footer__logo {
+  height: 36px;
+  width: 36px;
+  flex-shrink: 0;
+  color: #fff;
+}
+
+.mvmt-footer__wordmark {
+  font-size: 24px;
+  font-weight: 400;
+  line-height: 1;
+  letter-spacing: -0.042em;
+}
+
+.mvmt-footer__cols {
+  display: flex;
+  gap: 40px;
+}
+
+.mvmt-footer__col-title {
+  margin: 0 0 8px;
+  font-size: 14px;
+  font-weight: 700;
+  line-height: 1.35;
+  color: #fff;
+}
+
+.mvmt-footer__col-list {
+  display: flex;
+  flex-direction: column;
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+.mvmt-footer__link {
+  font-size: 14px;
+  line-height: 1.55;
+  color: rgba(255, 255, 255, 0.7);
+  text-decoration: none;
+  transition: color 0.2s ease;
+}
+.mvmt-footer__link:hover {
+  color: #fff;
+}
+
+.mvmt-footer__divider {
+  margin-top: 48px;
+  height: 1px;
+  width: 100%;
+  background-color: rgba(255, 255, 255, 0.12);
+}
+
+/* Legal row */
+.mvmt-footer__legal {
+  margin-top: 24px;
+  display: flex;
+  flex-direction: column-reverse;
+  align-items: flex-start;
+  gap: 16px;
+}
+
+.mvmt-footer__legal-links {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  column-gap: 24px;
+  row-gap: 8px;
+  font-size: 12px;
+}
+
+.mvmt-footer__copyright {
+  font-weight: 500;
+  color: #fff;
+}
+
+.mvmt-footer__legal-link {
+  font-weight: 500;
+  color: #b1b1b1;
+  text-decoration: none;
+  transition: color 0.2s ease;
+}
+.mvmt-footer__legal-link:hover {
+  color: #fff;
+}
+
+.mvmt-footer__social {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+}
+
+.mvmt-footer__social-link {
+  display: inline-flex;
+  color: rgba(255, 255, 255, 0.7);
+  transition: color 0.2s ease;
+}
+.mvmt-footer__social-link:hover {
+  color: #fff;
+}
+
+.mvmt-footer__icon {
+  height: 20px;
+  width: 20px;
+}
+.mvmt-footer__icon--x {
+  height: 18px;
+  width: 18px;
+}
+
+/* ---- Desktop (>= 768px) ---------------------------------------------------*/
+@media (min-width: 768px) {
+  .mvmt-footer {
+    margin-top: 48px;
+  }
+  .mvmt-footer__inner {
+    padding-block: 80px;
+  }
+  .mvmt-footer__top {
+    flex-direction: row;
+    align-items: flex-start;
+    justify-content: space-between;
+    gap: 64px;
+  }
+  .mvmt-footer__logo {
+    height: 44px;
+    width: 44px;
+  }
+  .mvmt-footer__wordmark {
+    font-size: 36px;
+  }
+  .mvmt-footer__cols {
+    gap: 48px;
+  }
+  .mvmt-footer__divider {
+    margin-top: 64px;
+  }
+  .mvmt-footer__legal {
+    margin-top: 32px;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+  }
+}
+
+@media (min-width: 1024px) {
+  .mvmt-footer__cols {
+    gap: 64px;
+  }
+}
