@@ -1,5 +1,15 @@
 /* Design system styles */
-/* Fonts are NOT bundled here to avoid bloat - import /fonts separately if needed */
+/* Brand @font-face rules (ABC Oracle + RecifeText) aren't @import-ed here on
+ * purpose: doing so makes Tailwind/Vite base64-inline every woff2 into this
+ * bundle (~400KB of eager font data). Instead the library build appends
+ * `brand-faces.css` to the emitted component-styles bundle with external
+ * url()s (see copyThemePlugin in vite.config.ts), so the DS still owns its
+ * faces but the woff2 stay external and download only when used. Storybook
+ * gets the faces via `.storybook/preview.tsx` importing `fonts.css`. */
 @import "tailwindcss";
 @import "./theme.css";
 @import "./recipes.css";
+/* Self-contained footer styles (scoped, literal, own bundled font) — compiled
+ * into the published component-styles bundle so the footer renders identically
+ * in every app without depending on host Tailwind/theme/import-order. */
+@import "./components/Footer/footer.css";

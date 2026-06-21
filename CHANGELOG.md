@@ -4,6 +4,17 @@ All notable changes to this project will be documented in this file.
 
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/), and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [1.2.2] - 2026-06-18
+
+Makes the unified footer truly self-contained and fixes a `lucide-react` install conflict. The 1.2.1 footer borrowed the host app's Tailwind utilities and CSS variables, so the same component rendered differently per app (and its desktop logo size got clobbered by the consuming app's own `.h-9`); this release scopes all footer styling inside the design system so it renders identically everywhere with no per-app workarounds.
+
+### Fixed
+
+- **Footer — self-contained styling.** All footer styling now lives in `footer.css` (compiled into the `component-styles` bundle) under scoped `.mvmt-footer*` classes with literal values and a fixed `768px` breakpoint. The footer no longer uses ambient Tailwind utility classes (`h-9` / `md:h-11` / `text-[24px]`) or reads host CSS variables (`--container-max` / `--container-padding-x` / `--font-display`) for layout, sizing, or typography, so it renders identically across Bridge, Staking, Explorer, and Faucet. Text uses the bundled `"ABC Oracle"` face directly (see below), and the footer's top margin was removed (it leaked the host page background above the black slab).
+- **Brand fonts bundled.** The ABC Oracle / RecifeText `@font-face` rules now ship in the `component-styles` bundle (external `url()`s, woff2 load on use), so components render the brand font wherever the DS CSS loads — instead of depending on each app to expose it via `--font-display`, which broke in apps that mis-scoped that variable. Font tokens and the `body` fallback now end with the literal brand face. New `brand-faces.css` is the shared `@font-face` source.
+- **WalletModal** — uses the standard `font-display` utility instead of ad-hoc `font-[family-name:var(--font-display,sans-serif)]` values.
+- **`lucide-react` peer conflict.** The peer range `^0.500.0` only allowed `0.500.x` (caret on a `0.x` version), so consumers on any newer `lucide-react` (e.g. `0.562.0`; latest is `1.21.0`) failed `npm install` with an ERESOLVE peer conflict. `lucide-react` is now bundled into the package (removed from `peerDependencies` and from the build's `external` list) — the icons used are tree-shaken in (`sideEffects: false`, ~1 KB added) and the package no longer emits a bare `lucide-react` import, so consumers never resolve or install it.
+
 ## [1.2.1] - 2026-06-17
 
 Unified footer release. Replaces the pre-rebrand `Footer` with the Bridge footer — the source-of-truth design — so Bridge, Staking, Explorer, and Faucet all render one consistent footer from a single source. Also repairs the brand-font wiring (the `font-*` utilities were partly broken) and removes ~4.8 MB of unused legacy font files from the package.

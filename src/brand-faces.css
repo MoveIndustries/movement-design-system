@@ -1,0 +1,88 @@
+/* ============================================================================
+ * Movement brand @font-face declarations — ABC Oracle + RecifeText.
+ * ----------------------------------------------------------------------------
+ * Single source of truth for the brand faces. Consumed two ways:
+ *   1. `fonts.css` @imports this (the standalone `/fonts` entry + Storybook).
+ *   2. The library build APPENDS this file to the published component-styles
+ *      bundle (dist/movement-design-system.css) so every consumer that imports
+ *      the bundle gets the real brand faces with no extra import — see
+ *      `copyThemePlugin` in vite.config.ts.
+ * The `url()`s stay external (never base64-inlined): the woff2 ship in the
+ * package under dist/assets/fonts/** and download only when a face is used.
+ * Paths are relative to dist/ root, where this file, fonts.css, and the
+ * component-styles bundle all live alongside ./assets/fonts/.
+ * ============================================================================ */
+
+/* ABC Oracle — primary sans / display */
+@font-face {
+  font-family: "ABC Oracle";
+  src: url("./assets/fonts/oracle/ABCOracle-Regular.woff2") format("woff2");
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
+@font-face {
+  font-family: "ABC Oracle";
+  src: url("./assets/fonts/oracle/ABCOracle-RegularItalic.woff2") format("woff2");
+  font-weight: 400;
+  font-style: italic;
+  font-display: swap;
+}
+@font-face {
+  font-family: "ABC Oracle";
+  src: url("./assets/fonts/oracle/ABCOracle-Medium.woff2") format("woff2");
+  font-weight: 500;
+  font-style: normal;
+  font-display: swap;
+}
+@font-face {
+  font-family: "ABC Oracle";
+  src: url("./assets/fonts/oracle/ABCOracle-MediumItalic.woff2") format("woff2");
+  font-weight: 500;
+  font-style: italic;
+  font-display: swap;
+}
+@font-face {
+  font-family: "ABC Oracle";
+  src: url("./assets/fonts/oracle/ABCOracle-Bold.woff2") format("woff2");
+  font-weight: 700;
+  font-style: normal;
+  font-display: swap;
+}
+@font-face {
+  font-family: "ABC Oracle";
+  src: url("./assets/fonts/oracle/ABCOracle-BoldItalic.woff2") format("woff2");
+  font-weight: 700;
+  font-style: italic;
+  font-display: swap;
+}
+
+/* RecifeText — serif, emphasis */
+@font-face {
+  font-family: "RecifeText";
+  src: url("./assets/fonts/recife/RecifeTextWeb-Regular.woff2") format("woff2");
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
+@font-face {
+  font-family: "RecifeText";
+  src: url("./assets/fonts/recife/RecifeTextWeb-RegularItalic.woff2") format("woff2");
+  font-weight: 400;
+  font-style: italic;
+  font-display: swap;
+}
+@font-face {
+  font-family: "RecifeText";
+  src: url("./assets/fonts/recife/RecifeTextWeb-Medium.woff2") format("woff2");
+  font-weight: 500;
+  font-style: normal;
+  font-display: swap;
+}
+@font-face {
+  font-family: "RecifeText";
+  src: url("./assets/fonts/recife/RecifeTextWeb-Bold.woff2") format("woff2");
+  font-weight: 700;
+  font-style: normal;
+  font-display: swap;
+}

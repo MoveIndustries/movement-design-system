@@ -39,7 +39,11 @@ function copyThemePlugin() {
           dest: "dist/recipes.css",
           name: "recipes.css",
         },
-        { src: "src/fonts.css", dest: "dist/fonts.css", name: "fonts.css" },
+        {
+          src: "src/brand-faces.css",
+          dest: "dist/brand-faces.css",
+          name: "brand-faces.css",
+        },
       ];
 
       filesToCopy.forEach(({ src, dest, name }) => {
@@ -54,6 +58,45 @@ function copyThemePlugin() {
           // Silently ignore copy failures (e.g., during Storybook builds)
         }
       });
+
+      // Ship dist/fonts.css with the @font-face inlined (not the nested @import
+      // src uses), so the /fonts entry resolves without a relative import.
+      try {
+        const facesPath = resolve(projectRoot, "src/brand-faces.css");
+        const fontsSrcPath = resolve(projectRoot, "src/fonts.css");
+        const fontsDest = resolve(projectRoot, "dist/fonts.css");
+        if (fs.existsSync(facesPath) && fs.existsSync(fontsSrcPath)) {
+          const faces = fs.readFileSync(facesPath, "utf8");
+          const fontsSrc = fs
+            .readFileSync(fontsSrcPath, "utf8")
+            .replace(/@import\s+["']\.\/brand-faces\.css["'];?[^\n]*\n?/g, "");
+          fs.writeFileSync(fontsDest, `${faces}\n${fontsSrc}`);
+          console.log("✓ Generated flat dist/fonts.css (inlined @font-face)");
+        }
+      } catch {
+        // Silently ignore (e.g., during Storybook builds)
+      }
+
+      // Append the brand @font-face to the bundle so consumers get the faces
+      // without a separate /fonts import. Appended raw (not @import-ed from
+      // index.css) to keep url()s external instead of base64-inlined.
+      try {
+        const facesPath = resolve(projectRoot, "src/brand-faces.css");
+        const bundlePath = resolve(
+          projectRoot,
+          "dist/movement-design-system.css",
+        );
+        if (fs.existsSync(facesPath) && fs.existsSync(bundlePath)) {
+          const faces = fs.readFileSync(facesPath, "utf8");
+          const bundle = fs.readFileSync(bundlePath, "utf8");
+          if (!bundle.includes("Movement brand @font-face")) {
+            fs.writeFileSync(bundlePath, `${bundle}\n${faces}`);
+            console.log("✓ Appended brand @font-face to component-styles bundle");
+          }
+        }
+      } catch {
+        // Silently ignore (e.g., during Storybook builds)
+      }
 
       // Copy brand font assets so dist/fonts.css url('./assets/fonts/...') resolves
       try {
@@ -137,7 +180,10 @@ export default defineConfig({
         "react-dom",
         /^@radix-ui\//,
         /^@phosphor-icons\//,
-        "lucide-react",
+        // lucide-react is intentionally NOT external: it's a stateless leaf
+        // icon lib, so we bundle the handful of icons we use (tree-shaken via
+        // its `sideEffects:false`). This makes the DS self-contained for icons
+        // — consumers never hit a lucide-react peer/version conflict.
         "sonner",
         "tailwindcss",
         "next-themes",
