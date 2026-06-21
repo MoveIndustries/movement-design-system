@@ -1,93 +1,25 @@
 /* ============================================================================
  * Movement brand fonts — ABC Oracle (Dinamo) + RecifeText (Bold Monkeys)
  * ----------------------------------------------------------------------------
- * Optional. Next.js apps self-host these via next/font/local and provide
- * --font-display / --font-serif themselves, so they DON'T need this file.
- * Storybook and non-Next consumers import it to get the real brand faces:
+ * The brand @font-face rules live in `brand-faces.css` (single source of
+ * truth) and are ALSO appended to the published component-styles bundle by the
+ * library build — so the design system always ships the real brand faces and
+ * components never depend on the host app registering the font.
+ *
+ * This file is the standalone `/fonts` entry: it pulls in the faces and sets
+ * the brand default vars on :root, for Storybook / non-Next consumers:
  *   @import "@moveindustries/movement-design-system/fonts";
+ * Next.js apps may still self-host via next/font/local and override
+ * --font-display / --font-serif; both resolve to the same Oracle face.
  * ============================================================================ */
 
-/* ABC Oracle — primary sans / display */
-@font-face {
-  font-family: "ABC Oracle";
-  src: url("./assets/fonts/oracle/ABCOracle-Regular.woff2") format("woff2");
-  font-weight: 400;
-  font-style: normal;
-  font-display: swap;
-}
-@font-face {
-  font-family: "ABC Oracle";
-  src: url("./assets/fonts/oracle/ABCOracle-RegularItalic.woff2") format("woff2");
-  font-weight: 400;
-  font-style: italic;
-  font-display: swap;
-}
-@font-face {
-  font-family: "ABC Oracle";
-  src: url("./assets/fonts/oracle/ABCOracle-Medium.woff2") format("woff2");
-  font-weight: 500;
-  font-style: normal;
-  font-display: swap;
-}
-@font-face {
-  font-family: "ABC Oracle";
-  src: url("./assets/fonts/oracle/ABCOracle-MediumItalic.woff2") format("woff2");
-  font-weight: 500;
-  font-style: italic;
-  font-display: swap;
-}
-@font-face {
-  font-family: "ABC Oracle";
-  src: url("./assets/fonts/oracle/ABCOracle-Bold.woff2") format("woff2");
-  font-weight: 700;
-  font-style: normal;
-  font-display: swap;
-}
-@font-face {
-  font-family: "ABC Oracle";
-  src: url("./assets/fonts/oracle/ABCOracle-BoldItalic.woff2") format("woff2");
-  font-weight: 700;
-  font-style: italic;
-  font-display: swap;
-}
+@import "./brand-faces.css";
 
-/* RecifeText — serif, emphasis */
-@font-face {
-  font-family: "RecifeText";
-  src: url("./assets/fonts/recife/RecifeTextWeb-Regular.woff2") format("woff2");
-  font-weight: 400;
-  font-style: normal;
-  font-display: swap;
-}
-@font-face {
-  font-family: "RecifeText";
-  src: url("./assets/fonts/recife/RecifeTextWeb-RegularItalic.woff2") format("woff2");
-  font-weight: 400;
-  font-style: italic;
-  font-display: swap;
-}
-@font-face {
-  font-family: "RecifeText";
-  src: url("./assets/fonts/recife/RecifeTextWeb-Medium.woff2") format("woff2");
-  font-weight: 500;
-  font-style: normal;
-  font-display: swap;
-}
-@font-face {
-  font-family: "RecifeText";
-  src: url("./assets/fonts/recife/RecifeTextWeb-Bold.woff2") format("woff2");
-  font-weight: 700;
-  font-style: normal;
-  font-display: swap;
-}
-
-/* Semantic font vars — only applied when this file is imported. These are the
- * single source the design system's `.font-*` utilities resolve through (see
- * the @theme block in theme.css). Apps that self-host via next/font set these
- * themselves and never load this file. Only the two brand faces are defined;
- * there is no brand monospace, so --font-mono is intentionally left unset and
- * `.font-mono` falls back to the generic system monospace (a consuming app can
- * set --font-mono itself if it wants a specific one). */
+/* Semantic font vars — the single source the design system's `.font-*`
+ * utilities resolve through (see the @theme block in theme.css). Only the two
+ * brand faces are defined; there is no brand monospace, so --font-mono is left
+ * unset and `.font-mono` falls back to the generic system monospace (a
+ * consuming app can set --font-mono itself if it wants a specific one). */
 :root {
   --font-display: "ABC Oracle", ui-sans-serif, system-ui, sans-serif;
   --font-serif: "RecifeText", ui-serif, Georgia, serif;

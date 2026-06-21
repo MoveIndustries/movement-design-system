@@ -20,17 +20,20 @@
 
 .mvmt-footer {
   width: 100%;
-  margin-top: 32px;
+  /* No top margin: a transparent margin would show the host page's background
+   * (black on one app, a cyan gradient on another), making the footer look
+   * different per site. The footer's own py (80px desktop) provides the top
+   * breathing room; the black slab hugs the content edge identically
+   * everywhere. */
   background-color: #000;
   color: #fff;
-  /* ABC Oracle — every Movement app self-hosts it and exposes it via
-   * --font-display; fall back to the DS's own "ABC Oracle" face (when the
-   * app imports the DS /fonts entry) and then a generic sans. Not bundled
-   * inline here on purpose: inlining the woff2 as base64 would add ~190KB to
-   * the shared CSS bundle for no visual gain (the font already resolves to
-   * Oracle on every app). */
-  font-family: var(--font-display, "ABC Oracle"), ui-sans-serif, system-ui,
-    sans-serif;
+  /* ABC Oracle, referenced by its literal family name. The DS bundle
+   * (index.css → fonts.css) registers the real "ABC Oracle" @font-face, so this
+   * resolves to the brand face wherever the design system's CSS is loaded — no
+   * dependency on the host app's --font-display wiring. Deliberately does NOT
+   * read --font-display: the footer is meant to render identically in every
+   * app, not adapt to each host. Generic sans only as a last-ditch fallback. */
+  font-family: "ABC Oracle", ui-sans-serif, system-ui, sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
@@ -174,9 +177,6 @@
 
 /* ---- Desktop (>= 768px) ---------------------------------------------------*/
 @media (min-width: 768px) {
-  .mvmt-footer {
-    margin-top: 48px;
-  }
   .mvmt-footer__inner {
     padding-block: 80px;
   }

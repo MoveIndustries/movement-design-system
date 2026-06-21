@@ -40,6 +40,11 @@ function copyThemePlugin() {
           name: "recipes.css",
         },
         { src: "src/fonts.css", dest: "dist/fonts.css", name: "fonts.css" },
+        {
+          src: "src/brand-faces.css",
+          dest: "dist/brand-faces.css",
+          name: "brand-faces.css",
+        },
       ];
 
       filesToCopy.forEach(({ src, dest, name }) => {
@@ -54,6 +59,31 @@ function copyThemePlugin() {
           // Silently ignore copy failures (e.g., during Storybook builds)
         }
       });
+
+      // Append the brand @font-face rules to the component-styles bundle so the
+      // DS ships its own faces (ABC Oracle / RecifeText) to every consumer that
+      // imports the bundle — no separate /fonts import required. The url()s stay
+      // EXTERNAL (./assets/fonts/**, resolved relative to the bundle at dist/
+      // root); we append the raw file instead of @import-ing it from index.css
+      // precisely because the @import path makes Tailwind/Vite base64-inline the
+      // woff2 (~400KB) into the bundle.
+      try {
+        const facesPath = resolve(projectRoot, "src/brand-faces.css");
+        const bundlePath = resolve(
+          projectRoot,
+          "dist/movement-design-system.css",
+        );
+        if (fs.existsSync(facesPath) && fs.existsSync(bundlePath)) {
+          const faces = fs.readFileSync(facesPath, "utf8");
+          const bundle = fs.readFileSync(bundlePath, "utf8");
+          if (!bundle.includes("Movement brand @font-face")) {
+            fs.writeFileSync(bundlePath, `${bundle}\n${faces}`);
+            console.log("✓ Appended brand @font-face to component-styles bundle");
+          }
+        }
+      } catch {
+        // Silently ignore (e.g., during Storybook builds)
+      }
 
       // Copy brand font assets so dist/fonts.css url('./assets/fonts/...') resolves
       try {

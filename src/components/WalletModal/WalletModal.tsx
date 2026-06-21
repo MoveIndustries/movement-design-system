@@ -159,11 +159,11 @@ function ConnectWalletContent({
       )}
     >
       <div className="flex w-full max-w-102 flex-col items-center gap-4 p-0">
-        <div className="w-full max-w-76 text-center font-[family-name:var(--font-display,sans-serif)] text-[32px] leading-[120%] font-normal tracking-[-0.03em] text-white">
+        <div className="w-full max-w-76 text-center font-display text-[32px] leading-[120%] font-normal tracking-[-0.03em] text-white">
           Connect Wallet
         </div>
         {description && (
-          <div className="w-full max-w-sm text-center font-[family-name:var(--font-display,sans-serif)] text-lg leading-[140%] font-normal text-white/48">
+          <div className="w-full max-w-sm text-center font-display text-lg leading-[140%] font-normal text-white/48">
             {description}
           </div>
         )}
@@ -179,7 +179,7 @@ function ConnectWalletContent({
         ) : (
           <>
             <div className="h-px w-92 bg-[rgba(255,255,255,0.48)]" />
-            <span className="font-[family-name:var(--font-display,sans-serif)] text-lg leading-[21.60px] font-medium text-[var(--color-cyan-300)]">
+            <span className="font-display text-lg leading-[21.60px] font-medium text-[var(--color-cyan-300)]">
               Don&apos;t have a wallet?
             </span>
             <button
@@ -332,11 +332,11 @@ function IconWalletCard({ wallet, onConnect }: WalletRowProps) {
               <div className="h-14 w-14">
                 <WalletItem.Icon className="h-full w-full object-contain" />
               </div>
-              <div className="flex h-4.5 w-20.5 items-center justify-center text-center font-[family-name:var(--font-display,sans-serif)] text-lg leading-[100%] font-normal tracking-[-0.06em] text-white">
+              <div className="flex h-4.5 w-20.5 items-center justify-center text-center font-display text-lg leading-[100%] font-normal tracking-[-0.06em] text-white">
                 {cleanWalletName(wallet.name)}
               </div>
               <div className="absolute top-[-1rem] left-1/2 z-9999 hidden h-5 w-28 -translate-x-1/2 items-center justify-center overflow-hidden rounded-t-lg bg-[var(--color-cyan-300)]/80 group-hover/wallet:inline-flex">
-                <span className="font-[family-name:var(--font-display,sans-serif)] text-xs leading-[14px] font-bold tracking-[0.40px] text-black uppercase">
+                <span className="font-display text-xs leading-[14px] font-bold tracking-[0.40px] text-black uppercase">
                   INSTALL
                 </span>
               </div>
@@ -356,7 +356,7 @@ function IconWalletCard({ wallet, onConnect }: WalletRowProps) {
               <div className="h-14 w-14">
                 <WalletItem.Icon className="h-full w-full object-contain" />
               </div>
-              <div className="flex h-4.5 w-20.5 items-center justify-center text-center font-[family-name:var(--font-display,sans-serif)] text-lg leading-[100%] font-normal tracking-[-0.06em] text-white">
+              <div className="flex h-4.5 w-20.5 items-center justify-center text-center font-display text-lg leading-[100%] font-normal tracking-[-0.06em] text-white">
                 {cleanWalletName(wallet.name)}
               </div>
             </>,
