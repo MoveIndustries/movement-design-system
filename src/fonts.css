@@ -2,7 +2,7 @@
  * Movement brand fonts — ABC Oracle (Dinamo) + RecifeText (Bold Monkeys)
  * ----------------------------------------------------------------------------
  * The brand @font-face rules live in `brand-faces.css` (single source of
- * truth) and are ALSO appended to the published component-styles bundle by the
+ * truth) and are also appended to the published component-styles bundle by the
  * library build — so the design system always ships the real brand faces and
  * components never depend on the host app registering the font.
  *

@@ -32,7 +32,7 @@
    * resolves to the brand face wherever the design system's CSS is loaded — no
    * dependency on the host app's --font-display wiring. Deliberately does NOT
    * read --font-display: the footer is meant to render identically in every
-   * app, not adapt to each host. Generic sans only as a last-ditch fallback. */
+   * app, not adapt to each host. Generic sans as a last-ditch fallback. */
   font-family: "ABC Oracle", ui-sans-serif, system-ui, sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;

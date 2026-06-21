@@ -1,7 +1,7 @@
 /* ============================================================================
  * Movement brand @font-face declarations — ABC Oracle + RecifeText.
  * ----------------------------------------------------------------------------
- * SINGLE SOURCE OF TRUTH for the brand faces. Consumed two ways:
+ * Single source of truth for the brand faces. Consumed two ways:
  *   1. `fonts.css` @imports this (the standalone `/fonts` entry + Storybook).
  *   2. The library build APPENDS this file to the published component-styles
  *      bundle (dist/movement-design-system.css) so every consumer that imports

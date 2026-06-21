@@ -1,8 +1,8 @@
 /* Design system styles */
-/* Brand @font-face rules (ABC Oracle + RecifeText) are NOT @import-ed here on
+/* Brand @font-face rules (ABC Oracle + RecifeText) aren't @import-ed here on
  * purpose: doing so makes Tailwind/Vite base64-inline every woff2 into this
- * bundle (~400KB of eager font data). Instead the library build APPENDS
- * `brand-faces.css` to the emitted component-styles bundle with EXTERNAL
+ * bundle (~400KB of eager font data). Instead the library build appends
+ * `brand-faces.css` to the emitted component-styles bundle with external
  * url()s (see copyThemePlugin in vite.config.ts), so the DS still owns its
  * faces but the woff2 stay external and download only when used. Storybook
  * gets the faces via `.storybook/preview.tsx` importing `fonts.css`. */

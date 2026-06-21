@@ -39,7 +39,6 @@ function copyThemePlugin() {
           dest: "dist/recipes.css",
           name: "recipes.css",
         },
-        { src: "src/fonts.css", dest: "dist/fonts.css", name: "fonts.css" },
         {
           src: "src/brand-faces.css",
           dest: "dist/brand-faces.css",
@@ -60,13 +59,27 @@ function copyThemePlugin() {
         }
       });
 
-      // Append the brand @font-face rules to the component-styles bundle so the
-      // DS ships its own faces (ABC Oracle / RecifeText) to every consumer that
-      // imports the bundle — no separate /fonts import required. The url()s stay
-      // EXTERNAL (./assets/fonts/**, resolved relative to the bundle at dist/
-      // root); we append the raw file instead of @import-ing it from index.css
-      // precisely because the @import path makes Tailwind/Vite base64-inline the
-      // woff2 (~400KB) into the bundle.
+      // Ship dist/fonts.css with the @font-face inlined (not the nested @import
+      // src uses), so the /fonts entry resolves without a relative import.
+      try {
+        const facesPath = resolve(projectRoot, "src/brand-faces.css");
+        const fontsSrcPath = resolve(projectRoot, "src/fonts.css");
+        const fontsDest = resolve(projectRoot, "dist/fonts.css");
+        if (fs.existsSync(facesPath) && fs.existsSync(fontsSrcPath)) {
+          const faces = fs.readFileSync(facesPath, "utf8");
+          const fontsSrc = fs
+            .readFileSync(fontsSrcPath, "utf8")
+            .replace(/@import\s+["']\.\/brand-faces\.css["'];?[^\n]*\n?/g, "");
+          fs.writeFileSync(fontsDest, `${faces}\n${fontsSrc}`);
+          console.log("✓ Generated flat dist/fonts.css (inlined @font-face)");
+        }
+      } catch {
+        // Silently ignore (e.g., during Storybook builds)
+      }
+
+      // Append the brand @font-face to the bundle so consumers get the faces
+      // without a separate /fonts import. Appended raw (not @import-ed from
+      // index.css) to keep url()s external instead of base64-inlined.
       try {
         const facesPath = resolve(projectRoot, "src/brand-faces.css");
         const bundlePath = resolve(
