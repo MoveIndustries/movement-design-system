@@ -81,6 +81,7 @@
     "**/*.css"
   ],
   "scripts": {
+    "preinstall": "npx only-allow pnpm",
     "dev": "vite",
     "build": "vite build",
     "build:types": "tsc --project tsconfig.build.json",
