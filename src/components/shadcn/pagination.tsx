@@ -110,7 +110,7 @@ function PaginationPrevious({
         size="icon"
         aria-label="Go to previous page"
         className={cn("size-6 opacity-50 hover:opacity-100 disabled:opacity-25", className)}
-        {...(props as any)}
+        {...(props as unknown as React.ComponentProps<typeof Button>)}
       >
         <ChevronLeftIcon className="size-4" />
       </Button>
@@ -143,7 +143,7 @@ function PaginationNext({
         size="icon"
         aria-label="Go to next page"
         className={cn("size-6 opacity-50 hover:opacity-100 disabled:opacity-25", className)}
-        {...(props as any)}
+        {...(props as unknown as React.ComponentProps<typeof Button>)}
       >
         <ChevronRightIcon className="size-4" />
       </Button>

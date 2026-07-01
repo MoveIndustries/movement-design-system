@@ -21,7 +21,6 @@ CVA variant functions for building custom styled components:
 
 React hooks for responsive design, tables, sidebars, and forms:
 
-- **[useIsMobile](/docs/hooks-useismobile--docs)** - Detect mobile viewport (< 768px)
 - **[useTableSort](/docs/hooks-usetablesort--docs)** - Access table sorting state
 - **[useSortableData](/docs/hooks-usesortabledata--docs)** - Sort data by table state
 - **[useFormField](/docs/hooks-useformfield--docs)** - Form field state (internal use)
@@ -56,7 +55,6 @@ import {
   badgeVariants,
   
   // Hooks
-  useIsMobile,
   useTableSort,
   
   // Utilities
@@ -79,7 +77,7 @@ import {
 1. **Use `cn` for all class merging** - It intelligently handles Tailwind class conflicts
 2. **Recipes are composable** - Combine them with your own classes using `cn`
 3. **Theme scales work with inline styles** - Perfect when you need JS values
-4. **Hooks handle SSR** - `useIsMobile` returns `undefined` initially to prevent hydration issues
+4. **Hooks handle SSR** - responsive hooks return `undefined` initially to prevent hydration issues
 5. **Types are exported** - Use `VariantProps<typeof buttonVariants>` for type safety
 
 ## 📊 Summary

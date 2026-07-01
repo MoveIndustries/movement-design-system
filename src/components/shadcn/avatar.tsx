@@ -12,8 +12,8 @@ const avatarVariants = cva(
       border: {
         none: "",
         glow: gradientBorderClasses.glow,
-        guild: "border-2 border-primary",
-        byzantine: "border-2 border-secondary",
+        primary: "border-2 border-primary",
+        secondary: "border-2 border-secondary",
       },
     },
     defaultVariants: {
@@ -65,5 +65,4 @@ function AvatarFallback({
   );
 }
 
-// eslint-disable-next-line react-refresh/only-export-components
 export { Avatar, AvatarImage, AvatarFallback, avatarVariants };

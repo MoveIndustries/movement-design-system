@@ -5,8 +5,7 @@ import React, { useEffect } from "react";
 import "../src/fonts.css";
 import "../src/index.css";
 import { createStorybookTheme } from "./theme";
-import { ThemeProvider } from "../src/components/theme/theme-provider";
-import { useTheme } from "next-themes";
+import { ThemeProvider, useTheme } from "next-themes";
 
 // Component to sync Storybook toolbar theme with next-themes
 function ThemeSync({ theme }: { theme: string }) {
@@ -26,7 +25,12 @@ const withThemeProvider: Decorator = (Story, context) => {
   const theme = context.globals.theme || "dark";
 
   return (
-    <ThemeProvider defaultTheme={theme} storageKey="storybook-theme">
+    <ThemeProvider
+      attribute="class"
+      enableSystem
+      defaultTheme={theme}
+      storageKey="storybook-theme"
+    >
       <ThemeSync theme={theme} />
       <div
         className="bg-background text-foreground"

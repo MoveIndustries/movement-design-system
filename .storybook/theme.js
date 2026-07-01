@@ -6,9 +6,8 @@ export const createStorybookTheme = () => {
     base: 'dark',
     
     // Brand colors
-    colorPrimary: '#ffd935', // moveus-marigold.400
-    colorSecondary: '#ffd935', // byzantine-blue.400
-    textColor: '#F0F0F0', // off white
+    colorPrimary: '#15EDEB', // Movement Cyan
+    colorSecondary: '#15EDEB', // Movement Cyan
 
     // UI
     appBg: '#111111', // dark.400 equivalent
@@ -17,9 +16,9 @@ export const createStorybookTheme = () => {
     appBorderRadius: 8,
 
     // Typography
-    fontBase: '"neue-haas-unica", sans-serif',
-    fontCode: '"TWK Everett Mono", monospace',
-    fontHeading: '"TWK Everett", sans-serif',
+    fontBase: '"ABC Oracle", sans-serif',
+    fontCode: 'ui-monospace, monospace',
+    fontHeading: '"ABC Oracle", sans-serif',
 
     // Text colors
     textColor: '#ffffff', // neutrals.white
@@ -27,7 +26,7 @@ export const createStorybookTheme = () => {
 
     // Toolbar default and active colors
     barTextColor: '#ffffff', // neutrals.white
-    barSelectedColor: '#ffd935', // moveus-marigold.400
+    barSelectedColor: '#15EDEB', // Movement Cyan
     barBg: '#1F1F21', // dark.400 equivalent
 
     // Form colors
@@ -43,7 +42,6 @@ export const createStorybookTheme = () => {
     // Brand
     brandTitle: 'Movement Design System',
     brandUrl: './',
-    brandImage: "../src/assets/logo.svg",
-    // brandImage: require('../src/assets/logo.svg'),
+    brandImage: "../src/assets/branding/Logo_Movement_Full_White.svg",
   });
 };
