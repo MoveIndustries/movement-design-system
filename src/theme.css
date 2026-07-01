@@ -11,12 +11,13 @@
    * This theme implements a layered token system based on Movement Design Tokens:
    * 
    * Layer 1: Primitives (spacing, sizing, radii, borders, shadows, opacity)
-   * Layer 2: Brand Color (Movement cyan — `--color-cyan-*` ramp) + neutrals
+   * Layer 2: Brand ramps (Movement Color Library — turquoise, black, sun,
+   *          opal, poppy, ocean, red; step 400 is the vivid anchor)
    * Layer 3: Semantic Base (bg, fg, border, feedback)
    * Layer 4: Component Tokens (accordion, badge, input, etc.)
    * Layer 5: Legacy Mappings (--primary, --secondary, etc.)
-   * 
-   * Source: movement-design-tokens-FULL/design-tokens/
+   *
+   * Source: Figma "Movement Color Library"
    * ============================================================================
    */
 
@@ -188,31 +189,96 @@
    * LAYER 2: BRAND COLOR TOKENS
    * ======================================================================== */
   
-  /* Brand color — Movement Cyan. Single source of truth for the brand ramp;
-   * `--color-cyan-300` (#15EDEB) is the primary Movement brand colour. */
-  --color-cyan-50: #E8FCFC;
-  --color-cyan-100: #C5F6F5;
-  --color-cyan-200: #8FF0EE;
-  --color-cyan-300: #15EDEB;
-  --color-cyan-400: #14D6D4;
-  --color-cyan-500: #12BCBA;
-  --color-cyan-600: #0FA09E;
-  --color-cyan-700: #0B7775;
-  --color-cyan-800: #084F4E;
-  --color-cyan-900: #042827;
+  /* Movement Color Library — source of truth for the brand ramps.
+   * Systematic families; step 400 is the vivid anchor (0 = lightest,
+   * 900 = darkest). Turquoise/400 (#15edeb) is the primary brand colour.
+   * Source: Figma "Movement Color Library". */
 
-  /* Neutral ramp — near-black grays for app surfaces. */
-  --color-neutrals-50: #d6d6d6;
-  --color-neutrals-100: #b0b0b0;
-  --color-neutrals-200: #8a8a8a;
-  --color-neutrals-300: #4d4d4d;
-  --color-neutrals-400: #1d1d1d;
-  --color-neutrals-500: #1d1d1d;
-  --color-neutrals-600: #141414;
-  --color-neutrals-700: #0f0f0f;
-  --color-neutrals-800: #0a0a0a;
-  --color-neutrals-900: #050505;
-  
+  /* Turquoise — brand */
+  --color-turquoise-0: #eef9f9;
+  --color-turquoise-50: #d9f3f3;
+  --color-turquoise-100: #bce7e7;
+  --color-turquoise-200: #aae6e5;
+  --color-turquoise-300: #79eee9;
+  --color-turquoise-400: #15edeb;
+  --color-turquoise-500: #27c1ba;
+  --color-turquoise-600: #1e9a99;
+  --color-turquoise-700: #2f7676;
+  --color-turquoise-800: #2a5151;
+  --color-turquoise-900: #2a3d3d;
+
+  /* Black — neutral ramp (0 = light grey → 900 = near-black) */
+  --color-black-0: #dddddd;
+  --color-black-50: #bcbcbc;
+  --color-black-100: #9c9c9c;
+  --color-black-200: #7d7d7d;
+  --color-black-300: #5f5f5f;
+  --color-black-400: #434343;
+  --color-black-500: #383838;
+  --color-black-600: #2e2e2e;
+  --color-black-700: #242424;
+  --color-black-800: #1d1d1d;
+  --color-black-900: #101010;
+
+  /* Sun — yellow */
+  --color-sun-0: #fafae4;
+  --color-sun-50: #faf5d3;
+  --color-sun-100: #f7efb6;
+  --color-sun-200: #efe481;
+  --color-sun-300: #f1e25f;
+  --color-sun-400: #f2dd22;
+  --color-sun-500: #ddc918;
+  --color-sun-600: #9e911c;
+  --color-sun-700: #716822;
+  --color-sun-800: #4e491e;
+  --color-sun-900: #393916;
+
+  /* Opal — green */
+  --color-opal-0: #eef9f4;
+  --color-opal-50: #e4f7f0;
+  --color-opal-100: #c6eede;
+  --color-opal-200: #a2e2c7;
+  --color-opal-300: #80e4bb;
+  --color-opal-400: #5bebb0;
+  --color-opal-500: #3ad696;
+  --color-opal-600: #34a577;
+  --color-opal-700: #327157;
+  --color-opal-800: #284539;
+  --color-opal-900: #181f1c;
+
+  /* Poppy — orange */
+  --color-poppy-0: #faf0e6;
+  --color-poppy-50: #f6e8d7;
+  --color-poppy-100: #f0d8c0;
+  --color-poppy-200: #e8c196;
+  --color-poppy-300: #f2b472;
+  --color-poppy-400: #ff9d34;
+  --color-poppy-500: #eb8e2a;
+  --color-poppy-600: #c57724;
+  --color-poppy-700: #a16523;
+  --color-poppy-800: #845520;
+  --color-poppy-900: #553712;
+
+  /* Ocean — blue */
+  --color-ocean-0: #e3edf6;
+  --color-ocean-50: #d6e5f4;
+  --color-ocean-100: #b1cfeb;
+  --color-ocean-200: #89b8e6;
+  --color-ocean-300: #56a0e8;
+  --color-ocean-400: #1581eb;
+  --color-ocean-500: #1771cb;
+  --color-ocean-600: #22629f;
+  --color-ocean-700: #224c76;
+  --color-ocean-800: #1a3651;
+  --color-ocean-900: #162738;
+
+  /* Red — utility / error (short ramp; 100 is the base) */
+  --color-red-0: #fde6e2;
+  --color-red-50: #faad9e;
+  --color-red-100: #f45434;
+  --color-red-200: #8e321f;
+  --color-red-300: #412620;
+
   /* Neutrals */
   --color-neutrals-white: #ffffff;
   --color-neutrals-black: #000000;
@@ -367,8 +433,8 @@
   
   /* Background semantic tokens */
   --semantic-bg-base: #ffffff;
-  --semantic-bg-alt-1: #f5f5f5;
-  --semantic-bg-alt-2: #ebebeb;
+  --semantic-bg-alt-1: hsl(0 0% 0% / 4%); /* black at 4% (no near-white neutral in the library) */
+  --semantic-bg-alt-2: hsl(0 0% 0% / 8%); /* black at 8% */
   
   /* Foreground semantic tokens */
   --semantic-fg-base: #000000;
@@ -380,14 +446,14 @@
   --semantic-border-strong: rgba(0, 0, 0, 0.24);
   
   /* Feedback semantic tokens */
-  --semantic-feedback-success-default: #16A34A;
-  --semantic-feedback-success-light: #DCFCE7;
-  --semantic-feedback-error-default: #D82C2D;
-  --semantic-feedback-error-light: #ffeaea;
-  --semantic-feedback-warning-default: #CA8A04;
-  --semantic-feedback-warning-light: #FEF9C3;
-  --semantic-feedback-info-default: #2563EB;
-  --semantic-feedback-info-light: #DBEAFE;
+  --semantic-feedback-success-default: var(--color-opal-600);
+  --semantic-feedback-success-light: var(--color-opal-50);
+  --semantic-feedback-error-default: var(--color-red-100);
+  --semantic-feedback-error-light: var(--color-red-0);
+  --semantic-feedback-warning-default: var(--color-sun-600);
+  --semantic-feedback-warning-light: var(--color-sun-50);
+  --semantic-feedback-info-default: var(--color-ocean-500);
+  --semantic-feedback-info-light: var(--color-ocean-50);
   
   /* Disabled state */
   --semantic-disabled-base: var(--color-neutrals-black-alpha-300);
@@ -440,49 +506,49 @@
   --popover: hsl(0 0% 100%); /* white - menu/dropdown bg */
   --popover-foreground: hsl(0 0% 0%); /* black - menu text */
   
-  /* Brand semantic colors (light theme) — Movement cyan #15EDEB */
-  --primary: hsl(179 84% 51%); /* cyan #15EDEB */
-  --primary-foreground: hsl(0 0% 10%); /* near-black - for cyan bg */
-  --secondary: hsl(0 0% 11%); /* near-black (royal blue retired) */
-  --secondary-foreground: hsl(0 0% 100%); /* white - on near-black */
-  --accent: hsl(176 64% 88%); /* cyan-soft #C9F6F3 - subtle bg */
-  --accent-foreground: hsl(0 0% 10%); /* near-black - on cyan-soft */
-  --destructive: hsl(0 72% 51%); /* red for destructive actions */
-  --destructive-foreground: hsl(0 0% 100%); /* white */
+  /* Brand semantic colors (light theme) — Movement Turquoise #15edeb */
+  --primary: var(--color-turquoise-400); /* #15edeb */
+  --primary-foreground: var(--color-black-900); /* near-black on turquoise */
+  --secondary: var(--color-black-800); /* #1d1d1d near-black */
+  --secondary-foreground: #ffffff; /* white on near-black */
+  --accent: var(--color-turquoise-100); /* #bce7e7 soft turquoise - subtle bg */
+  --accent-foreground: var(--color-black-900); /* near-black on soft turquoise */
+  --destructive: var(--color-red-100); /* #f45434 */
+  --destructive-foreground: #ffffff; /* white */
 
-  /* Feedback colors - functional (not brand) */
-  --info: hsl(217 91% 60%); /* #3B82F6 */
-  --info-foreground: hsl(0 0% 100%); /* white */
-  --success: hsl(158 64% 49%); /* #29CF96 */
-  --success-foreground: hsl(0 0% 10%); /* near-black */
-  --warning: hsl(48 95% 53%); /* #FACC15 */
-  --warning-foreground: hsl(0 0% 10%); /* near-black */
-  --error: hsl(0 72% 51%); /* red */
-  --error-foreground: hsl(0 0% 100%); /* white */
+  /* Feedback colors (light theme) — darker ramp steps for legibility on white */
+  --info: var(--color-ocean-500); /* #1771cb */
+  --info-foreground: #ffffff; /* white */
+  --success: var(--color-opal-600); /* #34a577 */
+  --success-foreground: #ffffff; /* white */
+  --warning: var(--color-sun-400); /* #f2dd22 */
+  --warning-foreground: var(--color-black-900); /* near-black on yellow */
+  --error: var(--color-red-100); /* #f45434 */
+  --error-foreground: #ffffff; /* white */
 
   /* Muted & UI elements */
-  --muted: hsl(0 0% 96%); /* light muted bg */
-  --muted-foreground: hsl(0 0% 40%); /* muted gray */
+  --muted: hsl(0 0% 0% / 4%); /* subtle surface = black at 4% (library has no near-white neutral) */
+  --muted-foreground: var(--color-black-300); /* #5f5f5f muted text */
   --border: hsl(0 0% 0% / 12%); /* rgba(0,0,0,0.12) */
   --input: hsl(0 0% 0% / 12%); /* rgba(0,0,0,0.12) */
-  --ring: hsl(179 84% 51%); /* cyan - focus ring */
+  --ring: var(--color-turquoise-400); /* turquoise focus ring */
 
-  /* Charts */
-  --chart-1: hsl(179 84% 51%); /* cyan */
-  --chart-2: hsl(0 0% 40%); /* neutral */
-  --chart-3: hsl(217 91% 60%); /* info blue */
-  --chart-4: hsl(158 64% 49%); /* success green */
-  --chart-5: hsl(48 95% 53%); /* warning yellow */
+  /* Charts — one vivid (400) step per family for multi-series data viz */
+  --chart-1: var(--color-turquoise-400);
+  --chart-2: var(--color-ocean-400);
+  --chart-3: var(--color-opal-400);
+  --chart-4: var(--color-poppy-400);
+  --chart-5: var(--color-sun-400);
 
   /* Sidebar */
-  --sidebar: hsl(0 0% 98%); /* light */
-  --sidebar-foreground: hsl(0 0% 0%); /* black */
-  --sidebar-primary: hsl(179 84% 51%); /* cyan */
-  --sidebar-primary-foreground: hsl(0 0% 0%); /* black */
-  --sidebar-accent: hsl(0 0% 96%); /* light gray */
-  --sidebar-accent-foreground: hsl(0 0% 0%); /* black */
+  --sidebar: #ffffff;
+  --sidebar-foreground: var(--color-black-900);
+  --sidebar-primary: var(--color-turquoise-400);
+  --sidebar-primary-foreground: var(--color-black-900);
+  --sidebar-accent: hsl(0 0% 0% / 4%); /* black at 4% */
+  --sidebar-accent-foreground: var(--color-black-900);
   --sidebar-border: hsl(0 0% 0% / 10%);
-  --sidebar-ring: hsl(179 84% 51%);
+  --sidebar-ring: var(--color-turquoise-400);
 }
 
 .dark {
@@ -492,8 +558,8 @@
   
   /* Background semantic tokens */
   --semantic-bg-base: #000000;
-  --semantic-bg-alt-1: #0a0a0a; /* ~4% white */
-  --semantic-bg-alt-2: #141414; /* ~8% white */
+  --semantic-bg-alt-1: hsl(0 0% 100% / 4%); /* white at 4% */
+  --semantic-bg-alt-2: hsl(0 0% 100% / 8%); /* white at 8% */
   
   /* Foreground semantic tokens */
   --semantic-fg-base: #ffffff;
@@ -505,14 +571,14 @@
   --semantic-border-strong: rgba(255, 255, 255, 0.24);
   
   /* Feedback semantic tokens (dark mode - brighter variants for visibility) */
-  --semantic-feedback-success-default: #29CF96;
-  --semantic-feedback-success-light: #0f3d2c;
-  --semantic-feedback-error-default: #ff4d4d;
-  --semantic-feedback-error-light: #3d1414;
-  --semantic-feedback-warning-default: #FACC15;
-  --semantic-feedback-warning-light: #3d3408;
-  --semantic-feedback-info-default: #3B82F6;
-  --semantic-feedback-info-light: #14213d;
+  --semantic-feedback-success-default: var(--color-opal-400);
+  --semantic-feedback-success-light: var(--color-opal-900);
+  --semantic-feedback-error-default: var(--color-red-100);
+  --semantic-feedback-error-light: var(--color-red-300);
+  --semantic-feedback-warning-default: var(--color-sun-400);
+  --semantic-feedback-warning-light: var(--color-sun-900);
+  --semantic-feedback-info-default: var(--color-ocean-400);
+  --semantic-feedback-info-light: var(--color-ocean-900);
   
   /* Disabled state */
   --semantic-disabled-base: rgba(255, 255, 255, 0.16);
@@ -524,54 +590,54 @@
   /* Dark mode backgrounds & foregrounds */
   --background: hsl(0 0% 0%); /* black */
   --foreground: hsl(0 0% 100%); /* white */
-  --card: hsl(0 0% 7%);
+  --card: var(--color-black-900); /* #101010 */
   --card-foreground: hsl(0 0% 100%);
-  --popover: hsl(0 0% 7%);
+  --popover: var(--color-black-900); /* #101010 */
   --popover-foreground: hsl(0 0% 100%);
   
   /* Brand semantic colors (dark mode) */
-  --primary: hsl(179 84% 51%); /* cyan.300 - brighter for dark mode */
-  --primary-foreground: hsl(0 0% 0%);
-  --secondary: hsl(0 0% 9%); /* near-black (royal blue retired) */
-  --secondary-foreground: hsl(0 0% 100%); /* white - on near-black */
-  --accent: hsl(180 40% 16%); /* dark cyan tint - subtle bg */
-  --accent-foreground: hsl(179 84% 51%); /* cyan - on dark tint */
-  --destructive: hsl(0 72% 60%); /* brighter red for dark mode */
-  --destructive-foreground: hsl(0 0% 100%);
+  --primary: var(--color-turquoise-400); /* #15edeb */
+  --primary-foreground: var(--color-black-900); /* near-black on turquoise */
+  --secondary: var(--color-black-800); /* #1d1d1d near-black */
+  --secondary-foreground: #ffffff; /* white on near-black */
+  --accent: var(--color-turquoise-800); /* #2a5151 dark turquoise tint - subtle bg */
+  --accent-foreground: var(--color-turquoise-400); /* turquoise on dark tint */
+  --destructive: var(--color-red-100); /* #f45434 */
+  --destructive-foreground: #ffffff;
 
-  /* Feedback colors (dark mode) - functional */
-  --info: hsl(217 91% 60%); /* #3B82F6 */
-  --info-foreground: hsl(0 0% 100%);
-  --success: hsl(158 64% 49%); /* #29CF96 */
-  --success-foreground: hsl(0 0% 10%);
-  --warning: hsl(48 95% 53%); /* #FACC15 */
-  --warning-foreground: hsl(0 0% 10%);
-  --error: hsl(0 72% 60%); /* brighter red */
-  --error-foreground: hsl(0 0% 100%);
-  
+  /* Feedback colors (dark mode) — brighter ramp steps for dark surfaces */
+  --info: var(--color-ocean-400); /* #1581eb */
+  --info-foreground: #ffffff;
+  --success: var(--color-opal-400); /* #5bebb0 */
+  --success-foreground: var(--color-black-900); /* near-black on bright green */
+  --warning: var(--color-sun-400); /* #f2dd22 */
+  --warning-foreground: var(--color-black-900); /* near-black on yellow */
+  --error: var(--color-red-100); /* #f45434 */
+  --error-foreground: #ffffff;
+
   /* Muted & UI elements (dark mode) */
-  --muted: hsl(0 0% 15%);
-  --muted-foreground: hsl(0 0% 64%);
+  --muted: var(--color-black-800); /* #1d1d1d */
+  --muted-foreground: var(--color-black-100); /* #9c9c9c */
   --border: hsl(0 0% 100% / 12%);
   --input: hsl(0 0% 100% / 12%);
-  --ring: hsl(179 84% 51%); /* cyan.300 */
-  
-  /* Charts (dark mode) */
-  --chart-1: hsl(179 84% 51%); /* cyan */
-  --chart-2: hsl(0 0% 64%); /* neutral */
-  --chart-3: hsl(217 91% 60%); /* info blue */
-  --chart-4: hsl(158 64% 49%); /* success green */
-  --chart-5: hsl(48 95% 53%); /* warning yellow */
-  
+  --ring: var(--color-turquoise-400);
+
+  /* Charts (dark mode) — vivid 400 step per family */
+  --chart-1: var(--color-turquoise-400);
+  --chart-2: var(--color-ocean-400);
+  --chart-3: var(--color-opal-400);
+  --chart-4: var(--color-poppy-400);
+  --chart-5: var(--color-sun-400);
+
   /* Sidebar (dark mode) */
-  --sidebar: hsl(0 0% 5%);
-  --sidebar-foreground: hsl(0 0% 100%);
-  --sidebar-primary: hsl(179 84% 51%); /* cyan.300 */
-  --sidebar-primary-foreground: hsl(0 0% 0%);
-  --sidebar-accent: hsl(0 0% 15%);
-  --sidebar-accent-foreground: hsl(0 0% 100%);
+  --sidebar: var(--color-black-900); /* #101010 */
+  --sidebar-foreground: #ffffff;
+  --sidebar-primary: var(--color-turquoise-400);
+  --sidebar-primary-foreground: var(--color-black-900);
+  --sidebar-accent: var(--color-black-800); /* #1d1d1d */
+  --sidebar-accent-foreground: #ffffff;
   --sidebar-border: hsl(0 0% 100% / 10%);
-  --sidebar-ring: hsl(179 84% 51%);
+  --sidebar-ring: var(--color-turquoise-400);
 }
 
 /* ============================================================================

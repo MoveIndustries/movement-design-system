@@ -23,7 +23,7 @@ const meta: Meta = {
       ),
       description: {
         component:
-          "Color palette and semantic tokens for the design system. All colors are available as Tailwind classes (e.g., `bg-cyan-300`) and CSS variables (e.g., `var(--primary)`).",
+          "Color palette and semantic tokens for the design system. All colors are available as Tailwind classes (e.g., `bg-turquoise-400`) and CSS variables (e.g., `var(--primary)`).",
       },
     },
   },
@@ -32,20 +32,35 @@ const meta: Meta = {
 export default meta;
 type Story = StoryObj;
 
-// Brand color palettes
+// Movement Color Library — systematic ramps; step 400 is the vivid anchor
+// (0 = lightest, 900 = darkest). Turquoise/400 (#15edeb) is the brand.
 const brandColors = {
-  // Movement Cyan — the single brand colour (`--color-cyan-*` ramp).
-  "Movement Cyan": {
-    50: "#E8FCFC",
-    100: "#C5F6F5",
-    200: "#8FF0EE",
-    300: "#15EDEB",
-    400: "#14D6D4",
-    500: "#12BCBA",
-    600: "#0FA09E",
-    700: "#0B7775",
-    800: "#084F4E",
-    900: "#042827",
+  Turquoise: {
+    0: "#eef9f9", 50: "#d9f3f3", 100: "#bce7e7", 200: "#aae6e5", 300: "#79eee9",
+    400: "#15edeb", 500: "#27c1ba", 600: "#1e9a99", 700: "#2f7676", 800: "#2a5151", 900: "#2a3d3d",
+  },
+  Black: {
+    0: "#dddddd", 50: "#bcbcbc", 100: "#9c9c9c", 200: "#7d7d7d", 300: "#5f5f5f",
+    400: "#434343", 500: "#383838", 600: "#2e2e2e", 700: "#242424", 800: "#1d1d1d", 900: "#101010",
+  },
+  Sun: {
+    0: "#fafae4", 50: "#faf5d3", 100: "#f7efb6", 200: "#efe481", 300: "#f1e25f",
+    400: "#f2dd22", 500: "#ddc918", 600: "#9e911c", 700: "#716822", 800: "#4e491e", 900: "#393916",
+  },
+  Opal: {
+    0: "#eef9f4", 50: "#e4f7f0", 100: "#c6eede", 200: "#a2e2c7", 300: "#80e4bb",
+    400: "#5bebb0", 500: "#3ad696", 600: "#34a577", 700: "#327157", 800: "#284539", 900: "#181f1c",
+  },
+  Poppy: {
+    0: "#faf0e6", 50: "#f6e8d7", 100: "#f0d8c0", 200: "#e8c196", 300: "#f2b472",
+    400: "#ff9d34", 500: "#eb8e2a", 600: "#c57724", 700: "#a16523", 800: "#845520", 900: "#553712",
+  },
+  Ocean: {
+    0: "#e3edf6", 50: "#d6e5f4", 100: "#b1cfeb", 200: "#89b8e6", 300: "#56a0e8",
+    400: "#1581eb", 500: "#1771cb", 600: "#22629f", 700: "#224c76", 800: "#1a3651", 900: "#162738",
+  },
+  Red: {
+    0: "#fde6e2", 50: "#faad9e", 100: "#f45434", 200: "#8e321f", 300: "#412620",
   },
 };
 
@@ -81,33 +96,33 @@ const neutralColors = {
 const semanticColors = [
   {
     name: "Primary",
-    description: "Movement Cyan - main brand colour for primary actions",
-    light: "hsl(179 84% 51%)",
-    dark: "hsl(179 84% 51%)",
+    description: "Turquoise 400 — brand colour for primary actions",
+    light: "#15edeb",
+    dark: "#15edeb",
     cssVar: "--primary",
     tailwindClass: "bg-primary",
   },
   {
     name: "Secondary",
-    description: "Near-black - secondary actions (royal blue retired)",
-    light: "hsl(0 0% 11%)",
-    dark: "hsl(0 0% 9%)",
+    description: "Black 800 — near-black for secondary actions",
+    light: "#1d1d1d",
+    dark: "#1d1d1d",
     cssVar: "--secondary",
     tailwindClass: "bg-secondary",
   },
   {
     name: "Accent",
-    description: "Cyan-soft - subtle highlighted backgrounds",
-    light: "hsl(176 64% 88%)",
-    dark: "hsl(180 40% 16%)",
+    description: "Soft turquoise — subtle highlighted backgrounds",
+    light: "#bce7e7",
+    dark: "#2a5151",
     cssVar: "--accent",
     tailwindClass: "bg-accent",
   },
   {
     name: "Destructive",
-    description: "Red - destructive/delete actions",
-    light: "hsl(0 72% 51%)",
-    dark: "hsl(0 72% 60%)",
+    description: "Red 100 — destructive/delete actions",
+    light: "#f45434",
+    dark: "#f45434",
     cssVar: "--destructive",
     tailwindClass: "bg-destructive",
   },
@@ -116,41 +131,41 @@ const semanticColors = [
 const feedbackColors = [
   {
     name: "Success",
-    description: "Positive feedback, successful operations",
-    light: "#16A34A",
-    dark: "#29CF96",
-    lightBg: "#DCFCE7",
-    darkBg: "#0f3d2c",
+    description: "Opal (green) — positive feedback, successful operations",
+    light: "#34a577",
+    dark: "#5bebb0",
+    lightBg: "#e4f7f0",
+    darkBg: "#181f1c",
     cssVar: "--semantic-feedback-success-default",
     tailwindClass: "bg-success",
   },
   {
     name: "Info",
-    description: "Informational messages",
-    light: "#2563EB",
-    dark: "#3B82F6",
-    lightBg: "#DBEAFE",
-    darkBg: "#14213d",
+    description: "Ocean (blue) — informational messages",
+    light: "#1771cb",
+    dark: "#1581eb",
+    lightBg: "#d6e5f4",
+    darkBg: "#162738",
     cssVar: "--semantic-feedback-info-default",
     tailwindClass: "bg-info",
   },
   {
     name: "Warning",
-    description: "Warning messages, cautionary states",
-    light: "#CA8A04",
-    dark: "#FACC15",
-    lightBg: "#FEF9C3",
-    darkBg: "#3d3408",
+    description: "Sun (yellow) — warning messages, cautionary states",
+    light: "#9e911c",
+    dark: "#f2dd22",
+    lightBg: "#faf5d3",
+    darkBg: "#393916",
     cssVar: "--semantic-feedback-warning-default",
     tailwindClass: "bg-warning",
   },
   {
     name: "Error",
-    description: "Error states and messages",
-    light: "#D82C2D", // From brand-colors.json feedback.error.default
-    dark: "#D82C2D",
-    lightBg: "#ffc2c2", // From brand-colors.json feedback.error.light
-    darkBg: "#ffc2c2",
+    description: "Red — error states and messages",
+    light: "#f45434",
+    dark: "#f45434",
+    lightBg: "#fde6e2",
+    darkBg: "#412620",
     cssVar: "--semantic-feedback-error-default",
     tailwindClass: "bg-error",
   },
@@ -197,7 +212,7 @@ export const BrandColors: Story = {
                 key={shade}
                 name={`${shade}`}
                 color={color}
-                showBorder={shade === "50"}
+                showBorder={shade === "0"}
               />
             ))}
           </div>
@@ -444,7 +459,7 @@ export const TokenReferenceChain: Story = {
                 Layer 1: Primitive
               </div>
               <div className="flex-1 p-3 bg-muted rounded font-mono text-sm">
-                #15EDEB (cyan.300)
+                #15EDEB (turquoise.400)
               </div>
             </div>
             <div className="flex items-center gap-4">
@@ -456,7 +471,7 @@ export const TokenReferenceChain: Story = {
                 Layer 2: Brand
               </div>
               <div className="flex-1 p-3 bg-muted rounded font-mono text-sm">
-                --color-cyan-300: #15EDEB
+                --color-turquoise-400: #15EDEB
               </div>
             </div>
             <div className="flex items-center gap-4">
@@ -468,7 +483,7 @@ export const TokenReferenceChain: Story = {
                 Layer 3: Semantic
               </div>
               <div className="flex-1 p-3 bg-muted rounded font-mono text-sm">
-                semantic.brand.primary.default → cyan.300
+                semantic.brand.primary.default → turquoise.400
               </div>
             </div>
             <div className="flex items-center gap-4">
@@ -668,10 +683,10 @@ export const UsageExamples: Story = {
         <div className="space-y-4">
           <h3 className="text-lg font-semibold">Badges</h3>
           <div className="flex flex-wrap gap-3">
-            <span className="px-3 py-1 bg-cyan-400 text-black rounded-full text-sm font-medium">
+            <span className="px-3 py-1 bg-turquoise-400 text-black rounded-full text-sm font-medium">
               Active
             </span>
-            <span className="px-3 py-1 bg-neutrals-400 text-white rounded-full text-sm font-medium">
+            <span className="px-3 py-1 bg-black-800 text-white rounded-full text-sm font-medium">
               New
             </span>
           </div>
@@ -681,13 +696,13 @@ export const UsageExamples: Story = {
         <div className="space-y-4">
           <h3 className="text-lg font-semibold">Cards with Brand Colors</h3>
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
-            <div className="p-6 bg-linear-to-br from-cyan-300 to-cyan-600 rounded-lg text-black">
-              <h4 className="font-bold text-lg mb-2">Cyan</h4>
+            <div className="p-6 bg-linear-to-br from-turquoise-400 to-turquoise-600 rounded-lg text-black">
+              <h4 className="font-bold text-lg mb-2">Turquoise</h4>
               <p className="text-sm opacity-90">
                 The Movement brand color — primary actions and accents
               </p>
             </div>
-            <div className="p-6 bg-linear-to-br from-neutrals-400 to-neutrals-600 rounded-lg text-white">
+            <div className="p-6 bg-linear-to-br from-black-700 to-black-900 rounded-lg text-white">
               <h4 className="font-bold text-lg mb-2">Neutral</h4>
               <p className="text-sm opacity-90">
                 Near-black grays for surfaces and secondary UI

@@ -34,7 +34,7 @@
   inset: 0;
   padding: 1px;
   border-radius: inherit;
-  background: linear-gradient(136deg, #15EDEB, #14D6D4);
+  background: linear-gradient(136deg, #15edeb, #27c1ba);
   -webkit-mask: linear-gradient(#000 0 0) content-box, linear-gradient(#000 0 0);
   -webkit-mask-composite: xor;
   mask: linear-gradient(#000 0 0) content-box, linear-gradient(#000 0 0);
@@ -52,7 +52,7 @@
   inset: 0;
   padding: 1px;
   border-radius: inherit;
-  background: #D82C2D;
+  background: #f45434;
   -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
   -webkit-mask-composite: xor;
   mask-composite: exclude;
@@ -97,12 +97,12 @@
  */
 
 .gradient-mint-cyan {
-  background: linear-gradient(130deg, #15EDEB 33.64%, #14D6D4 79.2%);
+  background: linear-gradient(130deg, #15edeb 33.64%, #27c1ba 79.2%);
 }
 
 .gradient-glass-overlay {
   background: linear-gradient(0deg, rgba(4, 5, 27, 0.20) 0%, rgba(4, 5, 27, 0.20) 100%), 
               linear-gradient(153deg, rgba(0, 0, 0, 0.80) 0%, rgba(0, 0, 0, 0.00) 100%), 
-              radial-gradient(100% 100% at 120.34% 112.85%, rgba(21, 237, 235, 0.40) 0%, rgba(0, 27, 133, 0.40) 100%);
+              radial-gradient(100% 100% at 120.34% 112.85%, rgba(21, 237, 235, 0.40) 0%, rgba(22, 39, 56, 0.40) 100%);
 }
 
