@@ -446,8 +446,8 @@
   
   /* Background semantic tokens */
   --semantic-bg-base: #ffffff;
-  --semantic-bg-alt-1: hsl(0 0% 0% / 4%); /* black at 4% (no near-white neutral in the library) */
-  --semantic-bg-alt-2: hsl(0 0% 0% / 8%); /* black at 8% */
+  --semantic-bg-alt-1: var(--color-sand-0); /* #f8f6f0 */
+  --semantic-bg-alt-2: var(--color-sand-50); /* #f1ede0 */
   
   /* Foreground semantic tokens */
   --semantic-fg-base: #000000;
@@ -540,7 +540,7 @@
   --error-foreground: #ffffff; /* white */
 
   /* Muted & UI elements */
-  --muted: hsl(0 0% 0% / 4%); /* subtle surface = black at 4% (library has no near-white neutral) */
+  --muted: var(--color-sand-0); /* #f8f6f0 subtle surface */
   --muted-foreground: var(--color-black-300); /* #5f5f5f muted text */
   --border: hsl(0 0% 0% / 12%); /* rgba(0,0,0,0.12) */
   --input: hsl(0 0% 0% / 12%); /* rgba(0,0,0,0.12) */
@@ -558,7 +558,7 @@
   --sidebar-foreground: var(--color-black-900);
   --sidebar-primary: var(--color-turquoise-400);
   --sidebar-primary-foreground: var(--color-black-900);
-  --sidebar-accent: hsl(0 0% 0% / 4%); /* black at 4% */
+  --sidebar-accent: var(--color-sand-0); /* #f8f6f0 */
   --sidebar-accent-foreground: var(--color-black-900);
   --sidebar-border: hsl(0 0% 0% / 10%);
   --sidebar-ring: var(--color-turquoise-400);
@@ -571,8 +571,8 @@
   
   /* Background semantic tokens */
   --semantic-bg-base: #000000;
-  --semantic-bg-alt-1: hsl(0 0% 100% / 4%); /* white at 4% */
-  --semantic-bg-alt-2: hsl(0 0% 100% / 8%); /* white at 8% */
+  --semantic-bg-alt-1: var(--color-black-900); /* #101010 */
+  --semantic-bg-alt-2: var(--color-black-800); /* #1d1d1d */
   
   /* Foreground semantic tokens */
   --semantic-fg-base: #ffffff;
@@ -629,7 +629,7 @@
   --error-foreground: #ffffff;
 
   /* Muted & UI elements (dark mode) */
-  --muted: var(--color-black-800); /* #1d1d1d */
+  --muted: var(--color-black-700); /* #242424 */
   --muted-foreground: var(--color-black-100); /* #9c9c9c */
   --border: hsl(0 0% 100% / 12%);
   --input: hsl(0 0% 100% / 12%);
@@ -647,7 +647,7 @@
   --sidebar-foreground: #ffffff;
   --sidebar-primary: var(--color-turquoise-400);
   --sidebar-primary-foreground: var(--color-black-900);
-  --sidebar-accent: var(--color-black-800); /* #1d1d1d */
+  --sidebar-accent: var(--color-black-700); /* #242424 */
   --sidebar-accent-foreground: #ffffff;
   --sidebar-border: hsl(0 0% 100% / 10%);
   --sidebar-ring: var(--color-turquoise-400);
