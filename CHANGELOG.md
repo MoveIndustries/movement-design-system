@@ -4,6 +4,12 @@ All notable changes to this project will be documented in this file.
 
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/), and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [1.2.3] - 2026-07-06
+
+### Changed
+
+- **Footer** — The default third link column is now titled "Resources" (was "Resource") and gains two new links, matching the Movement Network website footer: **Brand Kit** (`https://www.movementnetwork.xyz/brand-kit`) and **Careers** (`https://www.movementnetwork.xyz/careers`). Apps passing custom `columns` are unaffected.
+
 ## [1.2.2] - 2026-06-18
 
 Makes the unified footer truly self-contained and fixes a `lucide-react` install conflict. The 1.2.1 footer borrowed the host app's Tailwind utilities and CSS variables, so the same component rendered differently per app (and its desktop logo size got clobbered by the consuming app's own `.h-9`); this release scopes all footer styling inside the design system so it renders identically everywhere with no per-app workarounds.
