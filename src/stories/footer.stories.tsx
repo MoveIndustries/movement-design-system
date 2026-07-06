@@ -60,7 +60,7 @@ export const CustomColumns: Story = {
         ],
       },
       {
-        title: "Resource",
+        title: "Resources",
         links: [
           { label: "Guides & FAQ", href: "#" },
           { label: "Insights", href: "#" },

@@ -5,7 +5,7 @@ import { cn } from "../../lib/utils";
  * Footer — the unified Movement footer shared across all Movement Network
  * apps (Bridge, Staking, Explorer, Faucet). Solid-black slab:
  *   - "Powered by Movement" wordmark + monogram (left)
- *   - Three short link columns — Explore / Builders / Resource (right)
+ *   - Three short link columns — Explore / Builders / Resources (right)
  *   - Hairline divider
  *   - Legal row: copyright + Terms/Privacy (left), X / Discord / GitHub /
  *     Telegram / LinkedIn social icons (right)
@@ -58,7 +58,7 @@ export interface SocialLink {
 export interface FooterProps extends React.HTMLAttributes<HTMLElement> {
   /**
    * Navigation columns rendered on the right of the top row.
-   * @default Explore / Builders / Resource
+   * @default Explore / Builders / Resources
    */
   columns?: FooterColumn[];
 
@@ -116,10 +116,12 @@ const defaultColumns: FooterColumn[] = [
     ],
   },
   {
-    title: "Resource",
+    title: "Resources",
     links: [
       { label: "Guides & FAQ", href: `${NETWORK_BASE}/guides`, external: true },
       { label: "Insights", href: `${NETWORK_BASE}/blog`, external: true },
+      { label: "Brand Kit", href: `${NETWORK_BASE}/brand-kit`, external: true },
+      { label: "Careers", href: `${NETWORK_BASE}/careers`, external: true },
     ],
   },
 ];
