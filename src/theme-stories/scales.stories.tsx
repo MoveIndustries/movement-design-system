@@ -45,7 +45,7 @@ export const Radii: Story = {
       {Object.entries(radii).map(([name, radius]) => (
         <div
           key={name}
-          className="bg-cyan-400 flex h-[120px] w-[120px] items-center justify-center font-medium text-black"
+          className="bg-turquoise-400 flex h-[120px] w-[120px] items-center justify-center font-medium text-black"
           style={{ borderRadius: radius.value }}
         >
           {name}
@@ -62,7 +62,7 @@ export const BorderWidths: Story = {
       {Object.entries(borderWidths).map(([name, borderWidth]) => (
         <div
           key={name}
-          className="bg-background text-foreground border-cyan-400 flex h-[120px] w-[120px] items-center justify-center font-medium"
+          className="bg-background text-foreground border-turquoise-400 flex h-[120px] w-[120px] items-center justify-center font-medium"
           style={{ borderWidth: borderWidth.value, borderStyle: "solid" }}
         >
           {name}
@@ -89,7 +89,7 @@ export const Spacing: Story = {
           <span className="text-sm">{name}</span>
           <span className="text-sm">{spacingValue.value}</span>
           <div
-            className="bg-cyan-400 flex h-8 items-center justify-center text-xs text-black"
+            className="bg-turquoise-400 flex h-8 items-center justify-center text-xs text-black"
             style={{ width: spacingValue.value }}
           />
         </div>
@@ -163,7 +163,7 @@ export const ZIndex: Story = {
       {Object.entries(zIndex).map(([name, zIndexValue]) => (
         <div
           key={name}
-          className="bg-cyan-400 flex h-[120px] w-[120px] items-center justify-center rounded-full p-2 text-center font-medium text-black"
+          className="bg-turquoise-400 flex h-[120px] w-[120px] items-center justify-center rounded-full p-2 text-center font-medium text-black"
           style={{ zIndex: zIndexValue.value }}
         >
           <div>

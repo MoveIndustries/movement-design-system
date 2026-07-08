@@ -1,9 +1,9 @@
 // Styles
 import "./index.css";
 
-// Theme
-export { ThemeProvider } from "./components/theme";
-export type { ThemeProviderProps } from "./components/theme";
+// Brand
+export { Logo, LogoMark, Wordmark } from "./components/Logo";
+export type { LogoProps } from "./components/Logo";
 
 // Components
 export * from "./components/Icon";
@@ -33,15 +33,6 @@ export {
   avatarVariants,
 } from "./components/shadcn/avatar";
 export { Badge, badgeVariants } from "./components/shadcn/badge";
-export {
-  Breadcrumb,
-  BreadcrumbEllipsis,
-  BreadcrumbItem,
-  BreadcrumbLink,
-  BreadcrumbList,
-  BreadcrumbPage,
-  BreadcrumbSeparator,
-} from "./components/shadcn/breadcrumb";
 export { Button, buttonVariants } from "./components/shadcn/button";
 export {
   Card,
@@ -132,7 +123,6 @@ export type {
   CreateToastArgs,
   TypedToastArgs,
 } from "./components/shadcn/sonner";
-export { Spinner } from "./components/shadcn/spinner";
 export type { ToastVariant } from "./components/shadcn/toast-types";
 export { toastVariants } from "./components/shadcn/toast-types";
 export { GlobalToaster, toast as movementToast } from "./lib/global-toast";
@@ -174,9 +164,6 @@ export {
 // Utilities
 export { cn } from "./lib/utils";
 export { gradientBorderClasses } from "./lib/border-styles";
-
-// Hooks
-export { useIsMobile } from "./hooks/use-mobile";
 
 // Re-export useful types
 export type { VariantProps } from "class-variance-authority";

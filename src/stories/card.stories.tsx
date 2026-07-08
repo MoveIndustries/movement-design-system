@@ -280,7 +280,7 @@ export const GridLayout: Story = {
                 <div className="space-y-2">
                   <div className="flex justify-between text-sm">
                     <span className="text-muted-foreground">APY</span>
-                    <span className="font-mono font-bold text-cyan-300">
+                    <span className="font-mono font-bold text-turquoise-400">
                       12.5%
                     </span>
                   </div>
@@ -370,13 +370,13 @@ export const GridLayout: Story = {
                 <div className="space-y-2">
                   <div className="flex justify-between text-sm">
                     <span className="text-muted-foreground">Total Value</span>
-                    <span className="font-mono font-bold text-cyan-300">
+                    <span className="font-mono font-bold text-turquoise-400">
                       $12,345.67
                     </span>
                   </div>
                   <div className="flex justify-between text-sm">
                     <span className="text-muted-foreground">24h Change</span>
-                    <span className="font-mono text-cyan-300">+5.2%</span>
+                    <span className="font-mono text-turquoise-400">+5.2%</span>
                   </div>
                 </div>
               </CardContent>
@@ -433,7 +433,7 @@ export const GridLayoutDots: Story = {
                 <div className="space-y-2">
                   <div className="flex justify-between text-sm">
                     <span className="text-muted-foreground">APY</span>
-                    <span className="font-mono font-bold text-cyan-300">
+                    <span className="font-mono font-bold text-turquoise-400">
                       12.5%
                     </span>
                   </div>
@@ -523,13 +523,13 @@ export const GridLayoutDots: Story = {
                 <div className="space-y-2">
                   <div className="flex justify-between text-sm">
                     <span className="text-muted-foreground">Total Value</span>
-                    <span className="font-mono font-bold text-cyan-300">
+                    <span className="font-mono font-bold text-turquoise-400">
                       $12,345.67
                     </span>
                   </div>
                   <div className="flex justify-between text-sm">
                     <span className="text-muted-foreground">24h Change</span>
-                    <span className="font-mono text-cyan-300">+5.2%</span>
+                    <span className="font-mono text-turquoise-400">+5.2%</span>
                   </div>
                 </div>
               </CardContent>

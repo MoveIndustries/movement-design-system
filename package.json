@@ -90,7 +90,10 @@
     "storybook": "storybook dev -p 6006",
     "build-storybook": "storybook build",
     "prepublishOnly": "npm run build:lib",
-    "prepare": "pnpm run build"
+    "prepare": "pnpm run build",
+    "changeset": "changeset",
+    "version-packages": "changeset version",
+    "publish-packages": "changeset version && changeset publish"
   },
   "peerDependencies": {
     "@phosphor-icons/react": "^2.0.0",
@@ -139,6 +142,7 @@
     "vaul": "^1.1.2"
   },
   "devDependencies": {
+    "@changesets/cli": "^2.29.7",
     "@moveindustries/wallet-adapter-react": "^7.4.2",
     "@hookform/resolvers": "^5.2.2",
     "@phosphor-icons/react": "^2.1.10",

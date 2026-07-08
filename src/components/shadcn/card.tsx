@@ -68,7 +68,6 @@ function Card({ className, variant, children, ...props }: CardProps) {
       )}
       {/* Inner wrapper: controls spacing between card sections (Header/Content/Footer) */}
       {children}
-      {/* <div className={cn()}>{children}</div> */}
     </div>
   );
 }

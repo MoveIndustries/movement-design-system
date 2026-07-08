@@ -11,27 +11,9 @@ import {
   DropdownMenuRadioItem,
   DropdownMenuShortcut,
   DropdownMenuGroup,
-  DropdownMenuSub,
-  DropdownMenuSubContent,
-  DropdownMenuSubTrigger,
 } from "../components/shadcn/dropdown-menu";
 import { Button } from "../components/shadcn/button";
-import {
-  Cloud,
-  CreditCard,
-  Github,
-  Keyboard,
-  LifeBuoy,
-  LogOut,
-  Mail,
-  MessageSquare,
-  Plus,
-  PlusCircle,
-  Settings,
-  User,
-  UserPlus,
-  Users,
-} from "lucide-react";
+import { CreditCard, Keyboard, LogOut, Settings, User } from "lucide-react";
 
 const meta = {
   title: "shadcn/DropdownMenu",

@@ -600,7 +600,7 @@ export const IridescentComparison: Story = {
             </p>
           )}
           {value.length >= 3 && (
-            <p className="text-cyan-300 text-sm">✓ Valid input</p>
+            <p className="text-turquoise-400 text-sm">✓ Valid input</p>
           )}
         </div>
       </div>
