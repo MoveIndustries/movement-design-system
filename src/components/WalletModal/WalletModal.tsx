@@ -26,7 +26,7 @@ import {
   DialogDescription,
 } from "@/components/shadcn/dialog";
 import { cn } from "@/lib/utils";
-import { CaretDownIcon } from "@phosphor-icons/react";
+import { CaretDownIcon, KeyIcon } from "@phosphor-icons/react";
 import { NightlyIcon } from "@/components/Icon";
 
 const nightlyWallet: AdapterNotDetectedWallet = {
@@ -97,7 +97,7 @@ export interface ConnectWalletDialogProps extends WalletSortingOptions {
    * `@moveindustries/wallet-adapter-keyless`'s passkey adapter.
    */
   passkeyWalletNames?: { signIn?: string; create?: string };
-  /** Label for the collapsed passkey row. Defaults to "Continue with a passkey". */
+  /** Label for the collapsed passkey row. Defaults to "Continue with passkey". */
   passkeyLabel?: string;
 }
 
@@ -144,7 +144,7 @@ function ConnectWalletContent({
   description = "Securely connect your wallet to the Movement Network.",
   keylessWalletName = "Sign in with Google",
   passkeyWalletNames = DEFAULT_PASSKEY_NAMES,
-  passkeyLabel = "Continue with a passkey",
+  passkeyLabel = "Continue with passkey",
   ...walletSortingOptions
 }: ConnectWalletContentProps) {
   const { wallets } = useWallet();
@@ -412,14 +412,23 @@ const featuredButtonClass = cn(
   "focus-visible:ring-2 focus-visible:ring-[var(--color-cyan-300)] focus-visible:outline-none",
 );
 
-/** Full-width pill that connects a single "featured" wallet (keyless/passkey). */
-function FeaturedWalletButton({ wallet, onConnect }: WalletRowProps) {
+/** Full-width pill that connects a single "featured" wallet (keyless/passkey).
+ *  Pass `icon` to override the wallet's registered icon (e.g. the passkey
+ *  entries whose registered glyph is a `currentColor` SVG that doesn't render
+ *  through <img>). */
+function FeaturedWalletButton({
+  wallet,
+  onConnect,
+  icon,
+}: WalletRowProps & { icon?: React.ReactNode }) {
   return (
     <WalletItem wallet={wallet} onConnect={onConnect}>
       <WalletItem.ConnectButton asChild>
         <button className={featuredButtonClass}>
-          <div className="h-6 w-6 shrink-0">
-            <WalletItem.Icon className="h-full w-full object-contain" />
+          <div className="flex h-6 w-6 shrink-0 items-center justify-center">
+            {icon ?? (
+              <WalletItem.Icon className="h-full w-full object-contain" />
+            )}
           </div>
           {wallet.name}
         </button>
@@ -445,8 +454,9 @@ function PasskeyGroup({
   onConnect?: () => void;
 }) {
   const [open, setOpen] = useState(false);
-  const iconWallet = signInWallet ?? createWallet;
-  if (!iconWallet) return null;
+  if (!signInWallet && !createWallet) return null;
+
+  const keyIcon = <KeyIcon size={22} weight="bold" />;
 
   return (
     <div className="flex w-full flex-col gap-3">
@@ -456,12 +466,8 @@ function PasskeyGroup({
         aria-expanded={open}
         className={featuredButtonClass}
       >
-        <div className="h-6 w-6 shrink-0">
-          <img
-            src={iconWallet.icon}
-            alt=""
-            className="h-full w-full object-contain"
-          />
+        <div className="flex h-6 w-6 shrink-0 items-center justify-center">
+          {keyIcon}
         </div>
         {label}
         <CaretDownIcon
@@ -476,10 +482,18 @@ function PasskeyGroup({
       {open && (
         <div className="animate-in fade-in flex w-full flex-col gap-3 duration-200">
           {signInWallet && (
-            <FeaturedWalletButton wallet={signInWallet} onConnect={onConnect} />
+            <FeaturedWalletButton
+              wallet={signInWallet}
+              onConnect={onConnect}
+              icon={keyIcon}
+            />
           )}
           {createWallet && (
-            <FeaturedWalletButton wallet={createWallet} onConnect={onConnect} />
+            <FeaturedWalletButton
+              wallet={createWallet}
+              onConnect={onConnect}
+              icon={keyIcon}
+            />
           )}
         </div>
       )}
