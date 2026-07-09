@@ -89,6 +89,16 @@ export interface ConnectWalletDialogProps extends WalletSortingOptions {
    * haven't registered keyless are unaffected. Defaults to "Sign in with Google".
    */
   keylessWalletName?: string;
+  /**
+   * Names of the two passkey wallet entries. When at least one is registered,
+   * a single collapsed "passkey" row is shown above the grid that expands to
+   * reveal whichever of these actions are available. Matched against each
+   * registered wallet's `name`. Defaults to the names used by
+   * `@moveindustries/wallet-adapter-keyless`'s passkey adapter.
+   */
+  passkeyWalletNames?: { signIn?: string; create?: string };
+  /** Label for the collapsed passkey row. Defaults to "Continue with a passkey". */
+  passkeyLabel?: string;
 }
 
 function cleanWalletList(
@@ -115,60 +125,101 @@ function cleanWalletList(
     });
 }
 
+const DEFAULT_PASSKEY_NAMES = {
+  signIn: "Sign in with existing passkey",
+  create: "Create new passkey",
+};
+
 // Separate content component for reuse in both Drawer and Modal
 interface ConnectWalletContentProps extends WalletSortingOptions {
   onClose: () => void;
   description?: React.ReactNode;
   keylessWalletName?: string;
+  passkeyWalletNames?: { signIn?: string; create?: string };
+  passkeyLabel?: string;
 }
 
 function ConnectWalletContent({
   onClose,
   description = "Securely connect your wallet to the Movement Network.",
   keylessWalletName = "Sign in with Google",
+  passkeyWalletNames = DEFAULT_PASSKEY_NAMES,
+  passkeyLabel = "Continue with a passkey",
   ...walletSortingOptions
 }: ConnectWalletContentProps) {
   const { wallets } = useWallet();
   const [isMoreWalletsOpen, setIsMoreWalletsOpen] = useState(false);
-  const { keylessWallet, availableWallets, installableWallets } =
-    useMemo(() => {
-      const grouped = groupAndSortWallets(wallets, walletSortingOptions);
+  const passkeySignInName =
+    passkeyWalletNames.signIn ?? DEFAULT_PASSKEY_NAMES.signIn;
+  const passkeyCreateName =
+    passkeyWalletNames.create ?? DEFAULT_PASSKEY_NAMES.create;
+  const {
+    keylessWallet,
+    passkeySignInWallet,
+    passkeyCreateWallet,
+    availableWallets,
+    installableWallets,
+  } = useMemo(() => {
+    const grouped = groupAndSortWallets(wallets, walletSortingOptions);
 
-      // Add Nightly as installable wallet if not already present
-      const additionalInstallableWallets: (
-        | AdapterWallet
-        | AdapterNotDetectedWallet
-      )[] = [];
+    // Add Nightly as installable wallet if not already present
+    const additionalInstallableWallets: (
+      | AdapterWallet
+      | AdapterNotDetectedWallet
+    )[] = [];
 
-      const hasNightly = [
-        ...(grouped?.availableWallets ?? []),
-        ...(grouped?.installableWallets ?? []),
-      ].some((w) => w.name.toLowerCase().includes("nightly"));
-      if (!hasNightly) {
-        additionalInstallableWallets.push(nightlyWallet);
-      }
+    const hasNightly = [
+      ...(grouped?.availableWallets ?? []),
+      ...(grouped?.installableWallets ?? []),
+    ].some((w) => w.name.toLowerCase().includes("nightly"));
+    if (!hasNightly) {
+      additionalInstallableWallets.push(nightlyWallet);
+    }
 
-      const available = grouped?.availableWallets ?? [];
-      const installable = [
-        ...(grouped?.installableWallets ?? []),
-        ...additionalInstallableWallets,
-      ];
+    const available = grouped?.availableWallets ?? [];
+    const installable = [
+      ...(grouped?.installableWallets ?? []),
+      ...additionalInstallableWallets,
+    ];
 
-      // Pull the keyless (social login) wallet out of the grid so it can be
-      // rendered as a dedicated full-width row. The keyless adapter registers
-      // itself as a standard wallet, so it arrives via useWallet() like any
-      // other — we only special-case its placement, not its connect logic.
-      const isKeyless = (w: AdapterWallet | AdapterNotDetectedWallet) =>
-        w.name === keylessWalletName;
-      const keyless =
-        available.find(isKeyless) ?? installable.find(isKeyless) ?? null;
+    // Pull "featured" wallets (keyless + passkey) out of the grid so they can
+    // be rendered as dedicated full-width rows above it. These adapters
+    // register themselves as standard wallets, so they arrive via useWallet()
+    // like any other — we only special-case their placement, not their connect
+    // logic. Each row only renders when its wallet is present.
+    const find = (name: string) =>
+      available.find((w) => w.name === name) ??
+      installable.find((w) => w.name === name) ??
+      null;
+    const keyless = find(keylessWalletName);
+    const passkeySignIn = find(passkeySignInName);
+    const passkeyCreate = find(passkeyCreateName);
 
-      return {
-        keylessWallet: keyless,
-        availableWallets: available.filter((w) => !isKeyless(w)),
-        installableWallets: installable.filter((w) => !isKeyless(w)),
-      };
-    }, [wallets, walletSortingOptions, keylessWalletName]);
+    const featuredNames = new Set(
+      [keyless, passkeySignIn, passkeyCreate]
+        .filter((w): w is AdapterWallet | AdapterNotDetectedWallet => !!w)
+        .map((w) => w.name),
+    );
+    const notFeatured = (w: AdapterWallet | AdapterNotDetectedWallet) =>
+      !featuredNames.has(w.name);
+
+    return {
+      keylessWallet: keyless,
+      passkeySignInWallet: passkeySignIn,
+      passkeyCreateWallet: passkeyCreate,
+      availableWallets: available.filter(notFeatured),
+      installableWallets: installable.filter(notFeatured),
+    };
+  }, [
+    wallets,
+    walletSortingOptions,
+    keylessWalletName,
+    passkeySignInName,
+    passkeyCreateName,
+  ]);
+
+  const hasPasskey = !!passkeySignInWallet || !!passkeyCreateWallet;
+  const hasFeatured = !!keylessWallet || hasPasskey;
 
   return (
     <div
@@ -191,27 +242,20 @@ function ConnectWalletContent({
         )}
       </div>
 
-      {keylessWallet && (
-        <div className="flex w-full max-w-102 flex-col gap-4">
-          <WalletItem wallet={keylessWallet} onConnect={onClose}>
-            <WalletItem.ConnectButton asChild>
-              <button
-                className={cn(
-                  "inline-flex h-12 w-full cursor-pointer items-center justify-center gap-3 px-4",
-                  "rounded-full border-[0.5px] border-white/48 bg-white/8",
-                  "font-display text-lg leading-[100%] font-normal text-white",
-                  "transition-all duration-200 ease-[ease] hover:bg-white/16",
-                  "focus-visible:ring-2 focus-visible:ring-[var(--color-cyan-300)] focus-visible:outline-none",
-                )}
-              >
-                <div className="h-6 w-6 shrink-0">
-                  <WalletItem.Icon className="h-full w-full object-contain" />
-                </div>
-                {keylessWallet.name}
-              </button>
-            </WalletItem.ConnectButton>
-          </WalletItem>
-          <div className="flex w-full items-center gap-3">
+      {hasFeatured && (
+        <div className="flex w-full max-w-102 flex-col gap-3">
+          {keylessWallet && (
+            <FeaturedWalletButton wallet={keylessWallet} onConnect={onClose} />
+          )}
+          {hasPasskey && (
+            <PasskeyGroup
+              signInWallet={passkeySignInWallet}
+              createWallet={passkeyCreateWallet}
+              label={passkeyLabel}
+              onConnect={onClose}
+            />
+          )}
+          <div className="flex w-full items-center gap-3 pt-1">
             <div className="h-px flex-1 bg-white/20" />
             <span className="font-display text-sm leading-none font-medium text-white/48">
               or
@@ -357,6 +401,90 @@ export function WalletModal({
 interface WalletRowProps {
   wallet: AdapterWallet | AdapterNotDetectedWallet;
   onConnect?: () => void;
+}
+
+// Full-width pill shared by the keyless and passkey rows.
+const featuredButtonClass = cn(
+  "inline-flex h-12 w-full cursor-pointer items-center justify-center gap-3 px-4",
+  "rounded-full border-[0.5px] border-white/48 bg-white/8",
+  "font-display text-lg leading-[100%] font-normal text-white",
+  "transition-all duration-200 ease-[ease] hover:bg-white/16",
+  "focus-visible:ring-2 focus-visible:ring-[var(--color-cyan-300)] focus-visible:outline-none",
+);
+
+/** Full-width pill that connects a single "featured" wallet (keyless/passkey). */
+function FeaturedWalletButton({ wallet, onConnect }: WalletRowProps) {
+  return (
+    <WalletItem wallet={wallet} onConnect={onConnect}>
+      <WalletItem.ConnectButton asChild>
+        <button className={featuredButtonClass}>
+          <div className="h-6 w-6 shrink-0">
+            <WalletItem.Icon className="h-full w-full object-contain" />
+          </div>
+          {wallet.name}
+        </button>
+      </WalletItem.ConnectButton>
+    </WalletItem>
+  );
+}
+
+/**
+ * Collapsed passkey row that expands on click to reveal the sign-in / create
+ * actions. Renders whichever passkey wallets are present; the collapsed row
+ * borrows an icon from one of them so nothing extra needs bundling.
+ */
+function PasskeyGroup({
+  signInWallet,
+  createWallet,
+  label,
+  onConnect,
+}: {
+  signInWallet: AdapterWallet | AdapterNotDetectedWallet | null;
+  createWallet: AdapterWallet | AdapterNotDetectedWallet | null;
+  label: string;
+  onConnect?: () => void;
+}) {
+  const [open, setOpen] = useState(false);
+  const iconWallet = signInWallet ?? createWallet;
+  if (!iconWallet) return null;
+
+  return (
+    <div className="flex w-full flex-col gap-3">
+      <button
+        type="button"
+        onClick={() => setOpen((o) => !o)}
+        aria-expanded={open}
+        className={featuredButtonClass}
+      >
+        <div className="h-6 w-6 shrink-0">
+          <img
+            src={iconWallet.icon}
+            alt=""
+            className="h-full w-full object-contain"
+          />
+        </div>
+        {label}
+        <CaretDownIcon
+          size={16}
+          weight="bold"
+          className={cn(
+            "transition-transform duration-200",
+            open ? "rotate-180" : "rotate-0",
+          )}
+        />
+      </button>
+      {open && (
+        <div className="animate-in fade-in flex w-full flex-col gap-3 duration-200">
+          {signInWallet && (
+            <FeaturedWalletButton wallet={signInWallet} onConnect={onConnect} />
+          )}
+          {createWallet && (
+            <FeaturedWalletButton wallet={createWallet} onConnect={onConnect} />
+          )}
+        </div>
+      )}
+    </div>
+  );
 }
 
 const gridCard = (child: React.ReactNode) => (

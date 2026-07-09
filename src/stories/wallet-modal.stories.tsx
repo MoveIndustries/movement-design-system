@@ -499,27 +499,55 @@ const GOOGLE_ICON_DATA_URI =
     `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 48 48"><path fill="#FFC107" d="M43.6 20.5H42V20H24v8h11.3c-1.6 4.7-6.1 8-11.3 8-6.6 0-12-5.4-12-12s5.4-12 12-12c3.1 0 5.9 1.2 8 3.1l5.7-5.7C34 6.1 29.3 4 24 4 12.9 4 4 12.9 4 24s8.9 20 20 20 20-8.9 20-20c0-1.3-.1-2.7-.4-3.5z"/><path fill="#FF3D00" d="M6.3 14.7l6.6 4.8C14.7 15.1 19 12 24 12c3.1 0 5.9 1.2 8 3.1l5.7-5.7C34 6.1 29.3 4 24 4 16.3 4 9.7 8.3 6.3 14.7z"/><path fill="#4CAF50" d="M24 44c5.2 0 10-2 13.6-5.2l-6.3-5.3C29.2 35.1 26.7 36 24 36c-5.2 0-9.6-3.3-11.3-7.9l-6.5 5C9.5 39.6 16.2 44 24 44z"/><path fill="#1976D2" d="M43.6 20.5H42V20H24v8h11.3c-.8 2.3-2.3 4.3-4.1 5.6l6.3 5.3C41 35.5 44 30.2 44 24c0-1.3-.1-2.7-.4-3.5z"/></svg>`,
   );
 
-/** The single synthetic wallet — the real keyless adapter registers this. */
-const keylessWallet = {
-  name: "Sign in with Google",
-  icon: GOOGLE_ICON_DATA_URI,
-  url: "",
-  readyState: WalletReadyState.Installed,
-  version: "1.0.0",
-  chains: [],
-  accounts: [],
-  features: {},
-} as unknown as AdapterWallet;
+/** Inline fingerprint glyph as a data URI (matches the passkey adapter's icon).
+ *  The real adapter's icon uses stroke="currentColor" which is invisible when
+ *  loaded via <img> on a dark background; we hardcode white here for preview. */
+const PASSKEY_ICON_DATA_URI =
+  "data:image/svg+xml;utf8," +
+  encodeURIComponent(
+    `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="#ffffff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" width="48" height="48"><path d="M3 8a9 9 0 0 1 9-5 9 9 0 0 1 9 5"/><path d="M5 12a7 7 0 0 1 14 0v1"/><path d="M9 12c0-3 3-3 3-3s3 0 3 3"/><path d="M12 12v3.5a3.5 3.5 0 0 1-7 0v-1"/><path d="M12 12v6"/></svg>`,
+  );
+
+/** Build a synthetic "Installed" wallet — stands in for an adapter-registered one. */
+function synthetic(name: string, icon: string): AdapterWallet {
+  return {
+    name,
+    icon,
+    url: "",
+    readyState: WalletReadyState.Installed,
+    version: "1.0.0",
+    chains: [],
+    accounts: [],
+    features: {},
+  } as unknown as AdapterWallet;
+}
+
+// The featured entries the real keyless + passkey adapters register.
+const SYNTHETIC_FEATURED: AdapterWallet[] = [
+  synthetic("Sign in with Google", GOOGLE_ICON_DATA_URI),
+  synthetic("Sign in with existing passkey", PASSKEY_ICON_DATA_URI),
+  synthetic("Create new passkey", PASSKEY_ICON_DATA_URI),
+];
 
 /**
- * Wraps the REAL provider's context and prepends the synthetic keyless wallet,
- * leaving every real wallet (and connect/account/etc.) untouched.
+ * Wraps the REAL provider's context and prepends the synthetic featured wallets
+ * (keyless + passkey), leaving every real wallet (and connect/account/etc.)
+ * untouched. `only` limits which synthetic entries to inject.
  */
-function WithInjectedKeyless({ children }: { children: React.ReactNode }) {
+function WithInjectedFeatured({
+  children,
+  only,
+}: {
+  children: React.ReactNode;
+  only?: string[];
+}) {
   const real = useWallet();
+  const injected = only
+    ? SYNTHETIC_FEATURED.filter((w) => only.includes(w.name))
+    : SYNTHETIC_FEATURED;
   const value = {
     ...real,
-    wallets: [keylessWallet, ...real.wallets],
+    wallets: [...injected, ...real.wallets],
   } as unknown as React.ContextType<typeof WalletContext>;
   return (
     <WalletContext.Provider value={value}>{children}</WalletContext.Provider>
@@ -536,9 +564,24 @@ function WithInjectedKeyless({ children }: { children: React.ReactNode }) {
  */
 export const WithKeylessGoogle: Story = {
   render: () => (
-    <WithInjectedKeyless>
+    <WithInjectedFeatured only={["Sign in with Google"]}>
       <WalletModal onClose={() => console.log("close")} />
-    </WithInjectedKeyless>
+    </WithInjectedFeatured>
+  ),
+};
+
+/**
+ * WalletModal with both keyless and the collapsible passkey row. The passkey
+ * row is a single "Continue with a passkey" button that expands to reveal
+ * "Sign in with existing passkey" and "Create new passkey". All three featured
+ * entries are synthetic here (their adapters aren't on npm yet); the extension
+ * wallet cards are your real installed wallets.
+ */
+export const WithKeylessAndPasskey: Story = {
+  render: () => (
+    <WithInjectedFeatured>
+      <WalletModal onClose={() => console.log("close")} />
+    </WithInjectedFeatured>
   ),
 };
 
