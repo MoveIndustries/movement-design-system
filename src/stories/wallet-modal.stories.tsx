@@ -6,7 +6,6 @@ import type {
 } from "@moveindustries/wallet-adapter-react";
 import {
   MovementWalletAdapterProvider,
-  movementStandardSupportedWalletList,
   useWallet,
   WalletContext,
   WalletReadyState,
@@ -486,13 +485,12 @@ export const MobileView: Story = {
 // --- Keyless / social login preview -------------------------------------
 //
 // The keyless "Login with Google" row only renders when a wallet named
-// "Sign in with Google" is present in useWallet().wallets. In real apps that
+// "Sign in with Google" is present in useWallet().wallets. In production that
 // wallet is contributed by @moveindustries/wallet-adapter-keyless (not yet on
-// npm), and the extension wallets are contributed by the user's browser.
-// Storybook has neither, so useWallet().wallets is empty here — to preview the
-// row we supply WalletContext directly with real registry wallets (OKX,
-// Nightly, exactly as the modal shows them in production) plus the one
-// synthetic keyless entry that the (unpublished) adapter would normally add.
+// npm). To preview the row WITHOUT losing the real extension wallets, we keep
+// the real MovementWalletAdapterProvider (so OKX / Razor / Nightly render with
+// their genuine icons, exactly as in production) and simply prepend one
+// synthetic keyless entry to the real wallet list. Nothing else is faked.
 
 /** Inline Google "G" mark as a data URI (matches the keyless adapter's icon). */
 const GOOGLE_ICON_DATA_URI =
@@ -501,66 +499,46 @@ const GOOGLE_ICON_DATA_URI =
     `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 48 48"><path fill="#FFC107" d="M43.6 20.5H42V20H24v8h11.3c-1.6 4.7-6.1 8-11.3 8-6.6 0-12-5.4-12-12s5.4-12 12-12c3.1 0 5.9 1.2 8 3.1l5.7-5.7C34 6.1 29.3 4 24 4 12.9 4 4 12.9 4 24s8.9 20 20 20 20-8.9 20-20c0-1.3-.1-2.7-.4-3.5z"/><path fill="#FF3D00" d="M6.3 14.7l6.6 4.8C14.7 15.1 19 12 24 12c3.1 0 5.9 1.2 8 3.1l5.7-5.7C34 6.1 29.3 4 24 4 16.3 4 9.7 8.3 6.3 14.7z"/><path fill="#4CAF50" d="M24 44c5.2 0 10-2 13.6-5.2l-6.3-5.3C29.2 35.1 26.7 36 24 36c-5.2 0-9.6-3.3-11.3-7.9l-6.5 5C9.5 39.6 16.2 44 24 44z"/><path fill="#1976D2" d="M43.6 20.5H42V20H24v8h11.3c-.8 2.3-2.3 4.3-4.1 5.6l6.3 5.3C41 35.5 44 30.2 44 24c0-1.3-.1-2.7-.4-3.5z"/></svg>`,
   );
 
-/** Mark a wallet as Installed so it renders in the main row (as it would for a
- *  user who has the extension), without fabricating any icon. */
-function asInstalled(w: {
-  name: string;
-  icon: string;
-  url?: string;
-}): AdapterWallet {
-  return {
-    url: "",
-    version: "1.0.0",
-    chains: [],
-    accounts: [],
-    features: {},
-    ...w,
-    readyState: WalletReadyState.Installed,
-  } as unknown as AdapterWallet;
-}
-
-// Real OKX + Nightly from the adapter registry; only the keyless entry is synthetic.
-const KEYLESS_MOCK_WALLETS: AdapterWallet[] = [
-  asInstalled({ name: "Sign in with Google", icon: GOOGLE_ICON_DATA_URI }),
-  ...movementStandardSupportedWalletList.map((w) =>
-    asInstalled({ name: w.name, icon: w.icon }),
-  ),
-];
+/** The single synthetic wallet — the real keyless adapter registers this. */
+const keylessWallet = {
+  name: "Sign in with Google",
+  icon: GOOGLE_ICON_DATA_URI,
+  url: "",
+  readyState: WalletReadyState.Installed,
+  version: "1.0.0",
+  chains: [],
+  accounts: [],
+  features: {},
+} as unknown as AdapterWallet;
 
 /**
- * WalletModal with the keyless "Login with Google" row.
+ * Wraps the REAL provider's context and prepends the synthetic keyless wallet,
+ * leaving every real wallet (and connect/account/etc.) untouched.
+ */
+function WithInjectedKeyless({ children }: { children: React.ReactNode }) {
+  const real = useWallet();
+  const value = {
+    ...real,
+    wallets: [keylessWallet, ...real.wallets],
+  } as unknown as React.ContextType<typeof WalletContext>;
+  return (
+    <WalletContext.Provider value={value}>{children}</WalletContext.Provider>
+  );
+}
+
+/**
+ * WalletModal with the keyless "Login with Google" row above the wallet grid.
  *
- * The keyless wallet is mocked into `useWallet()` via `WalletContext` so the
- * full-width Google button (and the "or" divider above the wallet grid) can be
- * previewed without the OAuth redirect or the unpublished keyless adapter.
+ * Uses the real wallet provider from the meta decorator, so the wallet cards
+ * are your genuinely-installed extensions. Only the "Sign in with Google" row
+ * is synthetic (its adapter isn't on npm yet); clicking it just logs, since
+ * there's no real keyless adapter registered in Storybook.
  */
 export const WithKeylessGoogle: Story = {
-  // Skip the real MovementWalletAdapterProvider — we supply WalletContext ourselves.
-  decorators: [(Story: React.ComponentType) => <Story />],
   render: () => (
-    <WalletContext.Provider
-      value={
-        {
-          wallets: KEYLESS_MOCK_WALLETS,
-          notDetectedWallets: [],
-          connect: (name: string) => console.log("connect →", name),
-        } as unknown as React.ContextType<typeof WalletContext>
-      }
-    >
-      <div className="flex flex-col items-center gap-4">
-        <div className="max-w-md space-y-2 text-center">
-          <h3 className="text-lg font-semibold">Keyless / Login with Google</h3>
-          <p className="text-muted-foreground text-sm">
-            When a wallet named{" "}
-            <code className="text-xs">&quot;Sign in with Google&quot;</code> is
-            registered, it renders as a full-width row above the grid. Override
-            the matched name with the{" "}
-            <code className="text-xs">keylessWalletName</code> prop.
-          </p>
-        </div>
-        <WalletModal onClose={() => console.log("close")} />
-      </div>
-    </WalletContext.Provider>
+    <WithInjectedKeyless>
+      <WalletModal onClose={() => console.log("close")} />
+    </WithInjectedKeyless>
   ),
 };
 
