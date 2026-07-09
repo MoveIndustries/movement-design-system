@@ -82,6 +82,13 @@ export interface ConnectWalletDialogProps extends WalletSortingOptions {
   onClose: () => void;
   /** Custom description text shown below the title. Defaults to "Securely connect your wallet to the Movement Network." */
   description?: React.ReactNode;
+  /**
+   * Name of the keyless (social login) wallet to surface as a full-width row
+   * above the wallet grid. Matched against the registered wallet's `name`.
+   * The row only renders when a wallet with this name is present, so apps that
+   * haven't registered keyless are unaffected. Defaults to "Sign in with Google".
+   */
+  keylessWalletName?: string;
 }
 
 function cleanWalletList(
@@ -112,16 +119,18 @@ function cleanWalletList(
 interface ConnectWalletContentProps extends WalletSortingOptions {
   onClose: () => void;
   description?: React.ReactNode;
+  keylessWalletName?: string;
 }
 
 function ConnectWalletContent({
   onClose,
   description = "Securely connect your wallet to the Movement Network.",
+  keylessWalletName = "Sign in with Google",
   ...walletSortingOptions
 }: ConnectWalletContentProps) {
   const { wallets } = useWallet();
   const [isMoreWalletsOpen, setIsMoreWalletsOpen] = useState(false);
-  const { availableWallets, installableWallets } =
+  const { keylessWallet, availableWallets, installableWallets } =
     useMemo(() => {
       const grouped = groupAndSortWallets(wallets, walletSortingOptions);
 
@@ -139,14 +148,27 @@ function ConnectWalletContent({
         additionalInstallableWallets.push(nightlyWallet);
       }
 
+      const available = grouped?.availableWallets ?? [];
+      const installable = [
+        ...(grouped?.installableWallets ?? []),
+        ...additionalInstallableWallets,
+      ];
+
+      // Pull the keyless (social login) wallet out of the grid so it can be
+      // rendered as a dedicated full-width row. The keyless adapter registers
+      // itself as a standard wallet, so it arrives via useWallet() like any
+      // other — we only special-case its placement, not its connect logic.
+      const isKeyless = (w: AdapterWallet | AdapterNotDetectedWallet) =>
+        w.name === keylessWalletName;
+      const keyless =
+        available.find(isKeyless) ?? installable.find(isKeyless) ?? null;
+
       return {
-        availableWallets: grouped?.availableWallets ?? [],
-        installableWallets: [
-          ...(grouped?.installableWallets ?? []),
-          ...additionalInstallableWallets,
-        ],
+        keylessWallet: keyless,
+        availableWallets: available.filter((w) => !isKeyless(w)),
+        installableWallets: installable.filter((w) => !isKeyless(w)),
       };
-    }, [wallets, walletSortingOptions]);
+    }, [wallets, walletSortingOptions, keylessWalletName]);
 
   return (
     <div
@@ -168,6 +190,36 @@ function ConnectWalletContent({
           </div>
         )}
       </div>
+
+      {keylessWallet && (
+        <div className="flex w-full max-w-102 flex-col gap-4">
+          <WalletItem wallet={keylessWallet} onConnect={onClose}>
+            <WalletItem.ConnectButton asChild>
+              <button
+                className={cn(
+                  "inline-flex h-12 w-full cursor-pointer items-center justify-center gap-3 px-4",
+                  "rounded-full border-[0.5px] border-white/48 bg-white/8",
+                  "font-display text-lg leading-[100%] font-normal text-white",
+                  "transition-all duration-200 ease-[ease] hover:bg-white/16",
+                  "focus-visible:ring-2 focus-visible:ring-[var(--color-cyan-300)] focus-visible:outline-none",
+                )}
+              >
+                <div className="h-6 w-6 shrink-0">
+                  <WalletItem.Icon className="h-full w-full object-contain" />
+                </div>
+                {keylessWallet.name}
+              </button>
+            </WalletItem.ConnectButton>
+          </WalletItem>
+          <div className="flex w-full items-center gap-3">
+            <div className="h-px flex-1 bg-white/20" />
+            <span className="font-display text-sm leading-none font-medium text-white/48">
+              or
+            </span>
+            <div className="h-px flex-1 bg-white/20" />
+          </div>
+        </div>
+      )}
 
       <div className="flex max-h-168 w-full max-w-102 flex-row flex-wrap content-center items-start justify-center gap-4 overflow-y-auto p-4 py-4">
         {availableWallets.length > 0 ? (
