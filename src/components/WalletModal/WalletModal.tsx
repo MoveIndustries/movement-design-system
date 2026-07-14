@@ -6,6 +6,7 @@ import {
   WalletItem,
   type WalletSortingOptions,
   groupAndSortWallets,
+  partitionWallets,
   isInstallRequired,
   useWallet,
   WalletReadyState,
@@ -83,18 +84,22 @@ export interface ConnectWalletDialogProps extends WalletSortingOptions {
   /** Custom description text shown below the title. Defaults to "Securely connect your wallet to the Movement Network." */
   description?: React.ReactNode;
   /**
-   * Name of the keyless (social login) wallet to surface as a full-width row
-   * above the wallet grid. Matched against the registered wallet's `name`.
-   * The row only renders when a wallet with this name is present, so apps that
-   * haven't registered keyless are unaffected. Defaults to "Sign in with Google".
+   * Fallback name for the keyless (social login) wallet surfaced as a
+   * full-width row above the wallet grid. Featured wallets are matched
+   * primarily by the adapter's stable `id` (`movement-keyless`); this name is
+   * only used when a registered wallet lacks that id or a consumer wants to
+   * override the match. The row only renders when a matching wallet is present,
+   * so apps that haven't registered keyless are unaffected. Defaults to
+   * "Sign in with Google".
    */
   keylessWalletName?: string;
   /**
-   * Names of the two passkey wallet entries. When at least one is registered,
-   * a single collapsed "passkey" row is shown above the grid that expands to
-   * reveal whichever of these actions are available. Matched against each
-   * registered wallet's `name`. Defaults to the names used by
-   * `@moveindustries/wallet-adapter-keyless`'s passkey adapter.
+   * Fallback names for the two passkey wallet entries. When at least one is
+   * registered, a single collapsed "passkey" row is shown above the grid that
+   * expands to reveal whichever actions are available. Matched primarily by the
+   * adapter's stable `id`s (`movement-passkey-signin` / `-create`); these names
+   * are the fallback/override. Defaults to the names used by
+   * `@moveindustries/wallet-adapter-passkey`.
    */
   passkeyWalletNames?: { signIn?: string; create?: string };
   /** Label for the collapsed passkey row. Defaults to "Continue with passkey". */
@@ -130,6 +135,19 @@ const DEFAULT_PASSKEY_NAMES = {
   create: "Create new passkey",
 };
 
+/**
+ * Stable adapter `id`s for the featured login wallets, as registered by
+ * `@moveindustries/wallet-adapter-keyless` and `-passkey`. Matching on these
+ * ids (rather than the user-facing name, which can change with i18n/rebrand)
+ * is what keeps the modal wired to the right wallets. The `*Name` props remain
+ * as a fallback for id-less registrations and as a consumer override.
+ */
+const FEATURED_IDS = {
+  keyless: "movement-keyless",
+  passkeySignIn: "movement-passkey-signin",
+  passkeyCreate: "movement-passkey-create",
+} as const;
+
 // Separate content component for reuse in both Drawer and Modal
 interface ConnectWalletContentProps extends WalletSortingOptions {
   onClose: () => void;
@@ -160,14 +178,42 @@ function ConnectWalletContent({
     availableWallets,
     installableWallets,
   } = useMemo(() => {
-    const grouped = groupAndSortWallets(wallets, walletSortingOptions);
+    // The keyless + passkey adapters register as ordinary wallets; we only
+    // change WHERE they render (dedicated rows above the grid), never how they
+    // connect — every wallet, featured or not, still connects through the same
+    // WalletItem path. Identify the featured ones by each adapter's stable
+    // `id`, falling back to the display `name` for id-less registrations
+    // (e.g. Storybook mocks) or a consumer override. `id` isn't on the
+    // wallet-standard type, so read it defensively.
+    const idOf = (w: AdapterWallet | AdapterNotDetectedWallet) =>
+      (w as { id?: string }).id;
+    const roles = [
+      { id: FEATURED_IDS.keyless, name: keylessWalletName },
+      { id: FEATURED_IDS.passkeySignIn, name: passkeySignInName },
+      { id: FEATURED_IDS.passkeyCreate, name: passkeyCreateName },
+    ];
+    const isFeatured = (w: AdapterWallet | AdapterNotDetectedWallet) =>
+      roles.some((r) => idOf(w) === r.id || w.name === r.name);
+
+    // Split the featured login wallets out first via the library's own
+    // partition helper, then group the remaining wallets by ready-state as
+    // usual. Pulling them out up front keeps them out of the grid entirely.
+    const { defaultWallets: featured, moreWallets: rest } = partitionWallets(
+      wallets,
+      isFeatured,
+    );
+    const findRole = (r: { id: string; name: string }) =>
+      featured.find((w) => idOf(w) === r.id) ??
+      featured.find((w) => w.name === r.name) ??
+      null;
+
+    const grouped = groupAndSortWallets(rest, walletSortingOptions);
 
     // Add Nightly as installable wallet if not already present
     const additionalInstallableWallets: (
       | AdapterWallet
       | AdapterNotDetectedWallet
     )[] = [];
-
     const hasNightly = [
       ...(grouped?.availableWallets ?? []),
       ...(grouped?.installableWallets ?? []),
@@ -176,39 +222,15 @@ function ConnectWalletContent({
       additionalInstallableWallets.push(nightlyWallet);
     }
 
-    const available = grouped?.availableWallets ?? [];
-    const installable = [
-      ...(grouped?.installableWallets ?? []),
-      ...additionalInstallableWallets,
-    ];
-
-    // Pull "featured" wallets (keyless + passkey) out of the grid so they can
-    // be rendered as dedicated full-width rows above it. These adapters
-    // register themselves as standard wallets, so they arrive via useWallet()
-    // like any other — we only special-case their placement, not their connect
-    // logic. Each row only renders when its wallet is present.
-    const find = (name: string) =>
-      available.find((w) => w.name === name) ??
-      installable.find((w) => w.name === name) ??
-      null;
-    const keyless = find(keylessWalletName);
-    const passkeySignIn = find(passkeySignInName);
-    const passkeyCreate = find(passkeyCreateName);
-
-    const featuredNames = new Set(
-      [keyless, passkeySignIn, passkeyCreate]
-        .filter((w): w is AdapterWallet | AdapterNotDetectedWallet => !!w)
-        .map((w) => w.name),
-    );
-    const notFeatured = (w: AdapterWallet | AdapterNotDetectedWallet) =>
-      !featuredNames.has(w.name);
-
     return {
-      keylessWallet: keyless,
-      passkeySignInWallet: passkeySignIn,
-      passkeyCreateWallet: passkeyCreate,
-      availableWallets: available.filter(notFeatured),
-      installableWallets: installable.filter(notFeatured),
+      keylessWallet: findRole(roles[0]),
+      passkeySignInWallet: findRole(roles[1]),
+      passkeyCreateWallet: findRole(roles[2]),
+      availableWallets: grouped?.availableWallets ?? [],
+      installableWallets: [
+        ...(grouped?.installableWallets ?? []),
+        ...additionalInstallableWallets,
+      ],
     };
   }, [
     wallets,

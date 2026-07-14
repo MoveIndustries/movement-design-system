@@ -508,9 +508,12 @@ const PASSKEY_ICON_DATA_URI =
     `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="#ffffff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" width="48" height="48"><path d="M3 8a9 9 0 0 1 9-5 9 9 0 0 1 9 5"/><path d="M5 12a7 7 0 0 1 14 0v1"/><path d="M9 12c0-3 3-3 3-3s3 0 3 3"/><path d="M12 12v3.5a3.5 3.5 0 0 1-7 0v-1"/><path d="M12 12v6"/></svg>`,
   );
 
-/** Build a synthetic "Installed" wallet — stands in for an adapter-registered one. */
-function synthetic(name: string, icon: string): AdapterWallet {
+/** Build a synthetic "Installed" wallet — stands in for an adapter-registered
+ *  one. Carries the real adapter `id` so the modal matches it the same way it
+ *  matches the production wallets (by id), not just by name. */
+function synthetic(id: string, name: string, icon: string): AdapterWallet {
   return {
+    id,
     name,
     icon,
     url: "",
@@ -522,11 +525,20 @@ function synthetic(name: string, icon: string): AdapterWallet {
   } as unknown as AdapterWallet;
 }
 
-// The featured entries the real keyless + passkey adapters register.
+// The featured entries the real keyless + passkey adapters register — ids match
+// KeylessWalletAdapter / PasskeyWalletAdapter in movement-wallet-adapter.
 const SYNTHETIC_FEATURED: AdapterWallet[] = [
-  synthetic("Sign in with Google", GOOGLE_ICON_DATA_URI),
-  synthetic("Sign in with existing passkey", PASSKEY_ICON_DATA_URI),
-  synthetic("Create new passkey", PASSKEY_ICON_DATA_URI),
+  synthetic("movement-keyless", "Sign in with Google", GOOGLE_ICON_DATA_URI),
+  synthetic(
+    "movement-passkey-signin",
+    "Sign in with existing passkey",
+    PASSKEY_ICON_DATA_URI,
+  ),
+  synthetic(
+    "movement-passkey-create",
+    "Create new passkey",
+    PASSKEY_ICON_DATA_URI,
+  ),
 ];
 
 /**
