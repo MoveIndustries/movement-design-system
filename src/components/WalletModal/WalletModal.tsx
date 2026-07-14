@@ -251,13 +251,9 @@ function ConnectWalletContent({
     passkeyCreateName,
   ]);
 
-  // Single "Continue with Passkey" entry. Prefer a unified adapter wallet (whose
-  // connect() resolves new-vs-existing itself); otherwise fall back to the
-  // split registrations, preferring sign-in (existing) so returning users hit
-  // the OS passkey picker rather than being forced to create.
-  const primaryPasskeyWallet =
-    passkeyWallet ?? passkeySignInWallet ?? passkeyCreateWallet;
-  const hasFeatured = !!keylessWallet || !!primaryPasskeyWallet;
+  const hasPasskey =
+    !!passkeyWallet || !!passkeySignInWallet || !!passkeyCreateWallet;
+  const hasFeatured = !!keylessWallet || hasPasskey;
 
   return (
     <div
@@ -290,12 +286,13 @@ function ConnectWalletContent({
           {keylessWallet && (
             <FeaturedWalletButton wallet={keylessWallet} onConnect={onClose} />
           )}
-          {primaryPasskeyWallet && (
-            <FeaturedWalletButton
-              wallet={primaryPasskeyWallet}
-              onConnect={onClose}
-              icon={<KeyIcon size={22} weight="bold" />}
+          {hasPasskey && (
+            <PasskeyRows
+              unifiedWallet={passkeyWallet}
+              signInWallet={passkeySignInWallet}
+              createWallet={passkeyCreateWallet}
               label={passkeyLabel}
+              onConnect={onClose}
             />
           )}
           <div className="flex w-full items-center gap-3 pt-1">
@@ -470,17 +467,27 @@ const featuredButtonClass = cn(
  *  Pass `icon` to override the wallet's registered icon (e.g. the passkey
  *  entry whose registered glyph is a `currentColor` SVG that doesn't render
  *  through <img>). Pass `label` to show custom text instead of `wallet.name`
- *  (e.g. "Continue with Passkey" over the underlying adapter's name). */
+ *  (e.g. "Continue with Passkey" over the underlying adapter's name).
+ *  `className` overrides the pill style (e.g. the muted create fallback);
+ *  `onActivate` fires on click alongside the connect (Radix Slot merges the
+ *  handlers) — used to reveal the create option after a sign-in attempt. */
 function FeaturedWalletButton({
   wallet,
   onConnect,
   icon,
   label,
-}: WalletRowProps & { icon?: React.ReactNode; label?: React.ReactNode }) {
+  className,
+  onActivate,
+}: WalletRowProps & {
+  icon?: React.ReactNode;
+  label?: React.ReactNode;
+  className?: string;
+  onActivate?: () => void;
+}) {
   return (
     <WalletItem wallet={wallet} onConnect={onConnect}>
       <WalletItem.ConnectButton asChild>
-        <button className={featuredButtonClass}>
+        <button className={cn(featuredButtonClass, className)} onClick={onActivate}>
           <div className="flex h-6 w-6 shrink-0 items-center justify-center">
             {icon ?? (
               <WalletItem.Icon className="h-full w-full object-contain" />
@@ -490,6 +497,79 @@ function FeaturedWalletButton({
         </button>
       </WalletItem.ConnectButton>
     </WalletItem>
+  );
+}
+
+/**
+ * Passkey entry. One primary "Continue with Passkey" button that connects the
+ * existing-passkey (sign-in) wallet, driving the OS passkey picker. Because
+ * wallet-adapter `connect()` is fire-and-forget (errors go to the app's
+ * onError, not a promise we can await), we can't detect a failed sign-in to
+ * then offer creation. Instead we reveal a muted "Create a new Passkey" action
+ * once the user has attempted sign-in: if sign-in succeeds the modal closes and
+ * they never see it; if it doesn't (no passkey yet, or cancelled), the create
+ * option is right there. When the adapter registers a single unified wallet
+ * whose own connect() resolves new-vs-existing, we just render that — no
+ * fallback needed.
+ */
+function PasskeyRows({
+  unifiedWallet,
+  signInWallet,
+  createWallet,
+  label,
+  onConnect,
+}: {
+  unifiedWallet: AdapterWallet | AdapterNotDetectedWallet | null;
+  signInWallet: AdapterWallet | AdapterNotDetectedWallet | null;
+  createWallet: AdapterWallet | AdapterNotDetectedWallet | null;
+  label: string;
+  onConnect?: () => void;
+}) {
+  const [triedSignIn, setTriedSignIn] = useState(false);
+
+  if (unifiedWallet) {
+    return (
+      <FeaturedWalletButton
+        wallet={unifiedWallet}
+        onConnect={onConnect}
+        icon={<KeyIcon size={22} weight="bold" />}
+        label={label}
+      />
+    );
+  }
+
+  const primary = signInWallet ?? createWallet;
+  if (!primary) return null;
+  // Offer create only when there's a distinct create entry to fall back to
+  // (i.e. the primary is the sign-in wallet, not the create wallet itself).
+  const createFallback =
+    createWallet && createWallet !== primary ? createWallet : null;
+
+  return (
+    <div className="flex w-full flex-col gap-2">
+      <FeaturedWalletButton
+        wallet={primary}
+        onConnect={onConnect}
+        icon={<KeyIcon size={22} weight="bold" />}
+        label={label}
+        onActivate={
+          createFallback ? () => setTriedSignIn(true) : undefined
+        }
+      />
+      {createFallback && triedSignIn && (
+        <FeaturedWalletButton
+          wallet={createFallback}
+          onConnect={onConnect}
+          icon={<KeyIcon size={18} weight="bold" />}
+          label="Create a new Passkey"
+          className={cn(
+            "h-10 border-0 bg-transparent text-base font-normal text-white/56",
+            "hover:bg-white/6 hover:text-white",
+            "animate-in fade-in slide-in-from-top-1 duration-200",
+          )}
+        />
+      )}
+    </div>
   );
 }
 
