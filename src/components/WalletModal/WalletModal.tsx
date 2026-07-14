@@ -246,8 +246,13 @@ function ConnectWalletContent({
   return (
     <div
       className={cn(
-        "flex w-full flex-col items-center justify-center gap-6 px-6 pt-12 pb-6 md:max-w-114",
-        "z-9999 mx-auto max-h-full overflow-y-auto overflow-hidden md:max-h-[80vh]",
+        "flex w-full flex-col items-center gap-6 px-6 pt-12 pb-6 md:max-w-114",
+        // Cap to the viewport (minus a 1rem gutter) and scroll internally so
+        // every part stays reachable on short screens. Must NOT use
+        // justify-center here: on an overflowing flex column it pushes the top
+        // off-screen and makes it unscrollable. Single scroll container — the
+        // grid below deliberately doesn't add its own.
+        "z-9999 mx-auto max-h-[calc(100vh-2rem)] overflow-x-hidden overflow-y-auto",
         // Figma "Connect Wallet/empty" (node 7887:9734): flat dark-gray card,
         // hairline white stroke, 24px radius — no gradient/blur.
         "rounded-[24px] border-[0.5px] border-white bg-[#2d2d2d]",
@@ -287,7 +292,7 @@ function ConnectWalletContent({
         </div>
       )}
 
-      <div className="flex max-h-168 w-full max-w-102 flex-row flex-wrap content-center items-start justify-center gap-4 overflow-y-auto p-4 py-4">
+      <div className="flex w-full max-w-102 flex-row flex-wrap content-center items-start justify-center gap-4 p-4 py-4">
         {availableWallets.length > 0 ? (
           cleanWalletList(availableWallets).map((wallet) => (
             <div key={wallet.name} className="w-28 shrink-0">
@@ -408,7 +413,18 @@ export function WalletModal({
     >
       <DialogContent
         showCloseButton={false}
-        className="border-0 bg-transparent p-0"
+        // outline suppressed: the container is only a programmatic focus holder
+        // (see onOpenAutoFocus), not a control the user tabs to.
+        className="border-0 bg-transparent p-0 focus:outline-none focus-visible:outline-none"
+        // Radix auto-focuses the first focusable child (the Google button) on
+        // open, which fires :focus-visible and paints a cyan ring that looks
+        // pre-selected. Move focus to the dialog container instead so a11y focus
+        // still enters the dialog, but no button is highlighted until the user
+        // actually tabs to it.
+        onOpenAutoFocus={(e) => {
+          e.preventDefault();
+          (e.currentTarget as HTMLElement | null)?.focus();
+        }}
       >
         <DialogTitle className="sr-only">Connect Wallet</DialogTitle>
         <DialogDescription className="sr-only">
