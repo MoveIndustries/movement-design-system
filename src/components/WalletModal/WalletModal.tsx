@@ -144,6 +144,12 @@ const DEFAULT_PASSKEY_NAMES = {
  */
 const FEATURED_IDS = {
   keyless: "movement-keyless",
+  // Preferred: a single unified passkey wallet whose own `connect()` resolves
+  // new-vs-existing (WebAuthn get, falling back to create). When registered, the
+  // modal shows one "Continue with Passkey" button and lets the adapter/OS
+  // resolve the rest. `-signin` / `-create` are the legacy split registrations,
+  // still matched so the single button works against today's two-mode adapter.
+  passkey: "movement-passkey",
   passkeySignIn: "movement-passkey-signin",
   passkeyCreate: "movement-passkey-create",
 } as const;
@@ -162,7 +168,7 @@ function ConnectWalletContent({
   description = "Securely connect your wallet to the Movement Network.",
   keylessWalletName = "Sign in with Google",
   passkeyWalletNames = DEFAULT_PASSKEY_NAMES,
-  passkeyLabel = "Continue with passkey",
+  passkeyLabel = "Continue with Passkey",
   ...walletSortingOptions
 }: ConnectWalletContentProps) {
   const { wallets } = useWallet();
@@ -173,6 +179,7 @@ function ConnectWalletContent({
     passkeyWalletNames.create ?? DEFAULT_PASSKEY_NAMES.create;
   const {
     keylessWallet,
+    passkeyWallet,
     passkeySignInWallet,
     passkeyCreateWallet,
     availableWallets,
@@ -189,6 +196,9 @@ function ConnectWalletContent({
       (w as { id?: string }).id;
     const roles = [
       { id: FEATURED_IDS.keyless, name: keylessWalletName },
+      // Unified passkey wallet is matched by id only (no name fallback — "" never
+      // matches a real wallet), so it's picked up when the adapter registers one.
+      { id: FEATURED_IDS.passkey, name: "" },
       { id: FEATURED_IDS.passkeySignIn, name: passkeySignInName },
       { id: FEATURED_IDS.passkeyCreate, name: passkeyCreateName },
     ];
@@ -224,8 +234,9 @@ function ConnectWalletContent({
 
     return {
       keylessWallet: findRole(roles[0]),
-      passkeySignInWallet: findRole(roles[1]),
-      passkeyCreateWallet: findRole(roles[2]),
+      passkeyWallet: findRole(roles[1]),
+      passkeySignInWallet: findRole(roles[2]),
+      passkeyCreateWallet: findRole(roles[3]),
       availableWallets: grouped?.availableWallets ?? [],
       installableWallets: [
         ...(grouped?.installableWallets ?? []),
@@ -240,8 +251,13 @@ function ConnectWalletContent({
     passkeyCreateName,
   ]);
 
-  const hasPasskey = !!passkeySignInWallet || !!passkeyCreateWallet;
-  const hasFeatured = !!keylessWallet || hasPasskey;
+  // Single "Continue with Passkey" entry. Prefer a unified adapter wallet (whose
+  // connect() resolves new-vs-existing itself); otherwise fall back to the
+  // split registrations, preferring sign-in (existing) so returning users hit
+  // the OS passkey picker rather than being forced to create.
+  const primaryPasskeyWallet =
+    passkeyWallet ?? passkeySignInWallet ?? passkeyCreateWallet;
+  const hasFeatured = !!keylessWallet || !!primaryPasskeyWallet;
 
   return (
     <div
@@ -274,12 +290,12 @@ function ConnectWalletContent({
           {keylessWallet && (
             <FeaturedWalletButton wallet={keylessWallet} onConnect={onClose} />
           )}
-          {hasPasskey && (
-            <PasskeyGroup
-              signInWallet={passkeySignInWallet}
-              createWallet={passkeyCreateWallet}
-              label={passkeyLabel}
+          {primaryPasskeyWallet && (
+            <FeaturedWalletButton
+              wallet={primaryPasskeyWallet}
               onConnect={onClose}
+              icon={<KeyIcon size={22} weight="bold" />}
+              label={passkeyLabel}
             />
           )}
           <div className="flex w-full items-center gap-3 pt-1">
@@ -452,13 +468,15 @@ const featuredButtonClass = cn(
 
 /** Full-width pill that connects a single "featured" wallet (keyless/passkey).
  *  Pass `icon` to override the wallet's registered icon (e.g. the passkey
- *  entries whose registered glyph is a `currentColor` SVG that doesn't render
- *  through <img>). */
+ *  entry whose registered glyph is a `currentColor` SVG that doesn't render
+ *  through <img>). Pass `label` to show custom text instead of `wallet.name`
+ *  (e.g. "Continue with Passkey" over the underlying adapter's name). */
 function FeaturedWalletButton({
   wallet,
   onConnect,
   icon,
-}: WalletRowProps & { icon?: React.ReactNode }) {
+  label,
+}: WalletRowProps & { icon?: React.ReactNode; label?: React.ReactNode }) {
   return (
     <WalletItem wallet={wallet} onConnect={onConnect}>
       <WalletItem.ConnectButton asChild>
@@ -468,74 +486,10 @@ function FeaturedWalletButton({
               <WalletItem.Icon className="h-full w-full object-contain" />
             )}
           </div>
-          {wallet.name}
+          {label ?? wallet.name}
         </button>
       </WalletItem.ConnectButton>
     </WalletItem>
-  );
-}
-
-/**
- * Collapsed passkey row that expands on click to reveal the sign-in / create
- * actions. Renders whichever passkey wallets are present; the collapsed row
- * borrows an icon from one of them so nothing extra needs bundling.
- */
-function PasskeyGroup({
-  signInWallet,
-  createWallet,
-  label,
-  onConnect,
-}: {
-  signInWallet: AdapterWallet | AdapterNotDetectedWallet | null;
-  createWallet: AdapterWallet | AdapterNotDetectedWallet | null;
-  label: string;
-  onConnect?: () => void;
-}) {
-  const [open, setOpen] = useState(false);
-  if (!signInWallet && !createWallet) return null;
-
-  const keyIcon = <KeyIcon size={22} weight="bold" />;
-
-  return (
-    <div className="flex w-full flex-col gap-3">
-      <button
-        type="button"
-        onClick={() => setOpen((o) => !o)}
-        aria-expanded={open}
-        className={featuredButtonClass}
-      >
-        <div className="flex h-6 w-6 shrink-0 items-center justify-center">
-          {keyIcon}
-        </div>
-        {label}
-        <CaretDownIcon
-          size={16}
-          weight="bold"
-          className={cn(
-            "transition-transform duration-200",
-            open ? "rotate-180" : "rotate-0",
-          )}
-        />
-      </button>
-      {open && (
-        <div className="animate-in fade-in flex w-full flex-col gap-3 duration-200">
-          {signInWallet && (
-            <FeaturedWalletButton
-              wallet={signInWallet}
-              onConnect={onConnect}
-              icon={keyIcon}
-            />
-          )}
-          {createWallet && (
-            <FeaturedWalletButton
-              wallet={createWallet}
-              onConnect={onConnect}
-              icon={keyIcon}
-            />
-          )}
-        </div>
-      )}
-    </div>
   );
 }
 
