@@ -27,7 +27,9 @@ import {
   DialogDescription,
 } from "@/components/shadcn/dialog";
 import { cn } from "@/lib/utils";
-import { CaretDownIcon, KeyIcon } from "@phosphor-icons/react";
+// lucide-react (not phosphor) so these icons are bundled + tree-shaken into the
+// DS — consumers don't need @phosphor-icons/react just for the wallet modal.
+import { ChevronDown, Fingerprint } from "lucide-react";
 import { NightlyIcon } from "@/components/Icon";
 
 const nightlyWallet: AdapterNotDetectedWallet = {
@@ -349,9 +351,9 @@ function ConnectWalletContent({
               )}
             >
               Other wallets
-              <CaretDownIcon
+              <ChevronDown
                 size={16}
-                weight="bold"
+                strokeWidth={2.5}
                 className={cn(
                   "transition-transform duration-200",
                   isMoreWalletsOpen ? "rotate-180" : "rotate-0",
@@ -532,7 +534,7 @@ function PasskeyRows({
       <FeaturedWalletButton
         wallet={unifiedWallet}
         onConnect={onConnect}
-        icon={<KeyIcon size={22} weight="bold" />}
+        icon={<Fingerprint size={22} strokeWidth={2.5} />}
         label={label}
       />
     );
@@ -550,7 +552,7 @@ function PasskeyRows({
       <FeaturedWalletButton
         wallet={primary}
         onConnect={onConnect}
-        icon={<KeyIcon size={22} weight="bold" />}
+        icon={<Fingerprint size={22} strokeWidth={2.5} />}
         label={label}
         onActivate={
           createFallback ? () => setTriedSignIn(true) : undefined
@@ -560,7 +562,7 @@ function PasskeyRows({
         <FeaturedWalletButton
           wallet={createFallback}
           onConnect={onConnect}
-          icon={<KeyIcon size={18} weight="bold" />}
+          icon={<Fingerprint size={18} strokeWidth={2.5} />}
           label="Create new Passkey"
           className={cn(
             "h-10 border-0 bg-transparent text-base font-normal text-white/56",
