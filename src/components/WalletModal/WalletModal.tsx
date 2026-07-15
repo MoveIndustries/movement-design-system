@@ -505,7 +505,7 @@ function FeaturedWalletButton({
  * existing-passkey (sign-in) wallet, driving the OS passkey picker. Because
  * wallet-adapter `connect()` is fire-and-forget (errors go to the app's
  * onError, not a promise we can await), we can't detect a failed sign-in to
- * then offer creation. Instead we reveal a muted "Create a new Passkey" action
+ * then offer creation. Instead we reveal a muted "Create new Passkey" action
  * once the user has attempted sign-in: if sign-in succeeds the modal closes and
  * they never see it; if it doesn't (no passkey yet, or cancelled), the create
  * option is right there. When the adapter registers a single unified wallet
@@ -561,7 +561,7 @@ function PasskeyRows({
           wallet={createFallback}
           onConnect={onConnect}
           icon={<KeyIcon size={18} weight="bold" />}
-          label="Create a new Passkey"
+          label="Create new Passkey"
           className={cn(
             "h-10 border-0 bg-transparent text-base font-normal text-white/56",
             "hover:bg-white/6 hover:text-white",

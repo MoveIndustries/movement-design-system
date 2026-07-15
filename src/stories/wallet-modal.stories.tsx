@@ -599,7 +599,7 @@ export const WithKeylessAndPasskey: Story = {
 
 /**
  * Passkey create flow. "Continue with Passkey" connects the existing-passkey
- * (sign-in) wallet; a muted "Create a new Passkey" affordance is revealed once
+ * (sign-in) wallet; a muted "Create new Passkey" affordance is revealed once
  * the user has attempted sign-in (on a successful sign-in the modal closes and
  * it's never seen). This story's `play` clicks the primary button so the create
  * option is visible as a static preview.
@@ -624,7 +624,7 @@ export const WithPasskeyCreate: Story = {
     });
     await userEvent.click(primary);
     // Reveals the muted create affordance.
-    await body.findByRole("button", { name: /create a new passkey/i });
+    await body.findByRole("button", { name: /create new passkey/i });
     // Drop focus so the snapshot shows a clean resting state (no focus ring on
     // the just-clicked button).
     (document.activeElement as HTMLElement | null)?.blur();
