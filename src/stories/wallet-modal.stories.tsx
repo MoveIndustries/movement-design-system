@@ -12,6 +12,7 @@ import {
 } from "@moveindustries/wallet-adapter-react";
 import { WalletModal } from "@/components/WalletModal";
 import { Button } from "@/components/shadcn/button";
+import { within, userEvent } from "storybook/test";
 
 const meta: Meta<typeof WalletModal> = {
   title: "Movement Design System/WalletModal",
@@ -583,11 +584,10 @@ export const WithKeylessGoogle: Story = {
 };
 
 /**
- * WalletModal with both keyless and the collapsible passkey row. The passkey
- * row is a single "Continue with a passkey" button that expands to reveal
- * "Sign in with existing passkey" and "Create new passkey". All three featured
- * entries are synthetic here (their adapters aren't on npm yet); the extension
- * wallet cards are your real installed wallets.
+ * WalletModal with both keyless and passkey. The passkey entry is a single
+ * "Continue with Passkey" button that connects the existing-passkey (sign-in)
+ * wallet. The featured entries are synthetic here (their adapters aren't on npm
+ * yet); the extension wallet cards are your real installed wallets.
  */
 export const WithKeylessAndPasskey: Story = {
   render: () => (
@@ -595,6 +595,40 @@ export const WithKeylessAndPasskey: Story = {
       <WalletModal onClose={() => console.log("close")} />
     </WithInjectedFeatured>
   ),
+};
+
+/**
+ * Passkey create flow. "Continue with Passkey" connects the existing-passkey
+ * (sign-in) wallet; a muted "Create a new Passkey" affordance is revealed once
+ * the user has attempted sign-in (on a successful sign-in the modal closes and
+ * it's never seen). This story's `play` clicks the primary button so the create
+ * option is visible as a static preview.
+ *
+ * Note: the actual passkey creation is a native OS/biometric prompt driven by
+ * the adapter's WebAuthn `create()` — the design system's surface is just this
+ * in-modal affordance, not the OS dialog.
+ */
+export const WithPasskeyCreate: Story = {
+  name: "With Passkey (create revealed)",
+  render: () => (
+    <WithInjectedFeatured>
+      <WalletModal onClose={() => console.log("close")} />
+    </WithInjectedFeatured>
+  ),
+  play: async () => {
+    // WalletModal renders through a Radix Dialog portal on <body>, not inside
+    // the story canvas — query the document body.
+    const body = within(document.body);
+    const primary = await body.findByRole("button", {
+      name: /continue with passkey/i,
+    });
+    await userEvent.click(primary);
+    // Reveals the muted create affordance.
+    await body.findByRole("button", { name: /create a new passkey/i });
+    // Drop focus so the snapshot shows a clean resting state (no focus ring on
+    // the just-clicked button).
+    (document.activeElement as HTMLElement | null)?.blur();
+  },
 };
 
 /**
