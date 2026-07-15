@@ -163,13 +163,17 @@ function ApprovalContent({
       <div className="flex w-full gap-3">
         <Button
           variant="outline"
-          className="flex-1"
+          className="flex-1 rounded-xl"
           onClick={onReject}
           disabled={loading}
         >
           {rejectLabel}
         </Button>
-        <Button className="flex-1" onClick={onApprove} disabled={loading}>
+        <Button
+          className="flex-1 rounded-xl"
+          onClick={onApprove}
+          disabled={loading}
+        >
           {loading ? (
             <>
               <Loader2 className="size-4 animate-spin" />

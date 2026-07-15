@@ -324,7 +324,7 @@ function ConnectWalletContent({
               className={cn(
                 // Nightly download pill — violet is the Nightly brand colour
                 // (Figma 7887:9734), not a Movement accent.
-                "h-10 w-full rounded-full bg-[#6067F9] px-4 py-1 [&_path]:fill-white",
+                "h-10 w-full rounded-xl bg-[#6067F9] px-4 py-1 [&_path]:fill-white",
                 "inline-flex cursor-pointer items-center justify-center gap-2 border-none",
                 "transition-all duration-200 ease-[ease]",
                 "hover:opacity-90",
@@ -459,7 +459,7 @@ interface WalletRowProps {
 // Full-width pill shared by the keyless and passkey rows.
 const featuredButtonClass = cn(
   "inline-flex h-12 w-full cursor-pointer items-center justify-center gap-3 px-4",
-  "rounded-full border-[0.5px] border-white/48 bg-white/8",
+  "rounded-xl border-[0.5px] border-white/48 bg-white/8",
   "font-display text-lg leading-[100%] font-normal text-white",
   "transition-all duration-200 ease-[ease] hover:bg-white/16",
   "focus-visible:ring-2 focus-visible:ring-[var(--color-cyan-300)] focus-visible:outline-none",
