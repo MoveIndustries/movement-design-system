@@ -4,7 +4,7 @@ All notable changes to this project will be documented in this file.
 
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/), and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
-## [1.2.4] - 2026-07-15
+## [1.2.5] - 2026-07-21
 
 Keyless (Google) and passkey support in `WalletModal`, plus a new `TransactionApprovalModal`. The wallet-modal changes are purely presentational and add no dependency on the keyless/passkey adapters — the featured rows only appear when an app registers those wallets, so apps that haven't are unaffected.
 
@@ -24,6 +24,12 @@ Keyless (Google) and passkey support in `WalletModal`, plus a new `TransactionAp
 
 - **WalletModal — scrollable on short viewports.** The card previously used `justify-center` on an overflowing flex column, which pushed the title off the top edge with no way to scroll to it. It now caps to the viewport and scrolls internally as a single container, so every part stays reachable on short screens.
 - **WalletModal — no pre-selected focus ring on open.** Radix auto-focused the first button, painting a cyan `:focus-visible` ring that looked pre-selected. Open-focus is redirected to the dialog container (a11y focus still enters the dialog); the keyboard focus ring still appears on Tab.
+
+## [1.2.4] - 2026-07-21
+
+### Changed
+
+- **Footer** — The default Discord social link now points to `https://discord.gg/movementxyz`. The previous `https://discord.gg/moveindustries` invite is deprecated. Apps passing custom `socialLinks` are unaffected.
 
 ## [1.2.3] - 2026-07-06
 
