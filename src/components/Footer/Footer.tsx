@@ -133,7 +133,7 @@ const defaultLegalLinks: FooterLink[] = [
 
 const defaultSocialLinks: SocialLink[] = [
   { platform: "x", href: "https://twitter.com/movement_xyz", label: "X (Twitter)" },
-  { platform: "discord", href: "https://discord.gg/moveindustries", label: "Discord" },
+  { platform: "discord", href: "https://discord.gg/movementxyz", label: "Discord" },
   { platform: "github", href: "https://github.com/movementlabsxyz", label: "GitHub" },
   { platform: "telegram", href: "https://t.me/movement_announcements", label: "Telegram" },
   { platform: "linkedin", href: "https://www.linkedin.com/company/movementxyz", label: "LinkedIn" },
