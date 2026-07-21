@@ -72,7 +72,8 @@ export const SendMove: Story = {
   },
 };
 
-/** Send coin, approved via **passkey** (fingerprint icon). */
+/** Send coin, approved via **passkey** (fingerprint icon). No `assetDecimals`
+ *  supplied, so the amount shows as the raw signed integer labeled "base units". */
 export const SendCoinPasskey: Story = {
   args: {
     walletName: "Continue with Passkey",
@@ -99,6 +100,26 @@ export const SendCoinKeyless: Story = {
       data: {
         function: "0x1::aptos_account::transfer_coins",
         typeArguments: ["0x1::aptos_coin::AptosCoin"],
+        functionArguments: [RECIPIENT, "2500000000"],
+      },
+    },
+  },
+};
+
+/** Same coin transfer, but the host supplies `assetDecimals` + `assetSymbol`,
+ *  so the amount formats to a human-readable token value (`2500 USDC`) instead
+ *  of the raw `2500000000` base units. */
+export const SendCoinFormatted: Story = {
+  args: {
+    walletName: "Sign in with Google",
+    address: SENDER,
+    icon: keylessIcon,
+    assetDecimals: 6,
+    assetSymbol: "USDC",
+    payload: {
+      data: {
+        function: "0x1::aptos_account::transfer_coins",
+        typeArguments: ["0x1::usdc::USDC"],
         functionArguments: [RECIPIENT, "2500000000"],
       },
     },
@@ -150,6 +171,25 @@ export const SignOnly: Story = {
         typeArguments: [],
         functionArguments: [RECIPIENT, "100000000"],
       },
+    },
+  },
+};
+
+/** Sign-only request where the signer acts as fee payer (`asFeePayer: true`) —
+ *  the footnote reads "Sign only · Fee payer role". */
+export const SignAsFeePayer: Story = {
+  args: {
+    kind: "sign",
+    walletName: "Continue with Passkey",
+    address: SENDER,
+    icon: passkeyIcon,
+    payload: {
+      transactionOrPayload: {
+        function: "0x1::aptos_account::transfer",
+        typeArguments: [],
+        functionArguments: [RECIPIENT, "100000000"],
+      },
+      asFeePayer: true,
     },
   },
 };

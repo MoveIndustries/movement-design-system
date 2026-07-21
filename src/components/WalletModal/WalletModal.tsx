@@ -204,8 +204,15 @@ function ConnectWalletContent({
       { id: FEATURED_IDS.passkeySignIn, name: passkeySignInName },
       { id: FEATURED_IDS.passkeyCreate, name: passkeyCreateName },
     ];
+    // Match on stable id, or on name — but never on an empty name, or a
+    // malformed nameless wallet (`w.name === ""`) would match the id-only
+    // passkey role (`name: ""`) and get hoisted out of the grid.
+    const nameMatch = (
+      w: AdapterWallet | AdapterNotDetectedWallet,
+      r: { id: string; name: string },
+    ) => r.name !== "" && w.name === r.name;
     const isFeatured = (w: AdapterWallet | AdapterNotDetectedWallet) =>
-      roles.some((r) => idOf(w) === r.id || w.name === r.name);
+      roles.some((r) => idOf(w) === r.id || nameMatch(w, r));
 
     // Split the featured login wallets out first via the library's own
     // partition helper, then group the remaining wallets by ready-state as
@@ -216,7 +223,7 @@ function ConnectWalletContent({
     );
     const findRole = (r: { id: string; name: string }) =>
       featured.find((w) => idOf(w) === r.id) ??
-      featured.find((w) => w.name === r.name) ??
+      featured.find((w) => nameMatch(w, r)) ??
       null;
 
     const grouped = groupAndSortWallets(rest, walletSortingOptions);

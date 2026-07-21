@@ -1,6 +1,7 @@
 import { cn } from "@/lib/utils";
 import {
   formatOctas,
+  formatUnits,
   parseAmount,
   prettyJson,
   truncateAddress,
@@ -38,14 +39,35 @@ interface TransactionData {
 export function TxPayloadSummary({
   payload,
   kind,
+  decimals,
+  symbol,
 }: {
   payload: unknown;
   kind: TransactionApprovalKind;
+  /** Decimals of the coin/FA being moved, when the host knows them. */
+  decimals?: number;
+  /** Ticker shown next to a formatted amount (e.g. "USDC"). */
+  symbol?: string;
 }) {
   const p = (payload ?? {}) as Payload;
   const data =
     p.data ?? p.payload ?? (p.transactionOrPayload as TransactionData | undefined);
   const fn = data?.function;
+
+  // Native transfer is always MOVE (8 decimals), so it formats itself. For the
+  // generic coin/FA transfers the asset is arbitrary and the modal can't infer
+  // decimals — format only when the host supplies them, else show the exact
+  // signed integer labeled as base units so it's never misread as a decimal.
+  const genericAmount = (amount: bigint | null): string => {
+    if (amount === null) return "—";
+    if (decimals === undefined) return `${amount.toString()} base units`;
+    const formatted = formatUnits(amount, decimals);
+    return symbol ? `${formatted} ${symbol}` : formatted;
+  };
+
+  // signTransaction can carry a set fee payer (`feePayer`) or ask the signer to
+  // act as one (`asFeePayer`); either means the "Fee payer role" note applies.
+  const isFeePayer = !!p.feePayer || !!p.asFeePayer;
 
   // 0x1::aptos_account::transfer(recipient, amount)
   if (fn === "0x1::aptos_account::transfer") {
@@ -60,7 +82,7 @@ export function TxPayloadSummary({
           mono
         />
         <AddressRow label="Recipient" address={String(args[0] ?? "")} />
-        <FootnoteRow kind={kind} feePayer={!!p.feePayer} />
+        <FootnoteRow kind={kind} feePayer={isFeePayer} />
       </Summary>
     );
   }
@@ -78,9 +100,9 @@ export function TxPayloadSummary({
           mono
           truncate
         />
-        <DetailRow label="Amount" value={amount !== null ? amount.toString() : "—"} mono />
+        <DetailRow label="Amount" value={genericAmount(amount)} mono />
         <AddressRow label="Recipient" address={String(args[0] ?? "")} />
-        <FootnoteRow kind={kind} feePayer={!!p.feePayer} />
+        <FootnoteRow kind={kind} feePayer={isFeePayer} />
       </Summary>
     );
   }
@@ -93,9 +115,9 @@ export function TxPayloadSummary({
       <Summary>
         <Pill label="Action" value="Send fungible asset" />
         <AddressRow label="Asset" address={String(args[0] ?? "")} />
-        <DetailRow label="Amount" value={amount !== null ? amount.toString() : "—"} mono />
+        <DetailRow label="Amount" value={genericAmount(amount)} mono />
         <AddressRow label="Recipient" address={String(args[1] ?? "")} />
-        <FootnoteRow kind={kind} feePayer={!!p.feePayer} />
+        <FootnoteRow kind={kind} feePayer={isFeePayer} />
       </Summary>
     );
   }
@@ -116,7 +138,7 @@ export function TxPayloadSummary({
           }`}
         />
       )}
-      <FootnoteRow kind={kind} feePayer={!!p.feePayer} />
+      <FootnoteRow kind={kind} feePayer={isFeePayer} />
       <details className="min-w-0 text-xs">
         <summary className="cursor-pointer text-white/48 transition-colors hover:text-white">
           Show raw payload

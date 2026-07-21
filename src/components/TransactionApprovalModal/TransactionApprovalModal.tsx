@@ -55,6 +55,14 @@ export interface TransactionApprovalModalProps {
   rejectLabel?: string;
   /** Optional icon rendered above the title (e.g. a passkey fingerprint). */
   icon?: React.ReactNode;
+  /**
+   * Decimals of the asset being transferred, for coin/FA transfers where the
+   * DS can't infer them. When omitted, such amounts render as raw base units.
+   * (Native MOVE transfers are always formatted as MOVE and ignore this.)
+   */
+  assetDecimals?: number;
+  /** Ticker shown next to a formatted coin/FA amount (e.g. "USDC"). */
+  assetSymbol?: string;
 }
 
 /**
@@ -127,6 +135,8 @@ function ApprovalContent({
   approveLabel = "Approve",
   rejectLabel = "Reject",
   icon,
+  assetDecimals,
+  assetSymbol,
 }: TransactionApprovalModalProps) {
   return (
     <div
@@ -158,7 +168,12 @@ function ApprovalContent({
         )}
       </div>
 
-      <TxPayloadSummary payload={payload} kind={kind} />
+      <TxPayloadSummary
+        payload={payload}
+        kind={kind}
+        decimals={assetDecimals}
+        symbol={assetSymbol}
+      />
 
       <div className="flex w-full gap-3">
         <Button

@@ -10,14 +10,20 @@ export function truncateAddress(addr: string): string {
   return `${addr.slice(0, 6)}…${addr.slice(-4)}`;
 }
 
+/** Base-unit integer → decimal string with `decimals` places, trailing zeros stripped. */
+export function formatUnits(amount: bigint, decimals: number): string {
+  if (decimals <= 0) return amount.toString();
+  const base = 10n ** BigInt(decimals);
+  const whole = amount / base;
+  const fraction = amount % base;
+  if (fraction === 0n) return whole.toString();
+  const fracStr = fraction.toString().padStart(decimals, "0").replace(/0+$/, "");
+  return `${whole}.${fracStr}`;
+}
+
 /** Octas → MOVE with up to 8 decimals, trailing zeros stripped. */
 export function formatOctas(octas: bigint): string {
-  if (octas === 0n) return "0";
-  const whole = octas / OCTAS_PER_MOVE;
-  const fraction = octas % OCTAS_PER_MOVE;
-  if (fraction === 0n) return whole.toString();
-  const fracStr = fraction.toString().padStart(8, "0").replace(/0+$/, "");
-  return `${whole}.${fracStr}`;
+  return formatUnits(octas, 8);
 }
 
 /** Coerce an on-chain amount argument (bigint | number | decimal string) to bigint. */
