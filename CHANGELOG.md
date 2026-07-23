@@ -4,6 +4,30 @@ All notable changes to this project will be documented in this file.
 
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/), and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [1.2.5] - 2026-07-21
+
+Keyless (Google) and passkey support in `WalletModal`, plus a new `TransactionApprovalModal`. The wallet-modal changes are purely presentational and add no dependency on the keyless/passkey adapters — the featured rows only appear when an app registers those wallets, so apps that haven't are unaffected.
+
+### Added
+
+- **WalletModal — keyless row.** Surfaces a registered keyless wallet ("Sign in with Google") as a full-width row above the wallet grid, with an "or" divider separating it from the extension wallets. Renders only when the wallet is present.
+- **WalletModal — passkey entry.** A single "Continue with Passkey" button (connects the existing-passkey/sign-in wallet, driving the OS passkey picker). After a sign-in attempt it reveals a muted "Create new Passkey" affordance — if sign-in succeeds the modal closes and it's never seen; otherwise the create path is right there. Prefers a unified `movement-passkey` adapter wallet when one is registered.
+- **TransactionApprovalModal** — new exported component (`import { TransactionApprovalModal }`). Responsive approve/reject modal (Dialog on desktop, Drawer on mobile) for wallets with no extension popup (keyless, passkey). Purely presentational: the host owns open/approve/reject state and passes the same payload it gives `signAndSubmitTransaction`; the modal decodes it into an Action/Amount/Recipient summary (with a raw-payload fallback). Auth-method-agnostic — caller supplies `icon` + `walletName` — so it serves keyless and passkey identically. No wallet-adapter dependency. Optional `assetDecimals` / `assetSymbol` props format coin/FA transfer amounts into human-readable token values.
+- **Storybook** — stories previewing the keyless row, the passkey create flow, and the transaction-approval modal (keyless + passkey variants).
+
+### Changed
+
+- **WalletModal — matches featured wallets by stable adapter `id`** (`movement-keyless` / `movement-passkey-signin` / `-create`) rather than the user-facing display name, which can shift with i18n/rebrand. The `*Name` props remain as a fallback/override.
+- **WalletModal — icons moved off `@phosphor-icons/react` onto (bundled) `lucide-react`** (fingerprint for the passkey rows, chevron for "Other wallets"). The modal no longer emits a phosphor import, so consumers don't need `@phosphor-icons/react` installed for the wallet modal.
+
+### Fixed
+
+- **WalletModal — scrollable on short viewports.** The card previously used `justify-center` on an overflowing flex column, which pushed the title off the top edge with no way to scroll to it. It now caps to the viewport and scrolls internally as a single container, so every part stays reachable on short screens.
+- **WalletModal — no pre-selected focus ring on open.** Radix auto-focused the first button, painting a cyan `:focus-visible` ring that looked pre-selected. Open-focus is redirected to the dialog container (a11y focus still enters the dialog); the keyboard focus ring still appears on Tab.
+- **TransactionApprovalModal — coin/FA amounts are no longer shown as bare base-unit integers.** `transfer_coins<T>` and `primary_fungible_store::transfer` previously rendered the raw integer (e.g. `2500000000`) with no unit, unlike the native-MOVE view. They now format via the new `assetDecimals`/`assetSymbol` props when supplied, and otherwise show the exact signed integer explicitly labeled `base units` so it can't be misread as a decimal amount. Native MOVE transfers are unchanged.
+- **TransactionApprovalModal — fee-payer footnote also honors `asFeePayer`.** A sign request that asks the signer to act as fee payer (`asFeePayer: true`) now shows the "Fee payer role" note; previously only a payload-level `feePayer` triggered it.
+- **WalletModal — a nameless wallet no longer hijacks the passkey row.** The featured-wallet match now ignores empty names, so a malformed `name: ""` wallet can't match the id-only passkey role and get hoisted out of the grid.
+
 ## [1.2.4] - 2026-07-21
 
 ### Changed

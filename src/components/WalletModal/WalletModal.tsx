@@ -6,6 +6,7 @@ import {
   WalletItem,
   type WalletSortingOptions,
   groupAndSortWallets,
+  partitionWallets,
   isInstallRequired,
   useWallet,
   WalletReadyState,
@@ -26,7 +27,9 @@ import {
   DialogDescription,
 } from "@/components/shadcn/dialog";
 import { cn } from "@/lib/utils";
-import { CaretDownIcon } from "@phosphor-icons/react";
+// lucide-react (not phosphor) so these icons are bundled + tree-shaken into the
+// DS — consumers don't need @phosphor-icons/react just for the wallet modal.
+import { ChevronDown, Fingerprint } from "lucide-react";
 import { NightlyIcon } from "@/components/Icon";
 
 const nightlyWallet: AdapterNotDetectedWallet = {
@@ -82,6 +85,27 @@ export interface ConnectWalletDialogProps extends WalletSortingOptions {
   onClose: () => void;
   /** Custom description text shown below the title. Defaults to "Securely connect your wallet to the Movement Network." */
   description?: React.ReactNode;
+  /**
+   * Fallback name for the keyless (social login) wallet surfaced as a
+   * full-width row above the wallet grid. Featured wallets are matched
+   * primarily by the adapter's stable `id` (`movement-keyless`); this name is
+   * only used when a registered wallet lacks that id or a consumer wants to
+   * override the match. The row only renders when a matching wallet is present,
+   * so apps that haven't registered keyless are unaffected. Defaults to
+   * "Sign in with Google".
+   */
+  keylessWalletName?: string;
+  /**
+   * Fallback names for the two passkey wallet entries. When at least one is
+   * registered, a single collapsed "passkey" row is shown above the grid that
+   * expands to reveal whichever actions are available. Matched primarily by the
+   * adapter's stable `id`s (`movement-passkey-signin` / `-create`); these names
+   * are the fallback/override. Defaults to the names used by
+   * `@moveindustries/wallet-adapter-passkey`.
+   */
+  passkeyWalletNames?: { signIn?: string; create?: string };
+  /** Label for the collapsed passkey row. Defaults to "Continue with passkey". */
+  passkeyLabel?: string;
 }
 
 function cleanWalletList(
@@ -108,51 +132,148 @@ function cleanWalletList(
     });
 }
 
+const DEFAULT_PASSKEY_NAMES = {
+  signIn: "Sign in with existing passkey",
+  create: "Create new passkey",
+};
+
+/**
+ * Stable adapter `id`s for the featured login wallets, as registered by
+ * `@moveindustries/wallet-adapter-keyless` and `-passkey`. Matching on these
+ * ids (rather than the user-facing name, which can change with i18n/rebrand)
+ * is what keeps the modal wired to the right wallets. The `*Name` props remain
+ * as a fallback for id-less registrations and as a consumer override.
+ */
+const FEATURED_IDS = {
+  keyless: "movement-keyless",
+  // Preferred: a single unified passkey wallet whose own `connect()` resolves
+  // new-vs-existing (WebAuthn get, falling back to create). When registered, the
+  // modal shows one "Continue with Passkey" button and lets the adapter/OS
+  // resolve the rest. `-signin` / `-create` are the legacy split registrations,
+  // still matched so the single button works against today's two-mode adapter.
+  passkey: "movement-passkey",
+  passkeySignIn: "movement-passkey-signin",
+  passkeyCreate: "movement-passkey-create",
+} as const;
+
 // Separate content component for reuse in both Drawer and Modal
 interface ConnectWalletContentProps extends WalletSortingOptions {
   onClose: () => void;
   description?: React.ReactNode;
+  keylessWalletName?: string;
+  passkeyWalletNames?: { signIn?: string; create?: string };
+  passkeyLabel?: string;
 }
 
 function ConnectWalletContent({
   onClose,
   description = "Securely connect your wallet to the Movement Network.",
+  keylessWalletName = "Sign in with Google",
+  passkeyWalletNames = DEFAULT_PASSKEY_NAMES,
+  passkeyLabel = "Continue with Passkey",
   ...walletSortingOptions
 }: ConnectWalletContentProps) {
   const { wallets } = useWallet();
   const [isMoreWalletsOpen, setIsMoreWalletsOpen] = useState(false);
-  const { availableWallets, installableWallets } =
-    useMemo(() => {
-      const grouped = groupAndSortWallets(wallets, walletSortingOptions);
+  const passkeySignInName =
+    passkeyWalletNames.signIn ?? DEFAULT_PASSKEY_NAMES.signIn;
+  const passkeyCreateName =
+    passkeyWalletNames.create ?? DEFAULT_PASSKEY_NAMES.create;
+  const {
+    keylessWallet,
+    passkeyWallet,
+    passkeySignInWallet,
+    passkeyCreateWallet,
+    availableWallets,
+    installableWallets,
+  } = useMemo(() => {
+    // The keyless + passkey adapters register as ordinary wallets; we only
+    // change WHERE they render (dedicated rows above the grid), never how they
+    // connect — every wallet, featured or not, still connects through the same
+    // WalletItem path. Identify the featured ones by each adapter's stable
+    // `id`, falling back to the display `name` for id-less registrations
+    // (e.g. Storybook mocks) or a consumer override. `id` isn't on the
+    // wallet-standard type, so read it defensively.
+    const idOf = (w: AdapterWallet | AdapterNotDetectedWallet) =>
+      (w as { id?: string }).id;
+    const roles = [
+      { id: FEATURED_IDS.keyless, name: keylessWalletName },
+      // Unified passkey wallet is matched by id only (no name fallback — "" never
+      // matches a real wallet), so it's picked up when the adapter registers one.
+      { id: FEATURED_IDS.passkey, name: "" },
+      { id: FEATURED_IDS.passkeySignIn, name: passkeySignInName },
+      { id: FEATURED_IDS.passkeyCreate, name: passkeyCreateName },
+    ];
+    // Match on stable id, or on name — but never on an empty name, or a
+    // malformed nameless wallet (`w.name === ""`) would match the id-only
+    // passkey role (`name: ""`) and get hoisted out of the grid.
+    const nameMatch = (
+      w: AdapterWallet | AdapterNotDetectedWallet,
+      r: { id: string; name: string },
+    ) => r.name !== "" && w.name === r.name;
+    const isFeatured = (w: AdapterWallet | AdapterNotDetectedWallet) =>
+      roles.some((r) => idOf(w) === r.id || nameMatch(w, r));
 
-      // Add Nightly as installable wallet if not already present
-      const additionalInstallableWallets: (
-        | AdapterWallet
-        | AdapterNotDetectedWallet
-      )[] = [];
+    // Split the featured login wallets out first via the library's own
+    // partition helper, then group the remaining wallets by ready-state as
+    // usual. Pulling them out up front keeps them out of the grid entirely.
+    const { defaultWallets: featured, moreWallets: rest } = partitionWallets(
+      wallets,
+      isFeatured,
+    );
+    const findRole = (r: { id: string; name: string }) =>
+      featured.find((w) => idOf(w) === r.id) ??
+      featured.find((w) => nameMatch(w, r)) ??
+      null;
 
-      const hasNightly = [
-        ...(grouped?.availableWallets ?? []),
+    const grouped = groupAndSortWallets(rest, walletSortingOptions);
+
+    // Add Nightly as installable wallet if not already present
+    const additionalInstallableWallets: (
+      | AdapterWallet
+      | AdapterNotDetectedWallet
+    )[] = [];
+    const hasNightly = [
+      ...(grouped?.availableWallets ?? []),
+      ...(grouped?.installableWallets ?? []),
+    ].some((w) => w.name.toLowerCase().includes("nightly"));
+    if (!hasNightly) {
+      additionalInstallableWallets.push(nightlyWallet);
+    }
+
+    return {
+      keylessWallet: findRole(roles[0]),
+      passkeyWallet: findRole(roles[1]),
+      passkeySignInWallet: findRole(roles[2]),
+      passkeyCreateWallet: findRole(roles[3]),
+      availableWallets: grouped?.availableWallets ?? [],
+      installableWallets: [
         ...(grouped?.installableWallets ?? []),
-      ].some((w) => w.name.toLowerCase().includes("nightly"));
-      if (!hasNightly) {
-        additionalInstallableWallets.push(nightlyWallet);
-      }
+        ...additionalInstallableWallets,
+      ],
+    };
+  }, [
+    wallets,
+    walletSortingOptions,
+    keylessWalletName,
+    passkeySignInName,
+    passkeyCreateName,
+  ]);
 
-      return {
-        availableWallets: grouped?.availableWallets ?? [],
-        installableWallets: [
-          ...(grouped?.installableWallets ?? []),
-          ...additionalInstallableWallets,
-        ],
-      };
-    }, [wallets, walletSortingOptions]);
+  const hasPasskey =
+    !!passkeyWallet || !!passkeySignInWallet || !!passkeyCreateWallet;
+  const hasFeatured = !!keylessWallet || hasPasskey;
 
   return (
     <div
       className={cn(
-        "flex w-full flex-col items-center justify-center gap-6 px-6 pt-12 pb-6 md:max-w-114",
-        "z-9999 mx-auto max-h-full overflow-y-auto overflow-hidden md:max-h-[80vh]",
+        "flex w-full flex-col items-center gap-6 px-6 pt-12 pb-6 md:max-w-114",
+        // Cap to the viewport (minus a 1rem gutter) and scroll internally so
+        // every part stays reachable on short screens. Must NOT use
+        // justify-center here: on an overflowing flex column it pushes the top
+        // off-screen and makes it unscrollable. Single scroll container — the
+        // grid below deliberately doesn't add its own.
+        "z-9999 mx-auto max-h-[calc(100vh-2rem)] overflow-x-hidden overflow-y-auto",
         // Figma "Connect Wallet/empty" (node 7887:9734): flat dark-gray card,
         // hairline white stroke, 24px radius — no gradient/blur.
         "rounded-[24px] border-[0.5px] border-white bg-[#2d2d2d]",
@@ -169,7 +290,31 @@ function ConnectWalletContent({
         )}
       </div>
 
-      <div className="flex max-h-168 w-full max-w-102 flex-row flex-wrap content-center items-start justify-center gap-4 overflow-y-auto p-4 py-4">
+      {hasFeatured && (
+        <div className="flex w-full max-w-102 flex-col gap-3">
+          {keylessWallet && (
+            <FeaturedWalletButton wallet={keylessWallet} onConnect={onClose} />
+          )}
+          {hasPasskey && (
+            <PasskeyRows
+              unifiedWallet={passkeyWallet}
+              signInWallet={passkeySignInWallet}
+              createWallet={passkeyCreateWallet}
+              label={passkeyLabel}
+              onConnect={onClose}
+            />
+          )}
+          <div className="flex w-full items-center gap-3 pt-1">
+            <div className="h-px flex-1 bg-white/20" />
+            <span className="font-display text-sm leading-none font-medium text-white/48">
+              or
+            </span>
+            <div className="h-px flex-1 bg-white/20" />
+          </div>
+        </div>
+      )}
+
+      <div className="flex w-full max-w-102 flex-row flex-wrap content-center items-start justify-center gap-4 p-4 py-4">
         {availableWallets.length > 0 ? (
           cleanWalletList(availableWallets).map((wallet) => (
             <div key={wallet.name} className="w-28 shrink-0">
@@ -186,7 +331,7 @@ function ConnectWalletContent({
               className={cn(
                 // Nightly download pill — violet is the Nightly brand colour
                 // (Figma 7887:9734), not a Movement accent.
-                "h-10 w-full rounded-full bg-[#6067F9] px-4 py-1 [&_path]:fill-white",
+                "h-10 w-full rounded-xl bg-[#6067F9] px-4 py-1 [&_path]:fill-white",
                 "inline-flex cursor-pointer items-center justify-center gap-2 border-none",
                 "transition-all duration-200 ease-[ease]",
                 "hover:opacity-90",
@@ -213,9 +358,9 @@ function ConnectWalletContent({
               )}
             >
               Other wallets
-              <CaretDownIcon
+              <ChevronDown
                 size={16}
-                weight="bold"
+                strokeWidth={2.5}
                 className={cn(
                   "transition-transform duration-200",
                   isMoreWalletsOpen ? "rotate-180" : "rotate-0",
@@ -290,7 +435,18 @@ export function WalletModal({
     >
       <DialogContent
         showCloseButton={false}
-        className="border-0 bg-transparent p-0"
+        // outline suppressed: the container is only a programmatic focus holder
+        // (see onOpenAutoFocus), not a control the user tabs to.
+        className="border-0 bg-transparent p-0 focus:outline-none focus-visible:outline-none"
+        // Radix auto-focuses the first focusable child (the Google button) on
+        // open, which fires :focus-visible and paints a cyan ring that looks
+        // pre-selected. Move focus to the dialog container instead so a11y focus
+        // still enters the dialog, but no button is highlighted until the user
+        // actually tabs to it.
+        onOpenAutoFocus={(e) => {
+          e.preventDefault();
+          (e.currentTarget as HTMLElement | null)?.focus();
+        }}
       >
         <DialogTitle className="sr-only">Connect Wallet</DialogTitle>
         <DialogDescription className="sr-only">
@@ -305,6 +461,125 @@ export function WalletModal({
 interface WalletRowProps {
   wallet: AdapterWallet | AdapterNotDetectedWallet;
   onConnect?: () => void;
+}
+
+// Full-width pill shared by the keyless and passkey rows.
+const featuredButtonClass = cn(
+  "inline-flex h-12 w-full cursor-pointer items-center justify-center gap-3 px-4",
+  "rounded-xl border-[0.5px] border-white/48 bg-white/8",
+  "font-display text-lg leading-[100%] font-normal text-white",
+  "transition-all duration-200 ease-[ease] hover:bg-white/16",
+  "focus-visible:ring-2 focus-visible:ring-[var(--color-cyan-300)] focus-visible:outline-none",
+);
+
+/** Full-width pill that connects a single "featured" wallet (keyless/passkey).
+ *  Pass `icon` to override the wallet's registered icon (e.g. the passkey
+ *  entry whose registered glyph is a `currentColor` SVG that doesn't render
+ *  through <img>). Pass `label` to show custom text instead of `wallet.name`
+ *  (e.g. "Continue with Passkey" over the underlying adapter's name).
+ *  `className` overrides the pill style (e.g. the muted create fallback);
+ *  `onActivate` fires on click alongside the connect (Radix Slot merges the
+ *  handlers) — used to reveal the create option after a sign-in attempt. */
+function FeaturedWalletButton({
+  wallet,
+  onConnect,
+  icon,
+  label,
+  className,
+  onActivate,
+}: WalletRowProps & {
+  icon?: React.ReactNode;
+  label?: React.ReactNode;
+  className?: string;
+  onActivate?: () => void;
+}) {
+  return (
+    <WalletItem wallet={wallet} onConnect={onConnect}>
+      <WalletItem.ConnectButton asChild>
+        <button className={cn(featuredButtonClass, className)} onClick={onActivate}>
+          <div className="flex h-6 w-6 shrink-0 items-center justify-center">
+            {icon ?? (
+              <WalletItem.Icon className="h-full w-full object-contain" />
+            )}
+          </div>
+          {label ?? wallet.name}
+        </button>
+      </WalletItem.ConnectButton>
+    </WalletItem>
+  );
+}
+
+/**
+ * Passkey entry. One primary "Continue with Passkey" button that connects the
+ * existing-passkey (sign-in) wallet, driving the OS passkey picker. Because
+ * wallet-adapter `connect()` is fire-and-forget (errors go to the app's
+ * onError, not a promise we can await), we can't detect a failed sign-in to
+ * then offer creation. Instead we reveal a muted "Create new Passkey" action
+ * once the user has attempted sign-in: if sign-in succeeds the modal closes and
+ * they never see it; if it doesn't (no passkey yet, or cancelled), the create
+ * option is right there. When the adapter registers a single unified wallet
+ * whose own connect() resolves new-vs-existing, we just render that — no
+ * fallback needed.
+ */
+function PasskeyRows({
+  unifiedWallet,
+  signInWallet,
+  createWallet,
+  label,
+  onConnect,
+}: {
+  unifiedWallet: AdapterWallet | AdapterNotDetectedWallet | null;
+  signInWallet: AdapterWallet | AdapterNotDetectedWallet | null;
+  createWallet: AdapterWallet | AdapterNotDetectedWallet | null;
+  label: string;
+  onConnect?: () => void;
+}) {
+  const [triedSignIn, setTriedSignIn] = useState(false);
+
+  if (unifiedWallet) {
+    return (
+      <FeaturedWalletButton
+        wallet={unifiedWallet}
+        onConnect={onConnect}
+        icon={<Fingerprint size={22} strokeWidth={2.5} />}
+        label={label}
+      />
+    );
+  }
+
+  const primary = signInWallet ?? createWallet;
+  if (!primary) return null;
+  // Offer create only when there's a distinct create entry to fall back to
+  // (i.e. the primary is the sign-in wallet, not the create wallet itself).
+  const createFallback =
+    createWallet && createWallet !== primary ? createWallet : null;
+
+  return (
+    <div className="flex w-full flex-col gap-2">
+      <FeaturedWalletButton
+        wallet={primary}
+        onConnect={onConnect}
+        icon={<Fingerprint size={22} strokeWidth={2.5} />}
+        label={label}
+        onActivate={
+          createFallback ? () => setTriedSignIn(true) : undefined
+        }
+      />
+      {createFallback && triedSignIn && (
+        <FeaturedWalletButton
+          wallet={createFallback}
+          onConnect={onConnect}
+          icon={<Fingerprint size={18} strokeWidth={2.5} />}
+          label="Create new Passkey"
+          className={cn(
+            "h-10 border-0 bg-transparent text-base font-normal text-white/56",
+            "hover:bg-white/6 hover:text-white",
+            "animate-in fade-in slide-in-from-top-1 duration-200",
+          )}
+        />
+      )}
+    </div>
+  );
 }
 
 const gridCard = (child: React.ReactNode) => (

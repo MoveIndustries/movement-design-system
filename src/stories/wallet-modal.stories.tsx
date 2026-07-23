@@ -7,9 +7,14 @@ import type {
 import {
   MovementWalletAdapterProvider,
   useWallet,
+  WalletContext,
+  WalletReadyState,
 } from "@moveindustries/wallet-adapter-react";
 import { WalletModal } from "@/components/WalletModal";
 import { Button } from "@/components/shadcn/button";
+// Google "G" mark for the keyless preview — shared with other stories.
+import { GOOGLE_ICON_DATA_URI } from "./fixtures";
+import { within, userEvent } from "storybook/test";
 
 const meta: Meta<typeof WalletModal> = {
   title: "Movement Design System/WalletModal",
@@ -477,6 +482,148 @@ export const MobileView: Story = {
     viewport: {
       defaultViewport: "mobile1",
     },
+  },
+};
+
+// --- Keyless / social login preview -------------------------------------
+//
+// The keyless "Login with Google" row only renders when a wallet named
+// "Sign in with Google" is present in useWallet().wallets. In production that
+// wallet is contributed by @moveindustries/wallet-adapter-keyless (not yet on
+// npm). To preview the row WITHOUT losing the real extension wallets, we keep
+// the real MovementWalletAdapterProvider (so OKX / Razor / Nightly render with
+// their genuine icons, exactly as in production) and simply prepend one
+// synthetic keyless entry to the real wallet list. Nothing else is faked.
+
+
+/** Inline fingerprint glyph as a data URI (matches the passkey adapter's icon).
+ *  The real adapter's icon uses stroke="currentColor" which is invisible when
+ *  loaded via <img> on a dark background; we hardcode white here for preview. */
+const PASSKEY_ICON_DATA_URI =
+  "data:image/svg+xml;utf8," +
+  encodeURIComponent(
+    `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="#ffffff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" width="48" height="48"><path d="M3 8a9 9 0 0 1 9-5 9 9 0 0 1 9 5"/><path d="M5 12a7 7 0 0 1 14 0v1"/><path d="M9 12c0-3 3-3 3-3s3 0 3 3"/><path d="M12 12v3.5a3.5 3.5 0 0 1-7 0v-1"/><path d="M12 12v6"/></svg>`,
+  );
+
+/** Build a synthetic "Installed" wallet — stands in for an adapter-registered
+ *  one. Carries the real adapter `id` so the modal matches it the same way it
+ *  matches the production wallets (by id), not just by name. */
+function synthetic(id: string, name: string, icon: string): AdapterWallet {
+  return {
+    id,
+    name,
+    icon,
+    url: "",
+    readyState: WalletReadyState.Installed,
+    version: "1.0.0",
+    chains: [],
+    accounts: [],
+    features: {},
+  } as unknown as AdapterWallet;
+}
+
+// The featured entries the real keyless + passkey adapters register — ids match
+// KeylessWalletAdapter / PasskeyWalletAdapter in movement-wallet-adapter.
+const SYNTHETIC_FEATURED: AdapterWallet[] = [
+  synthetic("movement-keyless", "Sign in with Google", GOOGLE_ICON_DATA_URI),
+  synthetic(
+    "movement-passkey-signin",
+    "Sign in with existing passkey",
+    PASSKEY_ICON_DATA_URI,
+  ),
+  synthetic(
+    "movement-passkey-create",
+    "Create new passkey",
+    PASSKEY_ICON_DATA_URI,
+  ),
+];
+
+/**
+ * Wraps the REAL provider's context and prepends the synthetic featured wallets
+ * (keyless + passkey), leaving every real wallet (and connect/account/etc.)
+ * untouched. `only` limits which synthetic entries to inject.
+ */
+function WithInjectedFeatured({
+  children,
+  only,
+}: {
+  children: React.ReactNode;
+  only?: string[];
+}) {
+  const real = useWallet();
+  const injected = only
+    ? SYNTHETIC_FEATURED.filter((w) => only.includes(w.name))
+    : SYNTHETIC_FEATURED;
+  const value = {
+    ...real,
+    wallets: [...injected, ...real.wallets],
+  } as unknown as React.ContextType<typeof WalletContext>;
+  return (
+    <WalletContext.Provider value={value}>{children}</WalletContext.Provider>
+  );
+}
+
+/**
+ * WalletModal with the keyless "Login with Google" row above the wallet grid.
+ *
+ * Uses the real wallet provider from the meta decorator, so the wallet cards
+ * are your genuinely-installed extensions. Only the "Sign in with Google" row
+ * is synthetic (its adapter isn't on npm yet); clicking it just logs, since
+ * there's no real keyless adapter registered in Storybook.
+ */
+export const WithKeylessGoogle: Story = {
+  render: () => (
+    <WithInjectedFeatured only={["Sign in with Google"]}>
+      <WalletModal onClose={() => console.log("close")} />
+    </WithInjectedFeatured>
+  ),
+};
+
+/**
+ * WalletModal with both keyless and passkey. The passkey entry is a single
+ * "Continue with Passkey" button that connects the existing-passkey (sign-in)
+ * wallet. The featured entries are synthetic here (their adapters aren't on npm
+ * yet); the extension wallet cards are your real installed wallets.
+ */
+export const WithKeylessAndPasskey: Story = {
+  render: () => (
+    <WithInjectedFeatured>
+      <WalletModal onClose={() => console.log("close")} />
+    </WithInjectedFeatured>
+  ),
+};
+
+/**
+ * Passkey create flow. "Continue with Passkey" connects the existing-passkey
+ * (sign-in) wallet; a muted "Create new Passkey" affordance is revealed once
+ * the user has attempted sign-in (on a successful sign-in the modal closes and
+ * it's never seen). This story's `play` clicks the primary button so the create
+ * option is visible as a static preview.
+ *
+ * Note: the actual passkey creation is a native OS/biometric prompt driven by
+ * the adapter's WebAuthn `create()` — the design system's surface is just this
+ * in-modal affordance, not the OS dialog.
+ */
+export const WithPasskeyCreate: Story = {
+  name: "With Passkey (create revealed)",
+  render: () => (
+    <WithInjectedFeatured>
+      <WalletModal onClose={() => console.log("close")} />
+    </WithInjectedFeatured>
+  ),
+  play: async () => {
+    // WalletModal renders through a Radix Dialog portal on <body>, not inside
+    // the story canvas — query the document body.
+    const body = within(document.body);
+    const primary = await body.findByRole("button", {
+      name: /continue with passkey/i,
+    });
+    await userEvent.click(primary);
+    // Reveals the muted create affordance.
+    await body.findByRole("button", { name: /create new passkey/i });
+    // Drop focus so the snapshot shows a clean resting state (no focus ring on
+    // the just-clicked button).
+    (document.activeElement as HTMLElement | null)?.blur();
   },
 };
 
