@@ -113,9 +113,6 @@ function copyThemePlugin() {
   };
 }
 
-// Check if we're building the library (not Storybook dev)
-const isLibBuild = process.env.npm_lifecycle_event === "build";
-
 // More info at: https://storybook.js.org/docs/next/writing-tests/integrations/vitest-addon
 export default defineConfig({
   plugins: [

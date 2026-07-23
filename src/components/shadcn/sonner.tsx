@@ -1,7 +1,5 @@
 "use client";
 
-/* eslint-disable react-refresh/only-export-components */
-
 import { Toaster as SonnerToaster } from "sonner";
 import { toast as sonnerToast } from "sonner";
 import { useTheme } from "next-themes";
