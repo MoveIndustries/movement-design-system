@@ -26,11 +26,15 @@ export function formatOctas(octas: bigint): string {
   return formatUnits(octas, 8);
 }
 
-/** Coerce an on-chain amount argument (bigint | number | decimal string) to bigint. */
+/**
+ * Coerce an on-chain amount argument (bigint | number | decimal string) to bigint.
+ * Numbers are accepted only when they represent their value exactly: above
+ * Number.MAX_SAFE_INTEGER a JS number is already lossy, so converting would show
+ * a confidently-wrong amount. Such values fall through to null → rendered "—".
+ */
 export function parseAmount(raw: unknown): bigint | null {
   if (typeof raw === "bigint") return raw;
-  if (typeof raw === "number" && Number.isFinite(raw))
-    return BigInt(Math.trunc(raw));
+  if (typeof raw === "number" && Number.isSafeInteger(raw)) return BigInt(raw);
   if (typeof raw === "string" && /^\d+$/.test(raw)) {
     try {
       return BigInt(raw);
