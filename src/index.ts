@@ -17,6 +17,11 @@ export type {
 } from "./components/Footer";
 export { IconButton } from "./components/IconButton/IconButton";
 export { ProgressButton } from "./components/ProgressButton";
+export { TransactionApprovalModal } from "./components/TransactionApprovalModal";
+export type {
+  TransactionApprovalModalProps,
+  TransactionApprovalKind,
+} from "./components/TransactionApprovalModal";
 // WalletModal moved to separate entry point:
 // import { WalletModal } from "@moveindustries/movement-design-system/wallet"
 export {
