@@ -1,8 +1,5 @@
 import type { Meta, StoryObj } from "@storybook/react-vite";
-import {
-  gradientBackgroundClasses,
-  getGradientClass,
-} from "../lib/gradient-styles";
+import { gradientBackgroundClasses } from "../lib/gradient-styles";
 
 const meta: Meta = {
   title: "theme/Gradients",

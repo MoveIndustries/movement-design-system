@@ -173,8 +173,6 @@ function ToggleGroupItem({
 export {
   ToggleGroup,
   ToggleGroupItem,
-  // eslint-disable-next-line react-refresh/only-export-components
   toggleGroupVariants,
-  // eslint-disable-next-line react-refresh/only-export-components
   toggleGroupItemVariants,
 };
