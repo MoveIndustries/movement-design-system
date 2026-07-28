@@ -126,6 +126,42 @@ export const SendCoinFormatted: Story = {
   },
 };
 
+/** `0x1::coin::transfer` shares the `transfer_coins` signature, so it decodes as
+ *  a coin transfer rather than falling through to the generic view. */
+export const LegacyCoinTransfer: Story = {
+  args: {
+    walletName: "Sign in with Google",
+    address: SENDER,
+    icon: keylessIcon,
+    assetDecimals: 8,
+    assetSymbol: "MOVE",
+    payload: {
+      data: {
+        function: "0x1::coin::transfer",
+        typeArguments: ["0x1::aptos_coin::AptosCoin"],
+        functionArguments: [RECIPIENT, "2500000000"],
+      },
+    },
+  },
+};
+
+/** An amount the modal can't read (here a wrapper object rather than a bigint or
+ *  decimal string). Approve is disabled — an undecodable amount must not look
+ *  like no amount. */
+export const UndecodableAmount: Story = {
+  args: {
+    walletName: "Sign in with Google",
+    address: SENDER,
+    icon: keylessIcon,
+    payload: {
+      data: {
+        function: "0x1::aptos_account::transfer",
+        functionArguments: [RECIPIENT, { value: "100000000" }],
+      },
+    },
+  },
+};
+
 /** Fungible-asset transfer, approved via **keyless**. */
 export const FungibleAssetKeyless: Story = {
   args: {

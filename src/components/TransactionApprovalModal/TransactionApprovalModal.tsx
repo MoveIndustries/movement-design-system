@@ -19,6 +19,7 @@ import {
 import { Button } from "@/components/shadcn/button";
 import { cn } from "@/lib/utils";
 import { truncateAddress } from "./format";
+import { decodePayload, hasUndecodableAmount } from "./decode";
 import { TxPayloadSummary } from "./TxPayloadSummary";
 
 export type TransactionApprovalKind = "sign-and-submit" | "sign";
@@ -45,6 +46,10 @@ export interface TransactionApprovalModalProps {
   /**
    * Pending state — disables both actions and shows a spinner on Approve.
    * Use while the downstream signing prompt (e.g. the passkey biometric) is up.
+   *
+   * Also makes the modal non-dismissable, so escape/overlay/swipe can't report
+   * a rejection for a transaction that may already be submitted. Clear it on
+   * error, or the modal stays unclosable.
    */
   loading?: boolean;
   /** Header title. Default "Approve transaction". */
@@ -85,13 +90,23 @@ export function TransactionApprovalModal(props: TransactionApprovalModalProps) {
     return null;
   }
 
+  // Once signing is in flight the decision can't be taken back — reporting a
+  // rejection here would contradict a transaction that may already be onchain.
   const onOpenChange = (next: boolean) => {
-    if (!next) onReject();
+    if (!next && !props.loading) onReject();
+  };
+
+  const blockWhileLoading = (e: Event) => {
+    if (props.loading) e.preventDefault();
   };
 
   return isMobile ? (
-    <Drawer open={open} onOpenChange={onOpenChange}>
-      <DrawerContent className="z-9999 border-0 bg-transparent">
+    <Drawer open={open} onOpenChange={onOpenChange} dismissible={!props.loading}>
+      <DrawerContent
+        className="z-9999 border-0 bg-transparent"
+        onEscapeKeyDown={blockWhileLoading}
+        onPointerDownOutside={blockWhileLoading}
+      >
         <DrawerTitle className="sr-only">
           {props.title ?? "Approve transaction"}
         </DrawerTitle>
@@ -106,6 +121,8 @@ export function TransactionApprovalModal(props: TransactionApprovalModalProps) {
       <DialogContent
         showCloseButton={false}
         className="border-0 bg-transparent p-0 focus:outline-none focus-visible:outline-none"
+        onEscapeKeyDown={blockWhileLoading}
+        onPointerDownOutside={blockWhileLoading}
         onOpenAutoFocus={(e) => {
           e.preventDefault();
           (e.currentTarget as HTMLElement | null)?.focus();
@@ -138,6 +155,9 @@ function ApprovalContent({
   assetDecimals,
   assetSymbol,
 }: TransactionApprovalModalProps) {
+  const decoded = decodePayload(payload);
+  const undecodable = hasUndecodableAmount(decoded);
+
   return (
     <div
       className={cn(
@@ -169,11 +189,19 @@ function ApprovalContent({
       </div>
 
       <TxPayloadSummary
+        decoded={decoded}
         payload={payload}
         kind={kind}
         decimals={assetDecimals}
         symbol={assetSymbol}
       />
+
+      {undecodable && (
+        <p className="font-display text-xs text-amber-300">
+          This transfer&rsquo;s amount could not be read, so it can&rsquo;t be
+          approved here. Reject and retry from the app.
+        </p>
+      )}
 
       <div className="flex w-full gap-3">
         <Button
@@ -187,7 +215,7 @@ function ApprovalContent({
         <Button
           className="flex-1 rounded-xl"
           onClick={onApprove}
-          disabled={loading}
+          disabled={loading || undecodable}
         >
           {loading ? (
             <>

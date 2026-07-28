@@ -1,47 +1,26 @@
 import { cn } from "@/lib/utils";
-import {
-  formatOctas,
-  formatUnits,
-  parseAmount,
-  prettyJson,
-  truncateAddress,
-} from "./format";
+import { formatOctas, formatUnits, prettyJson, truncateAddress } from "./format";
+import type { DecodedTx, FeePayerRole } from "./decode";
 import type { TransactionApprovalKind } from "./TransactionApprovalModal";
 
-interface Payload {
-  // signAndSubmitTransaction — InputTransactionData shape
-  data?: TransactionData;
-  // signTransaction — { transactionOrPayload, asFeePayer? }
-  transactionOrPayload?: unknown;
-  asFeePayer?: boolean;
-  // wallet-standard sign-and-submit / signTransaction v1.1 shape — `payload`
-  payload?: TransactionData;
-  feePayer?: unknown;
-  gasUnitPrice?: number;
-  maxGasAmount?: number;
-}
-
-interface TransactionData {
-  function?: string;
-  typeArguments?: string[];
-  functionArguments?: unknown[];
-}
+const UNDECODABLE = "⚠ Could not decode amount";
 
 /**
- * Human-readable summary of a transaction payload.
+ * Human-readable summary of a decoded transaction.
  *
- * Recognized functions (MOVE/coin/FA transfers) get a structured
- * "Action / Amount / Recipient" block; anything else falls back to a generic
- * "Call function" view with the full payload behind a disclosure. This is the
- * same decode logic used in keyless-playground's approve modal, restyled with
- * the design-system's dark-card tokens.
+ * Recognized transfers get a structured "Action / Amount / Recipient" block;
+ * anything else falls back to a generic "Call function" view with the full
+ * payload behind a disclosure.
  */
 export function TxPayloadSummary({
+  decoded,
   payload,
   kind,
   decimals,
   symbol,
 }: {
+  decoded: DecodedTx;
+  /** Raw sign request, shown verbatim in the generic view's disclosure. */
   payload: unknown;
   kind: TransactionApprovalKind;
   /** Decimals of the coin/FA being moved, when the host knows them. */
@@ -49,96 +28,94 @@ export function TxPayloadSummary({
   /** Ticker shown next to a formatted amount (e.g. "USDC"). */
   symbol?: string;
 }) {
-  const p = (payload ?? {}) as Payload;
-  const data =
-    p.data ?? p.payload ?? (p.transactionOrPayload as TransactionData | undefined);
-  const fn = data?.function;
-
   // Native transfer is always MOVE (8 decimals), so it formats itself. For the
   // generic coin/FA transfers the asset is arbitrary and the modal can't infer
   // decimals — format only when the host supplies them, else show the exact
   // signed integer labeled as base units so it's never misread as a decimal.
   const genericAmount = (amount: bigint | null): string => {
-    if (amount === null) return "—";
+    if (amount === null) return UNDECODABLE;
     if (decimals === undefined) return `${amount.toString()} base units`;
     const formatted = formatUnits(amount, decimals);
     return symbol ? `${formatted} ${symbol}` : formatted;
   };
 
-  // signTransaction can carry a set fee payer (`feePayer`) or ask the signer to
-  // act as one (`asFeePayer`); either means the "Fee payer role" note applies.
-  const isFeePayer = !!p.feePayer || !!p.asFeePayer;
-
-  // 0x1::aptos_account::transfer(recipient, amount)
-  if (fn === "0x1::aptos_account::transfer") {
-    const args = data?.functionArguments ?? [];
-    const amount = parseAmount(args[1]);
+  if (decoded.action === "transfer-move") {
     return (
       <Summary>
         <Pill label="Action" value="Send MOVE" />
+        <FeePayerNotice role={decoded.feePayer} />
         <DetailRow
           label="Amount"
-          value={amount !== null ? `${formatOctas(amount)} MOVE` : "—"}
+          value={
+            decoded.amount !== null
+              ? `${formatOctas(decoded.amount)} MOVE`
+              : UNDECODABLE
+          }
           mono
+          warn={decoded.amount === null}
         />
-        <AddressRow label="Recipient" address={String(args[0] ?? "")} />
-        <FootnoteRow kind={kind} feePayer={isFeePayer} />
+        <AddressRow label="Recipient" address={decoded.recipient} />
+        <FootnoteRow kind={kind} />
       </Summary>
     );
   }
 
-  // 0x1::aptos_account::transfer_coins<T>(recipient, amount)
-  if (fn === "0x1::aptos_account::transfer_coins") {
-    const args = data?.functionArguments ?? [];
-    const amount = parseAmount(args[1]);
+  if (decoded.action === "transfer-coin") {
     return (
       <Summary>
         <Pill label="Action" value="Send coin" />
+        <FeePayerNotice role={decoded.feePayer} />
+        <DetailRow label="Coin type" value={decoded.coinType} mono truncate />
         <DetailRow
-          label="Coin type"
-          value={String(data?.typeArguments?.[0] ?? "unknown")}
+          label="Amount"
+          value={genericAmount(decoded.amount)}
           mono
-          truncate
+          warn={decoded.amount === null}
         />
-        <DetailRow label="Amount" value={genericAmount(amount)} mono />
-        <AddressRow label="Recipient" address={String(args[0] ?? "")} />
-        <FootnoteRow kind={kind} feePayer={isFeePayer} />
+        <AddressRow label="Recipient" address={decoded.recipient} />
+        <FootnoteRow kind={kind} />
       </Summary>
     );
   }
 
-  // 0x1::primary_fungible_store::transfer(asset, recipient, amount)
-  if (fn === "0x1::primary_fungible_store::transfer") {
-    const args = data?.functionArguments ?? [];
-    const amount = parseAmount(args[2]);
+  if (decoded.action === "transfer-fa") {
     return (
       <Summary>
         <Pill label="Action" value="Send fungible asset" />
-        <AddressRow label="Asset" address={String(args[0] ?? "")} />
-        <DetailRow label="Amount" value={genericAmount(amount)} mono />
-        <AddressRow label="Recipient" address={String(args[1] ?? "")} />
-        <FootnoteRow kind={kind} feePayer={isFeePayer} />
+        <FeePayerNotice role={decoded.feePayer} />
+        <AddressRow label="Asset" address={decoded.asset} />
+        <DetailRow
+          label="Amount"
+          value={genericAmount(decoded.amount)}
+          mono
+          warn={decoded.amount === null}
+        />
+        <AddressRow label="Recipient" address={decoded.recipient} />
+        <FootnoteRow kind={kind} />
       </Summary>
     );
   }
 
-  // Fallback: generic function call
   return (
     <Summary>
       <Pill label="Action" value="Call function" />
-      {fn && <DetailRow label="Function" value={fn} mono truncate />}
-      {data?.typeArguments && data.typeArguments.length > 0 && (
-        <DetailRow label="Type args" value={data.typeArguments.join(", ")} mono truncate />
-      )}
-      {data?.functionArguments && (
+      <FeePayerNotice role={decoded.feePayer} />
+      {decoded.fn && <DetailRow label="Function" value={decoded.fn} mono truncate />}
+      {decoded.typeArguments && decoded.typeArguments.length > 0 && (
         <DetailRow
-          label="Args"
-          value={`${data.functionArguments.length} argument${
-            data.functionArguments.length === 1 ? "" : "s"
-          }`}
+          label="Type args"
+          value={decoded.typeArguments.join(", ")}
+          mono
+          truncate
         />
       )}
-      <FootnoteRow kind={kind} feePayer={isFeePayer} />
+      {decoded.argCount !== undefined && (
+        <DetailRow
+          label="Args"
+          value={`${decoded.argCount} argument${decoded.argCount === 1 ? "" : "s"}`}
+        />
+      )}
+      <FootnoteRow kind={kind} />
       <details className="min-w-0 text-xs">
         <summary className="cursor-pointer text-white/48 transition-colors hover:text-white">
           Show raw payload
@@ -166,16 +143,30 @@ function Pill({ label, value }: { label: string; value: string }) {
   );
 }
 
+/** Who pays gas is high-consequence, so it gets a callout, not a footnote. */
+function FeePayerNotice({ role }: { role: FeePayerRole }) {
+  if (role === "none") return null;
+  return (
+    <div className="rounded-2xl border-[0.5px] border-amber-400/32 bg-amber-400/8 px-4 py-3 font-display text-sm text-amber-200">
+      {role === "self"
+        ? "You will pay the gas for this transaction."
+        : "A separate fee payer is set for this transaction."}
+    </div>
+  );
+}
+
 function DetailRow({
   label,
   value,
   mono,
   truncate,
+  warn,
 }: {
   label: string;
   value: string;
   mono?: boolean;
   truncate?: boolean;
+  warn?: boolean;
 }) {
   return (
     <div className="flex min-w-0 items-baseline justify-between gap-3 px-1 text-sm">
@@ -185,6 +176,7 @@ function DetailRow({
           "text-right text-white",
           mono && "font-mono text-xs",
           truncate && "min-w-0 flex-1 truncate",
+          warn && "font-display text-xs text-amber-300",
         )}
         title={value}
       >
@@ -207,19 +199,10 @@ function AddressRow({ label, address }: { label: string; address: string }) {
   );
 }
 
-function FootnoteRow({
-  kind,
-  feePayer,
-}: {
-  kind: TransactionApprovalKind;
-  feePayer: boolean;
-}) {
-  const bits: string[] = [];
-  bits.push(kind === "sign-and-submit" ? "Sign and submit" : "Sign only");
-  if (feePayer) bits.push("Fee payer role");
+function FootnoteRow({ kind }: { kind: TransactionApprovalKind }) {
   return (
     <p className="border-t border-white/16 pt-3 font-display text-xs text-white/48">
-      {bits.join(" · ")}
+      {kind === "sign-and-submit" ? "Sign and submit" : "Sign only"}
     </p>
   );
 }
