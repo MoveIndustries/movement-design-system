@@ -117,7 +117,7 @@ export const UsageExample: Story = {
             <p className="text-sm font-semibold mb-2">Method 3: Using class names directly (after importing the design system)</p>
             <pre className="text-xs bg-gray-100 dark:bg-gray-800 p-3 rounded overflow-x-auto">
 {`// The gradient styles are automatically available when you import the design system
-import '@movementlabsxyz/movement-design-system/dist/index.css';
+import '@moveindustries/movement-design-system/dist/index.css';
 
 // Then use class names directly in your HTML/JSX
 <div className="gradient-mint-cyan">Content</div>`}

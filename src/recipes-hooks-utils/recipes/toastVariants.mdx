@@ -9,7 +9,7 @@ The `toastVariants` export is an array of valid toast variant types, not a CVA r
 ## Import
 
 ```tsx
-import { toastVariants, type ToastVariant } from "@movementlabsxyz/movement-design-system";
+import { toastVariants, type ToastVariant } from "@moveindustries/movement-design-system";
 ```
 
 ## Available Values
@@ -19,7 +19,7 @@ The array contains: `["info", "error", "warning", "success"]`
 ## Validation Example
 
 ```tsx
-import { toastVariants, type ToastVariant } from "@movementlabsxyz/movement-design-system";
+import { toastVariants, type ToastVariant } from "@moveindustries/movement-design-system";
 
 // Validate if a string is a valid toast variant
 export function isToastVariant(value: string): value is ToastVariant {
@@ -37,7 +37,7 @@ if (isToastVariant(variant)) {
 ## Type-Safe Selector
 
 ```tsx
-import { toastVariants, type ToastVariant } from "@movementlabsxyz/movement-design-system";
+import { toastVariants, type ToastVariant } from "@moveindustries/movement-design-system";
 
 export function ToastVariantSelector({ 
   onSelect 
@@ -63,7 +63,7 @@ export function ToastVariantSelector({
 ## Dynamic Toast Creation
 
 ```tsx
-import { toastVariants, toast, type ToastVariant } from "@movementlabsxyz/movement-design-system";
+import { toastVariants, toast, type ToastVariant } from "@moveindustries/movement-design-system";
 
 export function NotificationDemo() {
   const showToast = (variant: ToastVariant) => {

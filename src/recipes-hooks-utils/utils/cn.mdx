@@ -11,13 +11,13 @@ This is particularly useful when you need to merge component classes with user-p
 ## Import
 
 ```tsx
-import { cn } from "@movementlabsxyz/movement-design-system";
+import { cn } from "@moveindustries/movement-design-system";
 ```
 
 ## Basic Usage
 
 ```tsx
-import { cn } from "@movementlabsxyz/movement-design-system";
+import { cn } from "@moveindustries/movement-design-system";
 
 // Basic usage
 const className = cn("px-4 py-2", "bg-blue-500", "text-white");
@@ -27,7 +27,7 @@ const className = cn("px-4 py-2", "bg-blue-500", "text-white");
 ## Conditional Classes
 
 ```tsx
-import { cn } from "@movementlabsxyz/movement-design-system";
+import { cn } from "@moveindustries/movement-design-system";
 
 const buttonClass = cn(
   "px-4 py-2 rounded",
@@ -39,7 +39,7 @@ const buttonClass = cn(
 ## Merging with User Classes
 
 ```tsx
-import { cn } from "@movementlabsxyz/movement-design-system";
+import { cn } from "@moveindustries/movement-design-system";
 
 function Button({ className, ...props }: { className?: string }) {
   return (
@@ -60,7 +60,7 @@ function Button({ className, ...props }: { className?: string }) {
 ## With Recipes
 
 ```tsx
-import { cn, buttonVariants } from "@movementlabsxyz/movement-design-system";
+import { cn, buttonVariants } from "@moveindustries/movement-design-system";
 
 export function CustomButton({ className }: { className?: string }) {
   return (
@@ -80,7 +80,7 @@ export function CustomButton({ className }: { className?: string }) {
 ## Array of Classes
 
 ```tsx
-import { cn } from "@movementlabsxyz/movement-design-system";
+import { cn } from "@moveindustries/movement-design-system";
 
 const classes = [
   "base-class",
@@ -94,7 +94,7 @@ const merged = cn(...classes);
 ## Complex Example
 
 ```tsx
-import { cn } from "@movementlabsxyz/movement-design-system";
+import { cn } from "@moveindustries/movement-design-system";
 
 function Card({ 
   variant = "default", 

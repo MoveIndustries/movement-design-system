@@ -14,10 +14,10 @@ The Movement Design System has reached its first stable release (1.0.0). This ma
 The design system is configured as a public npm package:
 
 ### Package Details
-- **Package name**: `@movementlabsxyz/movement-design-system`
+- **Package name**: `@moveindustries/movement-design-system`
 - **Current Version**: 1.0.0
 - **License**: MIT
-- **Repository**: https://github.com/movementlabsxyz/movement-design-system
+- **Repository**: https://github.com/MoveIndustries/movement-design-system
 - **Entry points**:
   - ESM: `dist/index.js`
   - CommonJS: `dist/index.cjs`
@@ -65,7 +65,7 @@ pnpm build
 pnpm pack
 
 # 3. In another project, install the tarball
-npm install /path/to/movementlabsxyz-movement-design-system-0.1.0.tgz
+npm install /path/to/moveindustries-movement-design-system-0.1.0.tgz
 ```
 
 Or use `npm link`:
@@ -75,7 +75,7 @@ Or use `npm link`:
 npm link
 
 # In your test project
-npm link @movementlabsxyz/movement-design-system
+npm link @moveindustries/movement-design-system
 ```
 
 ## 📤 Publishing to npm
@@ -162,7 +162,7 @@ pnpm build:types
 ### CSS/Styles
 Currently, styles are expected to be imported by consumers:
 ```tsx
-import '@movementlabsxyz/movement-design-system/styles';
+import '@moveindustries/movement-design-system/styles';
 ```
 
 Note: The current build doesn't output a `style.css` file. You may want to configure this if needed.
@@ -194,7 +194,7 @@ Note: The current build doesn't output a `style.css` file. You may want to confi
 ### Post-Publish
 
 - [ ] Verify package on npm
-- [ ] Test installation: `npm install @movementlabsxyz/movement-design-system@latest`
+- [ ] Test installation: `npm install @moveindustries/movement-design-system@latest`
 - [ ] Announce release (if significant)
 - [ ] Monitor for issues
 
@@ -244,11 +244,11 @@ npm version major  # 1.0.0 -> 2.0.0
 
 ## 📱 After Publishing
 
-1. **Verify the package**: https://www.npmjs.com/package/@movementlabsxyz/movement-design-system
+1. **Verify the package**: https://www.npmjs.com/package/@moveindustries/movement-design-system
 
 2. **Test installation**:
    ```bash
-   npm install @movementlabsxyz/movement-design-system
+   npm install @moveindustries/movement-design-system
    ```
 
 3. **Monitor**:
@@ -303,7 +303,7 @@ The 1.0 release represents the completion of:
 If upgrading from 0.x versions:
 
 1. Remove manual style injections from your code
-2. Ensure you're importing: `@movementlabsxyz/movement-design-system/component-styles`
+2. Ensure you're importing: `@moveindustries/movement-design-system/component-styles`
 3. Continue using class name exports (`gradientBorderClasses`, etc.)
 4. Update any beta/experimental API usage
 
@@ -313,6 +313,6 @@ If upgrading from 0.x versions:
 - [Semantic Versioning](https://semver.org/)
 - [npm Scoped Packages](https://docs.npmjs.com/about-scopes)
 - [Vite Library Mode](https://vitejs.dev/guide/build.html#library-mode)
-- [GitHub Repository](https://github.com/movementlabsxyz/movement-design-system)
+- [GitHub Repository](https://github.com/MoveIndustries/movement-design-system)
 - [Documentation Site](https://movement-design-system-docs-git-shadcn-movement-labs.vercel.app/)
 

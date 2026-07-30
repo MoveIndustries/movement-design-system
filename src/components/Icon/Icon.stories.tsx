@@ -243,7 +243,7 @@ export const UsageExamples: Story = {
   Heart as HeartIcon, 
   Star as StarIcon, 
   User as UserIcon 
-} from "@movementlabsxyz/movement-design-system";
+} from "@moveindustries/movement-design-system";
 
 <HeartIcon size={24} color="red" weight="fill" />
 <StarIcon weight="duotone" size={32} />
@@ -266,7 +266,7 @@ export const UsageExamples: Story = {
   EthIcon, 
   MetamaskIcon,
   AptosLogoIcon 
-} from "@movementlabsxyz/movement-design-system";
+} from "@moveindustries/movement-design-system";
 
 <UsdcIcon size={32} />
 <EthIcon size={32} />

@@ -9,7 +9,7 @@ A recipe for creating button styles with various visual variants and sizes. Use 
 ## Import
 
 ```tsx
-import { buttonVariants } from "@movementlabsxyz/movement-design-system";
+import { buttonVariants } from "@moveindustries/movement-design-system";
 ```
 
 ## Variants
@@ -42,7 +42,7 @@ import { buttonVariants } from "@movementlabsxyz/movement-design-system";
 ## Basic Example
 
 ```tsx
-import { buttonVariants } from "@movementlabsxyz/movement-design-system";
+import { buttonVariants } from "@moveindustries/movement-design-system";
 import { Link } from "react-router-dom";
 
 // Create a link that looks like a button
@@ -61,7 +61,7 @@ export function ButtonLink({ href, children }: { href: string; children: React.R
 ## Conditional Variants
 
 ```tsx
-import { buttonVariants } from "@movementlabsxyz/movement-design-system";
+import { buttonVariants } from "@moveindustries/movement-design-system";
 
 export function StatusButton({ 
   status, 
@@ -89,7 +89,7 @@ export function StatusButton({
 ## With Custom Classes
 
 ```tsx
-import { buttonVariants, cn } from "@movementlabsxyz/movement-design-system";
+import { buttonVariants, cn } from "@moveindustries/movement-design-system";
 
 export function PulsingButton() {
   return (
@@ -108,7 +108,7 @@ export function PulsingButton() {
 ## Type Safety with VariantProps
 
 ```tsx
-import { buttonVariants, type VariantProps } from "@movementlabsxyz/movement-design-system";
+import { buttonVariants, type VariantProps } from "@moveindustries/movement-design-system";
 
 interface CustomButtonProps extends VariantProps<typeof buttonVariants> {
   loading?: boolean;

@@ -15,7 +15,7 @@ Returns the sorted data array.
 ## Import
 
 ```tsx
-import { useSortableData } from "@movementlabsxyz/movement-design-system";
+import { useSortableData } from "@moveindustries/movement-design-system";
 ```
 
 ## Basic Example
@@ -29,7 +29,7 @@ import {
   TableRow, 
   TableHead, 
   TableCell 
-} from "@movementlabsxyz/movement-design-system";
+} from "@moveindustries/movement-design-system";
 
 interface User {
   id: number;
@@ -69,7 +69,7 @@ export function UsersTable({ users }: { users: User[] }) {
 You can provide a custom sort function for complex sorting logic:
 
 ```tsx
-import { useSortableData, type SortFunction } from "@movementlabsxyz/movement-design-system";
+import { useSortableData, type SortFunction } from "@moveindustries/movement-design-system";
 
 interface Product {
   name: string;
@@ -105,7 +105,7 @@ export function ProductsTable({ products }: { products: Product[] }) {
 ## Date Sorting
 
 ```tsx
-import { useSortableData, type SortFunction } from "@movementlabsxyz/movement-design-system";
+import { useSortableData, type SortFunction } from "@moveindustries/movement-design-system";
 
 interface Event {
   id: string;
