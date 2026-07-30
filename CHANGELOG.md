@@ -19,6 +19,7 @@ Keyless (Google) and passkey support in `WalletModal`, plus a new `TransactionAp
 
 - **WalletModal — matches featured wallets by stable adapter `id`** (`movement-keyless` / `movement-passkey-signin` / `-create`) rather than the user-facing display name, which can shift with i18n/rebrand. The `*Name` props remain as a fallback/override.
 - **WalletModal — icons moved off `@phosphor-icons/react` onto (bundled) `lucide-react`** (fingerprint for the passkey rows, chevron for "Other wallets"). The modal no longer emits a phosphor import, so consumers don't need `@phosphor-icons/react` installed for the wallet modal.
+- **Footer** — The default GitHub social link now points to `https://github.com/movement-network` (the new Movement GitHub org, formerly `movementlabsxyz`). Apps passing custom `socialLinks` are unaffected.
 
 ### Fixed
 
