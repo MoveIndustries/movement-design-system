@@ -4,6 +4,12 @@ All notable changes to this project will be documented in this file.
 
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/), and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [1.2.6] - 2026-07-30
+
+### Fixed
+
+- **Corrective republish of 1.2.5 — use this version instead.** The artifact published to npm as `1.2.5` was built from an earlier working tree: it lacks the Footer GitHub-org change and the WalletModal stable-adapter-id matching documented under 1.2.5 (its Footer still links to the old GitHub org). `1.2.6` is published from the current source and is the first npm version actually containing everything listed under 1.2.5. No source or API changes relative to what 1.2.5 was intended to be; do not pin `1.2.5`.
+
 ## [1.2.5] - 2026-07-21
 
 Keyless (Google) and passkey support in `WalletModal`, plus a new `TransactionApprovalModal`. The wallet-modal changes are purely presentational and add no dependency on the keyless/passkey adapters — the featured rows only appear when an app registers those wallets, so apps that haven't are unaffected.
