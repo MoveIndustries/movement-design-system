@@ -14,7 +14,7 @@ Reusable gradient background recipes for consistent styling across the applicati
 import { 
   gradientBackgroundClasses,
   getGradientClass 
-} from "@movementlabsxyz/movement-design-system";
+} from "@moveindustries/movement-design-system";
 ```
 
 ## Setup
@@ -23,7 +23,7 @@ import {
 
 ```tsx
 // In your app entry point (e.g., main.tsx, index.tsx, _app.tsx)
-import "@movementlabsxyz/movement-design-system/style.css";
+import "@moveindustries/movement-design-system/style.css";
 ```
 
 ## Available Gradients
@@ -67,7 +67,7 @@ background: linear-gradient(0deg, rgba(4, 5, 27, 0.20) 0%, rgba(4, 5, 27, 0.20) 
 ### Method 1: Using Class Names Directly
 
 ```tsx
-import { gradientBackgroundClasses } from "@movementlabsxyz/movement-design-system";
+import { gradientBackgroundClasses } from "@moveindustries/movement-design-system";
 
 export function Hero() {
   return (
@@ -81,7 +81,7 @@ export function Hero() {
 ### Method 2: Using the Utility Function
 
 ```tsx
-import { getGradientClass } from "@movementlabsxyz/movement-design-system";
+import { getGradientClass } from "@moveindustries/movement-design-system";
 
 export function Card({ variant }: { variant: 'mintCyan' | 'glassOverlay' }) {
   return (
@@ -111,8 +111,8 @@ export function Feature() {
 ### Call-to-Action Button
 
 ```tsx
-import { gradientBackgroundClasses } from "@movementlabsxyz/movement-design-system";
-import { cn } from "@movementlabsxyz/movement-design-system";
+import { gradientBackgroundClasses } from "@moveindustries/movement-design-system";
+import { cn } from "@moveindustries/movement-design-system";
 
 export function CTAButton({ children }: { children: React.ReactNode }) {
   return (
@@ -132,8 +132,8 @@ export function CTAButton({ children }: { children: React.ReactNode }) {
 ### Glassmorphic Card
 
 ```tsx
-import { gradientBackgroundClasses } from "@movementlabsxyz/movement-design-system";
-import { cn } from "@movementlabsxyz/movement-design-system";
+import { gradientBackgroundClasses } from "@moveindustries/movement-design-system";
+import { cn } from "@moveindustries/movement-design-system";
 
 export function GlassCard({ children }: { children: React.ReactNode }) {
   return (
@@ -153,7 +153,7 @@ export function GlassCard({ children }: { children: React.ReactNode }) {
 ### Hero Section with Gradient
 
 ```tsx
-import { gradientBackgroundClasses } from "@movementlabsxyz/movement-design-system";
+import { gradientBackgroundClasses } from "@moveindustries/movement-design-system";
 
 export function HeroSection() {
   return (
@@ -175,7 +175,7 @@ export function HeroSection() {
 ### Feature Grid with Mixed Gradients
 
 ```tsx
-import { getGradientClass } from "@movementlabsxyz/movement-design-system";
+import { getGradientClass } from "@moveindustries/movement-design-system";
 
 const features = [
   { id: 1, title: "Fast", gradient: "mintCyan" as const },
@@ -204,7 +204,7 @@ export function FeatureGrid() {
 ### With Tailwind Classes
 
 ```tsx
-import { gradientBackgroundClasses, cn } from "@movementlabsxyz/movement-design-system";
+import { gradientBackgroundClasses, cn } from "@moveindustries/movement-design-system";
 
 export function AnimatedCard() {
   return (
@@ -229,7 +229,7 @@ import {
   gradientBackgroundClasses, 
   gradientBorderClasses,
   cn 
-} from "@movementlabsxyz/movement-design-system";
+} from "@moveindustries/movement-design-system";
 
 export function BorderedCard() {
   return (

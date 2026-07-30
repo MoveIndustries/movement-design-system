@@ -396,7 +396,7 @@ export const MonospaceVariations: Story = {
       <div>
         <Typography variant="h4">Code Block</Typography>
         <Typography variant="code" className="block mt-2">
-          npm install @movementlabsxyz/movement-design-system
+          npm install @moveindustries/movement-design-system
         </Typography>
       </div>
 

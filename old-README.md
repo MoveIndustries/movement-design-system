@@ -1,6 +1,6 @@
 # Movement Design System
 
-[![npm version](https://img.shields.io/npm/v/@movementlabsxyz/movement-design-system.svg)](https://www.npmjs.com/package/@movementlabsxyz/movement-design-system)
+[![npm version](https://img.shields.io/npm/v/@moveindustries/movement-design-system.svg)](https://www.npmjs.com/package/@moveindustries/movement-design-system)
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
 
 A production-ready design system built with shadcn/ui components, Radix UI primitives, and Tailwind CSS v4. This library provides a complete set of accessible, customizable React components for building modern web applications.
@@ -34,7 +34,7 @@ have the following in your package.json:
 ```json
 {
   "dependencies": {
-    "movement-design-system": "github:movementlabsxyz/movement-design-system"
+    "movement-design-system": "github:MoveIndustries/movement-design-system"
   }
 }
 ```
@@ -63,7 +63,7 @@ Add the following imports to your `global.css` file **in this exact order** (the
 ## 🚀 Quick Start
 
 ```tsx
-import { Button, Card, Input } from '@movementlabsxyz/movement-design-system';
+import { Button, Card, Input } from '@moveindustries/movement-design-system';
 
 function App() {
   return (
@@ -110,7 +110,7 @@ Explore live examples, API documentation, and copy-paste ready code snippets for
 Full TypeScript support with IntelliSense and type safety:
 
 ```tsx
-import { Button, type VariantProps, buttonVariants } from '@movementlabsxyz/movement-design-system';
+import { Button, type VariantProps, buttonVariants } from '@moveindustries/movement-design-system';
 
 type ButtonVariants = VariantProps<typeof buttonVariants>;
 ```
@@ -121,7 +121,7 @@ type ButtonVariants = VariantProps<typeof buttonVariants>;
 
 ```bash
 # Clone and install
-git clone https://github.com/movementlabsxyz/movement-design-system.git
+git clone https://github.com/MoveIndustries/movement-design-system.git
 cd movement-design-system
 pnpm install
 
@@ -139,15 +139,15 @@ pnpm test
 
 Contributions are welcome! Please open an issue first to discuss major changes.
 
-- [Report Issues](https://github.com/movementlabsxyz/movement-design-system/issues)
-- [View Source](https://github.com/movementlabsxyz/movement-design-system)
+- [Report Issues](https://github.com/MoveIndustries/movement-design-system/issues)
+- [View Source](https://github.com/MoveIndustries/movement-design-system)
 
 ## 🔗 Links
 
 - [📚 Documentation](https://movement-design-system-docs-git-shadcn-movement-labs.vercel.app/)
-- [📦 npm Package](https://www.npmjs.com/package/@movementlabsxyz/movement-design-system)
-- [🐙 GitHub Repository](https://github.com/movementlabsxyz/movement-design-system)
-- [🐛 Issue Tracker](https://github.com/movementlabsxyz/movement-design-system/issues)
+- [📦 npm Package](https://www.npmjs.com/package/@moveindustries/movement-design-system)
+- [🐙 GitHub Repository](https://github.com/MoveIndustries/movement-design-system)
+- [🐛 Issue Tracker](https://github.com/MoveIndustries/movement-design-system/issues)
 
 ## 🙏 Built With
 

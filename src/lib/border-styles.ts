@@ -5,7 +5,7 @@
  * The styles are defined in recipes.css and automatically available when the design system is imported.
  *
  * Usage:
- * import { gradientBorderClasses } from "@movementlabsxyz/movement-design-system";
+ * import { gradientBorderClasses } from "@moveindustries/movement-design-system";
  *
  * <div className={gradientBorderClasses.glow}>Content</div>
  */
@@ -23,7 +23,7 @@ export const gradientBorderClasses = {
  * The styles are defined in recipes.css and automatically available when the design system is imported.
  *
  * Usage:
- * import { glassBackgroundClasses } from "@movementlabsxyz/movement-design-system";
+ * import { glassBackgroundClasses } from "@moveindustries/movement-design-system";
  *
  * <div className={glassBackgroundClasses.dark}>Content</div>
  */

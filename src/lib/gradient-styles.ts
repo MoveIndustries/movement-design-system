@@ -5,7 +5,7 @@
  * The styles are defined in recipes.css and automatically available when the design system is imported.
  * 
  * Usage:
- * import { gradientBackgroundClasses } from "@movementlabsxyz/movement-design-system";
+ * import { gradientBackgroundClasses } from "@moveindustries/movement-design-system";
  * 
  * <div className={gradientBackgroundClasses.mintCyan}>Content</div>
  */
