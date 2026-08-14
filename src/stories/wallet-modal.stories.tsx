@@ -656,3 +656,135 @@ export const Styling: Story = {
     );
   },
 };
+
+/* -------------------------------------------------------------------------- */
+/*  Mobile deeplink wallet                                                     */
+/* -------------------------------------------------------------------------- */
+
+/** Motion Wallet's app icon, as the deeplink adapter registers it. */
+const MOTION_ICON_DATA_URI =
+  "data:image/svg+xml;utf8," +
+  encodeURIComponent(
+    `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 48 48" width="48" height="48"><rect width="48" height="48" rx="12" fill="#0b0b0b"/><path d="M12 32V16h5l7 9 7-9h5v16h-5v-8l-7 9-7-9v8z" fill="#ffffff"/></svg>`,
+  );
+
+/**
+ * The entry `@moveindustries/wallet-adapter-deeplink` registers on a phone.
+ *
+ * Synthetic here for the same reason the keyless and passkey rows are: the real
+ * adapter only registers on a mobile user agent, and its buttons navigate the
+ * page away to the wallet app — which would end the Storybook session rather
+ * than show anything. Use the live story below on an actual device for that.
+ */
+const SYNTHETIC_DEEPLINK = synthetic(
+  "movement-mobile-deeplink",
+  "Motion Wallet",
+  MOTION_ICON_DATA_URI,
+);
+
+/**
+ * Replaces the wallet list entirely, rather than prepending to it.
+ *
+ * On a real phone there are no extension wallets to sit alongside: nothing
+ * injects a provider in mobile Safari or Chrome, so `availableWallets` contains
+ * the deeplink entry and nothing else. Keeping the desktop extensions here
+ * would show a grid that cannot occur in the situation this story is about.
+ */
+function WithOnlyDeeplinkWallet({ children }: { children: React.ReactNode }) {
+  const real = useWallet();
+  const value = {
+    ...real,
+    wallets: [SYNTHETIC_DEEPLINK],
+  } as unknown as React.ContextType<typeof WalletContext>;
+  return (
+    <WalletContext.Provider value={value}>{children}</WalletContext.Provider>
+  );
+}
+
+/**
+ * How the modal looks on a phone once the deeplink adapter is registered.
+ *
+ * Resize the viewport below 768px to see the drawer presentation the modal
+ * already switches to; above it you get the dialog, which is what a desktop
+ * reviewer sees but never what a real user of this wallet does.
+ *
+ * Note the entry is shown as installed. Nothing in a web page can tell whether
+ * a native app is present, so on mobile this grid means "supported", not
+ * "installed" — tapping a wallet the user does not have takes them to its
+ * install page instead of connecting.
+ */
+export const MobileDeeplinkWallet: Story = {
+  render: () => (
+    <WithOnlyDeeplinkWallet>
+      <WalletModal onClose={() => console.log("close")} />
+    </WithOnlyDeeplinkWallet>
+  ),
+};
+
+/**
+ * The same modal driven by the real adapter, for use on an actual device.
+ *
+ * Run Storybook with `--host 0.0.0.0`, open the LAN IP on a phone that has the
+ * wallet installed, and connect for real. Three things this story depends on:
+ *
+ * - `force: true`, because registration is otherwise gated on a mobile user
+ *   agent and a desktop reviewer would see an empty modal.
+ * - The redirect target is this iframe's URL including `?id=`, so the wallet
+ *   returns to this story rather than to Storybook's root.
+ * - `registerDeeplinkWallets()` consumes any response sitting in the URL as it
+ *   registers, since the page receiving the answer is a fresh load of the page
+ *   that asked.
+ *
+ * Until the site's `.well-known` files carry `/dapp/v1`, point `baseUrl` at
+ * `movement://dapp/v1/` — the https URLs will not route to the app before then.
+ */
+export const MobileDeeplinkLive: Story = {
+  parameters: {
+    docs: {
+      description: {
+        story:
+          "Requires a real device with the wallet installed. See the source for the LAN setup.",
+      },
+    },
+  },
+  render: () => {
+    const [registered, setRegistered] = useState<string | null>(null);
+
+    useEffect(() => {
+      let cancelled = false;
+      // Resolved at runtime, not build time. The DS must not depend on the
+      // adapter — it belongs to the consuming app — and a static specifier
+      // would make Storybook fail to build anywhere the package isn't
+      // installed. The variable plus @vite-ignore keeps the bundler out of it,
+      // so this story degrades to a message instead of breaking the build.
+      const specifier = "@moveindustries/wallet-adapter-deeplink";
+      (import(/* @vite-ignore */ specifier) as Promise<{
+        registerDeeplinkWallets: (o: { force: boolean }) => { name: string }[];
+      }>)
+        .then((mod) => {
+          if (cancelled) return;
+          const adapters = mod.registerDeeplinkWallets({ force: true });
+          setRegistered(
+            adapters.length > 0
+              ? `registered: ${adapters.map((a) => a.name).join(", ")}`
+              : "no adapters registered",
+          );
+        })
+        .catch((error: unknown) => {
+          if (!cancelled) setRegistered(`not installed: ${String(error)}`);
+        });
+      return () => {
+        cancelled = true;
+      };
+    }, []);
+
+    return (
+      <div className="flex flex-col items-center gap-4">
+        <p className="text-muted-foreground text-xs">
+          {registered ?? "registering…"}
+        </p>
+        <WalletModal onClose={() => console.log("close")} />
+      </div>
+    );
+  },
+};
