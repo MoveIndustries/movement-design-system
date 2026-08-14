@@ -786,7 +786,8 @@ export const MobileDeeplinkLive: Story = {
  * behaviour is visible rather than buried in provider config.
  */
 function DeeplinkLivePanel({ baseUrl }: { baseUrl: string }) {
-  const { connect, connected, account, network, wallet } = useWallet();
+  const { connect, disconnect, connected, account, network, wallet } =
+    useWallet();
   const [registered, setRegistered] = useState<string | null>(null);
   const [restoredWallet, setRestoredWallet] = useState<string | null>(null);
   const [connectError, setConnectError] = useState<string | null>(null);
@@ -867,6 +868,24 @@ function DeeplinkLivePanel({ baseUrl }: { baseUrl: string }) {
           }`}
         >
           {connected ? "CONNECTED" : "not connected"}
+          {connected && (
+            <button
+              // The banner is pointer-events-none so it never blocks the
+              // modal underneath; the one control in it opts back in.
+              className="pointer-events-auto ml-3 cursor-pointer border-0 bg-transparent font-mono text-xs font-normal text-red-300 underline"
+              onClick={() => {
+                // Clears local state only — see the adapter's disconnect.
+                void Promise.resolve(disconnect()).catch((e: unknown) =>
+                  setConnectError(String(e)),
+                );
+                // Otherwise the reconnect effect immediately connects again
+                // from the still-restored session.
+                setRestoredWallet(null);
+              }}
+            >
+              disconnect
+            </button>
+          )}
         </p>
         {connected && (
           <p className="font-mono text-[11px] break-all text-white">
