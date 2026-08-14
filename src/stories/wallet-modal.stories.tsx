@@ -794,11 +794,14 @@ export const MobileDeeplinkLive: Story = {
             force: true,
             wallets: [{ ...mod.MOTION_WALLET, baseUrl }],
           });
-          setRegistered(
+          const status =
             adapters.length > 0
               ? `registered ${adapters.map((a) => a.name).join(", ")} → ${baseUrl}`
-              : "no adapters registered",
-          );
+              : "no adapters registered";
+          // Also to the console: the banner can be missed on a small screen,
+          // and this story is usually being read on a phone.
+          console.log("[MobileDeeplinkLive]", status);
+          setRegistered(status);
         })
         .catch((error: unknown) => {
           if (!cancelled) setRegistered(`not installed: ${String(error)}`);
@@ -809,16 +812,21 @@ export const MobileDeeplinkLive: Story = {
     }, [baseUrl]);
 
     return (
-      <div className="flex max-w-md flex-col items-center gap-4">
-        <p className="text-muted-foreground text-center text-xs">
-          {registered ?? "registering…"}
-        </p>
-        <p className="text-muted-foreground text-center text-xs">
-          Registration is one-shot per page. After changing the entry point,
-          reload before connecting, or the previous one is still in effect.
-        </p>
+      <>
+        {/* Fixed and above the modal on purpose: WalletModal is always open
+            here, and its overlay covers the whole viewport, so anything laid
+            out beside it in normal flow is hidden behind it. */}
+        <div className="pointer-events-none fixed inset-x-0 top-0 z-[10000] flex flex-col items-center gap-1 bg-black/80 p-2 text-center">
+          <p className="font-mono text-[11px] text-white">
+            {registered ?? "registering…"}
+          </p>
+          <p className="text-[10px] text-white/60">
+            Registration is one-shot per page — reload after changing the entry
+            point.
+          </p>
+        </div>
         <WalletModal onClose={() => console.log("close")} />
-      </div>
+      </>
     );
   },
 };
