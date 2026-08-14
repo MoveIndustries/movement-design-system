@@ -656,3 +656,255 @@ export const Styling: Story = {
     );
   },
 };
+
+/* -------------------------------------------------------------------------- */
+/*  Mobile deeplink wallet                                                     */
+/* -------------------------------------------------------------------------- */
+
+/** Motion Wallet's app icon, as the deeplink adapter registers it. */
+const MOTION_ICON_DATA_URI =
+  "data:image/svg+xml;utf8," +
+  encodeURIComponent(
+    `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 48 48" width="48" height="48"><rect width="48" height="48" rx="12" fill="#0b0b0b"/><path d="M12 32V16h5l7 9 7-9h5v16h-5v-8l-7 9-7-9v8z" fill="#ffffff"/></svg>`,
+  );
+
+/**
+ * The entry `@moveindustries/wallet-adapter-deeplink` registers on a phone.
+ *
+ * Synthetic here for the same reason the keyless and passkey rows are: the real
+ * adapter only registers on a mobile user agent, and its buttons navigate the
+ * page away to the wallet app — which would end the Storybook session rather
+ * than show anything. Use the live story below on an actual device for that.
+ */
+const SYNTHETIC_DEEPLINK = synthetic(
+  "movement-mobile-deeplink",
+  "Motion Wallet",
+  MOTION_ICON_DATA_URI,
+);
+
+/**
+ * Replaces the wallet list entirely, rather than prepending to it.
+ *
+ * On a real phone there are no extension wallets to sit alongside: nothing
+ * injects a provider in mobile Safari or Chrome, so `availableWallets` contains
+ * the deeplink entry and nothing else. Keeping the desktop extensions here
+ * would show a grid that cannot occur in the situation this story is about.
+ */
+function WithOnlyDeeplinkWallet({ children }: { children: React.ReactNode }) {
+  const real = useWallet();
+  const value = {
+    ...real,
+    wallets: [SYNTHETIC_DEEPLINK],
+  } as unknown as React.ContextType<typeof WalletContext>;
+  return (
+    <WalletContext.Provider value={value}>{children}</WalletContext.Provider>
+  );
+}
+
+/**
+ * How the modal looks on a phone once the deeplink adapter is registered.
+ *
+ * Resize the viewport below 768px to see the drawer presentation the modal
+ * already switches to; above it you get the dialog, which is what a desktop
+ * reviewer sees but never what a real user of this wallet does.
+ *
+ * Note the entry is shown as installed. Nothing in a web page can tell whether
+ * a native app is present, so on mobile this grid means "supported", not
+ * "installed" — tapping a wallet the user does not have takes them to its
+ * install page instead of connecting.
+ */
+export const MobileDeeplinkWallet: Story = {
+  render: () => (
+    <WithOnlyDeeplinkWallet>
+      <WalletModal onClose={() => console.log("close")} />
+    </WithOnlyDeeplinkWallet>
+  ),
+};
+
+/**
+ * The same modal driven by the real adapter, for use on an actual device.
+ *
+ * Run Storybook with `--host 0.0.0.0`, open the LAN IP on a phone that has the
+ * wallet installed, and connect for real. Three things this story depends on:
+ *
+ * - `force: true`, because registration is otherwise gated on a mobile user
+ *   agent and a desktop reviewer would see an empty modal.
+ * - The redirect target is this iframe's URL including `?id=`, so the wallet
+ *   returns to this story rather than to Storybook's root.
+ * - `registerDeeplinkWallets()` consumes any response sitting in the URL as it
+ *   registers, since the page receiving the answer is a fresh load of the page
+ *   that asked.
+ *
+ * The Entry point control below picks where requests go. Until the site
+ * claims `/dapp/v1`, leave it on the custom scheme: https URLs load the
+ * website instead of opening the app.
+ */
+export const MobileDeeplinkLive: Story = {
+  parameters: {
+    docs: {
+      description: {
+        story:
+          "Requires a real device with the wallet installed. See the source for the LAN setup.",
+      },
+    },
+  },
+  argTypes: {
+    // @ts-expect-error story-only arg, not a WalletModal prop
+    baseUrl: {
+      name: "Entry point",
+      control: "radio",
+      options: [
+        "movement://dapp/v1/",
+        "https://motion.movementnetwork.xyz/dapp/v1/",
+      ],
+      description:
+        "Where requests are sent. https only reaches the app once the site claims /dapp/v1, so the custom scheme is the default until then.",
+    },
+  },
+  // Defaults to the custom scheme deliberately. The adapter's own default is
+  // https, which is right in production but silently wrong here: before the
+  // site claims /dapp/v1 those URLs load the website instead of opening the
+  // app, so the story would look broken for a reason nothing on screen
+  // explains.
+  args: { baseUrl: "movement://dapp/v1/" } as never,
+  render: (args: { baseUrl?: string }) => (
+    <DeeplinkLivePanel baseUrl={args.baseUrl ?? "movement://dapp/v1/"} />
+  ),
+};
+
+/**
+ * Drives the real adapter and reports what the wallet-adapter actually thinks.
+ *
+ * The reconnect below is the part worth understanding. Coming back from the
+ * wallet, the adapter restores its session from the URL — but `connected` is
+ * set only inside `WalletCore.connect()`, and nothing calls it on a fresh page
+ * load. So the adapter knows it has an account while `useWallet()` still says
+ * disconnected, which looks exactly like a failed round trip.
+ *
+ * Real apps solve this with `autoConnect` on the provider, which re-connects
+ * the last used wallet on load. This story asks explicitly instead, so the
+ * behaviour is visible rather than buried in provider config.
+ */
+function DeeplinkLivePanel({ baseUrl }: { baseUrl: string }) {
+  const { connect, disconnect, connected, account, network, wallet } =
+    useWallet();
+  const [registered, setRegistered] = useState<string | null>(null);
+  const [restoredWallet, setRestoredWallet] = useState<string | null>(null);
+  const [connectError, setConnectError] = useState<string | null>(null);
+
+  useEffect(() => {
+    if (!restoredWallet || connected) return;
+    // The adapter answers this immediately from the stored session; no second
+    // trip out to the wallet app.
+    void Promise.resolve(connect(restoredWallet)).catch((e: unknown) =>
+      setConnectError(String(e)),
+    );
+  }, [restoredWallet, connected, connect]);
+
+  useEffect(() => {
+    let cancelled = false;
+      // Vite resolves this through an alias set in .storybook/main.ts, which
+      // points at the linked package when it is present and at a stub that
+      // throws a useful message when it is not. The adapter is not a
+      // dependency of this library — it belongs to the consuming app — so the
+      // build has to succeed either way, and the failure has to stay inside
+      // this story rather than taking the build down.
+      (
+      import("@moveindustries/wallet-adapter-deeplink") as Promise<{
+        MOTION_WALLET: Record<string, unknown>;
+        registerDeeplinkWallets: (o: {
+          force: boolean;
+          wallets?: Record<string, unknown>[];
+        }) => {
+          name: string;
+          accounts: unknown[];
+          lastIgnoredResponse: string | null;
+        }[];
+      }>
+    )
+      .then((mod) => {
+        if (cancelled) return;
+        const adapters = mod.registerDeeplinkWallets({
+          force: true,
+          wallets: [{ ...mod.MOTION_WALLET, baseUrl }],
+        });
+        const status =
+          adapters.length > 0
+            ? `registered ${adapters.map((a) => a.name).join(", ")} → ${baseUrl}`
+            : "no adapters registered";
+        // Also to the console: the banner can be missed on a small screen,
+        // and this story is usually being read on a phone.
+        console.log("[MobileDeeplinkLive]", status);
+        setRegistered(status);
+
+        // registerDeeplinkWallets consumes any response sitting in the URL as
+        // it registers, so by here the session is already restored if we just
+        // came back from the wallet.
+        const withAccount = adapters.find((a) => a.accounts.length > 0);
+        if (withAccount) setRestoredWallet(withAccount.name);
+
+        // A response that arrived but could not be matched looks exactly like
+        // never having come back — say so rather than leave it a mystery.
+        const ignored = adapters.find((a) => a.lastIgnoredResponse);
+        if (ignored) setConnectError(`response dropped: ${ignored.lastIgnoredResponse}`);
+      })
+      .catch((error: unknown) => {
+        if (!cancelled) setRegistered(`not installed: ${String(error)}`);
+      });
+    return () => {
+      cancelled = true;
+    };
+  }, [baseUrl]);
+
+  return (
+    <>
+        {/* Fixed and above the modal on purpose: WalletModal is always open
+            here, and its overlay covers the whole viewport, so anything laid
+            out beside it in normal flow is hidden behind it. */}
+      <div className="pointer-events-none fixed inset-x-0 top-0 z-[10000] flex flex-col items-center gap-1 bg-black/85 p-2 text-center">
+        <p
+          className={`font-mono text-xs font-bold ${
+            connected ? "text-green-400" : "text-white/70"
+          }`}
+        >
+          {connected ? "CONNECTED" : "not connected"}
+          {connected && (
+            <button
+              // The banner is pointer-events-none so it never blocks the
+              // modal underneath; the one control in it opts back in.
+              className="pointer-events-auto ml-3 cursor-pointer border-0 bg-transparent font-mono text-xs font-normal text-red-300 underline"
+              onClick={() => {
+                // Clears local state only — see the adapter's disconnect.
+                void Promise.resolve(disconnect()).catch((e: unknown) =>
+                  setConnectError(String(e)),
+                );
+                // Otherwise the reconnect effect immediately connects again
+                // from the still-restored session.
+                setRestoredWallet(null);
+              }}
+            >
+              disconnect
+            </button>
+          )}
+        </p>
+        {connected && (
+          <p className="font-mono text-[11px] break-all text-white">
+            {account?.address?.toString()} · {network?.name ?? "?"} ·{" "}
+            {wallet?.name}
+          </p>
+        )}
+        <p className="font-mono text-[10px] text-white/60">
+          {registered ?? "registering…"}
+        </p>
+        {connectError && (
+          <p className="font-mono text-[10px] text-red-400">{connectError}</p>
+        )}
+        <p className="text-[10px] text-white/40">
+          Registration is one-shot per page — reload after changing the entry
+          point.
+        </p>
+      </div>
+      <WalletModal onClose={() => console.log("close")} />
+    </>
+  );
+}
