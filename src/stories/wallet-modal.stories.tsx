@@ -773,14 +773,14 @@ export const MobileDeeplinkLive: Story = {
 
     useEffect(() => {
       let cancelled = false;
-      // Resolved at runtime, not build time. The DS must not depend on the
-      // adapter — it belongs to the consuming app — and a static specifier
-      // would make Storybook fail to build anywhere the package isn't
-      // installed. The variable plus @vite-ignore keeps the bundler out of it,
-      // so this story degrades to a message instead of breaking the build.
-      const specifier = "@moveindustries/wallet-adapter-deeplink";
+      // Vite resolves this through an alias set in .storybook/main.ts, which
+      // points at the linked package when it is present and at a stub that
+      // throws a useful message when it is not. The adapter is not a
+      // dependency of this library — it belongs to the consuming app — so the
+      // build has to succeed either way, and the failure has to stay inside
+      // this story rather than taking the build down.
       (
-        import(/* @vite-ignore */ specifier) as Promise<{
+        import("@moveindustries/wallet-adapter-deeplink") as Promise<{
           MOTION_WALLET: Record<string, unknown>;
           registerDeeplinkWallets: (o: {
             force: boolean;
