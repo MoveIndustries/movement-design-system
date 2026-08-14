@@ -767,12 +767,41 @@ export const MobileDeeplinkLive: Story = {
   // app, so the story would look broken for a reason nothing on screen
   // explains.
   args: { baseUrl: "movement://dapp/v1/" } as never,
-  render: (args: { baseUrl?: string }) => {
-    const baseUrl = args.baseUrl ?? "movement://dapp/v1/";
-    const [registered, setRegistered] = useState<string | null>(null);
+  render: (args: { baseUrl?: string }) => (
+    <DeeplinkLivePanel baseUrl={args.baseUrl ?? "movement://dapp/v1/"} />
+  ),
+};
 
-    useEffect(() => {
-      let cancelled = false;
+/**
+ * Drives the real adapter and reports what the wallet-adapter actually thinks.
+ *
+ * The reconnect below is the part worth understanding. Coming back from the
+ * wallet, the adapter restores its session from the URL — but `connected` is
+ * set only inside `WalletCore.connect()`, and nothing calls it on a fresh page
+ * load. So the adapter knows it has an account while `useWallet()` still says
+ * disconnected, which looks exactly like a failed round trip.
+ *
+ * Real apps solve this with `autoConnect` on the provider, which re-connects
+ * the last used wallet on load. This story asks explicitly instead, so the
+ * behaviour is visible rather than buried in provider config.
+ */
+function DeeplinkLivePanel({ baseUrl }: { baseUrl: string }) {
+  const { connect, connected, account, network, wallet } = useWallet();
+  const [registered, setRegistered] = useState<string | null>(null);
+  const [restoredWallet, setRestoredWallet] = useState<string | null>(null);
+  const [connectError, setConnectError] = useState<string | null>(null);
+
+  useEffect(() => {
+    if (!restoredWallet || connected) return;
+    // The adapter answers this immediately from the stored session; no second
+    // trip out to the wallet app.
+    void Promise.resolve(connect(restoredWallet)).catch((e: unknown) =>
+      setConnectError(String(e)),
+    );
+  }, [restoredWallet, connected, connect]);
+
+  useEffect(() => {
+    let cancelled = false;
       // Vite resolves this through an alias set in .storybook/main.ts, which
       // points at the linked package when it is present and at a stub that
       // throws a useful message when it is not. The adapter is not a
@@ -780,53 +809,74 @@ export const MobileDeeplinkLive: Story = {
       // build has to succeed either way, and the failure has to stay inside
       // this story rather than taking the build down.
       (
-        import("@moveindustries/wallet-adapter-deeplink") as Promise<{
-          MOTION_WALLET: Record<string, unknown>;
-          registerDeeplinkWallets: (o: {
-            force: boolean;
-            wallets?: Record<string, unknown>[];
-          }) => { name: string }[];
-        }>
-      )
-        .then((mod) => {
-          if (cancelled) return;
-          const adapters = mod.registerDeeplinkWallets({
-            force: true,
-            wallets: [{ ...mod.MOTION_WALLET, baseUrl }],
-          });
-          const status =
-            adapters.length > 0
-              ? `registered ${adapters.map((a) => a.name).join(", ")} → ${baseUrl}`
-              : "no adapters registered";
-          // Also to the console: the banner can be missed on a small screen,
-          // and this story is usually being read on a phone.
-          console.log("[MobileDeeplinkLive]", status);
-          setRegistered(status);
-        })
-        .catch((error: unknown) => {
-          if (!cancelled) setRegistered(`not installed: ${String(error)}`);
+      import("@moveindustries/wallet-adapter-deeplink") as Promise<{
+        MOTION_WALLET: Record<string, unknown>;
+        registerDeeplinkWallets: (o: {
+          force: boolean;
+          wallets?: Record<string, unknown>[];
+        }) => { name: string; accounts: unknown[] }[];
+      }>
+    )
+      .then((mod) => {
+        if (cancelled) return;
+        const adapters = mod.registerDeeplinkWallets({
+          force: true,
+          wallets: [{ ...mod.MOTION_WALLET, baseUrl }],
         });
-      return () => {
-        cancelled = true;
-      };
-    }, [baseUrl]);
+        const status =
+          adapters.length > 0
+            ? `registered ${adapters.map((a) => a.name).join(", ")} → ${baseUrl}`
+            : "no adapters registered";
+        // Also to the console: the banner can be missed on a small screen,
+        // and this story is usually being read on a phone.
+        console.log("[MobileDeeplinkLive]", status);
+        setRegistered(status);
 
-    return (
-      <>
+        // registerDeeplinkWallets consumes any response sitting in the URL as
+        // it registers, so by here the session is already restored if we just
+        // came back from the wallet.
+        const withAccount = adapters.find((a) => a.accounts.length > 0);
+        if (withAccount) setRestoredWallet(withAccount.name);
+      })
+      .catch((error: unknown) => {
+        if (!cancelled) setRegistered(`not installed: ${String(error)}`);
+      });
+    return () => {
+      cancelled = true;
+    };
+  }, [baseUrl]);
+
+  return (
+    <>
         {/* Fixed and above the modal on purpose: WalletModal is always open
             here, and its overlay covers the whole viewport, so anything laid
             out beside it in normal flow is hidden behind it. */}
-        <div className="pointer-events-none fixed inset-x-0 top-0 z-[10000] flex flex-col items-center gap-1 bg-black/80 p-2 text-center">
-          <p className="font-mono text-[11px] text-white">
-            {registered ?? "registering…"}
+      <div className="pointer-events-none fixed inset-x-0 top-0 z-[10000] flex flex-col items-center gap-1 bg-black/85 p-2 text-center">
+        <p
+          className={`font-mono text-xs font-bold ${
+            connected ? "text-green-400" : "text-white/70"
+          }`}
+        >
+          {connected ? "CONNECTED" : "not connected"}
+        </p>
+        {connected && (
+          <p className="font-mono text-[11px] break-all text-white">
+            {account?.address?.toString()} · {network?.name ?? "?"} ·{" "}
+            {wallet?.name}
           </p>
-          <p className="text-[10px] text-white/60">
-            Registration is one-shot per page — reload after changing the entry
-            point.
-          </p>
-        </div>
-        <WalletModal onClose={() => console.log("close")} />
-      </>
-    );
-  },
-};
+        )}
+        <p className="font-mono text-[10px] text-white/60">
+          {registered ?? "registering…"}
+        </p>
+        {connectError && (
+          <p className="font-mono text-[10px] text-red-400">{connectError}</p>
+        )}
+        <p className="text-[10px] text-white/40">
+          Registration is one-shot per page — reload after changing the entry
+          point.
+        </p>
+      </div>
+      <WalletModal onClose={() => console.log("close")} />
+    </>
+  );
+}
