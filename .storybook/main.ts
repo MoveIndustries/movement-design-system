@@ -41,10 +41,16 @@ const config: StorybookConfig = {
   viteFinal: async (config) => {
     config.resolve = config.resolve || {};
     config.resolve.dedupe = ['react', 'react-dom', '@mdx-js/react'];
-    config.resolve.alias = {
-      ...(config.resolve.alias as Record<string, string> | undefined),
-      [DEEPLINK_ADAPTER]: resolveDeeplinkAdapter(),
-    };
+    // Vite accepts either form for resolve.alias. Spreading the array form
+    // into an object yields {0: …, 1: …} and the alias stops applying with no
+    // error, so keep whichever form Storybook handed over.
+    const alias = config.resolve.alias;
+    config.resolve.alias = Array.isArray(alias)
+      ? [...alias, { find: DEEPLINK_ADAPTER, replacement: resolveDeeplinkAdapter() }]
+      : {
+          ...(alias as Record<string, string> | undefined),
+          [DEEPLINK_ADAPTER]: resolveDeeplinkAdapter(),
+        };
 
     // Polyfill process.env for wallet adapter dependencies that use Node.js globals
     config.define = {
