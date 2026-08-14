@@ -814,7 +814,11 @@ function DeeplinkLivePanel({ baseUrl }: { baseUrl: string }) {
         registerDeeplinkWallets: (o: {
           force: boolean;
           wallets?: Record<string, unknown>[];
-        }) => { name: string; accounts: unknown[] }[];
+        }) => {
+          name: string;
+          accounts: unknown[];
+          lastIgnoredResponse: string | null;
+        }[];
       }>
     )
       .then((mod) => {
@@ -837,6 +841,11 @@ function DeeplinkLivePanel({ baseUrl }: { baseUrl: string }) {
         // came back from the wallet.
         const withAccount = adapters.find((a) => a.accounts.length > 0);
         if (withAccount) setRestoredWallet(withAccount.name);
+
+        // A response that arrived but could not be matched looks exactly like
+        // never having come back — say so rather than leave it a mystery.
+        const ignored = adapters.find((a) => a.lastIgnoredResponse);
+        if (ignored) setConnectError(`response dropped: ${ignored.lastIgnoredResponse}`);
       })
       .catch((error: unknown) => {
         if (!cancelled) setRegistered(`not installed: ${String(error)}`);
