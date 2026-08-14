@@ -735,8 +735,9 @@ export const MobileDeeplinkWallet: Story = {
  *   registers, since the page receiving the answer is a fresh load of the page
  *   that asked.
  *
- * Until the site's `.well-known` files carry `/dapp/v1`, point `baseUrl` at
- * `movement://dapp/v1/` — the https URLs will not route to the app before then.
+ * The Entry point control below picks where requests go. Until the site
+ * claims `/dapp/v1`, leave it on the custom scheme: https URLs load the
+ * website instead of opening the app.
  */
 export const MobileDeeplinkLive: Story = {
   parameters: {
@@ -747,7 +748,27 @@ export const MobileDeeplinkLive: Story = {
       },
     },
   },
-  render: () => {
+  argTypes: {
+    // @ts-expect-error story-only arg, not a WalletModal prop
+    baseUrl: {
+      name: "Entry point",
+      control: "radio",
+      options: [
+        "movement://dapp/v1/",
+        "https://motion.movementnetwork.xyz/dapp/v1/",
+      ],
+      description:
+        "Where requests are sent. https only reaches the app once the site claims /dapp/v1, so the custom scheme is the default until then.",
+    },
+  },
+  // Defaults to the custom scheme deliberately. The adapter's own default is
+  // https, which is right in production but silently wrong here: before the
+  // site claims /dapp/v1 those URLs load the website instead of opening the
+  // app, so the story would look broken for a reason nothing on screen
+  // explains.
+  args: { baseUrl: "movement://dapp/v1/" } as never,
+  render: (args: { baseUrl?: string }) => {
+    const baseUrl = args.baseUrl ?? "movement://dapp/v1/";
     const [registered, setRegistered] = useState<string | null>(null);
 
     useEffect(() => {
@@ -758,15 +779,24 @@ export const MobileDeeplinkLive: Story = {
       // installed. The variable plus @vite-ignore keeps the bundler out of it,
       // so this story degrades to a message instead of breaking the build.
       const specifier = "@moveindustries/wallet-adapter-deeplink";
-      (import(/* @vite-ignore */ specifier) as Promise<{
-        registerDeeplinkWallets: (o: { force: boolean }) => { name: string }[];
-      }>)
+      (
+        import(/* @vite-ignore */ specifier) as Promise<{
+          MOTION_WALLET: Record<string, unknown>;
+          registerDeeplinkWallets: (o: {
+            force: boolean;
+            wallets?: Record<string, unknown>[];
+          }) => { name: string }[];
+        }>
+      )
         .then((mod) => {
           if (cancelled) return;
-          const adapters = mod.registerDeeplinkWallets({ force: true });
+          const adapters = mod.registerDeeplinkWallets({
+            force: true,
+            wallets: [{ ...mod.MOTION_WALLET, baseUrl }],
+          });
           setRegistered(
             adapters.length > 0
-              ? `registered: ${adapters.map((a) => a.name).join(", ")}`
+              ? `registered ${adapters.map((a) => a.name).join(", ")} → ${baseUrl}`
               : "no adapters registered",
           );
         })
@@ -776,12 +806,16 @@ export const MobileDeeplinkLive: Story = {
       return () => {
         cancelled = true;
       };
-    }, []);
+    }, [baseUrl]);
 
     return (
-      <div className="flex flex-col items-center gap-4">
-        <p className="text-muted-foreground text-xs">
+      <div className="flex max-w-md flex-col items-center gap-4">
+        <p className="text-muted-foreground text-center text-xs">
           {registered ?? "registering…"}
+        </p>
+        <p className="text-muted-foreground text-center text-xs">
+          Registration is one-shot per page. After changing the entry point,
+          reload before connecting, or the previous one is still in effect.
         </p>
         <WalletModal onClose={() => console.log("close")} />
       </div>
