@@ -30,12 +30,14 @@ import { cn } from "@/lib/utils";
 // lucide-react (not phosphor) so these icons are bundled + tree-shaken into the
 // DS — consumers don't need @phosphor-icons/react just for the wallet modal.
 import { ChevronDown, Fingerprint } from "lucide-react";
-import { NightlyIcon } from "@/components/Icon";
+import { MotionIcon } from "@/components/Icon";
 
-const nightlyWallet: AdapterNotDetectedWallet = {
-  name: "Nightly Wallet",
-  url: "https://nightly.app/download",
-  icon: "data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMTI5IiBoZWlnaHQ9IjEyOSIgdmlld0JveD0iMCAwIDEyOSAxMjkiIGZpbGw9Im5vbmUiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyI+CjxwYXRoIGQ9Ik0xMTMuMzgxIDAuMjVDMTA0LjAwOCAxMy4zMjI1IDkyLjI4NzQgMjIuMzg0NyA3OC40MTcyIDI4LjQ1NTZDNzMuNjA5MiAyNy4xNDg0IDY4LjY2ODIgMjYuNDM5NCA2My44MTU5IDI2LjQ4MzdDNTguOTYzNSAyNi40Mzk0IDU0LjAyMjUgMjcuMTI2MiA0OS4yMTQ1IDI4LjQ1NTZDMzUuMzY2NSAyMi4zODQ3IDIzLjYyMzQgMTMuMzIyNSAxNC4yNTEgMC4yNUMxMS40MTUgNy4zNjIzNCAwLjUxMzc5NiAzMS45MzQzIDEzLjYwODUgNjYuMjU1MkMxMy42MDg1IDY2LjI1NTIgOS40MjA4NCA4NC4xODAxIDE3LjEwOTMgOTkuNTc5MUMxNy4xMDkzIDk5LjU3OTEgMjguMjU0MSA5NC41NDk1IDM3LjA3MjYgMTAxLjYxN0M0Ni4zMTIgMTA5LjEyOSA0My4zNjUxIDExNi4zMyA0OS44NzkyIDEyMi41MzRDNTUuNDYyNyAxMjguMjUgNjMuODE1OSAxMjguMjUgNjMuODE1OSAxMjguMjVDNjMuODE1OSAxMjguMjUgNzIuMTY5IDEyOC4yNSA3Ny43NTI1IDEyMi41MzRDODQuMjY2NiAxMTYuMzMgODEuMzQxOSAxMDkuMTI5IDkwLjU1OTIgMTAxLjYxN0M5OS4zNzc2IDk0LjUyNzMgMTEwLjUyMiA5OS41NzkxIDExMC41MjIgOTkuNTc5MUMxMTguMjExIDg0LjE4MDEgMTE0LjAyMyA2Ni4yNTUyIDExNC4wMjMgNjYuMjU1MkMxMjcuMTE4IDMxLjkzNDMgMTE2LjIxNyA3LjM2MjM0IDExMy4zODEgMC4yNVpNMjAuNTY1NyA2MS40OTE1QzEzLjQ1MzQgNDYuODkwMSAxMS40ODE0IDI2LjgzODIgMTYuMDAxNCAxMC45OTYxQzIxLjkzOTUgMjYuMDE4NCAzMC4wMDQ1IDMyLjc3NjIgMzkuNjIwNiAzOS44ODg2QzM1LjUyMTYgNDguMzUyNSAyNy44Nzc1IDU2LjMyODkgMjAuNTY1NyA2MS40OTE1Wk00MS4wMzg2IDg3LjIxNTZDMzUuNDU1MSA4NC43MzQgMzQuMjM2NSA3OS44MzczIDM0LjIzNjUgNzkuODM3M0M0MS44ODA2IDc1LjAyOTMgNTMuMTE0MSA3OC43MDczIDUzLjQ2ODYgOTAuMDk1OUM0Ny41NTI3IDg2LjUyODcgNDUuNjAyOSA4OS4yMzE4IDQxLjAzODYgODcuMjE1NlpNNjMuODE1OSAxMjcuNjA3QzU5LjgwNTUgMTI3LjYwNyA1Ni41NDg0IDEyNC43NDkgNTYuNTQ4NCAxMjEuMjA0QzU2LjU0ODQgMTE3LjY1OSA1OS44MDU1IDExNC44MDEgNjMuODE1OSAxMTQuODAxQzY3LjgyNjMgMTE0LjgwMSA3MS4wODMzIDExNy42NTkgNzEuMDgzMyAxMjEuMjA0QzcxLjA4MzMgMTI0Ljc0OSA2Ny44MjYzIDEyNy42MDcgNjMuODE1OSAxMjcuNjA3Wk04Ni41OTMxIDg3LjIxNTZDODIuMDI4OCA4OS4yMDk3IDgwLjA3OSA4Ni41MDY1IDc0LjE2MzEgOTAuMDk1OUM3NC41MTc2IDc4LjcwNzMgODUuNzUxMSA3NS4wMjkzIDkzLjM5NTIgNzkuODM3M0M5My4zOTUyIDc5Ljg1OTUgOTIuMTk4OCA4NC43NTYxIDg2LjU5MzEgODcuMjE1NlpNMTA3LjA2NiA2MS40OTE1Qzk5Ljc1NDIgNTYuMzI4OSA5Mi4xMTAxIDQ4LjM1MjUgODguMDMzMyAzOS44ODg2Qzk3LjY0OTQgMzIuNzc2MiAxMDUuNzE0IDI2LjAxODQgMTExLjY1MiAxMC45OTYxQzExNi4xNSAyNi44NjA0IDExNC4xNzggNDYuOTEyMyAxMDcuMDY2IDYxLjQ5MTVaIiBmaWxsPSIjNjA2N0Y5Ii8+Cjwvc3ZnPgo=",
+// Icon is the same data URI the Motion extension registers through the wallet
+// standard, so the suggested row and the detected row look identical.
+const motionWallet: AdapterNotDetectedWallet = {
+  name: "Motion Wallet",
+  url: "https://chromewebstore.google.com/detail/motion-wallet/lcicbbjcjidfcideckmacabjdfiiogfo",
+  icon: "data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCA1MTIgNTEyIj4KICA8cG9seWdvbiBmaWxsPSJ3aGl0ZSIgcG9pbnRzPSI0OTguODQsMTc0Ljg0IDM4My43OSwxNzQuODQgMzYxLjksMjAwLjk5IDQxMC45NSwyMDAuOTkgMzYyLjg3LDI1OC4yOSAzMzYuMDYsMjU4LjI5IDI3My42NywzMzMuNjUgMjczLjcsMzMzLjY1IDI3Mi4yNSwzMzUuNDEgMzY0LjY1LDMzNS40MSA0OTcuNDIsMTc2LjU5IDQ5Ny4zOCwxNzYuNTkiLz4KICA8cG9seWdvbiBmaWxsPSJ3aGl0ZSIgcG9pbnRzPSIzMzkuOTEsMjI3LjE1IDM1MC44OCwyMTQuMDcgMzUwLjg2LDIxNC4wNyAzNjEuODQsMjAwLjk5IDMxNC4wNywyMDAuOTkgMzE0LjA4LDIwMC45NyAzMDAuMDksMjAwLjk3IDMwMC4wOCwyMDAuOTkgMjU4LjY5LDIwMC45OSAyNDcuNzIsMjE0LjA3IDIzNi43NCwyMjcuMTUgMTU4LjY2LDIyNy4xNSAxMTQuNjMsMjc5LjYyIDYxLjMyLDI3OS42MiAxNy4zLDMzMi4wOCAxNy4zNywzMzIuMDggMTQuNTgsMzM1LjQxIDkyLjg0LDMzNS40MSAxMzYuODYsMjgyLjk0IDEzNi43OSwyODIuOTQgMTM5LjU4LDI3OS42MiAxOTIuODksMjc5LjYyIDIzNi45MiwyMjcuMTUgMjg1LjgxLDIyNy4xNSAyODUuODIsMjI3LjE0IDI4NS45OSwyMjcuMTQgMjg1Ljk4LDIyNy4xNSAyNDIuMTIsMjc5LjQyIDIwNy4zNywyNzkuNDIgMTYwLjA1LDMzNS40MSAxNjYuMDQsMzM1LjQxIDIxOS40MiwzMzUuNDEgMjI1LjQsMzM1LjQxIDIyNi4xNywzMzQuNSAyMjYuMiwzMzQuNSAyNjEuNDEsMjkyLjU0IDI4NS4wNCwyOTIuNTQiLz4KPC9zdmc+Cg==",
   readyState: WalletReadyState.NotDetected,
 };
 
@@ -228,17 +230,17 @@ function ConnectWalletContent({
 
     const grouped = groupAndSortWallets(rest, walletSortingOptions);
 
-    // Add Nightly as installable wallet if not already present
+    // Add Motion as installable wallet if not already present
     const additionalInstallableWallets: (
       | AdapterWallet
       | AdapterNotDetectedWallet
     )[] = [];
-    const hasNightly = [
+    const hasMotion = [
       ...(grouped?.availableWallets ?? []),
       ...(grouped?.installableWallets ?? []),
-    ].some((w) => w.name.toLowerCase().includes("nightly"));
-    if (!hasNightly) {
-      additionalInstallableWallets.push(nightlyWallet);
+    ].some((w) => w.name.toLowerCase().includes("motion"));
+    if (!hasMotion) {
+      additionalInstallableWallets.push(motionWallet);
     }
 
     return {
@@ -329,17 +331,19 @@ function ConnectWalletContent({
             </span>
             <button
               className={cn(
-                // Nightly download pill — violet is the Nightly brand colour
-                // (Figma 7887:9734), not a Movement accent.
-                "h-10 w-full rounded-xl bg-[#6067F9] px-4 py-1 [&_path]:fill-white",
-                "inline-flex cursor-pointer items-center justify-center gap-2 border-none",
+                // Motion download pill — black is the Motion brand ground, so
+                // the pill needs a hairline to stay visible on the black modal.
+                "h-10 w-full rounded-xl border border-white/20 bg-black px-4 py-1",
+                "inline-flex cursor-pointer items-center justify-center gap-2",
                 "transition-all duration-200 ease-[ease]",
-                "hover:opacity-90",
+                "hover:bg-white/10",
               )}
-              onClick={() => window.open(nightlyWallet.url, "_blank")}
+              onClick={() => window.open(motionWallet.url, "_blank")}
             >
               <DownloadText />
-              <NightlyIcon size={30} fill="white" />
+              {/* 44, not 30: the logomark is a wide, short lockup, so it needs
+                  the extra width to match the label's optical weight. */}
+              <MotionIcon size={44} fill="white" />
             </button>
           </>
         )}

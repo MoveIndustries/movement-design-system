@@ -666,6 +666,32 @@ export const MetamaskIcon: Icon = forwardRef((props, ref) => (
 MetamaskIcon.displayName = "MetamaskIcon";
 
 
+// MotionIcon Component
+const MotionIconWeights = new Map<IconWeight, ReactElement>([
+  ["regular", (
+    <>
+  <polygon points="498.84,174.84 383.79,174.84 361.9,200.99 410.95,200.99 362.87,258.29 336.06,258.29 273.67,333.65 273.7,333.65 272.25,335.41 364.65,335.41 497.42,176.59 497.38,176.59"/>
+  <polygon points="339.91,227.15 350.88,214.07 350.86,214.07 361.84,200.99 314.07,200.99 314.08,200.97 300.09,200.97 300.08,200.99 258.69,200.99 247.72,214.07 236.74,227.15 158.66,227.15 114.63,279.62 61.32,279.62 17.3,332.08 17.37,332.08 14.58,335.41 92.84,335.41 136.86,282.94 136.79,282.94 139.58,279.62 192.89,279.62 236.92,227.15 285.81,227.15 285.82,227.14 285.99,227.14 285.98,227.15 242.12,279.42 207.37,279.42 160.05,335.41 166.04,335.41 219.42,335.41 225.4,335.41 226.17,334.5 226.2,334.5 261.41,292.54 285.04,292.54"/>
+
+</>
+  )],
+]);
+
+export const MotionIcon: Icon = forwardRef((props, ref) => (
+  <IconBase 
+    ref={ref} 
+    {...props} 
+    weights={MotionIconWeights}
+    viewBox="14.58 174.84 484.26 160.57"
+    style={{
+      ...props.style
+    }}
+  />
+));
+
+MotionIcon.displayName = "MotionIcon";
+
+
 // MoveIconIcon Component
 const MoveIconIconWeights = new Map<IconWeight, ReactElement>([
   ["regular", (
